@@ -203,8 +203,17 @@
     }
   }
   
-  .clinical-alerts-widget .alert-timeline {
-    max-height: 300px;
+  .clinical-alerts-widget {
+    padding: 0.375rem 0.5rem;
+
+    .alert-timeline {
+      max-height: 300px;
+    }
+
+    .alert-item {
+      padding: 0.75rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
