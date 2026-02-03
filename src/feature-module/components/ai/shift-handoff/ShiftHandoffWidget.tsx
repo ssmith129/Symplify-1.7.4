@@ -93,7 +93,7 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
   return (
     <div className="card shadow-sm h-100 shift-handoff-widget">
       {/* Header */}
-      <div className="card-header d-flex align-items-center justify-content-between py-2">
+      <div className="card-header d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">Shift Handoff</h5>
         </div>
@@ -108,7 +108,7 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
       </div>
 
       {isWidgetExpanded && currentReport && (
-        <div className="card-body pt-2 pb-3">
+        <div className="card-body pt-3 pb-3">
           {/* Priority Stats Row */}
           <div className="row g-2 mb-3">
             <div className="col-6 col-md-3">
