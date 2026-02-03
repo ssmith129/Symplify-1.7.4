@@ -213,8 +213,8 @@ const DoctorDahboard = () => {
                       <p className="text-truncate">Online Consultation</p>
                     </div>
                   </div>
-                  <div className="my-3 border-bottom pb-3">
-                    <Link to="#" className="btn btn-primary w-100">
+                  <div className="my-3 border-bottom pb-3 d-flex justify-content-center">
+                    <Link to="#" className="btn btn-primary" style={{ maxWidth: '280px', width: '100%' }}>
                       Start Appointment
                     </Link>
                   </div>
@@ -871,9 +871,11 @@ const DoctorDahboard = () => {
                       Closed
                     </p>
                   </div>
-                  <Link to="#" className="btn btn-light w-100 mt-2 fs-13">
-                    Edit Availability
-                  </Link>
+                  <div className="d-flex justify-content-center mt-2">
+                    <Link to="#" className="btn btn-light fs-13" style={{ maxWidth: '280px', width: '100%' }}>
+                      Edit Availability
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
