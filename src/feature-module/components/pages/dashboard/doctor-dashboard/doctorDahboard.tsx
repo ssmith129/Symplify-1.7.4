@@ -49,10 +49,10 @@ const DoctorDahboard = () => {
 
           {/* AI Shift Handoff Widget Section */}
           <div className="row mb-4">
-            <div className="col-xl-4 col-lg-6 mb-4">
+            <div className="col-xl-4 col-lg-6">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-xl-4 col-lg-6 mb-4">
+            <div className="col-xl-4 col-lg-6">
               <div
                 className={`card shadow-sm smart-widget-card ${patientSummaryExpanded ? 'h-100 expanded' : 'collapsed'}`}
                 style={{ transition: 'all 0.3s ease' }}
@@ -132,7 +132,7 @@ const DoctorDahboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-6 mb-4">
+            <div className="col-xl-4 col-lg-6">
               <SmartWidget widgetId="clinicalAlerts" />
             </div>
           </div>
