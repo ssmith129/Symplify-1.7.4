@@ -971,68 +971,91 @@ const Chat = () => {
                         </div>
                       </div>
                     </OverlayScrollbarsComponent>
-                    <div className="message-footer d-flex align-items-center border-top p-3">
-                      <div className="flex-fill">
-                        <input
-                          type="text"
-                          className="form-control border-0"
-                          placeholder="Type Something..."
-                        />
-                      </div>
-                      <div className="d-flex align-items-center gap-2">
-                        <Link
-                          to="#"
-                          className="btn btn-icon btn-light"
-                        >
-                          <i className="ti ti-photo-plus" />
-                        </Link>
-                        <Link
-                          to="#"
-                          className="btn btn-icon btn-light"
-                        >
-                          <i className="ti ti-mood-smile-beam" />
-                        </Link>
-                        <div>
+                    <div className="message-footer border-top p-3">
+                      {/* AI Urgency Indicator for typed message */}
+                      {messageInput && (
+                        <div className="mb-2">
+                          <MessageUrgencyIndicator
+                            message={messageInput}
+                            showLabel={true}
+                          />
+                        </div>
+                      )}
+                      <div className="d-flex align-items-center">
+                        <div className="flex-fill">
+                          <input
+                            type="text"
+                            className="form-control border-0"
+                            placeholder="Type Something..."
+                            value={messageInput}
+                            onChange={(e) => setMessageInput(e.target.value)}
+                          />
+                        </div>
+                        <div className="d-flex align-items-center gap-2">
+                          <button
+                            className="btn btn-icon btn-outline-warning"
+                            onClick={() => setShowSmartComposer(!showSmartComposer)}
+                            title="AI Smart Compose"
+                          >
+                            <i className="ti ti-sparkles" />
+                          </button>
                           <Link
                             to="#"
-                            className="btn btn-icon btn-outline-light"
-                            data-bs-toggle="dropdown"
-                            aria-label="more options"
+                            className="btn btn-icon btn-light"
                           >
-                            <i className="ti ti-dots-vertical" />
+                            <i className="ti ti-photo-plus" />
                           </Link>
-                          <ul className="dropdown-menu p-2">
-                            <li>
-                              <Link to="#" className="dropdown-item">
-                                <i className="ti ti-camera-selfie me-2" />
-                                Camera
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="#" className="dropdown-item">
-                                <i className="ti ti-photo-up me-2" />
-                                Gallery
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="#" className="dropdown-item">
-                                <i className="ti ti-music me-2" />
-                                Audio
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="#" className="dropdown-item">
-                                <i className="ti ti-map-pin-share me-2" />
-                                Location
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="#" className="dropdown-item">
-                                <i className="ti ti-user-check me-2" />
-                                Contact
-                              </Link>
-                            </li>
-                          </ul>
+                          <Link
+                            to="#"
+                            className="btn btn-icon btn-light"
+                          >
+                            <i className="ti ti-mood-smile-beam" />
+                          </Link>
+                          <div>
+                            <Link
+                              to="#"
+                              className="btn btn-icon btn-outline-light"
+                              data-bs-toggle="dropdown"
+                              aria-label="more options"
+                            >
+                              <i className="ti ti-dots-vertical" />
+                            </Link>
+                            <ul className="dropdown-menu p-2">
+                              <li>
+                                <Link to="#" className="dropdown-item">
+                                  <i className="ti ti-camera-selfie me-2" />
+                                  Camera
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="#" className="dropdown-item">
+                                  <i className="ti ti-photo-up me-2" />
+                                  Gallery
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="#" className="dropdown-item">
+                                  <i className="ti ti-music me-2" />
+                                  Audio
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="#" className="dropdown-item">
+                                  <i className="ti ti-map-pin-share me-2" />
+                                  Location
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="#" className="dropdown-item">
+                                  <i className="ti ti-user-check me-2" />
+                                  Contact
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                          <button className="btn btn-primary">
+                            <i className="ti ti-send" />
+                          </button>
                         </div>
                       </div>
                     </div>
