@@ -1,10 +1,29 @@
 import { Link } from "react-router";
+import { useState } from "react";
 import { all_routes } from "../../../../../routes/all_routes";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import 'overlayscrollbars/overlayscrollbars.css';
+import { SmartMessageRouter, MessageUrgencyIndicator } from "../../../ai";
 
 const Chat = () => {
+  const [showSmartComposer, setShowSmartComposer] = useState(false);
+  const [messageInput, setMessageInput] = useState('');
+
+  const handleSendSmartMessage = (content: string, recipients: string[]) => {
+    console.log('Sending message:', content, 'to:', recipients);
+    setShowSmartComposer(false);
+    // In a real app, this would send the message via API
+  };
+
+  // Sample messages with urgency detection
+  const sampleMessages = [
+    { id: 1, text: "Hey mark! Did you check out the new logo design?", sender: "Mark Smith", time: "02:39 PM", isMe: false },
+    { id: 2, text: "Not yet. Can you send it here?", sender: "You", time: "02:39 PM", isMe: true },
+    { id: 3, text: "URGENT: Patient in Room 302 needs immediate assistance!", sender: "Mark Smith", time: "02:45 PM", isMe: false },
+    { id: 4, text: "On my way now - acknowledged!", sender: "You", time: "02:46 PM", isMe: true },
+  ];
+
   return (
     <>
     {/* ========================
