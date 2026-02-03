@@ -353,28 +353,107 @@ const IntelligentCalendar: React.FC = () => {
   };
 
   return (
-    <div className="intelligent-calendar-wrapper">
+    <div
+      className="intelligent-calendar-wrapper"
+      ref={containerRef}
+      role="application"
+      aria-label="Appointment Calendar with AI-powered scheduling"
+    >
+      {/* Offline Indicator */}
+      {!isOnline && (
+        <div
+          className="offline-indicator d-flex align-items-center justify-content-center py-2 px-3 bg-warning text-dark"
+          role="alert"
+          aria-live="polite"
+        >
+          <i className="ti ti-wifi-off me-2" />
+          <span className="fs-12 fw-medium">Offline Mode - Viewing cached appointments</span>
+        </div>
+      )}
+
+      {/* Mobile View Switcher */}
+      {isMobile && (
+        <div className="mobile-view-switcher d-flex align-items-center justify-content-between p-2 bg-light border-bottom">
+          <button
+            className="btn btn-sm btn-outline-primary"
+            onClick={() => calendarRef.current?.getApi().today()}
+            aria-label="Go to today"
+          >
+            Today
+          </button>
+          <div className="btn-group btn-group-sm" role="group" aria-label="Calendar view options">
+            <button
+              className={`btn ${currentView === 'dayGridMonth' ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => {
+                calendarRef.current?.getApi().changeView('dayGridMonth');
+                setCurrentView('dayGridMonth');
+              }}
+              aria-pressed={currentView === 'dayGridMonth'}
+            >
+              Month
+            </button>
+            <button
+              className={`btn ${currentView === 'dayGridWeek' ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => {
+                calendarRef.current?.getApi().changeView('dayGridWeek');
+                setCurrentView('dayGridWeek');
+              }}
+              aria-pressed={currentView === 'dayGridWeek'}
+            >
+              Week
+            </button>
+            <button
+              className={`btn ${currentView === 'dayGridDay' ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => {
+                calendarRef.current?.getApi().changeView('dayGridDay');
+                setCurrentView('dayGridDay');
+              }}
+              aria-pressed={currentView === 'dayGridDay'}
+            >
+              Day
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className={`calendar-container ${panelOpen ? 'panel-open' : ''}`}>
-        {/* Main Calendar */}
-        <div className="calendar-main">
-          <div className="p-4">
+        {/* Main Calendar with Touch Gestures */}
+        <div
+          className="calendar-main"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className={isMobile ? 'p-2' : 'p-4'}>
             <FullCalendar
               ref={calendarRef}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
+              initialView={isMobile ? 'dayGridMonth' : 'dayGridMonth'}
               events={events}
-              headerToolbar={{
-                start: 'today,prev,next',
-                center: 'title',
-                end: 'dayGridMonth,dayGridWeek,dayGridDay',
-              }}
+              headerToolbar={headerToolbar}
               eventContent={renderEventContent}
               eventClick={handleEventClick}
               dateClick={handleDateClick}
               selectable={true}
-              dayMaxEvents={3}
+              dayMaxEvents={isMobile ? 2 : 3}
+              height={isMobile ? 'auto' : undefined}
+              contentHeight={isMobile ? 'auto' : undefined}
+              aspectRatio={isMobile ? 1.2 : 1.5}
+              fixedWeekCount={false}
+              showNonCurrentDates={!isMobile}
+              longPressDelay={isMobile ? 300 : 1000}
+              eventLongPressDelay={isMobile ? 300 : 1000}
+              selectLongPressDelay={isMobile ? 300 : 1000}
             />
           </div>
+
+          {/* Mobile Swipe Hint */}
+          {isMobile && !panelOpen && (
+            <div className="swipe-hint text-center py-2 text-muted fs-11">
+              <i className="ti ti-arrows-left-right me-1" />
+              Swipe left/right to navigate
+            </div>
+          )}
         </div>
 
         {/* AI Slot Panel */}
