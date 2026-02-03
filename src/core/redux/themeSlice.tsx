@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const defaultThemeSettings = {
   "data-bs-theme": "light",
-  "data-sidebar": "light",
+  "data-sidebar": "sidebarcustom",
   "data-color": "primary",
-  "data-topbar": "white",
+  "data-topbar": "topbarcustom",
   "data-layout": "default",
   "data-size": "default",
   "data-width": "fluid",
@@ -53,8 +53,3 @@ export const { updateTheme, resetTheme } = themeSlice.actions;
 
 
 export default themeSlice.reducer;
-
-
-
-
-
