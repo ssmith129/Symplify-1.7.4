@@ -301,14 +301,16 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
           </div>
 
           {/* View Full Report Button */}
-          <button
-            className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
-            onClick={handleViewFullReport}
-            style={{ maxWidth: '280px' }}
-          >
-            <i className="ti ti-report-medical me-2" />
-            Open Shift Handoff Dashboard
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
+              onClick={handleViewFullReport}
+              style={{ maxWidth: '280px' }}
+            >
+              <i className="ti ti-report-medical me-2" />
+              Open Shift Handoff Dashboard
+            </button>
+          </div>
         </div>
       )}
 
