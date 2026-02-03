@@ -3,9 +3,6 @@ import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
-import SCol5Chart from "./charts/scol5";
-import SCol6Chart from "./charts/scol6";
-import SCol7Chart from "./charts/scol7";
 import CircleChart2 from "./charts/circleChart2";
 import { ShiftHandoffWidget, SmartWidget } from "../../../ai";
 
