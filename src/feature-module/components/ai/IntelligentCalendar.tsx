@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import type { EventApi, DateSelectArg, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -27,13 +27,112 @@ interface CalendarEvent {
   borderColor?: string;
 }
 
+// Custom hook for detecting mobile viewport
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
+// Custom hook for touch swipe detection
+const useSwipeGesture = (
+  onSwipeLeft: () => void,
+  onSwipeRight: () => void,
+  threshold = 50
+) => {
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        onSwipeLeft(); // Swipe left = next
+      } else {
+        onSwipeRight(); // Swipe right = prev
+      }
+    }
+
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  }, [onSwipeLeft, onSwipeRight, threshold]);
+
+  return { handleTouchStart, handleTouchMove, handleTouchEnd };
+};
+
+// Custom hook for offline event caching
+const useOfflineEvents = (events: CalendarEvent[]) => {
+  const CACHE_KEY = 'calendar_events_cache';
+
+  // Save events to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(events));
+    } catch (e) {
+      console.warn('Failed to cache events:', e);
+    }
+  }, [events]);
+
+  // Load cached events
+  const loadCachedEvents = useCallback((): CalendarEvent[] => {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      return cached ? JSON.parse(cached) : [];
+    } catch (e) {
+      console.warn('Failed to load cached events:', e);
+      return [];
+    }
+  }, []);
+
+  // Check if online
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  return { isOnline, loadCachedEvents };
+};
+
 const IntelligentCalendar: React.FC = () => {
   const calendarRef = useRef<FullCalendar>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [daySlots, setDaySlots] = useState<CalendarDaySlots | null>(null);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<CalendarSlot | null>(null);
   const [booking, setBooking] = useState(false);
+  const [currentView, setCurrentView] = useState<'dayGridMonth' | 'dayGridWeek' | 'dayGridDay'>('dayGridMonth');
   const [events, setEvents] = useState<CalendarEvent[]>([
     // Sample initial events
     {
@@ -60,6 +159,49 @@ const IntelligentCalendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventApi | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
+
+  // Offline capability
+  const { isOnline, loadCachedEvents } = useOfflineEvents(events);
+
+  // Navigate to next/previous period
+  const navigateNext = useCallback(() => {
+    calendarRef.current?.getApi().next();
+  }, []);
+
+  const navigatePrev = useCallback(() => {
+    calendarRef.current?.getApi().prev();
+  }, []);
+
+  // Swipe gesture handlers
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipeGesture(
+    navigateNext,
+    navigatePrev,
+    75 // Threshold for swipe detection
+  );
+
+  // Mobile-optimized header toolbar
+  const headerToolbar = useMemo(() => {
+    if (isMobile) {
+      return {
+        start: 'prev,next',
+        center: 'title',
+        end: 'dayGridMonth,dayGridDay',
+      };
+    }
+    return {
+      start: 'today,prev,next',
+      center: 'title',
+      end: 'dayGridMonth,dayGridWeek,dayGridDay',
+    };
+  }, [isMobile]);
+
+  // Set initial view based on viewport
+  useEffect(() => {
+    if (isMobile && calendarRef.current) {
+      // Switch to day view on mobile for better UX
+      // calendarRef.current.getApi().changeView('dayGridDay');
+    }
+  }, [isMobile]);
 
   // Handle day click - fetch AI slots
   const handleDateClick = useCallback(async (info: { date: Date; dateStr: string }) => {
