@@ -49,8 +49,18 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
   };
 
   return (
-    <div className="card border shadow-sm rounded-2 h-100">
-      <div className="card-header d-flex align-items-center justify-content-between py-2">
+    <div
+      className={`card border shadow-sm rounded-2 smart-widget-card ${expanded ? 'h-100 expanded' : 'collapsed'}`}
+      style={{ transition: 'all 0.3s ease' }}
+    >
+      <div
+        className="card-header d-flex align-items-center justify-content-between py-2 cursor-pointer"
+        onClick={handleToggle}
+        role="button"
+        aria-expanded={expanded}
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleToggle(); }}
+      >
         <div className="d-flex align-items-center">
           <h6 className="fw-bold mb-0 fs-14">{widgetTitles[widgetId] || widgetId}</h6>
           {aiRecommended && (
@@ -62,16 +72,21 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
         </div>
         <button
           className="btn btn-sm btn-light border-0 p-1"
-          onClick={handleToggle}
+          onClick={(e) => { e.stopPropagation(); handleToggle(); }}
+          aria-label={expanded ? 'Collapse widget' : 'Expand widget'}
         >
           <i className={`ti ti-chevron-${expanded ? 'up' : 'down'} fs-14`} />
         </button>
       </div>
-      {expanded && (
-        <div className="card-body pt-2 pb-3">
-          {getWidgetContent()}
-        </div>
-      )}
+      <div
+        className={`card-body pt-2 pb-3 ${expanded ? '' : 'd-none'}`}
+        style={{
+          overflow: 'hidden',
+          transition: 'all 0.3s ease'
+        }}
+      >
+        {getWidgetContent()}
+      </div>
     </div>
   );
 };
