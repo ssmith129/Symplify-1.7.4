@@ -457,6 +457,30 @@
   --topbar-btn-color: #E7E8EB;
 }
 
+// Custom Dark Teal Theme (matching attached SVG designs)
+:root[data-sidebar=sidebarcustom] {
+  --menu-bg: #{linear-gradient(180deg, #1A4D5C 0%, #0E3A47 100%)};
+  --menu-item-color: rgba(255, 255, 255, 0.7);
+  --menu-item-heading: #fff;
+  --menu-item-hover-color: #00D3C7;
+  --menu-item-border: rgba(255, 255, 255, 0.15);
+  --menu-item-active-color: #00D3C7;
+  --menu-item-active-bg: rgba(0, 211, 199, 0.15);
+  --menu-active-color: #00D3C7;
+  --submenu-active-color: #00D3C7;
+  --menu-subdrop-active: #0F172A;
+  --menu-title-color: rgba(255, 255, 255, 0.5);
+  --menu-light-bg: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-topbar=topbarcustom] {
+  --topbar-bg: #{linear-gradient(90deg, #1E3A5F 0%, #1A4D5C 100%)};
+  --topbar-item-color: #fff;
+  --topbar-item-hover-color: #00D3C7;
+  --topbar-item-border: rgba(255, 255, 255, 0.2);
+  --topbar-btn-color: rgba(255, 255, 255, 0.1);
+}
+
 // Sidebar Variables
 $sidenav-width: var(--sidenav-width);
 $sidenav-width-sm: var(--sidenav-width-sm);
@@ -596,23 +620,3 @@ $border-radius-lg: .6rem;
 
 // Font
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
