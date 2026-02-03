@@ -161,10 +161,6 @@ const DoctorDahboard = () => {
                 >
                   <div className="d-flex align-items-center">
                     <h6 className="fw-bold mb-0 fs-14">My Patient Summary</h6>
-                    <span className="badge bg-primary text-white ms-2 px-2 py-1 fs-10">
-                      <i className="ti ti-sparkles me-1" />
-                      AI
-                    </span>
                   </div>
                   <button
                     className="btn btn-sm btn-light border-0 p-1"
