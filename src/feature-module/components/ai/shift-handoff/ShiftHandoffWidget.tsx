@@ -73,7 +73,7 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
   if (isGenerating) {
     return (
       <div className="card shadow-sm h-100 shift-handoff-widget">
-        <div className="card-header d-flex align-items-center justify-content-between py-2">
+        <div className="card-header d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <h5 className="fw-bold mb-0">Shift Handoff</h5>
           </div>
