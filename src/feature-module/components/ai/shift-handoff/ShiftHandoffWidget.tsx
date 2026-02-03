@@ -50,6 +50,10 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
     onToggleExpand?.();
   };
 
+  const handleViewFullReport = () => {
+    navigate(all_routes.shiftHandoff);
+  };
+
   const handlePatientClick = (patient: PatientHandoff) => {
     dispatch(selectPatient(patient));
     navigate(all_routes.shiftHandoff);
@@ -274,11 +278,11 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
             <div className="d-flex align-items-center gap-3 flex-wrap">
               {currentReport.patients.slice(0, 4).map((patient, idx) => {
                 const hrTrend = patient.vitalsTrend.find(v => v.metric === 'HR');
-                const trendIcon = hrTrend?.trend === 'improving' ? 'ti-trending-up' : 
+                const trendIcon = hrTrend?.trend === 'improving' ? 'ti-trending-up' :
                                   hrTrend?.trend === 'declining' ? 'ti-trending-down' : 'ti-minus';
-                const trendColor = hrTrend?.trend === 'improving' ? '#4CAF50' : 
+                const trendColor = hrTrend?.trend === 'improving' ? '#4CAF50' :
                                    hrTrend?.trend === 'declining' ? '#F44336' : '#9E9E9E';
-                
+
                 return (
                   <div key={idx} className="d-flex align-items-center">
                     <span className="fs-11 text-muted me-1">{patient.patientName.split(' ')[1]?.charAt(0) || patient.patientName.charAt(0)}</span>
@@ -287,6 +291,18 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
                 );
               })}
             </div>
+          </div>
+
+          {/* Open Shift Handoff Dashboard Button */}
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
+              onClick={handleViewFullReport}
+              style={{ maxWidth: '280px' }}
+            >
+              <i className="ti ti-report-medical me-2" />
+              Open Shift Handoff Dashboard
+            </button>
           </div>
 
         </div>
