@@ -763,8 +763,123 @@
   }
 }
 
-// Responsive calendar panel
-@media (max-width: 992px) {
+// ============================================
+// Mobile-Optimized Calendar Styles
+// Target breakpoints: Mobile (320px-768px), Tablet (769px-1024px), Desktop (1025px+)
+// WCAG 2.1 AA compliant with minimum 44px touch targets
+// ============================================
+
+// Touch-friendly base styles
+.intelligent-calendar-wrapper {
+  // Enable touch scrolling
+  -webkit-overflow-scrolling: touch;
+
+  // Prevent text selection during swipe
+  user-select: none;
+}
+
+// Calendar touch targets
+.calendar-main .fc {
+  .fc-button {
+    // Minimum 44px touch target for accessibility
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fc-daygrid-day {
+    // Larger touch target for day cells
+    min-height: 80px;
+
+    // Touch feedback
+    &:active {
+      background-color: rgba(var(--bs-primary-rgb), 0.15);
+    }
+  }
+
+  // More visible today indicator
+  .fc-daygrid-day.fc-day-today {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--bs-primary);
+    }
+  }
+}
+
+// Slot card touch optimization
+.slot-card {
+  // Minimum touch target height
+  min-height: 44px;
+
+  // Touch feedback
+  &:active {
+    transform: scale(0.98);
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+  }
+
+  // Focus styles for accessibility
+  &:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+  }
+
+  // Selected state enhancement
+  &.border-primary {
+    border-width: 2px;
+  }
+}
+
+// Tablet breakpoint (769px - 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
+  .calendar-container {
+    &.panel-open {
+      .ai-slot-panel {
+        width: 300px;
+      }
+    }
+  }
+
+  .calendar-main .fc {
+    .fc-toolbar-title {
+      font-size: 1.125rem;
+    }
+
+    .fc-button {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+    }
+
+    .fc-daygrid-day {
+      min-height: 70px;
+    }
+  }
+
+  .ai-slot-panel {
+    .slot-card {
+      padding: 0.625rem;
+    }
+  }
+}
+
+// Mobile breakpoint (max-width: 768px)
+@media (max-width: 768px) {
+  .intelligent-calendar-wrapper {
+    // Full width on mobile
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .calendar-container {
     flex-direction: column;
 
@@ -775,35 +890,345 @@
 
       .ai-slot-panel {
         width: 100%;
-        max-height: 400px;
+        max-height: 50vh;
         order: 1;
         border-left: none;
         border-bottom: 1px solid #e9ecef;
+
+        // Mobile slide-up animation
+        animation: slideUpPanel 0.3s ease-out;
+      }
+    }
+  }
+
+  @keyframes slideUpPanel {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .calendar-main {
+    padding: 0.5rem;
+
+    .fc {
+      // Compact toolbar for mobile
+      .fc-toolbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        .fc-toolbar-chunk {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+
+      .fc-toolbar-title {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      // Compact buttons
+      .fc-button {
+        padding: 0.375rem 0.625rem;
+        font-size: 0.75rem;
+        min-height: 44px;
+
+        // Hide text labels, show icons only on very small screens
+        .fc-icon {
+          font-size: 1rem;
+        }
+      }
+
+      // Smaller button group
+      .fc-button-group {
+        .fc-button {
+          padding: 0.25rem 0.5rem;
+        }
+      }
+
+      // Compact day cells
+      .fc-daygrid-day {
+        min-height: 60px;
+
+        .fc-daygrid-day-number {
+          padding: 4px;
+          font-size: 0.75rem;
+        }
+
+        .fc-daygrid-day-events {
+          margin-top: 0;
+        }
+      }
+
+      // Compact events
+      .fc-event {
+        font-size: 0.625rem;
+        padding: 1px 3px;
+        margin-bottom: 1px;
+
+        // Hide provider image on mobile events
+        .avatar-xs {
+          display: none;
+        }
+      }
+
+      // Limit visible events on mobile
+      .fc-daygrid-more-link {
+        font-size: 0.625rem;
+        padding: 2px;
+      }
+
+      // Compact column headers
+      .fc-col-header-cell {
+        padding: 0.5rem 0;
+
+        .fc-col-header-cell-cushion {
+          font-size: 0.6875rem;
+          font-weight: 600;
+        }
+      }
+
+      // Mobile day view optimizations
+      &.fc-timegrid {
+        .fc-timegrid-slot {
+          height: 3rem;
+        }
+
+        .fc-timegrid-axis-cushion {
+          font-size: 0.625rem;
+        }
+      }
+    }
+  }
+
+  // Mobile AI slot panel
+  .ai-slot-panel {
+    .panel-header {
+      padding: 0.75rem !important;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+
+      h6 {
+        font-size: 0.875rem;
+      }
+
+      // Larger close button for touch
+      .btn-sm {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .panel-body {
+      padding: 0.75rem !important;
+      max-height: calc(50vh - 120px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .panel-footer {
+      padding: 0.75rem !important;
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+
+      .btn {
+        min-height: 48px;
+        font-size: 0.9375rem;
+      }
+    }
+
+    // Compact day insights
+    .day-insights {
+      padding: 0.5rem !important;
+
+      .fs-18 {
+        font-size: 1.125rem !important;
+      }
+
+      .fs-11 {
+        font-size: 0.625rem !important;
+      }
+    }
+
+    // Mobile slot cards
+    .slot-card {
+      padding: 0.625rem !important;
+      margin-bottom: 0.5rem;
+
+      // Touch-friendly slot selection
+      min-height: 72px;
+
+      .fs-13 {
+        font-size: 0.75rem !important;
+      }
+
+      .fs-12 {
+        font-size: 0.6875rem !important;
+      }
+
+      .fs-11 {
+        font-size: 0.625rem !important;
+      }
+
+      // Smaller avatar
+      .avatar-xs {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      // Stack scores on mobile
+      > .d-flex.align-items-center.justify-content-between:last-child {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+    }
+  }
+
+  // Mobile event modal
+  .modal-dialog {
+    margin: 0.5rem;
+    max-height: calc(100vh - 1rem);
+
+    .modal-content {
+      max-height: calc(100vh - 1rem);
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      padding: 0.75rem 1rem;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+  }
+}
+
+// Extra small mobile (< 375px)
+@media (max-width: 374px) {
+  .calendar-main .fc {
+    .fc-toolbar-title {
+      font-size: 0.875rem;
+    }
+
+    .fc-button {
+      padding: 0.25rem 0.375rem;
+      font-size: 0.6875rem;
+    }
+
+    .fc-daygrid-day {
+      min-height: 50px;
+
+      .fc-daygrid-day-number {
+        font-size: 0.6875rem;
+        padding: 2px;
+      }
+    }
+
+    .fc-col-header-cell-cushion {
+      font-size: 0.625rem;
+    }
+  }
+
+  .ai-slot-panel {
+    max-height: 60vh;
+
+    .slot-card {
+      padding: 0.5rem !important;
+
+      // Stack provider info vertically
+      .d-flex.align-items-center.mb-2 {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.25rem;
       }
     }
   }
 }
 
-@media (max-width: 576px) {
-  .ai-slot-panel {
-    .slot-card {
-      padding: 0.75rem !important;
-    }
-
-    .panel-header {
-      padding: 0.75rem !important;
+// Landscape mobile orientation
+@media (max-width: 768px) and (orientation: landscape) {
+  .calendar-container.panel-open {
+    .ai-slot-panel {
+      max-height: 70vh;
     }
   }
 
   .calendar-main .fc {
-    .fc-toolbar {
-      flex-direction: column;
-      gap: 0.5rem;
+    .fc-daygrid-day {
+      min-height: 50px;
+    }
+  }
+}
+
+// Large desktop (1440px+)
+@media (min-width: 1440px) {
+  .calendar-container.panel-open {
+    .ai-slot-panel {
+      width: 380px;
+    }
+  }
+
+  .calendar-main .fc {
+    .fc-daygrid-day {
+      min-height: 100px;
     }
 
     .fc-toolbar-title {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
+  }
+}
+
+// Print styles
+@media print {
+  .ai-slot-panel {
+    display: none !important;
+  }
+
+  .calendar-main .fc {
+    .fc-toolbar {
+      display: none;
+    }
+  }
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  .calendar-container,
+  .ai-slot-panel,
+  .slot-card,
+  .fc-daygrid-day {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .slot-card {
+    border-width: 2px;
+
+    &.border-primary {
+      border-width: 3px;
+    }
+  }
+
+  .fc-daygrid-day.fc-day-today {
+    border: 2px solid var(--bs-primary);
   }
 }
 
