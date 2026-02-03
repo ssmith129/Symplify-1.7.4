@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
@@ -9,6 +10,12 @@ import CircleChart2 from "./charts/circleChart2";
 import { ShiftHandoffWidget } from "../../../ai";
 
 const DoctorDahboard = () => {
+  const [patientSummaryExpanded, setPatientSummaryExpanded] = useState(true);
+
+  const handlePatientSummaryToggle = () => {
+    setPatientSummaryExpanded(!patientSummaryExpanded);
+  };
+
   return (
     <>
       {/* ========================
@@ -139,9 +146,19 @@ const DoctorDahboard = () => {
             <div className="col-xl-5 col-lg-12 mb-4 mb-xl-0">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-xl-7 col-lg-12">
-              <div className="card shadow-sm h-100">
-                <div className="card-header d-flex align-items-center justify-content-between py-2">
+            <div className="col-xl-5 col-lg-12">
+              <div
+                className={`card shadow-sm smart-widget-card ${patientSummaryExpanded ? 'h-100 expanded' : 'collapsed'}`}
+                style={{ transition: 'all 0.3s ease' }}
+              >
+                <div
+                  className="card-header d-flex align-items-center justify-content-between py-2 cursor-pointer"
+                  onClick={handlePatientSummaryToggle}
+                  role="button"
+                  aria-expanded={patientSummaryExpanded}
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handlePatientSummaryToggle(); }}
+                >
                   <div className="d-flex align-items-center">
                     <h6 className="fw-bold mb-0 fs-14">My Patient Summary</h6>
                     <span className="badge bg-primary text-white ms-2 px-2 py-1 fs-10">
@@ -149,8 +166,18 @@ const DoctorDahboard = () => {
                       AI
                     </span>
                   </div>
+                  <button
+                    className="btn btn-sm btn-light border-0 p-1"
+                    onClick={(e) => { e.stopPropagation(); handlePatientSummaryToggle(); }}
+                    aria-label={patientSummaryExpanded ? 'Collapse widget' : 'Expand widget'}
+                  >
+                    <i className={`ti ti-chevron-${patientSummaryExpanded ? 'up' : 'down'} fs-14`} />
+                  </button>
                 </div>
-                <div className="card-body">
+                <div
+                  className={`card-body ${patientSummaryExpanded ? '' : 'd-none'}`}
+                  style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
+                >
                   <div className="row g-3">
                     <div className="col-md-3 col-6">
                       <div className="border rounded-2 p-3 text-center bg-soft-primary">
