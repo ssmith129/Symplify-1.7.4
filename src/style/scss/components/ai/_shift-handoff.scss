@@ -1316,10 +1316,63 @@ $info-bg: #E3F2FD;
   }
 }
 
-// Responsive adjustments for widget
-@media (max-width: 991px) {
+// ============================================
+// Responsive adjustments for Shift Handoff Widget
+// Target breakpoints: Mobile (320px-768px), Tablet (769px-1024px), Desktop (1025px+)
+// ============================================
+
+// Tablet breakpoint (769px - 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
   .shift-handoff-widget {
     .card-header {
+      padding: 0.75rem 1rem;
+
+      h5 {
+        font-size: 1rem;
+      }
+
+      .btn-outline-primary {
+        padding: 4px 10px !important;
+        font-size: 0.75rem;
+      }
+    }
+
+    .card-body {
+      padding: 0.875rem;
+    }
+
+    // Adjust stats grid for tablet
+    .row.g-2 > .col-6.col-md-3 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .priority-patients-list {
+      .patient-row {
+        padding: 0.625rem 0;
+      }
+    }
+
+    .ai-summary-preview {
+      padding: 0.625rem !important;
+
+      p {
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+}
+
+// Mobile breakpoint (max-width: 768px)
+@media (max-width: 768px) {
+  .shift-handoff-widget {
+    .card-header {
+      padding: 0.625rem 0.875rem;
+
+      h5 {
+        font-size: 0.9375rem;
+      }
+
       .btn-outline-primary {
         padding: 4px 8px !important;
 
@@ -1331,15 +1384,115 @@ $info-bg: #E3F2FD;
           margin: 0 !important;
         }
       }
+
+      // Smaller collapse button
+      .btn-sm.btn-light {
+        padding: 0.25rem;
+
+        i {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 0.75rem;
+    }
+
+    // Stack stats 2x2 on mobile
+    .row.g-2 > div {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    // Smaller stat cards
+    .text-center.p-2 {
+      padding: 0.5rem !important;
+
+      h5 {
+        font-size: 1rem;
+        margin-bottom: 0.125rem;
+      }
+
+      .fs-11, span {
+        font-size: 0.625rem !important;
+      }
+    }
+
+    // Shift info section
+    .d-flex.align-items-center.justify-content-between.mb-3.pb-2 {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.5rem;
+
+      .text-end {
+        text-align: left !important;
+      }
+    }
+
+    .priority-patients-list {
+      .patient-row {
+        padding: 0.5rem 0;
+
+        .fs-13 {
+          font-size: 0.75rem !important;
+        }
+
+        .fs-11 {
+          font-size: 0.625rem !important;
+        }
+      }
+    }
+
+    .ai-summary-preview {
+      padding: 0.5rem !important;
+
+      p {
+        font-size: 0.6875rem !important;
+        -webkit-line-clamp: 3 !important;
+      }
+    }
+
+    // Smaller vitals trends
+    .vitals-trends-preview {
+      .fs-11 {
+        font-size: 0.5625rem !important;
+      }
+
+      .fs-12 {
+        font-size: 0.625rem !important;
+      }
+    }
+
+    // Full width button on mobile
+    .btn-primary {
+      font-size: 0.8125rem;
+      padding: 0.5rem 1rem;
+      max-width: 100% !important;
+      width: 100%;
     }
   }
 }
 
-@media (max-width: 575px) {
+// Extra small mobile (< 375px)
+@media (max-width: 374px) {
   .shift-handoff-widget {
-    .row.g-2 > div {
-      flex: 0 0 50%;
-      max-width: 50%;
+    .card-header {
+      padding: 0.5rem 0.625rem;
+
+      h5 {
+        font-size: 0.875rem;
+      }
+    }
+
+    .card-body {
+      padding: 0.5rem;
+    }
+
+    .text-center.p-2 {
+      h5 {
+        font-size: 0.875rem;
+      }
     }
 
     .priority-patients-list {
@@ -1350,8 +1503,51 @@ $info-bg: #E3F2FD;
 
         .badge {
           margin-left: 16px !important;
+          margin-top: 4px;
         }
       }
+    }
+
+    .btn-primary {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+}
+
+// Large desktop (1440px+)
+@media (min-width: 1440px) {
+  .shift-handoff-widget {
+    .card-header {
+      padding: 1rem 1.5rem;
+
+      h5 {
+        font-size: 1.125rem;
+      }
+    }
+
+    .card-body {
+      padding: 1.25rem;
+    }
+
+    .priority-patients-list {
+      .patient-row {
+        padding: 0.75rem 0;
+      }
+    }
+  }
+}
+
+// Accessibility: Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  .shift-handoff-widget {
+    animation: none !important;
+    transition: none !important;
+
+    .card-header,
+    .card-body,
+    .patient-row {
+      transition: none !important;
     }
   }
 }
