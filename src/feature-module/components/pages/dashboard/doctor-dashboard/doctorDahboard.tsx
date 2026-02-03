@@ -66,7 +66,7 @@ const DoctorDahboard = () => {
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handlePatientSummaryToggle(); }}
                 >
                   <div className="d-flex align-items-center">
-                    <h6 className="fw-bold mb-0 fs-14">My Patient Summary</h6>
+                    <h5 className="fw-bold mb-0">My Patient Summary</h5>
                   </div>
                   <button
                     className="btn btn-sm btn-light border-0 p-1"
