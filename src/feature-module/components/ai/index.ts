@@ -57,9 +57,10 @@ export {
 export { default as NotificationDropdownAI } from './NotificationDropdownAI';
 export { default as NotificationPageAI } from './NotificationPageAI';
 
-// Feature 12: Email Priority Detection
+// Feature 12: Email Priority Detection & Smart Categorization
 export { default as EmailPriorityBadge } from './EmailPriorityBadge';
 export { default as EmailSidebarAI } from './EmailSidebarAI';
+export { default as EmailInboxAI } from './EmailInboxAI';
 
 // Feature 13: Message Urgency Analyzer
 export { default as MessageUrgencyIndicator, QUICK_RESPONSES } from './MessageUrgencyIndicator';
