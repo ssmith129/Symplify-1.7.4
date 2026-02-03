@@ -4,7 +4,7 @@ import { all_routes } from "../../../../../routes/all_routes";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import 'overlayscrollbars/overlayscrollbars.css';
-import { SmartMessageRouter, MessageUrgencyIndicator } from "../../../ai";
+import { SmartMessageRouter, MessageUrgencyIndicator } from "../../../../ai";
 
 const Chat = () => {
   const [showSmartComposer, setShowSmartComposer] = useState(false);
