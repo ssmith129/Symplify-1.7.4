@@ -10,7 +10,7 @@ import SCol19Chart from "./chats/scol19";
 import CircleChart from "./chats/circleChart";
 import { Calendar, type CalendarProps } from "antd";
 import type { Dayjs } from "dayjs";
-import { AIDashboardSection, ShiftHandoffWidget } from "../../ai";
+import { AIDashboardSection, ShiftHandoffWidget, ChatInboxWidget } from "../../ai";
 
 const Dashboard = () => {
   const [sColChart] = useState<any>({
@@ -248,6 +248,9 @@ const Dashboard = () => {
           <div className="row mb-4 g-3 g-lg-4">
             <div className="col-12 col-md-6 col-lg-4 d-flex">
               <ShiftHandoffWidget />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
+              <ChatInboxWidget maxChats={4} />
             </div>
           </div>
 
