@@ -1,4 +1,4 @@
-// AI Feature Types for PreClinic Platform
+// AI Feature Types for Symplify Platform
 
 // ============================================
 // Feature 1: Smart Triage Priority Badge Types

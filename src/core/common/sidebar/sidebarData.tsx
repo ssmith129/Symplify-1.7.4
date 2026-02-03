@@ -1842,7 +1842,7 @@ export const SidebarData = [
     submenuItems: [
       {
         label: "Documentation",
-        link: "https://preclinic.dreamstechnologies.com/documentation/react.html",
+        link: "https://symplify.dreamstechnologies.com/documentation/react.html",
         submenu: false,
         showSubRoute: false,
         icon: "file-dots",

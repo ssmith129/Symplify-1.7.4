@@ -1,4 +1,4 @@
-// AI Core Module Index - PreClinic Platform
+// AI Core Module Index - Symplify Platform
 // Export all AI-related types, services, and utilities
 
 // Types
