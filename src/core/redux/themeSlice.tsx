@@ -11,14 +11,25 @@ const defaultThemeSettings = {
   "data-width": "fluid",
   "data-sidebarbg": "none",
   "dir": "ltr",
+  "themeVersion": "2",
 };
 
+const getInitialThemeSettings = () => {
+  const storedSettings = localStorage.getItem("themeSettings");
+  if (storedSettings) {
+    const parsed = JSON.parse(storedSettings);
+    // Force new theme if version doesn't match
+    if (parsed.themeVersion !== defaultThemeSettings.themeVersion) {
+      localStorage.setItem("themeSettings", JSON.stringify(defaultThemeSettings));
+      return defaultThemeSettings;
+    }
+    return parsed;
+  }
+  return defaultThemeSettings;
+};
 
 const initialState = {
-  themeSettings: JSON.parse(
-    localStorage.getItem("themeSettings") ||
-      JSON.stringify(defaultThemeSettings)
-  ),
+  themeSettings: getInitialThemeSettings(),
 };
 
 
