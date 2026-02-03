@@ -316,7 +316,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
               </span>
               <span className="fs-12 text-muted">{currentReport?.totalPatients || 0} patients</span>
             </div>
-            <Link to={all_routes.shiftHandoff} className="fs-12 link-primary">View Report</Link>
           </div>
         </div>
       )}
