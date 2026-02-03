@@ -6,14 +6,14 @@ import { BrowserRouter } from 'react-router'
 import { base_path } from './environment'
 import ALLRoutes from './feature-module/routes/router'
 import ThemeRouteHandler from './core/common/theme-route-handler/themeRouteHandler'
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import "../src/style/css/iconsax.css";
-import "../src/style/css/feather.css";
-import "../node_modules/@tabler/icons-webfont/dist/tabler-icons.css";
-import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css";
-import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "../src/index.scss"; 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./style/css/iconsax.css";
+import "./style/css/feather.css";
+import "@tabler/icons-webfont/dist/tabler-icons.css";
+import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./index.scss"; 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
