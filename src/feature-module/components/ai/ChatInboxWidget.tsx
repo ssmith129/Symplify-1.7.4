@@ -217,7 +217,7 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
           </div>
         ) : (
           /* Chat List */
-          <div className="chat-list">
+          <div className="chat-list w-100" style={{ maxWidth: '100%' }}>
             {chats.map((chat, index) => (
               <div
                 key={chat.id}
