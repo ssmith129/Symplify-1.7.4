@@ -67,16 +67,41 @@ const Chat = () => {
                         <p className="mb-0">Admin</p>
                       </div>
                     </div>
-                    <Link
-                      to="#"
-                      className="btn p-2 btn-primary"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      data-bs-title="New Chat"
-                    >
-                      <i className="ti ti-plus" />
-                    </Link>
+                    <div className="d-flex gap-2">
+                      <button
+                        className={`btn p-2 ${showSmartComposer ? 'btn-warning' : 'btn-outline-warning'}`}
+                        onClick={() => setShowSmartComposer(!showSmartComposer)}
+                        title="AI-Powered Smart Compose"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                      >
+                        <i className="ti ti-sparkles" />
+                      </button>
+                      <Link
+                        to="#"
+                        className="btn p-2 btn-primary"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-title="New Chat"
+                      >
+                        <i className="ti ti-plus" />
+                      </Link>
+                    </div>
                   </div>
+
+                  {/* AI Smart Message Router Panel */}
+                  {showSmartComposer && (
+                    <div className="p-3 border-bottom bg-light">
+                      <div className="d-flex align-items-center mb-2">
+                        <i className="ti ti-sparkles text-warning me-2" />
+                        <h6 className="mb-0 fs-14">AI Smart Compose</h6>
+                      </div>
+                      <SmartMessageRouter
+                        onSend={handleSendSmartMessage}
+                        placeholder="Type your message... AI will analyze urgency and suggest routing"
+                      />
+                    </div>
+                  )}
                   <div>
                     <div className="input-group w-auto input-group-flat p-4 pb-0">
                       <span className="input-group-text border-end-0">
