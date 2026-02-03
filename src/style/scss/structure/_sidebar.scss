@@ -869,3 +869,50 @@
         display: block;
     }
 }
+
+// Custom dark sidebar theme styles
+[data-sidebar="sidebarcustom"] {
+    .sidebar {
+        .sidebar-logo {
+            .logo.logo-normal {
+                display: none;
+            }
+            .dark-logo {
+                display: block;
+            }
+        }
+        .sidebar-top {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+    &.mini-sidebar {
+        .sidebar {
+            .sidebar-logo {
+                .logo.logo-normal {
+                    display: none;
+                }
+                .dark-logo {
+                    display: none;
+                }
+                .logo-small {
+                    display: block;
+                }
+            }
+        }
+        &.expand-menu {
+            .sidebar {
+                .sidebar-logo {
+                    .logo.logo-normal {
+                        display: none;
+                    }
+                    .dark-logo {
+                        display: block;
+                    }
+                    .logo-small {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
