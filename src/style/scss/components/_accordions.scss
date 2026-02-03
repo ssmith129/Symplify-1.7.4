@@ -1,0 +1,481 @@
+//
+// accordions.scss
+//
+
+@use "../variables" as *;
+
+.accordion-item {
+    background-color: var(--white);
+}
+.accordion-button {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $body-color;
+    padding: 16px 20px;
+    box-shadow: none !important;  
+    background-color: transparent;  
+    &::after {
+        height: 0.75rem;
+        width: 0.75rem;
+        background-size: 0.75rem;
+    }
+    &:not(.collapsed) {
+        background-color: $light;
+        color: $body-color;
+    }
+}
+.accordion-body{
+    color: $body-color;
+    padding: 16px 20px;
+}
+.accordion-bordered {
+    .accordion-item {
+        border-top: 1px solid $border-color;
+        border-radius: $border-radius;
+
+        &:not(:first-of-type) {
+            margin-top: 0.5rem;
+        }
+        .accordion-button {
+            border-radius: $border-radius;
+            font-size: 16px; 
+            color: $gray-900;   
+            background-color: transparent;
+            &:not(.collapsed) {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                background-color: $light-transparent;
+                &::after {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+.accordion-arrow-none {
+    .accordion-button {
+        &::after {
+            background-image: none;
+        }
+    }
+}
+.accordion-custom-icon {
+    .accordion-icon {
+        position: absolute;
+        right: 1.25rem;
+    }
+    .accordion-icon-off {
+        display: none;
+    }
+    [aria-expanded="true"] {
+        .accordion-icon-off {
+            display: block;
+        }
+        .accordion-icon-on {
+            display: none;
+        }
+    }
+}
+.accordions-items-seperate {
+    .accordion-item:not(:first-of-type) {
+        margin-block-start: 1rem;
+    }
+    .accordion-item {
+        border-block-start: 1px solid $border-color;
+        border-radius: $border-radius;
+        overflow: hidden;
+    }
+}
+.accordion {
+    &.accordion-primary {
+        .accordion-button {
+            background-color: rgba($primary-rgb, 0.1);
+            color: $primary;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-secondary {
+        .accordion-button {
+            background-color: rgba($secondary-rgb,0.1);
+            color: $secondary;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-success {
+        .accordion-button {
+            background-color: rgba($success,0.1);
+            color: $success;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-danger {
+        .accordion-button {
+            background-color: rgba($danger,0.1);
+            color: $danger;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-warning {
+        .accordion-button {
+            background-color: rgba($warning,0.1);
+            color: $warning;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                }
+            }
+        }
+    }
+    &.accordion-info {
+        .accordion-button {
+            background-color: rgba($info,0.1);
+            color: $info;
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    background-color: $white;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+}
+.accordion {
+    &.accordion-solid-primary {
+        .accordion-button {
+            background-color: $primary;
+            color: $white;
+            &:after { 
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-solid-secondary {
+        .accordion-button {
+            background-color: $secondary;
+            color: $white;
+            &:after {
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-solid-success {
+        .accordion-button {
+            background-color: $success;
+            color: $white;
+            &:after {
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-solid-danger {
+        .accordion-button {
+            background-color: $danger;
+            color: $white;
+            &:after {
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-solid-warning {
+        .accordion-button {
+            background-color: $warning;
+            color: $white;
+            &:after {
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+    &.accordion-solid-info {
+        .accordion-button {
+            background-color: $info;
+            color: $white;
+            &:after {
+                background-color: transparent;
+                color: $white;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &.collapsed {
+                background-color: $white;
+                color: $body-color;
+                &:after { 
+                    color: $body-color;
+                }
+            }
+        }
+    }
+}
+.accordion {
+    &.accordion-border-primary {
+        .accordion-item {
+            border: 1px solid $primary;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $primary;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $primary;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $primary;
+            }
+        }
+    }
+    &.accordion-border-secondary {
+        .accordion-item {
+            border: 1px solid $secondary;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $secondary;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $secondary;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $secondary;
+            }
+        }
+    }
+    &.accordion-border-success {
+        .accordion-item {
+            border: 1px solid $success;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $success;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $success;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $success;
+            }
+        }
+    }
+    &.accordion-border-danger {
+        .accordion-item {
+            border: 1px solid $danger;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $danger;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $danger;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $danger;
+            }
+        }
+    }
+    &.accordion-border-warning {
+        .accordion-item {
+            border: 1px solid $warning;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $warning;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $warning;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $warning;
+            }
+        }
+    }
+    &.accordion-border-info {
+        .accordion-item {
+            border: 1px solid $info;
+        }
+        .accordion-button {
+            background-color: $white;
+            color: $info;
+            border-block-end: 0px;
+            &:after { 
+                background-color: $white;
+                color: $info;
+                content: "\ea5f";
+                font-family: "tabler-icons";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: none;
+            }
+            &:not(.collapsed) {
+                border-block-end: 1px solid $info;
+            }
+        }
+    }
+}
+.accordion-bordered {
+  .accordion-item {
+        border: 1px solid $border-color !important;
+        border-radius: 5px;
+        .accordion-button {
+            border: none !important;
+            outline: none;
+            box-shadow: none;
+            border-radius: 5px !important;
+            background-color: transparent;
+            color: $gray-900;
+            font-weight: $font-weight-bold;
+            &::after{
+                color: $gray-900;
+            }
+        }
+        .accordion-body{
+            border-top: 1px solid $border-color;
+            label{
+                &.btn{
+                    padding: 0.537rem 0.77rem;
+                }
+            }
+        }
+    }
+}
+  

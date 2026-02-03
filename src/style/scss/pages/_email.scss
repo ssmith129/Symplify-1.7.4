@@ -1,0 +1,211 @@
+//
+// _email.scss 
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.email-sidebar {
+    max-width: 288px;
+    height: calc(100vh - 56px) !important;
+    @include respond-below(md) {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+}
+.mail-notifications {
+    height: calc(100vh - 56px) !important;
+}
+.mail-detail {
+    height: calc(100vh - 56px) !important;
+}
+.more-menu {
+    display: none;
+}
+.mails-list {
+    .list-group-item {
+      cursor: pointer;
+    }
+}
+.mail-notifications {
+    width: 50%;
+    transition: 0.5s all;
+    &.compress-width {
+      max-width: 400px;
+      transition: 0.5s all;
+      @include respond-below(md) {
+        display: none;
+      }
+    }
+    @include respond-below(md) {
+      width: 100%;
+      max-width: 100%;
+    }
+}
+.tag-with-img {
+  .choices__inner {
+    border: 0;
+    padding: 0;
+  }
+}
+.list-item-hover {
+    transition: 0.5s all;
+    &:hover {
+      border-color: $primary !important;
+      transition: 0.5s all;
+    }
+}
+.w-120 {
+    width: 125px;
+}
+.project-status {
+    min-width: 265px;
+}
+.kanban-drag-wrap, .kanban-drag {
+    min-width: 220px;
+    min-height: 50px;
+}
+.files-list {
+    a.active {
+      background: $light;
+      border-radius: 5px;
+    }
+}
+.img-full-view {
+    a {
+      position: relative;
+      transition: 0.5s all;
+      display: block;
+      span {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translatex(-50%);
+        transition: 0.5s all;
+        background: $white;
+        opacity: 0;
+        i {
+          color: $dark;
+          opacity: 1;
+        }
+      }
+      &:hover {
+        transition: 0.5s all;
+        span {
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: 0.5s all;
+          opacity: 0.5;
+        }
+        &::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+          background: $gray-900;
+          opacity: 0.8;
+          position: absolute;
+          transition: 0.5s all;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+        }
+      }
+      img {
+        transition: 0.5s all;
+        width: 100%;
+      }
+    }
+}
+.card-img-hover {
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s all;
+    img {
+      transition: 0.5s all;
+    }
+    &:hover {
+      transition: 0.5s all;
+      img {
+        transform: scale(1.14);
+        transition: 0.5s all;
+      }
+    }
+}
+#compose-view {
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    &.show {
+      display: flex;
+      transform: scale(1);
+    }
+}
+.compose-view {
+    top: auto;
+    bottom: 0;
+    right: 20px;
+    max-width: 500px;
+    width: 100%;
+    left: auto;
+    margin: 20px 0 20px auto;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    .choices__inner {
+      border: 0;
+      padding: 0;
+    }
+    .choices[data-type*=text] {
+      .choices__inner {
+        padding: 0 !important;
+      }
+    }
+}
+.compose-header {
+    @include rounded(4px 4px 0 0);
+}
+.compose-footer {
+    @include rounded(0 0 4px 4px);
+}
+.drag-upload-btn {
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 6px 16px;
+    position: relative;
+    transition: all 0.5s;
+    input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+  }
+}  
+.file-upload {
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    &.drag-file {
+      height: 120px;
+    }
+}  
+  
+
+
+
+  

@@ -1,0 +1,144 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.auth-bg{
+    .otp-input {
+        input {
+          &:focus {
+            border: 1px solid $primary;
+            outline: none;
+            transition: all 0.7s;
+          }
+        }
+    }
+    .login-or{
+        text-align: center;
+        font-size: 15px;
+        color: #6C7688;
+        font-weight: 500;
+        margin: 5px 0;
+        padding: 10px 0 0px;
+        position: relative;
+        &::after{
+            content: "";
+            width: 100%;
+            border-top: 1px solid var(--cf-border-color);
+            position: absolute;
+            top: 50%;
+            right: 0;
+        }
+        &::before{
+            content: "";
+            width: 100%;
+            border-top: 1px solid var(--cf-border-color);
+            position: absolute;
+            top: 50%;
+            left: 0;
+        }
+        .span-or{
+            background-color: $white;
+            padding: 0 10px;
+            z-index: 9;
+            position: relative;
+        }
+    }
+    .hover-a {
+        position: relative;
+        color: $primary;
+        &:after {
+            content:"";
+            height: 2px;
+            width: 100%;
+            background: $primary;
+            @include transform(scale(0));
+            @include transition(all 0.3s ease);
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+        &:hover:after {
+            @include transform(scale(1));
+        }
+        &:hover {
+            color: $primary;
+        }
+    }
+    .element-01{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 45%;
+
+    }
+    .element-02{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 45%;
+    }
+    .error-images img {
+        max-width: 410px;
+    }
+    .otp-input input {
+        border: 1px solid var(--cf-border-color);
+        width: 60px;
+        height: 60px;
+    }
+    .login-backgrounds {
+        background: #ECEDF7;
+
+        .cover-img{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+    .authentication-card {
+        padding: 10px 40px;
+        .authen-overlay-item {
+            border-radius: 15px;
+            padding: 40px 40px 0px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(13px);
+            border: 1px solid #06aed4b3;
+            .authen-head{
+                width: 100%;
+                max-width: 474px;
+                margin: auto;
+                p{
+                    
+                }
+            }
+            .authen-overlay-img {
+                max-width: 400px;
+            }
+        }
+    }
+    }  
+}
+.auth-bg-custom{
+    // background: url(../img/auth/auth-bg.jpg);
+    background-size: cover;
+}
+.ti-eye-slash::before{
+    content: '\ea9a';
+}
+.input-icon {
+    .form-control {
+      padding-left: 30px;
+    }
+ }
+.otp-input {
+    input {
+      border: 2px solid $gray-200;
+      &.active {
+        border: 2px solid $primary;
+      }
+    }
+}

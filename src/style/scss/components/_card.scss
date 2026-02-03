@@ -1,0 +1,106 @@
+//
+// card.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.card {
+    margin-bottom: 1.5rem;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    color: inherit;
+    background-color: $white;
+    .header-title {
+        margin-bottom: 0;
+        font-weight: $font-weight-semibold;
+        font-size: 1rem;
+    }
+    .card-title {
+        color: $gray-900;
+        margin-bottom: 0;
+        font-weight: $font-weight-semibold;
+        font-size: 16px;
+    }
+    .card-header {
+        padding: 0.9375rem 1.25rem; 
+        margin-bottom: 0;
+        border-color: $border-color;
+        background: transparent;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-footer {
+        padding: 0.75rem 1.25rem;
+        background: $white;
+        border-top: 1px solid $border-color;
+    }
+    .card-drop {
+        font-size: 20px;
+        color: inherit;
+        &:hover {
+            color: $primary;
+        }
+    }
+    .card-widgets {
+        float: right;
+        height: 16px;
+        >a {
+            color: inherit;
+            font-size: 18px;
+            display: inline-block;
+            line-height: 1;
+            margin: 0 3px;
+            &.collapsed {
+                i {
+                    &:before {
+                        content: "\eb0b";
+                    }
+                }
+            }
+        }
+    }
+}
+.card-bg {
+    background-color: $white;
+}
+//Card disable loading (Custom Cards)
+.card-disabled {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: $border-radius;
+    background: $light;
+    opacity: 0.8;
+    cursor: progress;
+    .card-portlets-loader {
+        background-color: $dark;
+        animation: rotatebox 1.2s infinite ease-in-out;
+        height: 30px;
+        width: 30px;
+        border-radius: 3px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -0.625rem;
+        margin-top: -0.625rem;
+    }
+}
+@keyframes rotatebox {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
+// Custom card height
+.card-h-100 {
+    height: calc(100% - 1.25rem);
+}

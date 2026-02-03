@@ -1,0 +1,97 @@
+//
+// _quill-editor.scss
+//
+
+@use "../variables" as *;
+
+.ql-editor {
+    text-align: left;
+
+    ol,
+    ul {
+        padding-left: 1.5em;
+        padding-right: 0;
+    }
+
+    li:not(.ql-direction-rtl)::before {
+        margin-left: -1.5em;
+        margin-right: 0.3em;
+        text-align: right;
+    }
+}
+
+.ql-container {
+    font-family: $font-family-base;
+
+    &.ql-snow {
+        border-color: $border-color;
+        border-radius: 0 0 5px 5px;
+    }
+}
+
+.ql-bubble {
+    border: 1px solid $border-color;
+    border-radius: 5px;
+}
+
+.ql-toolbar {
+    font-family: $font-family-base !important;
+
+    span {
+        outline: none !important;
+        color: $body-color;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+
+    &.ql-snow {
+        border-radius: 5px 5px 0 0;
+        border-color: $border-color;
+
+        .ql-picker.ql-expanded {
+            .ql-picker-label {
+                border-color: transparent;
+            }
+        }
+
+        .ql-picker-options {
+            box-shadow: $box-shadow;
+            border-radius: 5px;
+        }
+    }
+}
+
+.ql-snow {
+
+    .ql-stroke,
+    .ql-script,
+    .ql-strike svg {
+        stroke: $body-color;
+    }
+
+    .ql-fill {
+        fill: $body-color;
+    }
+
+    .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) {
+        svg {
+            right: 0;
+            left: auto;
+        }
+    }
+
+    .ql-picker {
+        &.ql-expanded .ql-picker-label {
+            color: $body-color;
+        }
+    }
+}
+
+.ql-snow {
+    .ql-picker-options {
+        background-color: $white;
+        border-color: $border-color !important;
+    }
+}

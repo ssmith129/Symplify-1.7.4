@@ -1,0 +1,201 @@
+//
+// background.scss 
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+@use "sass:map";
+@use "sass:color";
+
+@each $color,
+$value in $theme-colors {
+    .fill-#{$color} {
+        fill: rgba(var(--#{$color}), 0.1);
+    }
+}
+// Background opacity utilities
+.bg-opacity-100 { --bg-opacity: 1 !important; }
+.bg-opacity-75  { --bg-opacity: 0.75 !important; }
+.bg-opacity-50  { --bg-opacity: 0.5 !important; }
+.bg-opacity-25  { --bg-opacity: 0.25 !important; }
+.bg-opacity-10  { --bg-opacity: 0.10 !important; }
+
+// Use the variable for bg color with opacity
+@each $state in map.keys($theme-colors) {
+    .bg-#{$state}:not([class*="bg-opacity-"]) {
+        --bg-opacity: 1;
+    }
+    .bg-#{$state} {
+        background-color: rgba(var(--#{$state}-rgb), var(--bg-opacity, 1)) !important;
+    }
+}
+
+.bg-white {
+    background-color: $white !important;
+}
+.bg-body {
+    background-color: $light-200 !important;
+}
+.bg-body-secondary {
+    background-color: $white !important;
+}
+.bg-primary-subtle {
+    background-color: $primary-transparent !important;
+}
+.bg-secondary-subtle {
+    background-color: $secondary-transparent !important;
+}
+.bg-success-subtle {
+    background-color: $success-transparent !important;
+}
+.bg-danger-subtle {
+    background-color: $danger-transparent !important;
+}
+.bg-warning-subtle {
+    background-color: $warning-transparent !important;
+}
+.bg-info-subtle {
+    background-color: $info-transparent !important;
+}
+.bg-light-subtle {
+    background-color: $light-transparent !important;
+}
+.bg-dark-subtle {
+    background-color: $gray-transparent !important;
+}
+.bg-soft-primary {
+    background-color: var(--primary-transparent) !important;
+}
+.bg-soft-secondary {
+    background-color: var(--secondary-transparent) !important;
+}
+.bg-soft-success {
+    background-color: var(--success-transparent) !important;
+}
+.bg-soft-info {
+    background-color: var(--info-transparent) !important;
+}
+.bg-soft-warning {
+    background-color: var(--warning-transparent) !important;
+}
+.bg-soft-danger {
+    background-color: var(--danger-transparent) !important;
+}
+.bg-soft-light {
+    background-color: var(--light-transparent) !important;
+}
+.bg-soft-dark {
+    background-color: var(--gray-100) !important;
+}
+.bg-soft-pink {
+    background-color: var(--pink-transparent);
+}
+.bg-soft-indigo {
+    background-color: var(--indigo-transparent);
+}
+.bg-soft-orange {
+    background-color: var(--orange-transparent);
+}
+@each $color,
+$value in $theme-colors {
+    .text-bg-#{$color} {
+        background-color: var(--#{$color}) !important;
+    }
+}
+.text-bg-info {
+    background-color: var(--info) !important;
+    color: var(--white) !important;
+}
+@each $color,
+$value in $theme-colors {
+    .text-#{$color}-emphasis {
+        color: var(--#{$color}-hover) !important;
+    }
+}
+@each $color,
+$value in $theme-colors {
+    .text-#{$color} {
+        color: var(--#{$color}) !important;
+        &.text-opacity-75 {
+            opacity: 0.75 !important;
+        }
+    }
+    .link-#{$color} {
+        color: var(--#{$color}) !important;
+        &:hover {
+            color: var(--#{$color}-hover) !important;
+        }
+    }
+    .link-underline-#{$color} {
+        text-decoration-color: var(--#{$color}) !important;
+    }
+}
+.text-white {
+    color: $white !important;
+}
+.text-body {
+    color: $body-color !important;
+}
+.text-body-emphasis {
+    color: $gray-hover !important;
+}
+.text-body-secondary {
+    color: $gray-900 !important;
+}
+.text-body-tertiary {
+    color: $gray-300 !important;
+}
+.text-black {
+    color: $black !important;
+}
+.text-muted {
+    color: $body-color !important;
+}
+.text-dark {
+    color: $gray-900 !important;
+}
+
+.bg-indigo-gradient {
+    background-image: linear-gradient(180deg, #8351FD 0%, #5112A9 100%) !important;
+}
+.bg-primary-gradient {
+    background-image: linear-gradient(180deg, #18ACCF 0%, #0F59AD 100%) !important;
+}
+.bg-secondary-gradient {
+    background-image: linear-gradient(180deg, #309F92 0%, #0C5666 100%) !important;
+}
+.bg-dark-gradient {
+    background-image: linear-gradient(180deg, #4B749F 0%, #243748 100%) !important;
+}
+.bg-purple-gradient {
+    background-image: linear-gradient(180deg, #AF1FAF 0%, #800080 100%) !important;
+}
+.bg-orange-gradient {
+    background-image: linear-gradient(180deg, #F99D6F 0%, #FA6D70 100%) !important;
+}
+.bg-info-gradient {
+    background-image: linear-gradient(180deg, #4F84F4 0%, #320F84 100%) !important;
+}
+.bg-teal-gradient {
+    background-image: linear-gradient(180deg, #18C3B0 0%, #0E9384 100%) !important;
+}
+.bg-success-gradient {
+    background-image: linear-gradient(120deg, #138710 0%, #18ac15 60%, #1abe17 100%);
+}
+.bg-warning-gradient {
+    background-image: linear-gradient(120deg, #bc8b01 0%, #e5a901 60%, #f9b801 100%);
+}
+.bg-danger-gradient {
+    background-image: linear-gradient(120deg, #c20000 0%, #eb0000 60%, red 100%);
+}
+.bg-light-gradient {
+    background-image: linear-gradient(120deg, #dadada 0%, #efefef 60%, #f9f9f9 100%);
+}
+
+// Theme Setting Color
+@each $name, $color in $theme-colors {
+    [data-color="#{$name}"] {
+        --primary: #{$color};
+        --primary-rgb: #{color.channel($color, "red")}, #{color.channel($color, "green")}, #{color.channel($color, "blue")};
+    }
+}

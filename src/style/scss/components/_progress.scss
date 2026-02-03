@@ -1,0 +1,38 @@
+@use "../variables" as *;
+
+//
+// progress.scss
+//
+
+.progress-bar {
+    background-color: $primary;
+}
+.progress {
+    background-color: $light;
+}
+.progress-xs {
+    height: 3px;
+}
+.progress-sm {
+    height: 5px;
+}
+.progress-md {
+    height: 8px;
+}
+.progress-lg {
+    height: 12px;
+}
+.progress-xl {
+    height: 15px;
+}
+.progress-with-border {
+    .progress-bar+.progress-bar {
+        border-left: 3px solid $white;
+    }
+}
+.progress-value {
+    display: block;
+    position: absolute;
+    top: -28px;
+    right: 0px;
+}

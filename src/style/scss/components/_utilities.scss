@@ -1,0 +1,59 @@
+//
+// _utilities.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.bd-example-zindex-levels {
+    min-height: 13.5rem;
+    z-index: 1;
+    >div {
+        color: $white;
+        >span {
+            position: absolute;
+            right: 5px;
+            bottom: 0;
+        }
+    }
+    > :nth-child(2) {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+    > :nth-child(3) {
+        top: 3rem;
+        left: 3rem;
+    }
+    > :nth-child(4) {
+        top: 4.5rem;
+        left: 4.5rem;
+    }
+    > :nth-child(5) {
+        top: 6rem;
+        left: 6rem;
+    }
+}
+.color-container {
+    width: 5rem;
+    height: 5rem;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 3rem;
+}
+.text-container {
+    padding: 0.25rem 0.5rem;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+}
+.color-box {
+    width: 80px;
+    height: 80px;
+    border-radius: $border-radius;
+    margin-right: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+.text-muted {
+    color: $body-color !important;
+}

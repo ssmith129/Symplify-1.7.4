@@ -1,0 +1,71 @@
+//
+// _badges.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+@use "sass:map";
+
+@each $state in map.keys($theme-colors) {
+    .badge-soft-#{$state} {
+        color: var(--#{$state});
+        background-color: var(--#{$state}-transparent);
+        &[href] {
+            color: var(--#{$state});
+            text-decoration: none;
+            background-color: var(--#{$state}-transparent);
+            &:is(:hover, :focus) {
+                color: var(--#{$state});
+                text-decoration: none;
+                background-color: var(--#{$state}-transparent);
+            }
+        }
+    }
+}
+.badge-soft-purple {
+    background-color: $purple-transparent;
+    color: $purple;
+}
+.badge-soft-pink {
+    background-color: $pink-transparent;
+    color: $pink;
+}
+.badge-soft-teal {
+    background-color: $teal-transparent;
+    color: $teal;
+}
+.badge-soft-orange {
+    background-color: $orange-transparent;
+    color: $orange;
+}
+.badge-soft-light {
+    color: $gray-900 !important;
+}
+
+// Outline badge
+@each $state in map.keys($theme-colors) {
+    .badge-outline-#{$state} {
+        color: var(--#{$state});
+        border: 1px solid var(--#{$state});
+        background-color: transparent;
+
+        &[href] {
+            color: var(--#{$state});
+            text-decoration: none;
+            background-color: var(--#{$state}-transparent);
+
+            &:is(:hover, :focus) {
+                color: var(--#{$state});
+                text-decoration: none;
+                background-color: var(--#{$state}-transparent);
+            }
+        }
+    }
+}
+.badge {
+    vertical-align: middle;
+    font-size: 0.75em;
+    font-weight: $font-weight-bold;
+    padding: 0.25rem 0.45rem;
+    border-radius: $border-radius;
+}

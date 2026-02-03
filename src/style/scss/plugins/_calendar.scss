@@ -1,0 +1,437 @@
+//
+// calendar.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.calendar {
+    float: left;
+    margin-bottom: 0;
+}
+
+.fc-view {
+    margin-top: 20px;
+}
+
+.none-border {
+    .modal-footer {
+        border-top: none;
+    }
+}
+
+.fc-toolbar {
+    margin: 6px 0 5px 0 !important;
+
+    h2 {
+        font-size: 16px !important;
+        line-height: 30px;
+        text-transform: uppercase;
+        font-weight: $font-weight-medium;
+    }
+}
+
+.fc-day-grid-event {
+    .fc-time {
+        font-weight: $font-weight-semibold;
+    }
+}
+
+th.fc-day-header {
+    padding: 0.5rem 0;
+}
+
+.fc-day {
+    background: transparent;
+}
+
+.fc-toolbar {
+    .fc-state-active,
+    .ui-state-active,
+    button:focus,
+    button:hover,
+    .ui-state-hover {
+        z-index: 0;
+    }
+}
+
+.fc {
+    th.fc-widget-header {
+        background: $gray-100;
+        font-size: 13px;
+        line-height: 20px;
+        padding: 10px 0;
+        text-transform: uppercase;
+        font-weight: $font-weight-semibold;
+    }
+    .fc-daygrid-body,
+    .fc-scrollgrid-section-body table,
+    .fc-scrollgrid-section-footer table {
+        width: 100% !important;
+    }
+}
+
+.fc-unthemed {
+    th,
+    td,
+    thead,
+    tbody,
+    .fc-divider,
+    .fc-row,
+    .fc-popover {
+        border-color: $gray-100;
+    }
+
+    td.fc-today,
+    .fc-divider {
+        background: $gray-100;
+    }
+}
+
+.fc-button {
+    background: $gray-100;
+    border: none;
+    color: $gray-900;
+    text-transform: capitalize;
+    box-shadow: none;
+    border-radius: 3px;
+    margin: 0 3px;
+    padding: 6px 12px;
+    height: auto;
+}
+
+.fc-text-arrow {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.fc-state-hover,
+.fc-state-highlight,
+.fc-cell-overlay {
+    background: $gray-100;
+}
+
+.fc-state-down,
+.fc-state-active,
+.fc-state-disabled {
+    background-color: $primary;
+    color: $white;
+    text-shadow: none;
+}
+
+.fc-unthemed {
+    .fc-today {
+        background: $white;
+    }
+}
+
+.fc-event {
+    border-radius: 2px;
+    border: none;
+    cursor: move;
+    font-size: 0.8125rem;
+    margin: 5px 7px;
+    padding: 5px 5px;
+    text-align: center;
+    color: $white;
+
+    &.bg-dark {
+        .fc-event-time,
+        .fc-event-title {
+            color: $gray-100;
+        }
+        .fc-daygrid-event-dot {
+            border-color: $gray-100;
+        }
+    }
+}
+
+.external-event {
+    cursor: move;
+    margin: 10px 0;
+    padding: 8px 10px;
+    color: $white;
+    border-radius: 4px;
+}
+
+.fc-basic-view {
+    td.fc-week-number {
+        span {
+            padding-right: 8px;
+        }
+    }
+
+    td.fc-day-number {
+        padding-right: 8px;
+    }
+
+    .fc-content {
+        color: $white;
+    }
+}
+
+.fc-time-grid-event {
+    .fc-content {
+        color: $white;
+    }
+}
+
+.fc-daygrid-day-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: $font-weight-medium;
+    margin: 2px;
+    color: $body-color;
+}
+
+.fc-daygrid-event-dot {
+    border-color: $white;
+}
+
+.fc-event-time,
+.fc-event-title {
+    color: $white;
+}
+
+.table-active,
+.table-active > td,
+.table-active > th,
+.fc .fc-list-sticky .fc-list-day > * {
+    background-color: transparent;
+}
+
+.fc .fc-list-event:hover td {
+    background-color: inherit;
+}
+
+@include respond-below(md) {
+    .fc-toolbar {
+        display: block !important;
+        .fc-toolbar-chunk {
+            margin: 6px 0;
+        }
+        .fc-left,
+        .fc-right,
+        .fc-center {
+            float: none;
+            display: block;
+            clear: both;
+            margin: 10px 0;
+        }
+    }
+
+    .fc {
+        .fc-toolbar {
+            > * {
+                > * {
+                    float: none;
+                }
+            }
+        }
+    }
+
+    .fc-today-button {
+        display: none;
+    }
+}
+
+// overriding button sizes
+.fc-toolbar {
+    .btn {
+       border-radius: 5px;
+    }
+}
+
+.fc-list-item-title,
+.fc-list-item-time {
+    color: $white;
+}
+
+.fc {
+    .fc-button-primary {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+        &:hover {
+            background-color: $secondary;
+            border-color: $secondary;
+            color: $white;
+        }
+        &:disabled, 
+        &.fc-button-active {
+            background-color: $primary;
+            border-color: $primary;
+            color: $white;
+            padding: 6px 12px;
+            &:hover {
+                background-color: $secondary;
+                border-color: $secondary;
+                color: $white;
+            }
+        }
+        &:not(:disabled).fc-button-active, &:not(:disabled):active {
+            background-color: $primary;
+            border-color: $primary;
+            color: $white;
+        }
+    }
+}
+
+.fc-theme-standard {
+    td, th {
+        border-color: $border-color;
+    }
+}
+
+#calendar {
+    .table-bordered {
+        td,
+        th {
+            border: 1px solid $border-color;
+        }
+    }
+}
+
+[dir="rtl"] .fc-toolbar-chunk {
+    .btn-group {
+        .btn {
+            &:first-child {
+                border-top-left-radius: 0px !important;
+                border-bottom-left-radius: 0px !important;
+                border-radius: 5px;
+            }
+            &:last-child {
+                border-top-right-radius: 0px !important;
+                border-bottom-right-radius: 0px !important;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+[data-bs-theme="dark"] {
+    .fc-theme-standard .fc-scrollgrid {
+        border-color: $border-color;
+    }
+    .fc-theme-standard td, .fc-theme-standard th {
+        border-color: $border-color;
+    }
+}
+
+/* Force all day cells to have equal height */
+.fc-daygrid-day {
+  height: 120px; /* You can adjust this value as needed */
+  vertical-align: top;
+  position: relative;
+}
+
+/* Ensure event content doesn't push the height */
+.fc-daygrid-day-frame {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Adjust calendar event styling to fit inside the cell */
+.fc-daygrid-event {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Optional: Prevent overflow from large image lists */
+.fc-event-title-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* Ensure all day cells are equal height */
+.fc-daygrid-day-frame {
+  height: 100px; /* adjust as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Avatar image */
+.popover-body .appointment-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.popover-body .appointment-item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.popover-body .appointment-item .name {
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.popover-body .appointment-item .time {
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+/* Close button */
+.fc-col-header-cell{
+  .fc-scrollgrid-sync-inner{
+    padding: 8px 4px;
+    background-color: $light;
+  }
+}
+.fc-button-group{
+  .fc-button {
+    box-shadow: none !important;
+  }
+}
+#calendar-appointment{
+    a.fc-event.fc-event-start.fc-event-end.fc-event-past.fc-daygrid-event.fc-daygrid-block-event.fc-h-event {
+        background: transparent !important;
+    }
+    .fc-event{
+        background: transparent !important;
+    }
+}
+
+.fc-toolbar-chunk .fc-button-group .fc-button {
+    color: #0A1B39;
+    background-color: $white;
+    border: 1px solid $border-color;
+    box-shadow: none !important;
+    outline: none;
+    margin: 0 3px !important;
+    border-radius: 5px !important;
+    padding: 6px 8px;
+    box-shadow: $box-shadow;
+}
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: $primary-transparent;
+    .fc-daygrid-day-number {
+    background-color: $primary;
+    color: $white;
+}
+}
+
+.fc .fc-daygrid-day-frame {
+    padding: 12px 16px;
+    .fc .fc-daygrid-day-top {
+    display: flex;
+    flex-direction: row-reverse;
+}
+}
+.fc-theme-standard {
+    .fc-scrollgrid {
+        border-color: $border-color;
+    }
+}

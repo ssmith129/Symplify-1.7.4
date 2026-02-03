@@ -1,0 +1,85 @@
+//
+// _tooltip.scss
+//
+
+@use "../variables" as *;
+
+@each $color,
+$value in $theme-colors {
+    .tooltip-#{$color} {
+        .tooltip-inner {
+            background-color: var(--#{$color});
+            color: #fff;
+        }
+        &.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,
+        &.bs-tooltip-bottom .tooltip-arrow::before {
+            border-bottom-color: var(--#{$color});
+        }
+        &.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+        &.bs-tooltip-bottom .tooltip-arrow::before {
+            border-top-color: var(--#{$color});
+        }
+        &.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before,
+        &.bs-tooltip-bottom .tooltip-arrow::before {
+            border-right-color: var(--#{$color});
+        }
+        &.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before,
+        &.bs-tooltip-bottom .tooltip-arrow::before {
+            border-left-color: var(--#{$color});
+        }
+    }
+}
+
+.tooltip-inner {
+    padding: 0.3125rem 0.625rem;
+    background-color: var(--dark);
+  }
+  
+  $tooltip-placements: top, bottom, left, right;
+  
+  @each $placement in $tooltip-placements {
+    .bs-tooltip-auto[data-popper-placement^=#{$placement}] .tooltip-arrow::before,
+    .bs-tooltip-#{$placement} .tooltip-arrow::before {
+      border-#{$placement}-color: var(--dark);
+    }
+  }
+  
+  $tooltip-colors: (
+    primary,
+    secondary,
+    success,
+    info,
+    warning,
+    danger,
+    dark
+  );
+  
+  @each $color in $tooltip-colors {
+    .tooltip-#{$color} {
+      .tooltip-inner {
+        background-color: var(--#{$color});
+      }
+  
+      @each $placement in $tooltip-placements {
+        &.bs-tooltip-auto[data-popper-placement^=#{$placement}] .tooltip-arrow::before,
+        &.bs-tooltip-#{$placement} .tooltip-arrow::before {
+          border-#{$placement}-color: var(--#{$color});
+        }
+      }
+    }
+    
+    .tooltip-dark {
+        .tooltip-inner {
+          background-color: #0B0D0E;
+        }
+    
+        @each $placement in $tooltip-placements {
+          &.bs-tooltip-auto[data-popper-placement^=#{$placement}] .tooltip-arrow::before,
+          &.bs-tooltip-#{$placement} .tooltip-arrow::before {
+            border-#{$placement}-color: #0B0D0E;
+          }
+        }
+    }
+  }
+
+

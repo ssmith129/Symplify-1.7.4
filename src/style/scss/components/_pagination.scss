@@ -1,0 +1,118 @@
+@use "../variables" as *;
+@use "sass:map";
+//
+// pagination.scss
+//
+
+.pagination {
+    .page-link {
+        color: $gray-900;
+        border-color: $border-color;
+        font-size: 14px;
+        svg {
+            height: 14px;
+        }
+        &:hover, &:focus {
+            background-color: $primary;
+            color: $white;
+            box-shadow: none;
+        }
+    }
+    .disabled>.page-link, .page-link.disabled {
+        background: transparent;
+    }
+}
+.active>.page-link, .page-link.active {
+    background-color: $primary;
+    color: $white;
+    border-color: $primary;
+}
+
+// Pagination Boxed (Custom)
+.pagination-boxed {
+    .page-link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0.35rem !important;
+        height: 35px;
+        width: 35px;
+        padding: 0;
+        border-radius: 5px;
+    }
+
+    &.pagination-sm {
+        .page-link {
+            height: 31px;
+            width: 31px;
+        }
+    }
+
+    &.pagination-lg {
+        .page-link {
+            font-size: 1.09375rem;
+            height: calc(1.5rem + 1.5em + 2px);
+            width: calc(1.5rem + 1.5em + 2px);
+        }
+    }
+}
+.pagination-lg {
+    .page-link {
+        font-size: 1.09375rem;
+    }
+}
+.pagination-sm {
+    .page-link {
+        font-size: 0.75rem;
+    }
+}
+
+// Pagination rounded (Custom)
+.pagination-rounded {
+    .page-link {
+        border-radius: 50% !important;
+    }
+}
+
+// Pagination Color
+@each $color,
+$value in $theme-colors {
+    .pagination-#{$color} {
+        .page-item {
+            &.active {
+                .page-link {
+                    background-color: var(--#{$color});
+                    border-color: var(--#{$color});
+                    &:hover {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Pagination Gradient 
+.pagination-gradient {
+    .page-link {
+        background-image: var(--bs-gradient);
+    }
+}
+
+// Pagination Soft Color
+@each $state in map.keys($theme-colors) {
+    .pagination-soft-#{$state} {
+        .page-item {
+            &.active {
+                .page-link {
+                    background-color: var(--#{$state}-transparent);
+                    border-color: #{transparent};
+                    color: var(--#{$state});
+                    &:hover {
+                        color: var(--#{$state});
+                    }
+                }
+            }
+        }
+     }
+}

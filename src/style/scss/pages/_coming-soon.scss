@@ -1,0 +1,45 @@
+@use "../variables" as *;
+
+/* Coming Soon */
+.coming-soon-cover {
+    .timer-cover {
+        min-width: 90px;
+        height: 90px;
+    }
+    .media-btn {
+        a {
+            background: $white;
+            color: $dark;
+            &:hover {
+                background: $dark;
+                color: $white;
+            }
+        }
+    }
+}
+/* Coming Soon */
+
+.border-circle {
+    &::before {
+        content: "\f111";
+        font-family: "Font Awesome 6 Free"; 
+        font-size: 8px; 
+        font-weight: 900;
+        color: $gray-100;
+        position: absolute;
+        left: -13px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background-color: $white;
+        border: 1px solid $border-color;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.timeline-img {
+    height: 172px;
+}

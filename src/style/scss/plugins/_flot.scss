@@ -1,0 +1,67 @@
+//
+// _flot.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.flotTip {
+    padding: 8px 12px;
+    background-color: $gray-900;
+    z-index: 100;
+    color: $gray-100;
+    opacity: 1;
+    border-radius: 3px;
+}
+
+.legend {
+    font-size: 14px;
+    
+    tr {
+        height: 30px;
+        font-family: $font-family-base;
+    }
+
+    > div {
+        background-color: transparent !important;
+    }
+}
+
+.legendLabel {
+    padding-left: 5px !important;
+    line-height: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    font-weight: $font-weight-medium;
+    color: $gray-600;
+    text-transform: uppercase;
+}
+
+.legendColorBox {
+    div {
+        div {
+            border-radius: 50%;
+        }
+    }
+}
+
+.flot-text {
+    color: $body-color !important;
+}
+
+.flot-svg {
+    text {
+        fill: $body-color !important;
+    }
+}
+
+@include respond-below(md) {
+    .legendLabel {
+        display: none;
+    }
+}
+
+.legendIcon {
+    width: 1.5em;
+    height: 1.5em;
+}

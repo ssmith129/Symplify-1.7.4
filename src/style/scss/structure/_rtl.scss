@@ -1,0 +1,244 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+[dir=rtl] {
+    .sidebar-top.dropend {
+        .dropdown-menu{
+            left: auto !important;
+            right: 290px !important;
+        }
+    }
+    .input-icon-addon{
+        left: auto;
+        right: 0;
+    }
+    .dropdown{
+        .online{
+            right: auto;
+            left: 1px;
+        }
+    }
+    .input-icon-start {
+        .form-control {
+            padding-left: 12px;
+            padding-right: 32px;
+        }
+    }
+    .navbar-header {
+        .header-search {
+            .header-search-icon{
+                right: auto;
+                left: 5px;
+            }
+        }
+    }
+    .dropdown-item, .dropdown-menu {
+        text-align: right;
+    }
+    .input-group-flat {      
+        .form-control {      
+            &:not(:last-child) {
+                border-left: 0;
+                border-right: 1px solid;
+            }      
+            &:not(:first-child) {
+                border-right: 0;
+                border-left: 1px solid;
+            }
+        }
+        .input-group-text {
+            &:first-child {
+              padding-left: 0;
+              padding-right: 0.5rem;
+            }        
+            &:last-child {
+              padding-right: 0;
+              padding-left: 0.5rem;
+            }
+        }
+    }
+    .simplebar-track {
+        left: 0;
+        right: auto;
+    }
+    .sidebar-close {
+        left: 10px;
+        right: auto;
+    }
+    .dataTables_length {
+        float: right;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        float: right;
+        padding-right: 0;
+        padding-left: 0.5rem;
+    }
+    .breadcrumb-item + .breadcrumb-item {
+        padding-left: 0;
+        padding-right: 0.5rem;
+    }
+    .slide-nav .sidebar {
+        margin-right: 0;
+    }
+    .header {
+        #toggle_btn{
+            left: auto;
+            right: -12px;
+        }
+        .dropdown-menu {
+             @include respond-above(lg) {
+                left: 0 !important;
+                right: unset !important;
+            }
+        }
+    }
+    .sidebar {
+        right: 0;
+        border-right: 0;
+        border-left: 1px solid $border-color;
+        .sidebar-logo {
+            #toggle_btn{
+                right: auto;
+                left: 16px;
+            }
+        }
+         @include respond-below(lg) {
+            right: 0;
+        }
+        .sidebar-menu {                 
+            ul {
+                padding-right: 0;
+            }
+            > ul {
+                > li {
+                    ul > li.active a {
+                        border-left: 0;
+                        border-right: 2px solid $primary;
+                    }
+                    .submenu {
+                        ul {
+                            &::before {
+                                right: 14px;
+                                left: unset;
+                            }                            
+                        }
+                        > ul {
+                            li {
+                                a {
+                                    padding: 8px 36px 8px 16px;
+                                    &::before {
+                                        right: 20px;
+                                        left: unset;
+                                    }   
+                                    &::after{
+                                        left: 0;
+                                        right: 16px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                li {
+                    .submenu {
+                        &.submenu-two {
+                            ul {
+                                li {
+                                    margin: 0 20px 0 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                ul li a span  {
+                    margin-right: 8px;
+                    margin-left: 0;
+                }
+            }
+            .menu-arrow {
+                left: 10px;
+                right: unset;
+            }
+            > ul > li .submenu-hdr::after {
+                margin-right: 8px;
+                margin-left: 0;
+            }
+        }
+         @include respond-below(lg) {
+            margin-right: -575px;
+        }
+    }    
+    .page-wrapper {
+        margin-right: $sidenav-width;
+        margin-left: 0;
+        @include respond-below(lg) {
+            margin-right: 0; 
+        }
+    }
+    .navbar-header {
+         @include respond-above(lg) {
+            margin-right: $sidenav-width;
+            margin-left: 0;
+        }
+        .input-group {
+            input {
+                border-right: 1px solid $border-color !important;
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+                border-top-right-radius: 5px !important;
+                border-bottom-right-radius: 5px !important;
+                border-left: 0 !important;
+            }
+            .input-group-text {
+                border-right: 0;
+                border-radius: 5px !important;
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+                border-left: 1px solid $gray-200;
+            }
+        }
+        .mobile_btn {
+             @include respond-below(lg) {
+                right: 0;
+                left: unset;
+            }
+        }
+        .mobile-user-menu {
+            left: 0;
+            right: auto;
+            text-align: left;
+        }
+    }
+    .mini-sidebar {
+        &.expand-menu {
+            .header {
+                right: 252px;
+                left: 0;
+            }
+        }
+    }
+     @include respond-above(lg) {
+        .mini-sidebar {
+            .page-wrapper {
+                margin-right: $sidenav-width-sm;
+                margin-left: 0;
+            }
+            .navbar-header {
+                margin-right: $sidenav-width-sm;
+                margin-left: 0;
+            }
+            &.expand-menu {                
+                .navbar-header {
+                    margin-right: $sidenav-width;
+                    margin-left: 0;
+                }
+                .page-wrapper {
+                    margin-right: $sidenav-width;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+
+}

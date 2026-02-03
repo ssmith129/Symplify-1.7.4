@@ -1,0 +1,161 @@
+//
+// reboot.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+html {
+    position: relative;
+    min-height: 100%;
+    // direction: ltr;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $body-color;
+    background-color: $light;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: $primary;
+    color: $white;
+}
+
+button,
+a {
+    outline: none !important;
+}
+a {
+    text-decoration: none;
+    color: $gray-900;
+    &:hover {
+        color: $primary;
+    }
+}
+// Forms
+
+label {
+    font-weight: $font-weight-medium;
+}
+
+b,
+strong {
+    font-weight: $font-weight-semibold;
+}
+
+// border style
+.border-dashed {
+    border-style: dashed;
+}
+
+h1,
+.h1 {
+    font-size: 32px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+    @include respond-below(lg) {
+        font-size: 28px;
+    }
+    @include respond-below(md) {
+        font-size: 24px;
+    }
+}
+h2,
+.h2 {
+    font-size: 28px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+    @include respond-below(lg) {
+        font-size: 22px;
+    }
+    @include respond-below(md) {
+        font-size: 20px;
+    }
+}
+h3,
+.h3 {
+    font-size: 24px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+    @include respond-below(lg) {
+        font-size: 20px;
+    }
+    @include respond-below(md) {
+        font-size: 18px;
+    }
+}
+h4,
+.h4 {
+    font-size: 20px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+    @include respond-below(lg) {
+        font-size: 18px;
+    }
+    @include respond-below(md) {
+        font-size: 17px;
+    }
+}
+h5,
+.h5 {
+    font-size: 18px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+}
+h6,
+.h6 {
+    font-size: 16px;
+    font-weight: $font-weight-medium;
+    color: $heading-color;
+}
+.display-1 {
+    font-size: 5rem;
+}
+.display-2 {
+    font-size: 4.5rem;
+}
+.display-3 {
+    font-size: 4rem;
+}
+.display-4 {
+    font-size: 3.5rem;
+}
+.display-5 {
+    font-size: 3rem;
+}
+.display-6 {
+    font-size: 2.5rem;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+// Page Head
+@include respond-above(md) {
+    .page-title-head {
+        height: 85px;
+    }
+}
+
+@include respond-below(md) {
+    .page-title-head {
+        padding: 1.25rem 0;
+    }
+}
+
+// Custom Link
+.link-reset {
+    color: inherit;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        color: $primary;
+    }
+}

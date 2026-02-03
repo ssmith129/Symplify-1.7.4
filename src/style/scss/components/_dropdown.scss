@@ -1,0 +1,324 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+//
+// dropdown.scss
+//
+
+.dropdown-menu {
+    box-shadow: $box-shadow;
+    animation-name: DropDownSlideUp;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    will-change: transform;
+    position: absolute;
+    z-index: 1000;
+	border-color: $border-color;
+	padding: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: $white;
+    &[data-popper-placement="top-start"],
+    &[data-popper-placement="top"] {
+        animation-name: DropDownSlideDown;
+    }
+    .dropdown-item {
+        border-radius: $border-radius;
+		font-size: 14px;
+    	color: var(--body-color);
+    	padding: 0.4rem 0.9375rem;
+		background-color: transparent;
+		&:hover,
+		&:focus,
+		&:active,
+		&.active {
+			background: $light;
+		}
+    }
+}
+.dropdown-divider{
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+}
+// Hover Dropdown
+@include respond-above(sm) {
+    .hover-dropdown {
+        &:hover {
+            >.dropdown-menu {
+                display: block;
+            }
+        }
+    }
+}
+@keyframes DropDownSlideUp {
+    100% {
+        margin-top: -1px;
+    }
+    0% {
+        margin-top: 5px;
+    }
+}
+@keyframes DropDownSlideDown {
+    100% {
+        margin-bottom: 0;
+    }
+    0% {
+        margin-bottom: 5px;
+    }
+}
+// Dropdown Large
+$dropdown-menu-xxl-width: 740px;
+$dropdown-menu-xl-width: 600px;
+$dropdown-menu-lg-width: 320px;
+$dropdown-menu-md-width: 250px;
+@include respond-above(md) {
+    .dropdown-menu-xxl {
+        width: $dropdown-menu-xxl-width;
+    }
+    .dropdown-menu-xl {
+        width: $dropdown-menu-xl-width;
+    }
+}
+@include respond-above(sm) {
+    .dropdown-menu-lg {
+        width: $dropdown-menu-lg-width;
+    }
+    .dropdown-menu-md {
+        width: $dropdown-menu-md-width;
+    }
+    .dropdown-menu-full {
+        width: auto;
+        position: fixed !important;
+        left: 10px !important;
+        right: 10px !important;
+    }
+}
+// Dropdown arrow hide
+.drop-arrow-none {
+    &:after {
+        display: none;
+		content: none !important;
+    }
+}
+.dropdown-toggle {
+	&::after {
+		display: inline-block;
+		vertical-align: 0;
+		content: "\ea5f";
+		font-family: "tabler-icons" !important;
+		border: 0;
+		font-size: 14px;
+		position: relative;
+	}
+}
+.dropdown-toggle-split {
+    &:before {
+        content: "";
+        position: absolute;
+        background-color: rgba($white, 0.12);
+        top: calc(1px * -1);
+		bottom: calc(1px * -1);
+		right: calc(1px * -1);
+        left: 0;
+        border-radius: 0 $border-radius $border-radius 0;
+    }
+}
+.dropstart {
+    .dropdown-toggle-split {
+        &::before {
+            inset: auto;
+            border-radius: 0;
+            position: relative;
+            z-index: 1;
+        }
+        &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            background-color: rgba($dark, 0.1);
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border-radius: $border-radius 0 0 $border-radius;
+            border: none;
+            margin-left: 0;
+        }
+    }
+}
+// Dropdown with Icons
+.dropdown-icon-item {
+    display: block;
+    border-radius: 3px;
+    text-align: center;
+    padding: 15px;
+    display: block;
+    color: $body-color;
+    margin: 7px 0;
+    img {
+        height: 24px;
+    }
+    span {
+        display: block;
+        overflow: hidden;
+        margin-top: 7px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    &:hover {
+        background-color: $light;
+        color: $body-color;
+    }
+}
+.dropdown-menu {
+	@mixin dropdown-menu-color($color) {
+		background-color: $color;
+		li a {
+			color: rgba(255, 255, 255, 0.9);
+		}
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				color: $white;
+			}
+		}
+	}
+	&.dropdown-menu-primary {
+		@include dropdown-menu-color($primary);
+	}
+	&.dropdown-menu-secondary {
+		@include dropdown-menu-color($secondary);
+	}
+	&.dropdown-menu-warning {
+		@include dropdown-menu-color($warning);
+	}
+	&.dropdown-menu-info {
+		@include dropdown-menu-color($info);
+	}
+	&.dropdown-menu-success {
+		@include dropdown-menu-color($success);
+	}
+	&.dropdown-menu-danger {
+		@include dropdown-menu-color($danger);
+	}
+}
+.dropdown-menu {
+	&.dropmenu-item-primary {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($primary-rgb, 0.1) !important;
+				color: $primary;
+			}
+		}
+	}
+	&.dropmenu-item-secondary {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($secondary, 0.1) !important;
+				color: $secondary;
+			}
+		}
+	}
+	&.dropmenu-item-warning {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($warning, 0.1) !important;
+				color: $warning;
+			}
+		}
+	}
+	&.dropmenu-item-info {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($info, 0.1) !important;
+				color: $info;
+			}
+		}
+	}
+	&.dropmenu-item-success {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($success, 0.1) !important;
+				color: $success;
+			}
+		}
+	}
+	&.dropmenu-item-danger {
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: rgba($danger, 0.1) !important;
+				color: $danger;
+			}
+		}
+	}
+}
+.dropdown-menu {
+	@mixin dropmenu-light-color($color) {
+		backdrop-filter: blur(2rem);
+		.dropdown-item {
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				color: $white;
+				background-color: $color  !important;
+			}
+		}
+	}
+	&.dropmenu-light-primary {
+		background-color: rgba($secondary, 0.1);
+		@include dropmenu-light-color($primary);
+	}
+	&.dropmenu-light-secondary {
+		background-color: rgba($secondary, 0.1);
+		@include dropmenu-light-color($secondary);
+	}
+	&.dropmenu-light-info {
+		background-color: rgba($info, 0.1);
+		@include dropmenu-light-color($info);
+	}
+	&.dropmenu-light-warning {
+		background-color: rgba($warning, 0.1);
+		@include dropmenu-light-color($warning);
+	}
+	&.dropmenu-light-success {
+		background-color: rgba($success, 0.1);
+		@include dropmenu-light-color($success);
+	}
+	&.dropmenu-light-danger {
+		background-color: rgba($danger, 0.1);
+		@include dropmenu-light-color($danger);
+	}
+}
+.dropdown{
+	.online{
+		position: absolute;
+		font-size: 8px;
+		right: -3px;
+		bottom: -1px;
+		z-index: 1;
+	}
+	.btn {
+		font-weight: normal;
+	}
+}

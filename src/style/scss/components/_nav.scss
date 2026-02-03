@@ -1,0 +1,271 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+//
+// tabs.scss
+//
+
+.nav-tabs,
+.nav-pills {
+    >li {
+        >a {
+            font-weight: $font-weight-medium;
+            color: $gray-600;
+        }
+    }
+}
+.bg-nav-pills {
+    background-color: $light;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: $primary;
+    color: $white;
+}
+
+//
+// nav-bordered
+//
+
+.nav-tabs {
+    &.nav-bordered {
+        border-bottom: 1px solid $border-color;
+        .nav-item {
+            .nav-link {
+                border: 0;
+                color: $gray-600;
+                &.active {
+                    color: $gray-900;
+                    border-bottom: 2px solid $primary;
+                }
+            }
+        }
+    }
+}
+@each $color,
+$value in $theme-colors {
+    .nav-tabs {
+        &.nav-bordered-#{$color} {
+            &.nav-tabs-top {
+                .nav-item {
+                    .nav-link {
+                        &:hover,
+                        &:focus {
+                            color: #{$value};
+                        }
+
+                        &.active {
+                            border-top: 2px solid $value;
+                            border-bottom: 0;
+                            color: #{$value};
+                        }
+                    }
+                }
+                li {
+                    a {
+                        border-width: 0 0 2px 0;
+                        &.active,
+                        &:hover {
+                            border-bottom-color: $primary;
+                            background: transparent;
+                            border-radius: 0;
+                            color: $primary;
+                        }
+                    }
+                }
+            }
+            .nav-item {
+                .nav-link {
+                    &:hover,
+                    &:focus {
+                        color: #{$value};
+                    }
+                    &.active {
+                        border-bottom: 2px solid $value;
+                        color: #{$value};
+                    }
+                }
+            }
+        }
+        &.nav-solid-#{$color} {
+            border: 0;
+            &.nav-tabs-rounded {
+                li {
+                    a {
+                        border-radius: 50px;
+                        
+                        &:hover {
+                            border-color: transparent;
+                            color: $value;
+                        }
+                        &.active {
+                            background-color: $value;
+                            border-color: $value;
+                            color: $white;
+                            border-radius: 50px;
+                        }
+                    }
+                }
+            }
+    
+            &.nav-tabs-rounded-fill {
+                li {
+                    a {
+                        border-color: $border-color;
+    
+                        &.active {
+                            background-color: $value;
+                            border-color: $value;
+                            color: $white;
+                            border-radius: 50px;
+                        }
+                    }
+                }
+            }
+    
+            li {
+                a { 
+                    &:hover {
+                        border-color: transparent;
+                        color: $value;
+                    }
+
+                    &.active {
+                        background-color: $value;
+                        border-color: $value;
+                        color: $white;
+                        border-radius: 0;
+    
+                        &:hover {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }        
+    }
+}
+.nav-pills {
+    .nav-link {
+        color: $gray-900;
+    }
+}
+.nav-tabs.nav-item-primary li a {
+    border-color: $border-color;
+    color: $gray-900;
+    background-color: $white;
+    &:hover {
+        border-color: transparent;
+        color: $white;
+        background-color: $primary;
+    }
+    &.active {
+        background-color: $primary !important;
+        border-color: $primary;
+        color: $white;
+        border-radius: 0;
+        &:hover {
+            color: $white;
+        }
+    }
+}
+.page-link {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.list-group-item {
+    padding: 0.625rem 1rem;    
+    background-color: var(--white);
+    border-color: var(--border-color);
+    &.active {
+      background: var(--primary);
+      border-color: $border-color;
+    }
+  
+    &-primary {
+      background: $primary-transparent;
+      border-color: $primary-transparent;
+      color: $primary;
+    }
+  
+    &-secondary {
+      background: $secondary-transparent;
+      border-color: $secondary-transparent;
+      color: $secondary;
+    }
+  
+    &-success {
+      background: $success-transparent;
+      border-color: $success-transparent;
+      color: $success;
+    }
+  
+    &-danger {
+      background: $danger-transparent;
+      border-color: $danger-transparent;
+      color: $danger;
+    }
+  
+    &-info {
+      background: $info-transparent;
+      border-color: $info-transparent;
+      color: $info;
+    }
+  
+    &-warning {
+      background: $warning-transparent;
+      border-color: $warning-transparent;
+      color: $warning;
+    }
+  
+    &-light {
+      background: $light-transparent;
+      border-color: $light;
+      color: $dark;
+    }
+  
+    &-dark {
+      background: $gray-transparent;
+      border-color: $gray-100;
+      color: $dark;
+    }
+  
+    &-action {
+      color: $body-color;
+  
+      &.list-group-item-primary:hover {
+        background: $primary-transparent;
+      }
+  
+      &.list-group-item-secondary:hover {
+        background: $secondary-transparent;
+      }
+  
+      &.list-group-item-warning:hover {
+        background: $warning-transparent;
+      }
+  
+      &.list-group-item-success:hover {
+        background: $success-transparent;
+      }
+  
+      &.list-group-item-danger:hover {
+        background: $danger-transparent;
+      }
+  
+      &.list-group-item-info:hover {
+        background: $info-transparent;
+      }
+  
+      &.list-group-item-light:hover {
+        background: $light-transparent;
+      }
+  
+      &.list-group-item-dark:hover {
+        background: $gray-100;
+      }
+    }
+  }  
+  

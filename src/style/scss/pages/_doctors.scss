@@ -1,0 +1,107 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.doctor-profile-img {
+    width: 120px;
+}
+.nav-bordered {
+    &.nav-border-bottom {
+        .nav-link {
+            border: 0;
+            border-bottom: 1px solid $border-color;
+            &.active {
+                border-color: $primary;
+                color: $primary;
+            }
+            &:hover {
+                border-color: $primary;
+                color: $primary;
+            }
+        }
+    }
+}
+.activity-feed {
+	list-style: none;
+	margin-bottom: 0;
+  	position: relative;
+	.feed-item {
+		padding-bottom: 19px;
+		padding-left: 20px;
+		position: relative;
+		&:last-child {
+			border-color: transparent;
+      		padding-bottom: 0;
+            &::before {
+                display: none;
+            }
+		}
+        &::before {
+            content: "";
+            border-left: 2px dashed $border-color;
+            width: 1px;
+            height: calc(100% - 10px);
+            position: absolute;
+            left: 0;
+            top: 20px;
+        }
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 13px;
+			left: -3px;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			border: 2px solid $primary;
+			background-color: $primary;
+		}
+	}
+}
+.availabity-check {
+    .btn-check:checked 
+    ~ label {
+        background-color: $primary !important;
+        color: $white !important;
+        border-color: $primary !important;
+    }
+}
+.schedule-tab {
+    .nav-link {
+        background: $light;
+        color: $dark;
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+    }
+}
+
+.avatar-xxxl.patient-avatar{
+  width: 120px;
+  height: 120px;
+}
+
+.notification-wrap {
+    .hover-btn {
+        opacity: 0;
+        transition: 0.5s all;
+    }
+    .card {
+        &:hover {
+            .hover-btn {
+                opacity: 1;
+                transition: 0.5s all;
+            }
+        }
+    }
+}
+
+.pages-editor{
+    height: 80px;
+}
+
+.btn-icon  {
+    height: 38px;
+    width: 38px;
+}

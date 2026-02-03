@@ -1,0 +1,269 @@
+/**
+ * Feature 9: Voice Documentation Assistant Styles
+ */
+
+// Voice Recorder
+.voice-recorder {
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .recorder-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .btn-record {
+      background: #dc3545;
+      color: #fff;
+
+      &:hover:not(:disabled) {
+        background: #c82333;
+        transform: scale(1.05);
+      }
+    }
+
+    .btn-stop {
+      background: var(--bg-dark, #343a40);
+      color: #fff;
+
+      &:hover:not(:disabled) {
+        background: #23272b;
+      }
+    }
+  }
+
+  .recording-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &.is-recording {
+      span {
+        color: #dc3545;
+      }
+
+      &::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: #dc3545;
+        border-radius: 50%;
+        animation: pulse 1s infinite;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// Transcription Editor
+.transcription-editor {
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .transcription-textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border: 1px solid var(--border-color, #dee2e6);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color, #0d6efd);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+    }
+  }
+
+  .editor-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .btn-save {
+      background: var(--primary-color, #0d6efd);
+      color: #fff;
+
+      &:hover:not(:disabled) {
+        background: #0b5ed7;
+      }
+    }
+
+    .btn-clear {
+      background: var(--bg-light, #f8f9fa);
+      color: var(--text-primary, #333);
+
+      &:hover {
+        background: #e9ecef;
+      }
+    }
+  }
+}
+
+// Note Formatter
+.note-formatter {
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .format-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color, #dee2e6);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      background: #fff;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color, #0d6efd);
+      }
+    }
+  }
+
+  .formatted-preview {
+    h4 {
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted, #6c757d);
+    }
+
+    .preview-content {
+      padding: 1rem;
+      background: var(--bg-light, #f8f9fa);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+// Medical Terms Highlighter
+.medical-terms-highlighter {
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .text-content {
+    padding: 1rem;
+    background: var(--bg-light, #f8f9fa);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    line-height: 1.8;
+  }
+
+  .terms-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color, #dee2e6);
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+      }
+
+      &.medication::before { background: #0d6efd; }
+      &.diagnosis::before { background: #dc3545; }
+      &.procedure::before { background: #28a745; }
+      &.anatomy::before { background: #ffc107; }
+      &.symptom::before { background: #6f42c1; }
+    }
+  }
+
+  // Highlighted terms in text
+  .term-highlight {
+    padding: 0.125rem 0.25rem;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &.medication { background: rgba(13, 110, 253, 0.2); }
+    &.diagnosis { background: rgba(220, 53, 69, 0.2); }
+    &.procedure { background: rgba(40, 167, 69, 0.2); }
+    &.anatomy { background: rgba(255, 193, 7, 0.2); }
+    &.symptom { background: rgba(111, 66, 193, 0.2); }
+  }
+}

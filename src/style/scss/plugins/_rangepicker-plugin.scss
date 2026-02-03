@@ -1,0 +1,106 @@
+
+/*============================
+  68.rangepicker-plugin
+============================*/
+
+@use "../variables" as *;
+
+.daterangepicker {
+    border-color: $border-color;
+    background: $white;
+    &::before {
+        border-bottom-color: $border-color;;
+    }
+    .ranges {
+        li {
+            color: $gray-900;
+            &:hover {
+                background: $gray-200;
+            }
+            &.active {
+                background-color: $primary;
+            }
+        }
+    }
+    td {
+        &.active {
+            background-color: $primary;
+            &:hover {
+                background-color: $primary;
+            }
+        }
+    }
+    &.show-ranges.ltr {
+        .drp-calendar.left {
+            border-color: $border-color;;
+        }
+    }
+    .drp-buttons {
+        border-color: $border-color;;
+    }
+}
+.daterange-wraper {
+    .date-range {
+        padding-left: 30px;
+        font-size: 14px;
+        color: $gray-700;
+        border: 0;
+        min-height: auto;
+        height: 36px;
+        border: 0;
+        box-shadow: 0px 4.4px 20px -1px #1310220D;
+        &:focus{
+            border-left:0;
+        }
+    }
+    .cal-icon-date {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+.filter-range .irs--flat .irs-handle>i:first-child {
+    position: absolute;
+    display: block;
+    top: 4px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    margin-left: -1px;
+    background-color: $primary;
+    border-radius: 50px;
+    border: 0;
+  }
+  .filter-range .irs--flat .irs-line {
+    top: 28px;
+    height: 6px;
+    background-color: $light;
+    border-radius: 4px;
+  }
+  .filter-range .irs--flat .irs-bar {
+    top: 28px;
+    height: 6px;
+    background-color: $primary;
+  }
+  .filter-range .irs-with-grid .irs-grid {
+  display: none;
+  }
+  .filter-range .irs--flat .irs-from, 
+  .filter-range .irs--flat .irs-to, 
+  .filter-range .irs--flat .irs-single {
+    color: white;
+    font-size: 14px;
+    line-height: 1.333;
+    text-shadow: none;
+    padding: 4px 12px;
+    background-color: $primary;
+    border-radius: 4px;
+    top:-10px;
+  }
+  .filter-range .irs--flat .irs-from:before,
+  .filter-range .irs--flat .irs-to:before, 
+  .filter-range .irs--flat .irs-single:before {
+    border-top-color: $primary;
+    left: 60%;
+  }

@@ -1,0 +1,275 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+/* ==================
+Header CSS
+===================== */
+
+.navbar-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: $topbar-bg;
+    min-height: $topbar-height;
+    margin-left: $sidenav-width;
+    transition: all .25s ease-in-out;
+    border-bottom: 1px solid $topbar-item-border;
+    padding: 0 1.25rem;
+    @include respond-below(lg) {
+        margin-left: 0;
+    }
+    #toggle_btn2{
+        display: none;
+        background-color: $topbar-btn-color;
+        width: 22px;
+        height: 22px;
+        border-radius: $border-radius-pill;
+        color: $menu-item-color;
+    }
+    .dropdown-menu {
+        .dropdown-item.form-switch{
+            padding: 0.4rem 0.9375rem;
+        }
+    }
+    .profile-dropdown{
+        a{
+            box-shadow: none;
+        }
+        label{
+            font-weight: 400;
+            i{
+                margin-right: 8px !important;
+            }
+        }
+    }
+    .header-search {        
+        .header-search-icon {
+            position: absolute;
+            right: 5px;
+            box-shadow: 0px 1px 1px rgba(var(--cf-body-bg-dark), 0.15);
+            width: 22px;
+            height: 22px;
+            border-radius: 0.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .input-icon-addon{
+            color: $topbar-item-color !important;
+        }
+        .form-control {
+            background: transparent;
+            height: 32px;
+            font-size: 12px;
+            color: $topbar-item-color;
+            border-color: $topbar-item-border;
+            &::placeholder{
+                color: $topbar-item-color;
+            }
+        }
+    }
+    .topbar-menu {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        &.page-container {
+            margin: 0;
+            padding: 0;
+         }
+        .header-link {
+            width: 32px;
+            height: 32px;
+        }     
+        .header-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: $topbar-height;
+            .topbar-link {
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                cursor: pointer;
+                width: 32px;
+                height: 32px;
+                border: 1px solid $topbar-item-border;
+                box-shadow: $box-shadow-sm;
+                border-radius: $border-radius-pill;
+                display: flex;
+                align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                justify-content: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                padding: 5px;
+                color: $topbar-item-color;
+                &:hover {
+                    background-color: $topbar-item-border;
+                }
+            }
+        }
+    }
+    ul {
+        list-style-type: none;
+        margin-bottom: 0;
+    }
+    .logo {
+        display: none;
+    }
+}
+.sidenav-toggle-btn {
+    &:hover {
+        color: $primary;
+    }
+     @include respond-below(lg) {
+        display: none !important;
+    }
+}
+.mobile-btn {    
+    color: $topbar-item-color;
+    &:hover {
+         color: rgba($primary-rgb, 0.5);
+    }
+    @include respond-above(lg) {
+        display: none;
+    }
+}
+
+// Topbar light/Dark Mode icon 
+html[data-bs-theme="dark"] {
+    #light-dark-mode {
+        .ti-moon {
+            &::before {
+                content: "\eb30";
+            }
+        }
+    }
+}
+
+
+// Topbar Search
+.header-search {
+    .input-group-sm > .form-control,
+    .input-group-sm > .form-select,
+    .input-group-sm > .input-group-text,
+    .input-group-sm > .btn {
+        padding: 0.3rem 0.5rem;
+    }
+}
+
+
+// Notification
+
+.notification-badge {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    background-color: #FD5812;
+    border-radius: 50px;
+}
+.notification-body {
+    min-height: 280px;
+    max-height: 280px;
+}
+.notification-item {
+    background-color: $white;
+    position: relative;
+    cursor: pointer;
+    border-radius: 0 !important;
+    .notification-item-close {
+        position: absolute;
+        right: 0;
+        display: none;
+        top: 0;
+        bottom: 0;
+        padding: 15px;
+        background-color: $light;
+    }
+    .notification-action {
+        display: none !important;
+    }
+    .notification-read {
+        display: block;
+        width: 8px;
+        height: 8px;
+    }
+    .notification-badge {
+        height: 22px;
+        width: 22px;
+        text-align: center;
+        color: $white;
+        top: -12px;
+        right: -8px;
+        border: 2px solid $white;
+        line-height: 18px;
+        font-size: 11px;
+    }
+    &:hover {
+        .notification-item-close {
+            display: block;
+        }
+        .notification-action {
+            display: flex !important;
+        }
+    }
+}
+.animate-ring {
+    animation: tada 1.5s ease infinite
+}
+@keyframes tada {
+    0% {
+        transform: scaleZ(1)
+    }
+    10%,
+    20% {
+        transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg)
+    }
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scaleZ(1) rotate3d(0, 0, 1, 10deg)
+    }
+    40%,
+    60%,
+    80% {
+        transform: rotate3d(0, 0, 1, -10deg)
+    }
+    to {
+        transform: scaleZ(1)
+    }
+}
+@include respond-below(sm) {
+    .navbar-header {
+        .topbar-menu {
+            position: initial;
+        }
+        .dropdown {
+            position: static;
+            .dropdown-menu {
+                width: 100%;
+                left: 10px !important;
+                right: 10px !important;
+            }
+        }
+    }
+}
+@include respond-below(md) {
+    .navbar-header {
+        padding: 0 0.625rem;
+    }
+}
+[data-layout="hidden"]{
+    #toggle_btn2{
+        display: block;
+    }
+    .hidden-layout{
+        #toggle_btn2{
+            display: none;
+        } 
+    }
+}

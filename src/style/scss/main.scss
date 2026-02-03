@@ -1,0 +1,78 @@
+/*
+Template Name: Preclinic - Responsive Bootstrap 5 Admin Dashboard
+Version: 1.0.0
+Author: Dreams Technologies
+Author URL: https://themeforest.net/user/dreamstechnologies
+*/
+
+// Variables
+@forward "variables";
+
+// Utils
+@forward "utils/mixins";
+
+// Structure
+@forward "structure/header";
+@forward "structure/sidebar";
+@forward "structure/layout";
+@forward "structure/theme";
+@forward "structure/rtl";
+
+// Components 
+@forward "components/accordions";
+@forward "components/avatar";
+@forward "components/alert";
+@forward "components/badge";
+@forward "components/breadcrumb";
+@forward "components/buttons";
+@forward "components/bootstrap";
+@forward "components/background";
+@forward "components/card";
+@forward "components/dropdown";
+@forward "components/forms";
+@forward "components/modal";
+@forward "components/nav";
+@forward "components/pagination";
+@forward "components/reboot";
+@forward "components/popover";
+@forward "components/tables";
+@forward "components/tooltip";
+@forward "components/utilities";
+@forward "components/progress";
+@forward "components/chat";
+@forward "components/call";
+
+// Pages
+@forward "pages/blogs";
+@forward "pages/email";
+@forward "pages/coming-soon";
+@forward "pages/settings";
+@forward "pages/appointment";
+@forward "pages/login";
+@forward "pages/doctors";
+@forward "pages/invoices";
+@forward "pages/notification";
+@forward "pages/ui-pages";
+@forward "pages/widgets";
+@forward "pages/ai-components";
+
+// Plugins
+@forward "plugins/dragula";
+@forward "plugins/dropzone";
+@forward "plugins/form-wizard";
+@forward "plugins/choice";
+@forward "plugins/select2";
+@forward "plugins/simplebar";
+@forward "plugins/sweetalert2";
+@forward "plugins/rangeslider";
+@forward "plugins/flatpickr";
+@forward "plugins/datatable";
+@forward "plugins/quill-editor";
+@forward "plugins/apexcharts";
+@forward "plugins/chartjs";
+@forward "plugins/c3";
+@forward "plugins/flot";
+@forward "plugins/morris";
+@forward "plugins/daterange";
+@forward "plugins/calendar";
+@forward "plugins/rangepicker-plugin";

@@ -1,0 +1,423 @@
+//
+// avatar.scss (avatar thumbnail sizes)
+//
+
+@use "../variables" as *;   
+
+.avatar-xxs {
+    height: 1rem;
+    width: 1rem;
+}
+.avatar-xs {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.avatar-sm {
+    height: 2rem;
+    width: 2rem;
+}
+.avatar-md {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.avatar-lg {
+    height: 3rem;
+    width: 3rem;
+}
+.avatar-xl {
+    height: 3.5rem;
+    width: 3.5rem;
+}
+.avatar-title {
+    align-items: center;
+    color: $white;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+//
+// avatar group
+//
+.avatar-group {
+    padding-left: 0.75rem;
+    @mixin flex-center-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    line-height: 1;
+    .avatar {
+        margin-left: -0.75rem;
+        transition: all 0.2s;
+        line-height: 1;
+        &:hover {
+            position: relative;
+            transform: translateY(-3px);
+            z-index: 1;
+        }
+    }
+    &.avatar-group-sm {
+        .avatar {
+            margin-left: -0.5rem;
+        }
+    }
+}
+//
+// Font Based Image Size
+//
+.user-img {
+    height: 1em;
+    width: 1em;
+}
+//
+// avatar.scss
+//
+.avatar {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius;
+    color: $white;
+    font-weight: $font-weight-medium;
+    a.badge:hover {
+        color: $white;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius;
+    }
+    &.avatar-rounded {
+        border-radius: 50%;
+        img {
+            border-radius: 50%;
+        }
+    }
+    &.avatar-radius-0 {
+        border-radius: 0;
+        img {
+            border-radius: 0;
+        }
+    }
+    .avatar-badge {
+        position: absolute;
+        inset-block-start: -4%;
+        inset-inline-end: -0.375rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        font-size: 0.625rem;
+        border: 2px solid $white;
+        border-radius: 50% !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &.online,&.offline,&.away {
+        &:before {
+            position: absolute;
+            content: "";
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 50%;
+            inset-inline-end: 0;
+            inset-block-end: 0;
+            border: 2px solid $white !important;
+            z-index: 1;
+        }
+    }
+    &.online:before {
+        background-color: $success;
+    }
+    &.offline:before {
+        background-color: $danger;
+    }
+    &.away:before {
+        background-color: $warning;
+    }
+    &.avatar-xss {
+        width: 1rem;
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.65rem;
+        .avatar-badge {
+            padding: 0.25rem;
+            width:  1rem;
+            height: 1rem;
+            line-height: 1rem;
+            font-size: 0.5rem;
+            inset-block-start: -25%;
+            inset-inline-end: -0.5rem;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }    
+    }
+    &.avatar-xs {
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: 0.65rem;
+        .avatar-badge {
+            padding: 0.25rem;
+            width:  1rem;
+            height: 1rem;
+            line-height: 1rem;
+            font-size: 0.5rem;
+            inset-block-start: -25%;
+            inset-inline-end: -0.5rem;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }    
+    }
+    &.avatar-sm {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 0.65rem;
+        .avatar-badge {
+            padding: 0.3rem;
+            width:  1.1rem;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            font-size: 0.5rem;
+            inset-block-start: -28%;
+            inset-inline-end: -0.45rem;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }    
+    }
+    &.avatar-md {
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 0.8rem;
+        .avatar-badge {
+            padding: 0.4rem;
+            width:  1.2rem;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            font-size: 0.65rem;
+            inset-block-start: -6%;
+            inset-inline-end: -13%;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }    
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+    &.avatar-lg {
+        width: 3rem;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1rem;
+        .avatar-badge {
+            inset-block-start: -15%;
+            inset-inline-end: -0.25%;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.8rem;
+                height: 0.8rem;
+            }
+        }    
+        svg {
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+    }
+    &.avatar-xl {
+        width: 3.5rem;
+        height: 3.5rem;
+        line-height: 3.5rem;
+        font-size: 1.25rem;
+        .avatar-badge {
+            inset-block-start: -8%;
+            inset-inline-end: -0.2%;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 0.95rem;
+                height: 0.95rem;
+            }
+        }    
+    }
+    &.avatar-xxl {
+        width: 5rem;
+        height: 5rem;
+        line-height: 5rem;
+        font-size: 1.5rem;
+        .avatar-badge {
+            inset-block-start: -4%;
+            inset-inline-end: 0rem;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 1.05rem;
+                height: 1.05rem;
+                inset-block-end: 0.25rem;
+            }
+        }    
+    }
+    &.avatar-xxxl {
+        width: 6rem;
+        height: 6rem;
+        line-height: 6rem;
+        font-size: 1.75rem;
+        .avatar-badge {
+            inset-block-start: -4%;
+            inset-inline-end: 0rem;
+        }
+        &.online,&.offline {
+            &:before {
+                width: 1.05rem;
+                height: 1.05rem;
+                inset-block-end: 0.25rem;
+            }
+        }    
+    }
+}
+.avatar-list-stacked {
+    padding: 0;
+    &.avatar-group-overlapped {
+        .avatar {
+            margin-right: -.875rem;
+            &:hover{
+                z-index:1;
+            }
+        }
+    }	
+    &.avatar-group-lg {
+        .avatar { 
+            width: 3.25rem;
+            height: 3.25rem;
+            >.initial-wrap {
+                font-size: .95rem;
+            }
+        }
+        &.avatar-group-overlapped .avatar {
+            margin-right: -1rem;
+        }	
+    }
+    &.avatar-group-sm {
+        .avatar { 
+            width: 1.5rem;
+            height: 1.5rem;
+            >.initial-wrap {
+                font-size: .6rem;
+            }
+        }
+        &.avatar-group-overlapped .avatar {
+            margin-right: -0.625rem;
+        }	
+    }
+    &.avatar-group-xs {
+        .avatar { 
+            width: 1rem;
+            height: 1rem;
+            margin-inline-end: -6px !important;
+            >.initial-wrap {
+                font-size: .6rem;
+            }
+        }
+        &.avatar-group-overlapped .avatar {
+            margin-right: -6px;
+        }	
+    }
+    .avatar {
+        margin-inline-end: -0.875rem !important;
+        border: 1px solid rgba(0,0,0,0.05);
+        vertical-align: middle;
+        transition: transform ease 200ms;
+        &:last-child {
+            margin-inline-end: 0 !important;
+        }
+        &:hover {
+            z-index: 1;
+            transform: translateY(-0.188rem);
+        }
+    }
+}
+.avatar-group {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	.avatar { 
+		width: 2.625rem;
+		height: 2.625rem;
+		.avatar-img,
+		>.initial-wrap {
+			border:2px solid $white;
+			font-size: .9rem;
+		}
+	}
+	&.avatar-group-overlapped {
+		.avatar {
+			margin-right: -.875rem;
+			&:hover{
+				z-index:1;
+			}
+		}
+	}	
+	&.avatar-group-lg {
+		.avatar { 
+			width: 3.25rem;
+			height: 3.25rem;
+			>.initial-wrap {
+				font-size: .95rem;
+			}
+		}
+		&.avatar-group-overlapped .avatar {
+			margin-right: -1rem;
+		}	
+	}
+	&.avatar-group-sm {
+		.avatar { 
+			width: 2rem;
+			height: 2rem;
+			>.initial-wrap {
+				font-size: .6rem;
+			}
+		}
+		&.avatar-group-overlapped .avatar {
+			margin-right: -0.625rem;
+		}	
+	}
+}
+.avatar {
+    &.avatar-xl {
+        &.border {
+            &.online {
+                &::before {
+                    width: 10px;
+                    height: 10px;
+                    inset-inline-end:5px;
+                }
+            }
+        }
+    }
+}
+.avatar.avatar-icon {
+    width: 44px;
+    height: 44px;
+}

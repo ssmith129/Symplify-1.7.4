@@ -1,0 +1,776 @@
+/* AI Components Styles - PreClinic Platform */
+
+// Import AI Feature Styles
+@import "../components/ai/shift-handoff";
+@import "../components/ai/voice-documentation";
+@import "../components/ai/drug-interaction";
+
+// Triage Priority Badge Styles
+.triage-badge {
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// AI Dashboard Section
+.ai-suggestions-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--bs-warning);
+}
+
+// Smart Scheduler Styles
+.smart-scheduler {
+  .slot-item {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-color: var(--bs-primary) !important;
+      background-color: rgba(var(--bs-primary-rgb), 0.05);
+    }
+    
+    &.selected {
+      border-color: var(--bs-primary) !important;
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+    }
+  }
+  
+  .ant-rate {
+    font-size: 14px;
+  }
+}
+
+// Clinical Alert Widget Styles
+.clinical-alerts-widget {
+  .alert-item {
+    background-color: #fff;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .alert-timeline {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}
+
+// Pulse animation for live indicator
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Smart Message Router Styles
+.smart-message-router {
+  .ant-tag {
+    margin-right: 4px;
+  }
+  
+  .ant-input-textarea {
+    textarea {
+      border-radius: 8px;
+    }
+  }
+}
+
+// AI Widget Card Styles
+.ai-widget-card {
+  border-left: 4px solid var(--bs-warning);
+  
+  .ai-badge {
+    background: linear-gradient(135deg, #FFD93D 0%, #FF9800 100%);
+  }
+}
+
+// Soft background utilities for alerts
+.bg-soft-error,
+.bg-soft-danger {
+  background-color: rgba(244, 67, 54, 0.1) !important;
+}
+
+.bg-soft-warning {
+  background-color: rgba(255, 152, 0, 0.1) !important;
+}
+
+.bg-soft-info {
+  background-color: rgba(33, 150, 243, 0.1) !important;
+}
+
+.bg-soft-success {
+  background-color: rgba(76, 175, 80, 0.1) !important;
+}
+
+.bg-warning-light {
+  background-color: rgba(255, 193, 7, 0.8) !important;
+}
+
+// Patient Acuity Widget
+.acuity-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+// AI Insights Widget
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  
+  &.info {
+    background-color: rgba(33, 150, 243, 0.1);
+  }
+  
+  &.warning {
+    background-color: rgba(255, 152, 0, 0.1);
+  }
+  
+  &.success {
+    background-color: rgba(76, 175, 80, 0.1);
+  }
+}
+
+// Responsive adjustments for AI widgets
+@media (max-width: 768px) {
+  .smart-scheduler .slot-item {
+    flex-direction: column;
+    
+    .slot-factors {
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .clinical-alerts-widget .alert-timeline {
+    max-height: 300px;
+  }
+}
+
+// Sparkle icon animation
+.ti-sparkles {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// Override Ant Design styles for consistency
+.ant-progress-circle {
+  .ant-progress-text {
+    font-size: 10px !important;
+    font-weight: 600;
+  }
+}
+
+.ant-tooltip {
+  max-width: 300px;
+}
+
+// Custom cursor for interactive AI elements
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Transition utilities
+.transition-all {
+  transition: all 0.2s ease;
+}
+
+// ============================================
+// Intelligent Calendar Styles
+// ============================================
+.intelligent-calendar-wrapper {
+  width: 100%;
+}
+
+.calendar-container {
+  display: flex;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &.panel-open {
+    .calendar-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ai-slot-panel {
+      width: 340px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.calendar-main {
+  flex: 1;
+  min-width: 0;
+  transition: all 0.3s ease;
+
+  // FullCalendar customizations
+  .fc {
+    .fc-daygrid-day {
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.05);
+      }
+    }
+
+    .fc-daygrid-day.fc-day-today {
+      background-color: rgba(var(--bs-primary-rgb), 0.08);
+    }
+
+    .fc-event {
+      border-radius: 4px;
+      padding: 2px 4px;
+      font-size: 11px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+
+    .fc-toolbar-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .fc-button {
+      font-size: 0.875rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+}
+
+.ai-slot-panel {
+  width: 0;
+  overflow: hidden;
+  background: #fff;
+  border-left: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+
+  .panel-header {
+    background-color: #fafafa;
+    flex-shrink: 0;
+  }
+
+  .panel-body {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .panel-footer {
+    flex-shrink: 0;
+  }
+}
+
+// Day insights styling
+.day-insights {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+// Slot card styling
+.slot-card {
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--bs-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &.border-primary {
+    box-shadow: 0 2px 12px rgba(var(--bs-primary-rgb), 0.15);
+  }
+}
+
+.bg-soft-primary {
+  background-color: rgba(var(--bs-primary-rgb), 0.08) !important;
+}
+
+// Slot status indicators
+.slot-status-recommended {
+  border-left: 3px solid #4CAF50;
+}
+
+.slot-status-available {
+  border-left: 3px solid #2196F3;
+}
+
+.slot-status-limited {
+  border-left: 3px solid #FF9800;
+}
+
+// Modal styling for events
+.modal.show .modal-dialog {
+  animation: modalSlideIn 0.2s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Responsive calendar panel
+@media (max-width: 992px) {
+  .calendar-container {
+    flex-direction: column;
+
+    &.panel-open {
+      .calendar-main {
+        order: 2;
+      }
+
+      .ai-slot-panel {
+        width: 100%;
+        max-height: 400px;
+        order: 1;
+        border-left: none;
+        border-bottom: 1px solid #e9ecef;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .ai-slot-panel {
+    .slot-card {
+      padding: 0.75rem !important;
+    }
+
+    .panel-header {
+      padding: 0.75rem !important;
+    }
+  }
+
+  .calendar-main .fc {
+    .fc-toolbar {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .fc-toolbar-title {
+      font-size: 1rem;
+    }
+  }
+}
+
+// ============================================
+// AI Assistant Popup Styles
+// ============================================
+.ai-assistant-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 380px;
+  max-height: 600px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1050;
+  animation: popupSlideIn 0.3s ease;
+  overflow: hidden;
+
+  &.minimized {
+    max-height: auto;
+
+    .ai-popup-header {
+      border-radius: 16px;
+    }
+  }
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ai-popup-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+
+  .ai-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .btn-icon {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.ai-popup-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: #f8f9fa;
+  min-height: 300px;
+  max-height: 380px;
+}
+
+.ai-message {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  animation: messageSlideIn 0.3s ease;
+
+  &.user {
+    justify-content: flex-end;
+
+    .ai-message-content {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #fff;
+      border-radius: 16px 16px 4px 16px;
+
+      .ai-message-time {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  &.assistant {
+    .ai-message-content {
+      background: #fff;
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  flex-shrink: 0;
+
+  &.user {
+    background: transparent;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.ai-message-content {
+  max-width: 280px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+
+  p {
+    margin: 0;
+  }
+
+  &.typing {
+    padding: 12px 16px;
+  }
+}
+
+.ai-message-time {
+  display: block;
+  font-size: 10px;
+  color: #9e9e9e;
+  margin-top: 4px;
+  text-align: right;
+}
+
+.ai-message-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ai-action-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  color: #4f46e5;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+  }
+}
+
+// Typing indicator
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background: #9e9e9e;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+  }
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Quick actions
+.ai-quick-actions {
+  padding: 8px 16px;
+  background: #fff;
+  border-top: 1px solid #e9ecef;
+  flex-shrink: 0;
+}
+
+.quick-actions-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+}
+
+.quick-action-chip {
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  background: #f0f0f0;
+  border: none;
+  color: #333;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #4f46e5;
+    color: #fff;
+  }
+}
+
+// Footer input
+.ai-popup-footer {
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e9ecef;
+  flex-shrink: 0;
+
+  .input-group {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    .form-control {
+      border: none;
+      padding: 10px 16px;
+      font-size: 13px;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .btn-primary {
+      border-radius: 0 24px 24px 0;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Responsive adjustments for AI popup
+@media (max-width: 576px) {
+  .ai-assistant-popup {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 16px 16px 0 0;
+    animation: mobilePopupSlideIn 0.3s ease;
+  }
+
+  @keyframes mobilePopupSlideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .ai-popup-body {
+    min-height: 250px;
+    max-height: 50vh;
+  }
+
+  .ai-message-content {
+    max-width: calc(100vw - 100px);
+  }
+}
+
+// Dark mode support
+[data-bs-theme="dark"] {
+  .ai-assistant-popup {
+    background: #1e1e2d;
+  }
+
+  .ai-popup-body {
+    background: #151521;
+  }
+
+  .ai-message.assistant .ai-message-content {
+    background: #1e1e2d;
+    color: #e0e0e0;
+  }
+
+  .ai-message-time {
+    color: #757575;
+  }
+
+  .ai-quick-actions {
+    background: #1e1e2d;
+    border-color: #2d2d3f;
+  }
+
+  .quick-action-chip {
+    background: #2d2d3f;
+    color: #e0e0e0;
+
+    &:hover {
+      background: #4f46e5;
+      color: #fff;
+    }
+  }
+
+  .ai-popup-footer {
+    background: #1e1e2d;
+    border-color: #2d2d3f;
+
+    .form-control {
+      background: #151521;
+      color: #e0e0e0;
+    }
+  }
+
+  .ai-action-btn {
+    background: rgba(79, 70, 229, 0.2);
+    border-color: rgba(79, 70, 229, 0.3);
+
+    &:hover {
+      background: #4f46e5;
+      color: #fff;
+    }
+  }
+}

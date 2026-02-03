@@ -1,0 +1,294 @@
+//
+// _ui-pages.scss
+//
+
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+// Scrollspy
+.scrollspy-example {
+    position: relative;
+    height: 200px;
+    margin-top: 0.5rem;
+    overflow: auto;
+}
+
+// Grid
+.grid-structure {
+    .grid-container {
+        background-color: $light;
+        margin-bottom: 10px;
+        font-size: 0.8rem;
+        font-weight: $font-weight-semibold;
+        padding: 10px 20px;
+    }
+}
+
+.icon-box .card {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    text-align: center;
+    line-height: 80px;
+
+    .card-body {
+        padding: 0;
+
+        i {
+            vertical-align: middle;
+        }
+    }
+
+    &:hover {
+        iconify-icon {
+            color: $primary;
+        }
+    }
+}
+
+// Icons
+.icons-list-demo {
+    div {
+        cursor: pointer;
+        line-height: 45px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+
+        p {
+            margin-bottom: 0;
+            line-height: inherit;
+        }
+
+        &:hover,
+        &:hover i {
+            color: $primary;
+        }
+    }
+
+    i {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        margin-right: 12px;
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.2s;
+    }
+}
+
+.icons-list {
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 10px;
+    li {
+        display: block;
+        width: 40px;
+        height: 40px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        justify-content: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        font-size: 18px;
+        @include rounded(50px);
+        border: 1px solid $border-color;
+        box-shadow: $box-shadow;
+    }
+    .icons-list-item {      
+        display: block;
+        width: 50px;
+        height: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        justify-content: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        font-size: 18px;
+        @include rounded(50px);
+        border: 1px solid $border-color;
+        color: $body-color;
+        &:hover {
+            color: $primary;
+            font-size: 24px;
+        }
+    }
+}
+
+// Chart
+
+.h-250 {
+    height: 250px;
+}
+#sales-income,  #revenue-income,  #leads_stage, #s-col, #s-col-stacked {
+    .apexcharts-bar-series {
+        .apexcharts-series:nth-child(1) path {
+            fill: $primary;
+          }
+    }
+}
+#deals_stage, #emp-department, #s-bar, #mixed-chart  {
+    .apexcharts-bar-series {
+        .apexcharts-series path {
+            fill: $primary;
+        }
+    }
+}
+#mixed-chart, #s-col-stacked, #s-col {
+    .apexcharts-legend-series:first-child .apexcharts-legend-marker {
+        fill: $primary; 
+    }
+}
+#s-line  {
+    .apexcharts-line-series {
+        .apexcharts-series path {
+            stroke: $primary;
+        }
+        .apexcharts-marker {
+            fill: $primary;
+        }
+    }
+}
+#chart-bar-stacked, #chart-bar, #chart-bar-rotated {
+    .c3-target-data2 .c3-bar {
+        fill: $primary !important; 
+    }
+}
+#chart-spline-rotated .c3-target-data2 {
+    .c3-line {
+        stroke: $primary !important;
+    } 
+    .c3-circle {
+        fill: $primary !important; 
+    }
+}   
+
+//Leaflet Maps 
+
+#map,
+#map1,
+#map-popup,
+#map-custom-icon,
+#interactive-map {
+  height: 18.75rem;
+  z-index: 10;
+}
+
+// Vector Maps
+.jvm-zoom-btn {
+  background-color: $light ;
+  color: $body-color ;
+  border: 1px solid $border-color ;
+  font-size: 20px;
+}
+#vector-map,
+#marker-map,
+#marker-image-map,
+#lines-map,
+#us-map,
+#canada-map,
+#spain-map,
+#russia-map {
+  height: 21.875rem;
+}
+
+.jvm-tooltip {
+  background-color: #1a1c1e ;
+}
+
+#vector-map,
+#marker-map,
+#marker-image-map,
+#lines-map,
+#users-map {
+  #jvm-regions-group path {
+    fill: $light ;
+  }
+}
+
+.jvm-zoom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px ;
+  height: 20px ;
+  line-height: 20px ;
+}
+
+.jvm-zoom-btn.jvm-zoomin {
+  inset-block-start: 5px ;
+}
+
+#jvm-markers-labels-group text {
+  fill: $body-color;
+}
+
+
+.snow-editor {
+  height: 120px;
+}
+
+#worktime-chart,
+#unproductivetime-chart,
+#productivetime-chart,
+#manualtime-chart {
+	max-width: 65px !important;
+	min-height: 60px !important;
+}
+
+.auth-brand {
+    .logo-dark {
+        display: none;
+    }
+}
+ 
+img {
+  max-width: 100%;
+}
+
+.snow-editor {
+    height: 120px;
+}
+
+.rounded-trash {
+    width: 20px;
+    height: 20px;
+    background: $danger-transparent;
+    color: $danger;
+    font-size: 12px;
+    border-radius: 50%;
+    &:hover {
+      background: $danger;
+      color: $white;
+    }
+    &.trash-top {
+      position: absolute;
+      right: -3px;
+      top: -3px;
+    }
+    &.gallery-trash {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: 0.5s all;
+    }
+}

@@ -1,0 +1,102 @@
+
+@use "../variables" as *;
+
+.recent-activity{
+    position: relative;
+    z-index: 0;
+    &::before{
+        content: "";
+        width: 1px;
+        height: 100%;
+        border-left: 1px dashed $border-color;
+        position: absolute;
+        left: 12px;
+        top: 5%;
+        z-index: -1; 
+    }
+}
+.widget-icon{
+    transform: rotate(45deg);
+    margin-bottom: 8px;
+    margin-right: 7px;
+    i{
+        transform: rotate(-45deg);
+    }
+}
+
+.event {
+    .avatar {
+        margin-inline-end: -.8rem !important;
+        transition: all 0.5s;
+    }
+}
+
+.datepic{
+    .bootstrap-datetimepicker-widget {
+        table {
+            th, td{
+                padding: 0 !important;
+                height: 28px !important;
+                width: 28px !important;
+                line-height: 28px;
+                font-size: 14px;
+                color: $gray-900;
+            }
+            td{
+             &.day.old{
+                color: $gray-100;
+             }
+             }
+             th{
+                &.prev, &.next{
+                    height: 32px;
+                    width: 32px;
+                    border: 1px solid $gray-transparent;
+                    border-radius: 0 !important;
+                    box-shadow: $box-shadow-sm;
+                    margin-bottom: 16px;
+                }
+             }
+        }
+    }
+    .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover{
+        background-color: $primary;
+        color: $white;
+    }
+}
+.reportrange-picker {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid $border-color;
+    background-color: $white;
+    box-shadow: $box-shadow-sm;
+}
+
+.bootstrap-datetimepicker-widget {
+        table {
+            th, td{
+                padding: 0 !important;
+                height: 32px !important;
+                width: 32px !important;
+                line-height: 28px;
+                font-size: 14px;
+                color: $gray-900;
+            }
+            td{
+             &.day.old{
+                color: $gray-100;
+             }
+             }
+             th{
+                &.prev, &.next{
+                    height: 32px;
+                    width: 32px;
+                    border: 1px solid $gray-transparent;
+                    border-radius: 0 !important;
+                    box-shadow: $box-shadow-sm;
+                    margin-bottom: 16px;
+                }
+             }
+        }
+    }

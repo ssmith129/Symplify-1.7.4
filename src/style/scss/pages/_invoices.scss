@@ -1,0 +1,280 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.card-bg {
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: "";
+    //   background-image: url(../img/bg/card-bg-02.png);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+  }
+  .activity-feed {
+      list-style: none;
+      margin-bottom: 0;
+      padding: 20px;
+        position: relative;
+      .feed-item {
+      border-left: 2px dashed $border-color;
+          padding-bottom: 19px;
+          padding-left: 20px;
+          position: relative;
+          &:last-child {
+              border-color: transparent;
+                padding-bottom: 0;
+          }
+          &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              top: 4px;
+              left: -6px;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              border: 2px solid $primary;
+              background-color: $primary;
+          }
+          &:before {
+              content: "";
+              display: block;
+              position: absolute;
+              top: 0;
+              left: -10px;
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+              border: 1px solid $primary;
+                background: $white;
+          }
+      }
+  }
+  .invoice-dark {
+      .bg-gray-9 {
+          background: $gray-900;
+      }
+      h2,h3,h4,h5,h6,p,span {
+          color: $white !important;
+      }
+      table {
+          tr {
+              border-color: $gray-500 !important;
+              td {
+                  background: $dark;
+                  color: $white !important;
+                  border-color: $gray-500 !important;
+              }
+              th {
+                  border-color: $gray-500 !important;
+              }
+          }
+      }
+      .thead-dark {
+          th {
+              background: $gray-900 !important;
+          }
+      }
+      .border-bottom {
+          border-color: $gray-500 !important;
+      }
+  }
+  .invoice-design-6 {
+      background: linear-gradient(270.14deg, #DDCEFF -0.04%, #DBECFF 100%);
+      border-radius: 14px 77px 14px 14px;
+  }
+  .bg-gradient-primary {
+      background: linear-gradient(270.14deg, #DDCEFF -0.04%, #DBECFF 100%);
+  }
+  
+  .inv-details{
+      position: relative;
+  }
+  
+  .inv-medical{
+      padding: 36px 120px 36px 30px;
+      z-index: 0;
+      span{
+          z-index: -1;
+      }
+  }
+  
+  .inv-date-no{
+      font-size:18px;
+      color: #3F4254;
+      background: linear-gradient(320deg, #7539FF 0%,  #7539FF 100%);
+      padding:14px 20px 15px;
+      min-width: 300px;
+  }
+  .inv-date-rest{
+      font-size:18px;
+      color: #3F4254;
+      background: linear-gradient(320deg, #141414 0%,  #141414 100%);
+      padding:14px 20px 15px;
+      min-width: 300px;
+  }
+  .invoice-template {
+      background: #F8F9FA;
+      .invoice-star {
+          height: 18px;
+          width: 18px;
+          background-color: #E5E7EB;
+          border-radius: 50%;
+          color: $gray-500;
+          i {
+          font-size: 10px;
+          }
+      }
+      .invoice-img {
+          border-radius: 5px;
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 8px;
+          &::after {
+              content: "";
+              background: #00000073;
+              width: 100%;
+              height: 100%;
+              border-radius: 5px;
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              transition: 0.5s all;
+              transform: scale(0);
+          }
+          img {
+              border-radius: 5px;
+          }
+          .invoice-view-icon {
+              background: $gray-200;
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
+              opacity: 0;
+              transition: 0.5s all;
+              z-index: 1;
+          }
+      }
+      &:hover {
+          border: 2px solid $primary;
+          a {
+              color: $primary;
+          }
+          .invoice-star {
+              background-color: $primary;
+              color: $white;
+          }
+          .invoice-img {
+              border-radius: 5px;
+              position: relative;
+              overflow: hidden;
+              &::after {
+                  content: "";
+                  opacity: 1;
+                  transition: 0.5s all;
+                  transform: scale(1);
+              }
+              img {
+                  border-radius: 5px;
+              }
+              .invoice-view-icon {
+                  opacity: 1;
+                  transition: 0.5s all;
+              }
+          }
+      }
+      &.active {
+          border: 2px solid $primary;
+          a {
+              color: $primary;
+          }
+          .invoice-star {
+              background-color: $primary;
+              color: $white;
+          }
+      }
+  }
+  .triangle-right{
+      width: 56px;
+      height: 49px;
+      border-top: 30px solid transparent;
+      border-right: 58px solid #F7F8F9;
+      border-bottom: 26px solid transparent;
+      position:absolute;
+      top:0;
+      right:0;
+  }
+  .inv-date-nine{
+      font-size:18px;
+      color: #3F4254;
+      background: linear-gradient(320deg, #DBECFF 0%,  #DDCEFF 100%);
+      padding:14px 20px 15px 87px;
+      min-width: 300px;
+  }
+  .triangle-left{
+      width: 56px;
+      height: 49px;
+      border-top: 30px solid transparent;
+      border-left: 58px solid #fff;
+      border-bottom: 26px solid transparent;
+      position:absolute;
+      top:0;
+      left:0;
+  }
+  
+  .invoice-five-details {
+      gap: 24px;
+      padding: 50px 0;
+      @include respond-below(md) {
+          display: block;
+      }
+      .gradient-block {
+          width: 629px;
+          height: 36px;
+          background: linear-gradient(320deg, #DDCEFF 0%, #DBECFF 100%);
+          border-radius: 59px;
+          @include respond-below(xxl) {
+             width: 550px;
+          }
+          @include respond-below(lg) {
+              width: 300px;
+          }
+          @include respond-below(md) {
+              width: 100%;
+              margin-bottom: 15px;
+          }
+      }
+  }
+  .dataTables_filter + .dataTables_filter {
+      display: none;
+  }
+  .invoice-logo-white {
+      display: none;
+  }
+  .btn-close{
+    font-size: 12px;
+    box-shadow: none;
+  }
+
+ [data-bs-theme=dark] .invoice-logo .logo-dark {
+    display: block;
+}
+ [data-bs-theme=dark] .invoice-logo .logo-white {
+    display: none;
+}
+.invoice-logo .logo-dark {
+    display: none;
+}

@@ -1,0 +1,17 @@
+@use "../variables" as *;
+@use "../utils/mixins" as *;
+
+.page-wrapper {
+    @include transition(all 0.5s ease);
+    margin: 0 0 0 276px ;
+    position: relative;
+    left: 0;
+    @include transition(all 0.2s ease);
+     @include respond-below(lg) {
+        margin: 0;
+    }
+    .content {
+        min-height: calc(100vh - 98px);
+        padding: 20px;
+    }
+}
