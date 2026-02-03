@@ -58,7 +58,7 @@ const DoctorDahboard = () => {
                 style={{ transition: 'all 0.3s ease' }}
               >
                 <div
-                  className="card-header d-flex align-items-center justify-content-between py-2 cursor-pointer"
+                  className="card-header d-flex align-items-center justify-content-between cursor-pointer"
                   onClick={handlePatientSummaryToggle}
                   role="button"
                   aria-expanded={patientSummaryExpanded}
