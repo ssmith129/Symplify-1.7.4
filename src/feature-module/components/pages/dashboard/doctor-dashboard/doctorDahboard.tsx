@@ -132,15 +132,15 @@ const DoctorDahboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-6">
+            <div className="col-12 col-md-6 col-lg-4">
               <SmartWidget widgetId="clinicalAlerts" />
             </div>
           </div>
 
           {/* row start */}
-          <div className="row">
+          <div className="row g-3 g-lg-4">
             {/* col start */}
-            <div className="col-xl-4 d-flex">
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
               {/* card start */}
               <div className="card shadow-sm flex-fill w-100">
                 <div className="card-header d-flex align-items-center justify-content-between">
