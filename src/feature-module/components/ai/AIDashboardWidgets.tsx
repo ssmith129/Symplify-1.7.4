@@ -62,7 +62,7 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleToggle(); }}
       >
         <div className="d-flex align-items-center">
-          <h6 className="fw-bold mb-0 fs-14">{widgetTitles[widgetId] || widgetId}</h6>
+          <h5 className="fw-bold mb-0">{widgetTitles[widgetId] || widgetId}</h5>
           {aiRecommended && (
             <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
               <i className="ti ti-sparkles me-1" />
@@ -277,16 +277,6 @@ const AIDashboardSection: React.FC<AIDashboardSectionProps> = ({
 
   return (
     <div className="row mb-4">
-      <div className="col-12">
-        <div className="d-flex align-items-center justify-content-between mb-3">
-          <div className="d-flex align-items-center">
-            <h5 className="fw-bold mb-0">Smart Insights</h5>
-          </div>
-          <Link to={all_routes.appointments} className="btn btn-sm btn-outline-primary">
-            View All Insights
-          </Link>
-        </div>
-      </div>
       {aiWidgets.map((widgetId) => (
         <div key={widgetId} className="col-xl-4 col-lg-6 mb-4">
           <SmartWidget
