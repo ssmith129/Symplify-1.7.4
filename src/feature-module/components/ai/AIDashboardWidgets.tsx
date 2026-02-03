@@ -278,7 +278,7 @@ const AIDashboardSection: React.FC<AIDashboardSectionProps> = ({
   return (
     <div className="row mb-4">
       {aiWidgets.map((widgetId) => (
-        <div key={widgetId} className="col-xl-4 col-lg-6 mb-4">
+        <div key={widgetId} className="col-xl-4 col-lg-6">
           <SmartWidget
             widgetId={widgetId}
             onInteraction={handleWidgetInteraction}
