@@ -98,13 +98,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
           <h6 className="fw-bold mb-0 fs-14">Shift Handoff</h6>
         </div>
         <div className="d-flex align-items-center gap-2">
-          <Link 
-            to={all_routes.shiftHandoff}
-            className="btn btn-sm btn-outline-primary d-flex align-items-center px-2 py-1"
-          >
-            <span className="fs-12">View Full Report</span>
-            <i className="ti ti-arrow-right ms-1 fs-14" />
-          </Link>
           <button
             className="btn btn-sm btn-light border-0 p-1"
             onClick={handleToggleExpand}
@@ -300,17 +293,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
             </div>
           </div>
 
-          {/* View Full Report Button */}
-          <div className="d-flex justify-content-center">
-            <button
-              className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
-              onClick={handleViewFullReport}
-              style={{ maxWidth: '280px' }}
-            >
-              <i className="ti ti-report-medical me-2" />
-              Open Shift Handoff Dashboard
-            </button>
-          </div>
         </div>
       )}
 
