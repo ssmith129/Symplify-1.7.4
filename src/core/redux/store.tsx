@@ -3,6 +3,7 @@ import sidebarSlice from './sidebarSlice';
 import themeReducer from './themeSlice';
 import aiReducer from './aiSlice';
 import shiftHandoffReducer from './shiftHandoffSlice';
+import notificationReducer from './notificationSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     theme: themeReducer,
     ai: aiReducer,
     shiftHandoff: shiftHandoffReducer,
+    notifications: notificationReducer,
   },
 });
 

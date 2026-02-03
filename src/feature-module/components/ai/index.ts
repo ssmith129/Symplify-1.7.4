@@ -1,4 +1,4 @@
-// AI Components Index - PreClinic Platform
+// AI Components Index - Symplify Platform
 // Export all AI-enhanced components for easy imports
 
 // Feature 1: Smart Triage Priority Badge
@@ -52,3 +52,14 @@ export {
   MedicationReviewPanel,
   SeverityBadge,
 } from './drug-interaction';
+
+// Feature 11: AI-Enhanced Notification System
+export { default as NotificationDropdownAI } from './NotificationDropdownAI';
+export { default as NotificationPageAI } from './NotificationPageAI';
+
+// Feature 12: Email Priority Detection
+export { default as EmailPriorityBadge } from './EmailPriorityBadge';
+export { default as EmailSidebarAI } from './EmailSidebarAI';
+
+// Feature 13: Message Urgency Analyzer
+export { default as MessageUrgencyIndicator, QUICK_RESPONSES } from './MessageUrgencyIndicator';
