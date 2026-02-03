@@ -88,8 +88,8 @@ export const useVoiceRecognition = (
     error: null,
   });
 
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Check browser support
   useEffect(() => {
