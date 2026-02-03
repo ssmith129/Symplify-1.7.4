@@ -4,6 +4,7 @@ import themeReducer from './themeSlice';
 import aiReducer from './aiSlice';
 import shiftHandoffReducer from './shiftHandoffSlice';
 import notificationReducer from './notificationSlice';
+import emailReducer from './emailSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     ai: aiReducer,
     shiftHandoff: shiftHandoffReducer,
     notifications: notificationReducer,
+    email: emailReducer,
   },
 });
 
