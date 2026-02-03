@@ -13,14 +13,26 @@ import "../src/style/css/feather.css";
 import "../node_modules/@tabler/icons-webfont/dist/tabler-icons.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "../src/index.scss"; 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Provider store={store}>
-    <BrowserRouter basename={base_path}>
-      <ThemeRouteHandler />
-      <ALLRoutes />
-    </BrowserRouter>
-    </Provider>
-  </StrictMode>
-)
+import "../src/index.scss";
+
+console.log('Main.tsx loaded, attempting to render...');
+
+try {
+  const rootElement = document.getElementById('root');
+  console.log('Root element found:', !!rootElement);
+
+  createRoot(rootElement!).render(
+    <StrictMode>
+      <Provider store={store}>
+      <BrowserRouter basename={base_path}>
+        <ThemeRouteHandler />
+        <ALLRoutes />
+      </BrowserRouter>
+      </Provider>
+    </StrictMode>
+  );
+  console.log('Render completed successfully');
+} catch (error) {
+  console.error('Failed to render app:', error);
+  document.getElementById('root')!.innerHTML = `<div style="color: red; padding: 20px;"><h1>Error Loading App</h1><pre>${error}</pre></div>`;
+}
