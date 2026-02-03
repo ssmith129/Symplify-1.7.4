@@ -5,8 +5,15 @@ import store from './core/redux/store'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import { base_path } from './environment'
 
-// Import Dashboard directly to test
-import Dashboard from './feature-module/components/pages/dashboard/dashboard'
+// Simple inline component
+const SimpleDashboard = () => (
+  <div style={{ padding: '20px', background: '#f0f0f0', minHeight: '100vh' }}>
+    <h1>Simple Dashboard Test</h1>
+    <p>Redux store state keys: {Object.keys(store.getState()).join(', ')}</p>
+    <p>Base path: "{base_path}"</p>
+    <p>Location: {window.location.pathname}</p>
+  </div>
+);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -15,7 +22,7 @@ if (rootElement) {
       <Provider store={store}>
         <BrowserRouter basename={base_path}>
           <Routes>
-            <Route path="*" element={<Dashboard />} />
+            <Route path="*" element={<SimpleDashboard />} />
           </Routes>
         </BrowserRouter>
       </Provider>
