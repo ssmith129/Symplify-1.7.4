@@ -245,8 +245,8 @@ const Dashboard = () => {
           <AIDashboardSection userRole="admin" userId="admin-1" />
 
           {/* AI Shift Handoff Widget Section */}
-          <div className="row mb-4">
-            <div className="col-xl-4 d-flex">
+          <div className="row mb-4 g-3 g-lg-4">
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
               <ShiftHandoffWidget />
             </div>
           </div>
