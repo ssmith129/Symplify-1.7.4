@@ -47,18 +47,63 @@
 
 // Clinical Alert Widget Styles
 .clinical-alerts-widget {
+  padding: 0.5rem 0.75rem;
+
+  // Status header spacing
+  > .d-flex.border-bottom {
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
   .alert-item {
     background-color: #fff;
     transition: all 0.2s ease;
-    
+    padding: 0.875rem 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #f0f0f0;
+
     &:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: #e0e0e0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Patient row spacing
+    > .d-flex:first-child {
+      margin-bottom: 0.5rem;
+    }
+
+    // Prediction text spacing
+    .fs-12.text-muted {
+      margin-bottom: 0.625rem;
+    }
+
+    // Action buttons spacing
+    .d-flex.gap-1 {
+      gap: 0.5rem !important;
+      margin-top: 0.25rem;
     }
   }
-  
+
   .alert-timeline {
     max-height: 500px;
     overflow-y: auto;
+    padding: 0.25rem 0;
+
+    // Remove border-bottom from alert items in timeline and use margin instead
+    .alert-item {
+      border-bottom: none;
+    }
+  }
+
+  // Footer text spacing
+  > .text-center {
+    padding-top: 1rem;
+    margin-top: 0.5rem;
   }
 }
 
