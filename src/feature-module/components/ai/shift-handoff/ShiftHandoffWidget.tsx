@@ -5,7 +5,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import type { RootState, AppDispatch } from '../../../../core/redux/store';
 import { generateHandoffReport, selectPatient, clearReport } from '../../../../core/redux/shiftHandoffSlice';
 import type { PatientHandoff } from '../../../../core/api/mock/shiftHandoffMockApi';
@@ -48,10 +48,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
   const handleToggleExpand = () => {
     setIsWidgetExpanded(!isWidgetExpanded);
     onToggleExpand?.();
-  };
-
-  const handleViewFullReport = () => {
-    navigate(all_routes.shiftHandoff);
   };
 
   const handlePatientClick = (patient: PatientHandoff) => {
