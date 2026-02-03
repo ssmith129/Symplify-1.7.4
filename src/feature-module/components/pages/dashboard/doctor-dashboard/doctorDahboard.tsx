@@ -7,7 +7,7 @@ import SCol5Chart from "./charts/scol5";
 import SCol6Chart from "./charts/scol6";
 import SCol7Chart from "./charts/scol7";
 import CircleChart2 from "./charts/circleChart2";
-import { ShiftHandoffWidget } from "../../../ai";
+import { ShiftHandoffWidget, SmartWidget } from "../../../ai";
 
 const DoctorDahboard = () => {
   const [patientSummaryExpanded, setPatientSummaryExpanded] = useState(true);
@@ -143,10 +143,10 @@ const DoctorDahboard = () => {
 
           {/* AI Shift Handoff Widget Section */}
           <div className="row mb-4">
-            <div className="col-xl-5 col-lg-12 mb-4 mb-xl-0">
+            <div className="col-xl-4 col-lg-6 mb-4">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-xl-5 col-lg-12">
+            <div className="col-xl-4 col-lg-6 mb-4">
               <div
                 className={`card shadow-sm smart-widget-card ${patientSummaryExpanded ? 'h-100 expanded' : 'collapsed'}`}
                 style={{ transition: 'all 0.3s ease' }}
@@ -225,6 +225,9 @@ const DoctorDahboard = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-xl-4 col-lg-6 mb-4">
+              <SmartWidget widgetId="clinicalAlerts" />
             </div>
           </div>
 
