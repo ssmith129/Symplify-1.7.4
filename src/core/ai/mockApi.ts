@@ -618,7 +618,7 @@ const NAVIGATION_MAP: Record<string, { path: string; description: string }> = {
 // Response templates for different intents
 const RESPONSE_TEMPLATES = {
   greeting: [
-    "Hello! I'm your AI Assistant for PreClinic. How can I help you today?",
+    "Hello! I'm your AI Assistant for Symplify. How can I help you today?",
     "Hi there! I'm here to help you with appointments, navigation, and quick actions. What do you need?",
     "Welcome! I can help you schedule appointments, find information, or navigate the platform. What would you like to do?",
   ],
