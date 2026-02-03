@@ -13,26 +13,42 @@ import "../src/style/css/feather.css";
 import "../node_modules/@tabler/icons-webfont/dist/tabler-icons.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "../src/index.scss";
+import "../src/index.scss"; 
 
-console.log('Main.tsx loaded, attempting to render...');
+// Simple test render to debug
+const TestApp = () => {
+  return (
+    <div style={{ padding: '20px', background: '#f0f0f0' }}>
+      <h1>Test Render Working</h1>
+      <p>If you see this, basic React is working.</p>
+    </div>
+  );
+};
 
-try {
-  const rootElement = document.getElementById('root');
-  console.log('Root element found:', !!rootElement);
-
-  createRoot(rootElement!).render(
-    <StrictMode>
-      <Provider store={store}>
+const FullApp = () => (
+  <StrictMode>
+    <Provider store={store}>
       <BrowserRouter basename={base_path}>
         <ThemeRouteHandler />
         <ALLRoutes />
       </BrowserRouter>
-      </Provider>
-    </StrictMode>
-  );
-  console.log('Render completed successfully');
-} catch (error) {
-  console.error('Failed to render app:', error);
-  document.getElementById('root')!.innerHTML = `<div style="color: red; padding: 20px;"><h1>Error Loading App</h1><pre>${error}</pre></div>`;
+    </Provider>
+  </StrictMode>
+);
+
+// Try to render and catch any error
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  try {
+    createRoot(rootElement).render(<FullApp />);
+  } catch (error) {
+    console.error('Full app failed to render:', error);
+    // Fallback to test app
+    createRoot(rootElement).render(
+      <div style={{ padding: '20px', color: 'red' }}>
+        <h1>Error Loading Application</h1>
+        <pre>{String(error)}</pre>
+      </div>
+    );
+  }
 }
