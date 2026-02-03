@@ -246,55 +246,8 @@ const Dashboard = () => {
 
           {/* AI Shift Handoff Widget Section */}
           <div className="row mb-4">
-            <div className="col-xl-6 col-lg-12 mb-4 mb-xl-0">
+            <div className="col-12">
               <ShiftHandoffWidget />
-            </div>
-            <div className="col-xl-6 col-lg-12">
-              <div className="card shadow-sm h-100">
-                <div className="card-header d-flex align-items-center justify-content-between py-2">
-                  <h6 className="fw-bold mb-0 fs-14">Shift Overview</h6>
-                </div>
-                <div className="card-body">
-                  <div className="row g-3">
-                    <div className="col-6">
-                      <div className="border rounded-2 p-3 text-center">
-                        <span className="avatar bg-primary rounded-2 mb-2">
-                          <i className="ti ti-users fs-20" />
-                        </span>
-                        <h4 className="fw-bold mb-1">12</h4>
-                        <p className="mb-0 fs-13 text-muted">Staff On Duty</p>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="border rounded-2 p-3 text-center">
-                        <span className="avatar bg-success rounded-2 mb-2">
-                          <i className="ti ti-bed fs-20" />
-                        </span>
-                        <h4 className="fw-bold mb-1">85%</h4>
-                        <p className="mb-0 fs-13 text-muted">Bed Occupancy</p>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="border rounded-2 p-3 text-center">
-                        <span className="avatar bg-warning rounded-2 mb-2">
-                          <i className="ti ti-clock fs-20" />
-                        </span>
-                        <h4 className="fw-bold mb-1">2.5h</h4>
-                        <p className="mb-0 fs-13 text-muted">Avg Wait Time</p>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="border rounded-2 p-3 text-center">
-                        <span className="avatar bg-info rounded-2 mb-2">
-                          <i className="ti ti-stethoscope fs-20" />
-                        </span>
-                        <h4 className="fw-bold mb-1">28</h4>
-                        <p className="mb-0 fs-13 text-muted">Pending Consults</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
