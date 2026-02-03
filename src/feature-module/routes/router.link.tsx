@@ -1351,7 +1351,7 @@ export const publicRoutes = [
   },
   {
     path: routes.messages,
-    element: <Messages />,
+    element: <Navigate to={routes.chat} replace />,
     route: Route,
   },
   {
