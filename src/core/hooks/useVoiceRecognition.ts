@@ -230,8 +230,8 @@ export const useVoiceRecognition = (
 // Type declarations for Web Speech API
 declare global {
   interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
+    SpeechRecognition: new () => SpeechRecognitionInstance;
+    webkitSpeechRecognition: new () => SpeechRecognitionInstance;
   }
 }
 
