@@ -166,37 +166,25 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
           <div className="row g-2 mb-3">
             <div className="col-6 col-md-3">
               <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#EEF2FF' }}>
-                <span className="avatar avatar-sm bg-primary rounded-2 mb-1">
-                  <i className="ti ti-users fs-16" />
-                </span>
-                <h5 className="fw-bold mb-0">12</h5>
+                <h5 className="fw-bold mb-0 text-primary">12</h5>
                 <p className="mb-0 fs-11 text-muted">Staff On Duty</p>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#ECFDF5' }}>
-                <span className="avatar avatar-sm bg-success rounded-2 mb-1">
-                  <i className="ti ti-bed fs-16" />
-                </span>
-                <h5 className="fw-bold mb-0">85%</h5>
+                <h5 className="fw-bold mb-0 text-success">85%</h5>
                 <p className="mb-0 fs-11 text-muted">Bed Occupancy</p>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#FFFBEB' }}>
-                <span className="avatar avatar-sm bg-warning rounded-2 mb-1">
-                  <i className="ti ti-clock fs-16" />
-                </span>
-                <h5 className="fw-bold mb-0">2.5h</h5>
+                <h5 className="fw-bold mb-0 text-warning">2.5h</h5>
                 <p className="mb-0 fs-11 text-muted">Avg Wait Time</p>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#EFF6FF' }}>
-                <span className="avatar avatar-sm bg-info rounded-2 mb-1">
-                  <i className="ti ti-stethoscope fs-16" />
-                </span>
-                <h5 className="fw-bold mb-0">28</h5>
+                <h5 className="fw-bold mb-0 text-info">28</h5>
                 <p className="mb-0 fs-11 text-muted">Pending Consults</p>
               </div>
             </div>
