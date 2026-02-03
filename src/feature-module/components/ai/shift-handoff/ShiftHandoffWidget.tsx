@@ -302,8 +302,9 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
 
           {/* View Full Report Button */}
           <button
-            className="btn btn-primary w-100 mt-3 d-flex align-items-center justify-content-center"
+            className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
             onClick={handleViewFullReport}
+            style={{ maxWidth: '280px' }}
           >
             <i className="ti ti-report-medical me-2" />
             Open Shift Handoff Dashboard
