@@ -64,3 +64,6 @@ export { default as EmailInboxAI } from './EmailInboxAI';
 
 // Feature 13: Message Urgency Analyzer
 export { default as MessageUrgencyIndicator, QUICK_RESPONSES } from './MessageUrgencyIndicator';
+
+// Feature 14: Chat Inbox Dashboard Widget
+export { default as ChatInboxWidget } from './ChatInboxWidget';
