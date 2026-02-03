@@ -44,6 +44,7 @@ import Invoice from "../components/pages/application-modules/application/invoice
 import KanbanView from "../components/pages/application-modules/application/kanban-view/kanbanView";
 import Notes from "../components/pages/application-modules/application/notes/notes";
 import Notifications from "../components/pages/application-modules/application/notifications/notifications";
+import { NotificationPageAI } from "../components/ai";
 import SearchList from "../components/pages/application-modules/application/search-list/searchList";
 import SocialFeed from "../components/pages/application-modules/application/social-feed/socialFeed";
 import Todo from "../components/pages/application-modules/application/todo/todo";
@@ -1360,7 +1361,7 @@ export const publicRoutes = [
   },
   {
     path: routes.notifications,
-    element: <Notifications />,
+    element: <NotificationPageAI />,
     route: Route,
   },
   {
