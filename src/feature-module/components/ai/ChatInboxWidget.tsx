@@ -160,7 +160,7 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
         }}
       >
         <div className="d-flex align-items-center">
-          <h5 className="fw-bold mb-0">Chat Inbox</h5>
+          <h5 className="fw-bold mb-0">Message Inbox</h5>
           {totalUnread > 0 && (
             <span className="badge bg-danger rounded-pill ms-2">
               {totalUnread}
@@ -303,13 +303,14 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
 
         {/* View All Button */}
         {!loading && chats.length > 0 && (
-          <div className="mt-3 pt-2 border-top">
+          <div className="mt-3 pt-2 border-top d-flex justify-content-center">
             <Link
               to={all_routes.chat}
-              className="btn btn-light w-100 d-flex align-items-center justify-content-center"
+              className="btn btn-light d-flex align-items-center justify-content-center"
+              style={{ maxWidth: '280px', width: '100%' }}
             >
               <i className="ti ti-messages me-1" />
-              View All Chats
+              View All Messages
             </Link>
           </div>
         )}
