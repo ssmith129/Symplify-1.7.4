@@ -6,12 +6,12 @@ const defaultThemeSettings = {
   "data-sidebar": "sidebarcustom",
   "data-color": "primary",
   "data-topbar": "topbarcustom",
-  "data-layout": "default",
+  "data-layout": "full-width",
   "data-size": "default",
   "data-width": "fluid",
   "data-sidebarbg": "none",
   "dir": "ltr",
-  "themeVersion": "2",
+  "themeVersion": "3",
 };
 
 const getInitialThemeSettings = () => {
