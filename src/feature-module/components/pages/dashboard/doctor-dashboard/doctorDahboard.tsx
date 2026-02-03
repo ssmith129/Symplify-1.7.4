@@ -4,7 +4,7 @@ import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
 import CircleChart2 from "./charts/circleChart2";
-import { ShiftHandoffWidget, SmartWidget } from "../../../ai";
+import { ShiftHandoffWidget, SmartWidget, ChatInboxWidget } from "../../../ai";
 
 const DoctorDahboard = () => {
   const [patientSummaryExpanded, setPatientSummaryExpanded] = useState(true);
@@ -134,6 +134,9 @@ const DoctorDahboard = () => {
             </div>
             <div className="col-12 col-md-6 col-lg-4">
               <SmartWidget widgetId="clinicalAlerts" />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
+              <ChatInboxWidget maxChats={4} />
             </div>
           </div>
 
