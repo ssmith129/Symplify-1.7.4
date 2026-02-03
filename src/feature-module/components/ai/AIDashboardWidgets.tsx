@@ -276,9 +276,9 @@ const AIDashboardSection: React.FC<AIDashboardSectionProps> = ({
   const suggestedWidgetIds = personalizedLayout?.aiSuggestions.map(s => s.widgetId) || [];
 
   return (
-    <div className="row mb-4">
+    <div className="row mb-4 g-3 g-lg-4">
       {aiWidgets.map((widgetId) => (
-        <div key={widgetId} className="col-xl-4 col-lg-6">
+        <div key={widgetId} className="col-12 col-md-6 col-lg-4">
           <SmartWidget
             widgetId={widgetId}
             onInteraction={handleWidgetInteraction}
