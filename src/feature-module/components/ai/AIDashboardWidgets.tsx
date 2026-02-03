@@ -79,7 +79,7 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
         </button>
       </div>
       <div
-        className={`card-body pt-2 pb-3 ${expanded ? '' : 'd-none'}`}
+        className={`card-body pt-3 pb-3 ${expanded ? '' : 'd-none'}`}
         style={{
           overflow: 'hidden',
           transition: 'all 0.3s ease'
