@@ -48,11 +48,11 @@ const DoctorDahboard = () => {
           {/* End Page Header */}
 
           {/* AI Shift Handoff Widget Section */}
-          <div className="row mb-4">
-            <div className="col-xl-4 col-lg-6">
+          <div className="row mb-4 g-3 g-lg-4">
+            <div className="col-12 col-md-6 col-lg-4">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-xl-4 col-lg-6">
+            <div className="col-12 col-md-6 col-lg-4">
               <div
                 className={`card shadow-sm smart-widget-card ${patientSummaryExpanded ? 'h-100 expanded' : 'collapsed'}`}
                 style={{ transition: 'all 0.3s ease' }}
