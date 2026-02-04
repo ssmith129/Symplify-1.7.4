@@ -180,8 +180,8 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
           <span className="text-muted fs-12">AI is continuously monitoring all patient vitals</span>
         </div>
       ) : (
-        /* Alert List - Scrollable with compact entries */
-        <div className="overflow-auto" style={{ maxHeight: '400px' }}>
+        /* Alert List - Scrollable, fills remaining space */
+        <div className="overflow-auto flex-grow-1" style={{ minHeight: 0 }}>
           {filteredAlerts.map((alert, index) => {
             const config = RISK_CONFIG[alert.riskLevel];
             const trend = getTrend(alert.confidence);
