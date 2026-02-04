@@ -181,7 +181,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
         </div>
       ) : (
         /* Alert List - Scrollable with compact entries */
-        <div className="overflow-auto" style={{ maxHeight: '300px' }}>
+        <div className="overflow-auto" style={{ maxHeight: '400px' }}>
           {filteredAlerts.map((alert, index) => {
             const config = RISK_CONFIG[alert.riskLevel];
             const trend = getTrend(alert.confidence);
