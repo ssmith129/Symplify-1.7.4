@@ -391,9 +391,6 @@ const QuickStatsWidget: React.FC = () => {
     },
   ];
 
-  const totalValue = 12178 + 4178 + 247; // Sum for display
-  const positiveStats = statsData.filter(s => s.changeType === 'positive').length;
-
   return (
     <div className="card shadow-sm flex-fill w-100">
       <div className="card-header d-flex align-items-center justify-content-between">
