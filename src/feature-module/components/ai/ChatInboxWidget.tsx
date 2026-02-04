@@ -219,7 +219,7 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
             {chats.map((chat, index) => (
               <div
                 key={chat.id}
-                className={`d-flex justify-content-between align-items-center ${
+                className={`d-flex align-items-center ${
                   index < chats.length - 1 ? 'mb-3' : 'mb-0'
                 }`}
                 onClick={() => handleChatClick(chat.id)}
@@ -231,36 +231,36 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
                 }}
                 style={{ cursor: 'pointer' }}
               >
-                <div className="d-flex align-items-center flex-shrink-0">
-                  {/* Avatar with Online Status */}
-                  <Link
-                    to="#"
-                    className="avatar flex-shrink-0 position-relative"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {chat.isOnline && (
-                      <span className="online text-success position-absolute end-0 bottom-0 pe-1">
-                        <i className="ti ti-circle-filled d-flex bg-white fs-6 rounded-circle border border-1 border-white" />
-                      </span>
-                    )}
-                    <ImageWithBasePath
-                      src={chat.avatar}
-                      alt={chat.name}
-                      className="rounded-circle"
-                    />
-                  </Link>
-                  <div className="ms-2 flex-shrink-0">
-                    <h6 className="fw-semibold fs-14 text-truncate mb-1">
-                      <span className={chat.unreadCount > 0 ? 'fw-bold' : ''}>
-                        {chat.name}
-                      </span>
-                    </h6>
-                    <p className="fs-13 mb-0 text-truncate" style={{ maxWidth: '180px' }}>
-                      {chat.lastMessage}
-                    </p>
-                  </div>
+                {/* Avatar with Online Status */}
+                <Link
+                  to="#"
+                  className="avatar flex-shrink-0 position-relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {chat.isOnline && (
+                    <span className="online text-success position-absolute end-0 bottom-0 pe-1">
+                      <i className="ti ti-circle-filled d-flex bg-white fs-6 rounded-circle border border-1 border-white" />
+                    </span>
+                  )}
+                  <ImageWithBasePath
+                    src={chat.avatar}
+                    alt={chat.name}
+                    className="rounded-circle"
+                  />
+                </Link>
+                {/* Message Content - 90% width */}
+                <div className="ms-2" style={{ width: '90%', minWidth: 0 }}>
+                  <h6 className="fw-semibold fs-14 text-truncate mb-1">
+                    <span className={chat.unreadCount > 0 ? 'fw-bold' : ''}>
+                      {chat.name}
+                    </span>
+                  </h6>
+                  <p className="fs-13 mb-0 text-truncate">
+                    {chat.lastMessage}
+                  </p>
                 </div>
-                <div className="flex-shrink-0 ms-2 text-end">
+                {/* Right section - fixed to right */}
+                <div className="flex-shrink-0 ms-auto text-end">
                   <span className="fs-12 text-muted d-block mb-1">
                     {formatTimeAgo(chat.timestamp)}
                   </span>
