@@ -50,7 +50,7 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
 
   return (
     <div
-      className={`card border shadow-sm rounded-2 smart-widget-card ${expanded ? 'h-100 expanded' : 'collapsed'}`}
+      className={`card shadow-sm flex-fill w-100 smart-widget-card ${expanded ? 'expanded' : 'collapsed'}`}
       style={{ transition: 'all 0.3s ease' }}
     >
       <div
