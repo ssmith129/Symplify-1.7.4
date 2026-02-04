@@ -13,7 +13,7 @@ interface SmartWidgetProps {
   aiRecommended?: boolean;
 }
 
-// Smart Widget Component - no collapsible functionality
+// Smart Widget Component
 const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRecommended }) => {
   const getWidgetContent = () => {
     switch (widgetId) {
@@ -50,16 +50,13 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
 
   return (
     <div className="card shadow-sm flex-fill w-100">
-      {/* Card Header - matches design system */}
       <div className="card-header d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">{widgetTitles[widgetId] || widgetId}</h5>
-          {aiRecommended && (
-            <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
-              <i className="ti ti-sparkles me-1" />
-              AI
-            </span>
-          )}
+          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
+            <i className="ti ti-sparkles me-1" />
+            AI
+          </span>
         </div>
         {widgetRoutes[widgetId] && (
           <Link
@@ -77,57 +74,98 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
   );
 };
 
-// Patient Acuity Widget
+// Enhanced Patient Acuity Widget
 const PatientAcuityWidget: React.FC = () => {
   const acuityData = [
-    { level: 'Critical', count: 2, color: '#F44336', bgClass: 'bg-soft-danger' },
-    { level: 'Urgent', count: 5, color: '#FF9800', bgClass: 'bg-soft-warning' },
-    { level: 'Semi-Urgent', count: 8, color: '#FFC107', bgClass: 'bg-soft-warning' },
-    { level: 'Standard', count: 15, color: '#4CAF50', bgClass: 'bg-soft-success' },
-    { level: 'Non-Urgent', count: 12, color: '#2196F3', bgClass: 'bg-soft-info' },
+    { level: 'Critical', count: 2, color: '#F44336', patients: ['Maria Santos', 'James Wilson'] },
+    { level: 'Urgent', count: 5, color: '#FF9800', patients: ['Emily Chen', 'Robert Johnson', 'Lisa Park'] },
+    { level: 'Semi-Urgent', count: 8, color: '#FFC107', patients: ['David Lee', 'Anna Kim'] },
+    { level: 'Standard', count: 15, color: '#4CAF50', patients: ['Michael Brown', 'Sarah Davis'] },
+    { level: 'Non-Urgent', count: 12, color: '#2196F3', patients: ['John Smith', 'Jane Doe'] },
   ];
 
+  const totalPatients = acuityData.reduce((sum, item) => sum + item.count, 0);
   const totalHighPriority = acuityData.slice(0, 2).reduce((sum, item) => sum + item.count, 0);
-  const totalStandard = acuityData.slice(2).reduce((sum, item) => sum + item.count, 0);
 
   return (
     <div>
-      {/* Summary Stats Row - matches Doctors Schedule pattern */}
-      <div className="row g-2 mb-4">
-        <div className="col d-flex border-end">
-          <div className="text-center flex-fill">
-            <p className="mb-1">High Priority</p>
-            <h3 className="fw-bold mb-0 text-danger">{totalHighPriority}</h3>
+      {/* Summary Stats Row */}
+      <div className="row g-3 mb-4">
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
+            <h4 className="fw-bold mb-1 text-primary">{totalPatients}</h4>
+            <p className="mb-0 fs-12 text-muted">Total Patients</p>
           </div>
         </div>
-        <div className="col d-flex">
-          <div className="text-center flex-fill">
-            <p className="mb-1">Standard</p>
-            <h3 className="fw-bold mb-0 text-success">{totalStandard}</h3>
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2' }}>
+            <h4 className="fw-bold mb-1 text-danger">{totalHighPriority}</h4>
+            <p className="mb-0 fs-12 text-muted">High Priority</p>
+          </div>
+        </div>
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
+            <h4 className="fw-bold mb-1 text-success">{acuityData[3].count + acuityData[4].count}</h4>
+            <p className="mb-0 fs-12 text-muted">Stable</p>
           </div>
         </div>
       </div>
 
-      {/* Acuity Breakdown List - scrollable */}
-      <div className="overflow-auto" style={{ maxHeight: '200px' }}>
+      {/* AI Insight */}
+      <div className="p-3 rounded-2 mb-4" style={{ backgroundColor: '#F3E5F5' }}>
+        <div className="d-flex align-items-start">
+          <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0 fs-16" style={{ color: '#7B1FA2' }} />
+          <p className="mb-0 fs-13 text-dark">
+            <span className="fw-medium">{totalHighPriority} patients</span> require priority attention. 
+            Critical cases in rooms 302 and 415.
+          </p>
+        </div>
+      </div>
+
+      {/* Acuity Breakdown - Enhanced with progress bars */}
+      <div className="overflow-auto" style={{ maxHeight: '280px' }}>
         {acuityData.map((item) => (
           <div
             key={item.level}
-            className="d-flex justify-content-between align-items-center mb-3"
+            className="p-3 rounded-2 mb-2"
+            style={{ border: '1px solid #e5e7eb' }}
           >
-            <div className="d-flex align-items-center">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <div className="d-flex align-items-center">
+                <span
+                  className="rounded-circle me-2 flex-shrink-0"
+                  style={{ width: 12, height: 12, backgroundColor: item.color }}
+                />
+                <span className="fs-14 fw-medium">{item.level}</span>
+              </div>
               <span
-                className="rounded-circle me-2 flex-shrink-0"
-                style={{ width: 8, height: 8, backgroundColor: item.color }}
-              />
-              <span className="fs-13">{item.level}</span>
+                className="badge px-3 py-2 fs-13 fw-bold"
+                style={{ backgroundColor: `${item.color}20`, color: item.color }}
+              >
+                {item.count}
+              </span>
             </div>
-            <span
-              className="badge px-2 py-1 fs-12 fw-medium"
-              style={{ backgroundColor: `${item.color}20`, color: item.color }}
-            >
-              {item.count}
-            </span>
+            {/* Progress bar */}
+            <div className="progress mb-2" style={{ height: '6px' }}>
+              <div
+                className="progress-bar"
+                style={{ 
+                  width: `${(item.count / totalPatients) * 100}%`,
+                  backgroundColor: item.color
+                }}
+              />
+            </div>
+            {/* Sample patients */}
+            <div className="d-flex align-items-center gap-1 flex-wrap">
+              {item.patients.slice(0, 2).map((name, idx) => (
+                <span key={idx} className="badge bg-light text-dark fs-11 px-2 py-1">
+                  {name}
+                </span>
+              ))}
+              {item.count > 2 && (
+                <span className="fs-11 text-muted">+{item.count - 2} more</span>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -135,13 +173,13 @@ const PatientAcuityWidget: React.FC = () => {
   );
 };
 
-// Patient Queue Widget
+// Enhanced Patient Queue Widget
 const PatientQueueWidget: React.FC = () => {
   const queueData = [
-    { name: 'Maria Santos', waitTime: '45 min', priority: 1, condition: 'Chest Pain' },
-    { name: 'James Wilson', waitTime: '30 min', priority: 2, condition: 'High Fever' },
-    { name: 'Emily Chen', waitTime: '20 min', priority: 3, condition: 'Abdominal Pain' },
-    { name: 'Robert Johnson', waitTime: '15 min', priority: 4, condition: 'Follow-up' },
+    { name: 'Maria Santos', waitTime: '45 min', priority: 1, condition: 'Chest Pain', room: '302' },
+    { name: 'James Wilson', waitTime: '30 min', priority: 2, condition: 'High Fever', room: '415' },
+    { name: 'Emily Chen', waitTime: '20 min', priority: 3, condition: 'Abdominal Pain', room: '108' },
+    { name: 'Robert Johnson', waitTime: '15 min', priority: 4, condition: 'Follow-up', room: '205' },
   ];
 
   const getPriorityBadge = (priority: number) => {
@@ -149,7 +187,7 @@ const PatientQueueWidget: React.FC = () => {
     const labels = ['Critical', 'Urgent', 'Semi-Urgent', 'Standard', 'Non-Urgent'];
     return (
       <span
-        className="badge"
+        className="badge px-2 py-1"
         style={{ backgroundColor: colors[priority - 1], color: '#fff' }}
       >
         {labels[priority - 1]}
@@ -158,11 +196,12 @@ const PatientQueueWidget: React.FC = () => {
   };
 
   return (
-    <div className="table-responsive" style={{ maxHeight: '280px' }}>
+    <div className="table-responsive" style={{ maxHeight: '320px' }}>
       <table className="table table-sm mb-0">
         <thead>
           <tr>
             <th>Patient</th>
+            <th>Room</th>
             <th>Wait Time</th>
             <th>Priority</th>
           </tr>
@@ -172,11 +211,12 @@ const PatientQueueWidget: React.FC = () => {
             <tr key={idx}>
               <td>
                 <div>
-                  <strong>{patient.name}</strong>
-                  <div className="text-muted small">{patient.condition}</div>
+                  <strong className="fs-14">{patient.name}</strong>
+                  <div className="text-muted fs-12">{patient.condition}</div>
                 </div>
               </td>
-              <td>{patient.waitTime}</td>
+              <td className="fs-13">{patient.room}</td>
+              <td className="fs-13">{patient.waitTime}</td>
               <td>{getPriorityBadge(patient.priority)}</td>
             </tr>
           ))}
@@ -186,36 +226,132 @@ const PatientQueueWidget: React.FC = () => {
   );
 };
 
-// AI Insights Widget
+// Enhanced AI Insights Widget
 const AIInsightsWidget: React.FC = () => {
   const insights = [
-    { icon: 'ti-trending-up', text: 'Patient volume expected to increase 15% this afternoon', type: 'info', color: '#2196F3' },
-    { icon: 'ti-alert-circle', text: '3 patients showing early signs of deterioration', type: 'warning', color: '#FF9800' },
-    { icon: 'ti-calendar', text: 'Optimal scheduling window: 2:00 PM - 4:00 PM', type: 'success', color: '#4CAF50' },
+    { 
+      icon: 'ti-trending-up', 
+      title: 'Patient Volume Forecast',
+      text: 'Expected to increase 15% this afternoon based on historical patterns', 
+      type: 'info', 
+      color: '#2196F3',
+      metric: '+15%',
+      metricLabel: 'vs. average'
+    },
+    { 
+      icon: 'ti-alert-circle', 
+      title: 'Deterioration Risk',
+      text: '3 patients showing early signs of deterioration - recommend review', 
+      type: 'warning', 
+      color: '#FF9800',
+      metric: '3',
+      metricLabel: 'patients'
+    },
+    { 
+      icon: 'ti-calendar', 
+      title: 'Scheduling Optimization',
+      text: 'Optimal scheduling window identified: 2:00 PM - 4:00 PM today', 
+      type: 'success', 
+      color: '#4CAF50',
+      metric: '2h',
+      metricLabel: 'window'
+    },
+    { 
+      icon: 'ti-clock', 
+      title: 'Wait Time Analysis',
+      text: 'Average wait time reduced by 12 minutes compared to last week', 
+      type: 'success', 
+      color: '#4CAF50',
+      metric: '-12m',
+      metricLabel: 'improved'
+    },
+    { 
+      icon: 'ti-bed', 
+      title: 'Bed Availability',
+      text: '85% occupancy rate. 6 beds available in general ward', 
+      type: 'info', 
+      color: '#2196F3',
+      metric: '6',
+      metricLabel: 'available'
+    },
+    { 
+      icon: 'ti-stethoscope', 
+      title: 'Staff Allocation',
+      text: 'Consider adding 1 nurse to ICU during peak hours (2PM-6PM)', 
+      type: 'warning', 
+      color: '#FF9800',
+      metric: '+1',
+      metricLabel: 'recommended'
+    },
   ];
+
+  // Summary metrics
+  const urgentInsights = insights.filter(i => i.type === 'warning').length;
+  const positiveInsights = insights.filter(i => i.type === 'success').length;
 
   return (
     <div>
-      <div className="overflow-auto" style={{ maxHeight: '220px' }}>
+      {/* Summary Stats Row */}
+      <div className="row g-3 mb-4">
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
+            <h4 className="fw-bold mb-1 text-primary">{insights.length}</h4>
+            <p className="mb-0 fs-12 text-muted">Total Insights</p>
+          </div>
+        </div>
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FFFBEB' }}>
+            <h4 className="fw-bold mb-1 text-warning">{urgentInsights}</h4>
+            <p className="mb-0 fs-12 text-muted">Attention</p>
+          </div>
+        </div>
+        <div className="col-4">
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
+            <h4 className="fw-bold mb-1 text-success">{positiveInsights}</h4>
+            <p className="mb-0 fs-12 text-muted">Positive</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Insights List - Scrollable */}
+      <div className="overflow-auto" style={{ maxHeight: '320px' }}>
         {insights.map((insight, idx) => (
           <div
             key={idx}
-            className="d-flex align-items-start mb-3"
+            className="d-flex align-items-start p-3 rounded-2 mb-2"
+            style={{ 
+              border: '1px solid #e5e7eb',
+              backgroundColor: `${insight.color}08`
+            }}
           >
             <span
-              className="avatar avatar-sm rounded-circle me-2 flex-shrink-0 d-flex align-items-center justify-content-center"
-              style={{ backgroundColor: `${insight.color}15`, width: 28, height: 28 }}
+              className="avatar avatar-md rounded-circle me-3 flex-shrink-0 d-flex align-items-center justify-content-center"
+              style={{ backgroundColor: `${insight.color}15`, width: 44, height: 44 }}
             >
-              <i className={`ti ${insight.icon} fs-14`} style={{ color: insight.color }} />
+              <i className={`ti ${insight.icon} fs-18`} style={{ color: insight.color }} />
             </span>
-            <span className="fs-13 lh-sm">{insight.text}</span>
+            <div className="flex-grow-1">
+              <h6 className="fs-14 fw-semibold mb-1">{insight.title}</h6>
+              <p className="fs-13 text-muted mb-0 lh-sm">{insight.text}</p>
+            </div>
+            <div className="text-end flex-shrink-0 ms-2">
+              <span 
+                className="fs-16 fw-bold d-block"
+                style={{ color: insight.color }}
+              >
+                {insight.metric}
+              </span>
+              <span className="fs-11 text-muted">{insight.metricLabel}</span>
+            </div>
           </div>
         ))}
       </div>
-      <div className="text-center pt-2 border-top mt-2">
+
+      {/* AI Footer */}
+      <div className="text-center pt-3 border-top mt-3">
         <span className="text-muted fs-12">
           <i className="ti ti-sparkles me-1" />
-          AI-generated insights
+          AI-generated insights updated 2 minutes ago
         </span>
       </div>
     </div>
