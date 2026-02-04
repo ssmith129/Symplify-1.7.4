@@ -48,9 +48,16 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
     aiInsights: all_routes.dashboard,
   };
 
+  // Clinical Alerts uses fixed height instead of flex
+  const isFixedHeight = widgetId === 'clinicalAlerts';
+  const fixedCardHeight = '620px';
+
   return (
-    <div className="card shadow-sm flex-fill w-100">
-      <div className="card-header d-flex align-items-center justify-content-between">
+    <div
+      className={`card shadow-sm w-100 ${isFixedHeight ? '' : 'flex-fill'}`}
+      style={isFixedHeight ? { height: fixedCardHeight, display: 'flex', flexDirection: 'column' } : undefined}
+    >
+      <div className="card-header d-flex align-items-center justify-content-between flex-shrink-0">
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">{widgetTitles[widgetId] || widgetId}</h5>
           <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
@@ -67,7 +74,10 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
           </Link>
         )}
       </div>
-      <div className="card-body">
+      <div
+        className="card-body"
+        style={isFixedHeight ? { flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' } : undefined}
+      >
         {getWidgetContent()}
       </div>
     </div>
