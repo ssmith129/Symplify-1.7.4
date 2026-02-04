@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
@@ -7,11 +6,6 @@ import CircleChart2 from "./charts/circleChart2";
 import { ShiftHandoffWidget, SmartWidget, ChatInboxWidget } from "../../../ai";
 
 const DoctorDahboard = () => {
-  const [patientSummaryExpanded, setPatientSummaryExpanded] = useState(true);
-
-  const handlePatientSummaryToggle = () => {
-    setPatientSummaryExpanded(!patientSummaryExpanded);
-  };
 
   return (
     <>
@@ -53,85 +47,73 @@ const DoctorDahboard = () => {
               <ShiftHandoffWidget />
             </div>
             <div className="col-12 col-md-6 col-lg-4 d-flex">
-              <div
-                className={`card shadow-sm flex-fill w-100 smart-widget-card ${patientSummaryExpanded ? 'expanded' : 'collapsed'}`}
-                style={{ transition: 'all 0.3s ease' }}
-              >
-                <div
-                  className="card-header d-flex align-items-center justify-content-between cursor-pointer"
-                  onClick={handlePatientSummaryToggle}
-                  role="button"
-                  aria-expanded={patientSummaryExpanded}
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handlePatientSummaryToggle(); }}
-                >
-                  <div className="d-flex align-items-center">
-                    <h5 className="fw-bold mb-0">My Patient Summary</h5>
-                  </div>
-                  <button
-                    className="btn btn-sm btn-light border-0 p-1"
-                    onClick={(e) => { e.stopPropagation(); handlePatientSummaryToggle(); }}
-                    aria-label={patientSummaryExpanded ? 'Collapse widget' : 'Expand widget'}
-                  >
-                    <i className={`ti ti-chevron-${patientSummaryExpanded ? 'up' : 'down'} fs-14`} />
-                  </button>
+              <div className="card shadow-sm flex-fill w-100">
+                <div className="card-header d-flex align-items-center justify-content-between">
+                  <h5 className="fw-bold mb-0">My Patient Summary</h5>
+                  <Link to="#" className="btn fw-normal btn-outline-white">
+                    View All
+                  </Link>
                 </div>
-                {patientSummaryExpanded && (
-                  <div
-                    className="card-body"
-                    style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
-                  >
-                    <div className="row g-3">
-                      <div className="col-md-3 col-6">
-                        <div className="border rounded-2 p-3 text-center bg-soft-primary">
-                          <h4 className="fw-bold mb-1 text-primary">24</h4>
-                          <p className="mb-0 fs-12 text-muted">Total Patients</p>
-                        </div>
-                      </div>
-                      <div className="col-md-3 col-6">
-                        <div className="border rounded-2 p-3 text-center bg-soft-danger">
-                          <h4 className="fw-bold mb-1 text-danger">3</h4>
-                          <p className="mb-0 fs-12 text-muted">Critical</p>
-                        </div>
-                      </div>
-                      <div className="col-md-3 col-6">
-                        <div className="border rounded-2 p-3 text-center bg-soft-warning">
-                          <h4 className="fw-bold mb-1 text-warning">5</h4>
-                          <p className="mb-0 fs-12 text-muted">Pending Review</p>
-                        </div>
-                      </div>
-                      <div className="col-md-3 col-6">
-                        <div className="border rounded-2 p-3 text-center bg-soft-success">
-                          <h4 className="fw-bold mb-1 text-success">16</h4>
-                          <p className="mb-0 fs-12 text-muted">Stable</p>
-                        </div>
+                <div className="card-body">
+                  {/* Summary Stats Row - matches Doctors Schedule pattern */}
+                  <div className="row g-2 mb-4">
+                    <div className="col d-flex border-end">
+                      <div className="text-center flex-fill">
+                        <p className="mb-1">Total</p>
+                        <h3 className="fw-bold mb-0">24</h3>
                       </div>
                     </div>
-                    <div className="mt-3 p-2 rounded-2" style={{ backgroundColor: '#F3E5F5' }}>
-                      <div className="d-flex align-items-start">
-                        <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0" style={{ color: '#7B1FA2' }} />
-                        <p className="mb-0 fs-12 text-dark">
-                          3 patients require immediate attention. Mrs. Santos showing declining vitals - recommend urgent review.
-                          Mr. Johnson's lab results are ready for review.
-                        </p>
+                    <div className="col d-flex border-end">
+                      <div className="text-center flex-fill">
+                        <p className="mb-1">Critical</p>
+                        <h3 className="fw-bold mb-0 text-danger">3</h3>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center gap-2 mt-3 pt-2 border-top flex-wrap">
-                      <span className="d-flex align-items-center fs-12 text-muted">
-                        <i className="ti ti-trending-up text-success me-1" />
-                        8 Improving
-                      </span>
-                      <span className="d-flex align-items-center fs-12 text-muted">
-                        <i className="ti ti-minus text-secondary me-1" />
-                        12 Stable
-                      </span>
-                      <span className="d-flex align-items-center fs-12 text-muted">
-                        <i className="ti ti-trending-down text-danger me-1" />
-                        4 Declining
-                      </span>
+                    <div className="col d-flex">
+                      <div className="text-center flex-fill">
+                        <p className="mb-1">Stable</p>
+                        <h3 className="fw-bold mb-0 text-success">16</h3>
+                      </div>
                     </div>
                   </div>
-                )}
+
+                  {/* Status breakdown */}
+                  <div className="row g-2 mb-3">
+                    <div className="col-4">
+                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#ECFDF5' }}>
+                        <h5 className="fw-bold mb-0 text-success">8</h5>
+                        <p className="mb-0 fs-11 text-muted">Improving</p>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#F3F4F6' }}>
+                        <h5 className="fw-bold mb-0 text-secondary">12</h5>
+                        <p className="mb-0 fs-11 text-muted">Stable</p>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#FEF2F2' }}>
+                        <h5 className="fw-bold mb-0 text-danger">4</h5>
+                        <p className="mb-0 fs-11 text-muted">Declining</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* AI Summary */}
+                  <div className="p-2 rounded-2" style={{ backgroundColor: '#F3E5F5' }}>
+                    <div className="d-flex align-items-start">
+                      <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0" style={{ color: '#7B1FA2' }} />
+                      <p className="mb-0 fs-12 text-dark" style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                      }}>
+                        3 patients require immediate attention. Mrs. Santos showing declining vitals - recommend urgent review.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-12 col-md-6 col-lg-4">
