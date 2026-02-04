@@ -11,6 +11,7 @@ export {
   PatientAcuityWidget,
   PatientQueueWidget,
   AIInsightsWidget,
+  QuickStatsWidget,
 } from './AIDashboardWidgets';
 
 // Feature 3: Intelligent Appointment Scheduler
