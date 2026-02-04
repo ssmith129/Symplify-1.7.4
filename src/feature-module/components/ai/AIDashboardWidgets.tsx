@@ -112,7 +112,7 @@ const PatientAcuityWidget: React.FC = () => {
       </div>
 
       {/* Acuity Breakdown - Enhanced with progress bars */}
-      <div className="overflow-auto" style={{ maxHeight: '280px' }}>
+      <div className="overflow-auto" style={{ maxHeight: '380px' }}>
         {acuityData.map((item) => (
           <div
             key={item.level}
@@ -303,7 +303,7 @@ const AIInsightsWidget: React.FC = () => {
       </div>
 
       {/* Insights List - Scrollable */}
-      <div className="overflow-auto" style={{ maxHeight: '320px' }}>
+      <div className="overflow-auto" style={{ maxHeight: '420px' }}>
         {insights.map((insight, idx) => (
           <div
             key={idx}
