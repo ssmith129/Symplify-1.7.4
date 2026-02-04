@@ -78,15 +78,17 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
           <i className={`ti ti-chevron-${expanded ? 'up' : 'down'} fs-14`} />
         </button>
       </div>
-      <div
-        className={`card-body ${expanded ? '' : 'd-none'}`}
-        style={{
-          overflow: 'hidden',
-          transition: 'all 0.3s ease'
-        }}
-      >
-        {getWidgetContent()}
-      </div>
+      {expanded && (
+        <div
+          className="card-body"
+          style={{
+            overflow: 'hidden',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          {getWidgetContent()}
+        </div>
+      )}
     </div>
   );
 };
