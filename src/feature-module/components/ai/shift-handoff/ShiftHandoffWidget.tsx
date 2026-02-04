@@ -108,7 +108,7 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
       </div>
 
       {isWidgetExpanded && currentReport && (
-        <div className="card-body pt-3 pb-3">
+        <div className="card-body">
           {/* Priority Stats Row */}
           <div className="row g-2 mb-3">
             <div className="col-6 col-md-3">
