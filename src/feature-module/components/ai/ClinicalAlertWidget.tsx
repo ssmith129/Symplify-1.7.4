@@ -127,7 +127,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
   }
 
   return (
-    <div className="clinical-alerts-widget">
+    <div className="clinical-alerts-widget d-flex flex-column h-100">
       {/* Summary Stats Row - matches Patient Acuity pattern */}
       <div className="row g-3 mb-4">
         <div className="col-4">
