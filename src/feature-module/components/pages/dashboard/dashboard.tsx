@@ -246,11 +246,11 @@ const Dashboard = () => {
 
           {/* AI Widgets Row - Shift Handoff and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-lg-6 d-flex">
+            <div className="col-12 col-md-6 col-lg-8 d-flex">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-12 col-lg-6 d-flex">
-              <ChatInboxWidget maxChats={6} />
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
+              <ChatInboxWidget maxChats={5} />
             </div>
           </div>
 
