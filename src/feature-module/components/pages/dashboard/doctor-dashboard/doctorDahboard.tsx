@@ -77,7 +77,7 @@ const DoctorDahboard = () => {
                   </button>
                 </div>
                 <div
-                  className={`card-body pt-3 pb-3 ${patientSummaryExpanded ? '' : 'd-none'}`}
+                  className={`card-body ${patientSummaryExpanded ? '' : 'd-none'}`}
                   style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
                 >
                   <div className="row g-3">
