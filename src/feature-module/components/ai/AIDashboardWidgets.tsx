@@ -350,6 +350,120 @@ const AIInsightsWidget: React.FC = () => {
   );
 };
 
+// Quick Stats Widget - Combines 4 top stats into one card
+const QuickStatsWidget: React.FC = () => {
+  const statsData = [
+    {
+      label: 'Doctors',
+      value: '247',
+      change: '+95%',
+      changeType: 'positive',
+      icon: 'ti-stethoscope',
+      color: '#2E37A4',
+      bgColor: '#EEF2FF'
+    },
+    {
+      label: 'Patients',
+      value: '4,178',
+      change: '+25%',
+      changeType: 'positive',
+      icon: 'ti-users',
+      color: '#F44336',
+      bgColor: '#FEF2F2'
+    },
+    {
+      label: 'Appointments',
+      value: '12,178',
+      change: '-15%',
+      changeType: 'negative',
+      icon: 'ti-calendar-event',
+      color: '#0EA5E9',
+      bgColor: '#F0F9FF'
+    },
+    {
+      label: 'Revenue',
+      value: '$55,124',
+      change: '+25%',
+      changeType: 'positive',
+      icon: 'ti-currency-dollar',
+      color: '#22C55E',
+      bgColor: '#ECFDF5'
+    },
+  ];
+
+  const totalValue = 12178 + 4178 + 247; // Sum for display
+  const positiveStats = statsData.filter(s => s.changeType === 'positive').length;
+
+  return (
+    <div className="card shadow-sm flex-fill w-100">
+      <div className="card-header d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center">
+          <h5 className="fw-bold mb-0">Quick Stats</h5>
+          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
+            <i className="ti ti-sparkles me-1" />
+            AI
+          </span>
+        </div>
+        <span className="fs-12 text-muted">Last 7 days</span>
+      </div>
+      <div className="card-body">
+        {/* Summary Stats Row */}
+        <div className="row g-3 mb-4">
+          <div className="col-6">
+            <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
+              <h4 className="fw-bold mb-1 text-primary">{statsData.length}</h4>
+              <p className="mb-0 fs-12 text-muted">Key Metrics</p>
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
+              <h4 className="fw-bold mb-1 text-success">{positiveStats}</h4>
+              <p className="mb-0 fs-12 text-muted">Trending Up</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats List - Scrollable */}
+        <div className="overflow-auto" style={{ maxHeight: '420px' }}>
+          {statsData.map((stat, idx) => (
+            <div
+              key={idx}
+              className={`p-3 rounded-2 ${idx < statsData.length - 1 ? 'mb-2' : ''}`}
+              style={{
+                border: '1px solid #e5e7eb',
+                backgroundColor: `${stat.color}08`
+              }}
+            >
+              <div className="d-flex align-items-center justify-content-between mb-2">
+                <div className="d-flex align-items-center">
+                  <span
+                    className="avatar avatar-sm rounded-circle me-2 d-flex align-items-center justify-content-center"
+                    style={{ backgroundColor: stat.bgColor, width: 36, height: 36 }}
+                  >
+                    <i className={`ti ${stat.icon} fs-16`} style={{ color: stat.color }} />
+                  </span>
+                  <span className="fs-14 fw-medium">{stat.label}</span>
+                </div>
+                <span
+                  className={`badge px-2 py-1 fs-11 fw-medium ${
+                    stat.changeType === 'positive' ? 'bg-success' : 'bg-danger'
+                  }`}
+                >
+                  {stat.change}
+                </span>
+              </div>
+              <div className="d-flex align-items-end justify-content-between">
+                <h3 className="fw-bold mb-0" style={{ color: stat.color }}>{stat.value}</h3>
+                <span className="fs-12 text-muted">vs last week</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Default Widget Content
 const DefaultWidgetContent: React.FC<{ widgetId: string }> = ({ widgetId }) => (
   <div className="text-center py-4 text-muted">
