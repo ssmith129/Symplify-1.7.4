@@ -44,9 +44,12 @@ const DoctorDahboard = () => {
           {/* AI-Powered Insights Section - matches Admin Dashboard */}
           <AIDashboardSection userRole="doctor" userId="doctor-1" />
 
-          {/* AI Widgets Row - Shift Handoff and Message Inbox */}
+          {/* AI Widgets Row - Quick Stats, Shift Handoff, and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-md-6 col-lg-8 d-flex">
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
+              <QuickStatsWidget />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
               <ShiftHandoffWidget />
             </div>
             <div className="col-12 col-md-6 col-lg-4 d-flex">
