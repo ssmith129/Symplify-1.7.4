@@ -244,13 +244,13 @@ const Dashboard = () => {
           {/* AI-Powered Insights Section */}
           <AIDashboardSection userRole="admin" userId="admin-1" />
 
-          {/* AI Shift Handoff Widget Section */}
+          {/* AI Widgets Row - Shift Handoff and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
+            <div className="col-12 col-lg-6 d-flex">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
-              <ChatInboxWidget maxChats={4} />
+            <div className="col-12 col-lg-6 d-flex">
+              <ChatInboxWidget maxChats={6} />
             </div>
           </div>
 
