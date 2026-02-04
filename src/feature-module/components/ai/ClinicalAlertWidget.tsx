@@ -129,7 +129,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
   return (
     <div className="clinical-alerts-widget d-flex flex-column h-100">
       {/* Summary Stats Row - matches Patient Acuity pattern */}
-      <div className="row g-3 mb-4">
+      <div className="row g-3 mb-4 flex-shrink-0">
         <div className="col-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2' }}>
             <h4 className="fw-bold mb-1 text-danger">{criticalCount}</h4>
