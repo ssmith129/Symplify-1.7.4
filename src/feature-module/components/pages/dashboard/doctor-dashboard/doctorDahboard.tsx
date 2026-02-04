@@ -52,9 +52,9 @@ const DoctorDahboard = () => {
             <div className="col-12 col-md-6 col-lg-4">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-12 col-md-6 col-lg-4">
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
               <div
-                className={`card shadow-sm smart-widget-card ${patientSummaryExpanded ? 'h-100 expanded' : 'collapsed'}`}
+                className={`card shadow-sm flex-fill w-100 smart-widget-card ${patientSummaryExpanded ? 'expanded' : 'collapsed'}`}
                 style={{ transition: 'all 0.3s ease' }}
               >
                 <div
