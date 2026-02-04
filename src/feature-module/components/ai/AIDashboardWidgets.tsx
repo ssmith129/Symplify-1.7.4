@@ -405,7 +405,7 @@ const QuickStatsWidget: React.FC = () => {
       </div>
       <div className="card-body">
         {/* Stats List - Scrollable */}
-        <div className="overflow-auto" style={{ maxHeight: '420px' }}>
+        <div className="overflow-auto" style={{ maxHeight: '520px' }}>
           {statsData.map((stat, idx) => (
             <div
               key={idx}
