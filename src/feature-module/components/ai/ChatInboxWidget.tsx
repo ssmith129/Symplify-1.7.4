@@ -98,7 +98,6 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
   const navigate = useNavigate();
   const [chats, setChats] = useState<ChatContact[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState(true);
 
   // Calculate total unread count
   const totalUnread = chats.reduce((sum, chat) => sum + chat.unreadCount, 0);
@@ -138,27 +137,10 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
     [navigate]
   );
 
-  // Toggle expand/collapse
-  const handleToggle = () => {
-    setExpanded(!expanded);
-  };
-
   return (
-    <div
-      className={`card shadow-sm flex-fill w-100 chat-inbox-widget ${expanded ? 'expanded' : 'collapsed'}`}
-      style={{ transition: 'all 0.3s ease' }}
-    >
-      {/* Card Header */}
-      <div
-        className="card-header d-flex align-items-center justify-content-between cursor-pointer"
-        onClick={handleToggle}
-        role="button"
-        aria-expanded={expanded}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') handleToggle();
-        }}
-      >
+    <div className="card shadow-sm flex-fill w-100">
+      {/* Card Header - matches Doctors Schedule design */}
+      <div className="card-header d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">Message Inbox</h5>
           {totalUnread > 0 && (
@@ -168,13 +150,10 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
           )}
         </div>
         <div className="d-flex align-items-center gap-2">
-          {showComposeButton && expanded && (
+          {showComposeButton && (
             <button
               className="btn btn-sm btn-primary d-inline-flex align-items-center justify-content-center"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleCompose();
-              }}
+              onClick={handleCompose}
               title="Compose New Message"
               aria-label="Compose New Message"
               style={{ width: '28px', height: '28px', padding: 0 }}
@@ -182,50 +161,67 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
               <i className="ti ti-plus" />
             </button>
           )}
-          <button
-            className="btn btn-sm btn-light border-0 p-1"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleToggle();
-            }}
-            aria-label={expanded ? 'Collapse widget' : 'Expand widget'}
+          <Link
+            to={all_routes.chat}
+            className="btn fw-normal btn-outline-white"
           >
-            <i
-              className={`ti ti-chevron-${expanded ? 'up' : 'down'} fs-14`}
-            />
-          </button>
+            View All
+          </Link>
         </div>
       </div>
 
       {/* Card Body */}
-      {expanded && (
-        <div
-          className="card-body"
-          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
-        >
-          {/* Loading State */}
-          {loading ? (
-            <div className="d-flex flex-column align-items-center justify-content-center py-4">
-              <div className="spinner-border text-primary mb-2" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-              <p className="text-muted fs-13 mb-0">Loading chats...</p>
+      <div className="card-body">
+        {/* Summary Stats Row - matches Doctors Schedule pattern */}
+        <div className="row g-2 mb-4">
+          <div className="col d-flex border-end">
+            <div className="text-center flex-fill">
+              <p className="mb-1">Unread</p>
+              <h3 className="fw-bold mb-0 text-danger">{totalUnread}</h3>
             </div>
-          ) : chats.length === 0 ? (
-            /* Empty State */
-            <div className="text-center py-4">
-              <i className="ti ti-messages-off fs-1 text-muted mb-2 d-block" />
-              <p className="text-muted mb-0">No recent messages</p>
+          </div>
+          <div className="col d-flex border-end">
+            <div className="text-center flex-fill">
+              <p className="mb-1">Total</p>
+              <h3 className="fw-bold mb-0">{chats.length}</h3>
             </div>
-          ) : (
-            /* Chat List */
-            <div className="chat-list w-100" style={{ maxWidth: '100%' }}>
+          </div>
+          <div className="col d-flex">
+            <div className="text-center flex-fill">
+              <p className="mb-1">Online</p>
+              <h3 className="fw-bold mb-0 text-success">
+                {chats.filter((c) => c.isOnline).length}
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        {/* Loading State */}
+        {loading ? (
+          <div className="d-flex flex-column align-items-center justify-content-center py-4">
+            <div className="spinner-border text-primary mb-2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="text-muted fs-13 mb-0">Loading messages...</p>
+          </div>
+        ) : chats.length === 0 ? (
+          /* Empty State */
+          <div className="text-center py-4">
+            <i className="ti ti-messages-off fs-1 text-muted mb-2 d-block" />
+            <p className="text-muted mb-0">No recent messages</p>
+          </div>
+        ) : (
+          /* Chat List - scrollable container */
+          <div
+            className="overflow-auto"
+            style={{ maxHeight: '280px' }}
+          >
             {chats.map((chat, index) => (
               <div
                 key={chat.id}
-                className={`d-flex align-items-start justify-content-between ${
-                  index < chats.length - 1 ? 'mb-3 pb-3 border-bottom' : ''
-                } cursor-pointer chat-item`}
+                className={`d-flex justify-content-between align-items-center ${
+                  index < chats.length - 1 ? 'mb-3' : 'mb-0'
+                }`}
                 onClick={() => handleChatClick(chat.id)}
                 role="button"
                 tabIndex={0}
@@ -233,91 +229,52 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
                   if (e.key === 'Enter' || e.key === ' ')
                     handleChatClick(chat.id);
                 }}
-                style={{
-                  transition: 'background-color 0.2s ease',
-                  marginLeft: '-1rem',
-                  marginRight: '-1rem',
-                  paddingLeft: '1rem',
-                  paddingRight: '1rem',
-                  borderRadius: '4px',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#f8f9fa';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }}
+                style={{ cursor: 'pointer' }}
               >
-                <div className="d-flex align-items-start flex-grow-1 overflow-hidden">
+                <div className="d-flex align-items-center flex-shrink-0">
                   {/* Avatar with Online Status */}
-                  <div className="position-relative me-2 flex-shrink-0">
-                    <Link to="#" className="avatar">
-                      <ImageWithBasePath
-                        src={chat.avatar}
-                        alt={chat.name}
-                        className="rounded-circle"
-                      />
-                    </Link>
-                    <span
-                      className={`position-absolute bottom-0 end-0 rounded-circle border border-2 border-white ${
-                        chat.isOnline ? 'bg-success' : 'bg-secondary'
-                      }`}
-                      style={{ width: '10px', height: '10px' }}
-                      title={chat.isOnline ? 'Online' : 'Offline'}
-                    />
-                  </div>
-
-                  {/* Chat Details */}
-                  <div className="flex-grow-1 overflow-hidden">
-                    <div className="d-flex align-items-center justify-content-between mb-1">
-                      <h6 className="fs-14 mb-0 text-truncate">
-                        <span
-                          className={`fw-${chat.unreadCount > 0 ? 'bold' : 'medium'}`}
-                        >
-                          {chat.name}
-                        </span>
-                      </h6>
-                      <span className="fs-12 text-muted flex-shrink-0 ms-2">
-                        {formatTimeAgo(chat.timestamp)}
+                  <Link
+                    to="#"
+                    className="avatar flex-shrink-0 position-relative"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {chat.isOnline && (
+                      <span className="online text-success position-absolute end-0 bottom-0 pe-1">
+                        <i className="ti ti-circle-filled d-flex bg-white fs-6 rounded-circle border border-1 border-white" />
                       </span>
-                    </div>
-                    <p className="fs-12 text-muted mb-1">{chat.role}</p>
-                    <p
-                      className={`fs-13 mb-0 text-truncate ${
-                        chat.unreadCount > 0 ? 'text-dark fw-medium' : ''
-                      }`}
-                    >
+                    )}
+                    <ImageWithBasePath
+                      src={chat.avatar}
+                      alt={chat.name}
+                      className="rounded-circle"
+                    />
+                  </Link>
+                  <div className="ms-2 flex-shrink-0">
+                    <h6 className="fw-semibold fs-14 text-truncate mb-1">
+                      <span className={chat.unreadCount > 0 ? 'fw-bold' : ''}>
+                        {chat.name}
+                      </span>
+                    </h6>
+                    <p className="fs-13 mb-0 text-truncate" style={{ maxWidth: '180px' }}>
                       {chat.lastMessage}
                     </p>
                   </div>
                 </div>
-
-                {/* Unread Badge */}
-                {chat.unreadCount > 0 && (
-                  <span className="badge bg-primary rounded-pill ms-2 flex-shrink-0 align-self-center">
-                    {chat.unreadCount}
+                <div className="flex-shrink-0 ms-2 text-end">
+                  <span className="fs-12 text-muted d-block mb-1">
+                    {formatTimeAgo(chat.timestamp)}
                   </span>
-                )}
+                  {chat.unreadCount > 0 && (
+                    <span className="badge bg-primary rounded-pill">
+                      {chat.unreadCount}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         )}
-
-          {/* View All Button */}
-          {!loading && chats.length > 0 && (
-            <div className="mt-3 pt-2 border-top d-flex justify-content-center">
-              <Link
-                to={all_routes.chat}
-                className="btn btn-light d-flex align-items-center justify-content-center"
-                style={{ maxWidth: '280px', width: '100%' }}
-              >
-                <i className="ti ti-messages me-1" />
-                View All Messages
-              </Link>
-            </div>
-          )}
-        </div>
-      )}
+      </div>
     </div>
   );
 };
