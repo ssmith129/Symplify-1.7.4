@@ -94,159 +94,16 @@ const Dashboard = () => {
             </div>
           </div>
           {/* End Page Header */}
-          {/* start row */}
-          <div className="row">
-            <div className="col-xl-3 col-md-6">
-              <div className="position-relative border card rounded-2 shadow-sm">
-                <ImageWithBasePath
-                  src="./assets/img/bg/bg-01.svg"
-                  alt="img"
-                  className="position-absolute start-0 top-0"
-                />
-                <div className="card-body">
-                  <div className="d-flex align-items-center mb-2 justify-content-between">
-                    <span className="avatar bg-primary rounded-circle">
-                      <i className="ti ti-calendar-heart fs-24" />
-                    </span>
-                    <div className="text-end">
-                      <span className="badge px-2 py-1 fs-12 fw-medium d-inline-flex mb-1 bg-success">
-                        +95%
-                      </span>
-                      <p className="fs-13 mb-0">in last 7 Days </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div>
-                      <p className="mb-1">Doctors</p>
-                      <h3 className="fw-bold mb-0">247</h3>
-                    </div>
-                    <div>
-                      <div id="s-col" className="chart-set">
-                        <Chart
-                          options={sColChart}
-                          series={series}
-                          type="bar"
-                          width={80}
-                          height={54}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* end col */}
-            <div className="col-xl-3 col-md-6">
-              <div className="position-relative border card rounded-2 shadow-sm">
-                <ImageWithBasePath
-                  src="./assets/img/bg/bg-02.svg"
-                  alt="img"
-                  className="position-absolute start-0 top-0"
-                />
-                <div className="card-body">
-                  <div className="d-flex align-items-center mb-2 justify-content-between">
-                    <span className="avatar bg-danger rounded-circle">
-                      <i className="ti ti-calendar-heart fs-24" />
-                    </span>
-                    <div className="text-end">
-                      <span className="badge px-2 py-1 fs-12 fw-medium d-inline-flex mb-1 bg-success">
-                        +25%
-                      </span>
-                      <p className="fs-13 mb-0">in last 7 Days </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div>
-                      <p className="mb-1">Patients</p>
-                      <h3 className="fw-bold mb-0">4178</h3>
-                    </div>
-                    <div>
-                      <div id="s-col-2" className="chart-set">
-                        <SCol2Chart />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* end col */}
-            <div className="col-xl-3 col-md-6">
-              <div className="position-relative border card rounded-2 shadow-sm">
-                <ImageWithBasePath
-                  src="./assets/img/bg/bg-03.svg"
-                  alt="img"
-                  className="position-absolute start-0 top-0"
-                />
-                <div className="card-body">
-                  <div className="d-flex align-items-center mb-2 justify-content-between">
-                    <span className="avatar bg-info rounded-circle">
-                      <i className="ti ti-calendar-heart fs-24" />
-                    </span>
-                    <div className="text-end">
-                      <span className="badge px-2 py-1 fs-12 fw-medium d-inline-flex mb-1 bg-danger">
-                        -15%
-                      </span>
-                      <p className="fs-13 mb-0">in last 7 Days </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div>
-                      <p className="mb-1">Appointment</p>
-                      <h3 className="fw-bold mb-0">12178</h3>
-                    </div>
-                    <div>
-                      <div id="s-col-3" className="chart-set">
-                        <SCol3Chart />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* end col */}
-            <div className="col-xl-3 col-md-6">
-              <div className="position-relative border card rounded-2 shadow-sm">
-                <ImageWithBasePath
-                  src="./assets/img/bg/bg-04.svg"
-                  alt="img"
-                  className="position-absolute start-0 top-0"
-                />
-                <div className="card-body">
-                  <div className="d-flex align-items-center mb-2 justify-content-between">
-                    <span className="avatar bg-success rounded-circle">
-                      <i className="ti ti-calendar-heart fs-24" />
-                    </span>
-                    <div className="text-end">
-                      <span className="badge px-2 py-1 fs-12 fw-medium d-inline-flex mb-1 bg-success">
-                        +25%
-                      </span>
-                      <p className="fs-13 mb-0">in last 7 Days </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between overflow-hidden">
-                    <div>
-                      <p className="mb-1">Revenue</p>
-                      <h3 className="fw-bold mb-0 text-truncate">$55,1240</h3>
-                    </div>
-                    <div>
-                      <div id="s-col-4" className="chart-set">
-                        <SCol4Chart />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* end col */}
-          </div>
-          {/* end row */}
 
           {/* AI-Powered Insights Section */}
           <AIDashboardSection userRole="admin" userId="admin-1" />
 
-          {/* AI Widgets Row - Shift Handoff and Message Inbox */}
+          {/* AI Widgets Row - Quick Stats, Shift Handoff, and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-md-6 col-lg-8 d-flex">
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
+              <QuickStatsWidget />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex">
               <ShiftHandoffWidget />
             </div>
             <div className="col-12 col-md-6 col-lg-4 d-flex">
