@@ -41,86 +41,16 @@ const DoctorDahboard = () => {
           </div>
           {/* End Page Header */}
 
-          {/* AI Shift Handoff Widget Section */}
+          {/* AI-Powered Insights Section - matches Admin Dashboard */}
+          <AIDashboardSection userRole="doctor" userId="doctor-1" />
+
+          {/* AI Widgets Row - Shift Handoff and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-md-6 col-lg-4">
+            <div className="col-12 col-lg-6 d-flex">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
-              <div className="card shadow-sm flex-fill w-100">
-                <div className="card-header d-flex align-items-center justify-content-between">
-                  <h5 className="fw-bold mb-0">My Patient Summary</h5>
-                  <Link to="#" className="btn fw-normal btn-outline-white">
-                    View All
-                  </Link>
-                </div>
-                <div className="card-body">
-                  {/* Summary Stats Row - matches Doctors Schedule pattern */}
-                  <div className="row g-2 mb-4">
-                    <div className="col d-flex border-end">
-                      <div className="text-center flex-fill">
-                        <p className="mb-1">Total</p>
-                        <h3 className="fw-bold mb-0">24</h3>
-                      </div>
-                    </div>
-                    <div className="col d-flex border-end">
-                      <div className="text-center flex-fill">
-                        <p className="mb-1">Critical</p>
-                        <h3 className="fw-bold mb-0 text-danger">3</h3>
-                      </div>
-                    </div>
-                    <div className="col d-flex">
-                      <div className="text-center flex-fill">
-                        <p className="mb-1">Stable</p>
-                        <h3 className="fw-bold mb-0 text-success">16</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Status breakdown */}
-                  <div className="row g-2 mb-3">
-                    <div className="col-4">
-                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#ECFDF5' }}>
-                        <h5 className="fw-bold mb-0 text-success">8</h5>
-                        <p className="mb-0 fs-11 text-muted">Improving</p>
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#F3F4F6' }}>
-                        <h5 className="fw-bold mb-0 text-secondary">12</h5>
-                        <p className="mb-0 fs-11 text-muted">Stable</p>
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="border rounded-2 p-2 text-center" style={{ backgroundColor: '#FEF2F2' }}>
-                        <h5 className="fw-bold mb-0 text-danger">4</h5>
-                        <p className="mb-0 fs-11 text-muted">Declining</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* AI Summary */}
-                  <div className="p-2 rounded-2" style={{ backgroundColor: '#F3E5F5' }}>
-                    <div className="d-flex align-items-start">
-                      <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0" style={{ color: '#7B1FA2' }} />
-                      <p className="mb-0 fs-12 text-dark" style={{
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden'
-                      }}>
-                        3 patients require immediate attention. Mrs. Santos showing declining vitals - recommend urgent review.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-4">
-              <SmartWidget widgetId="clinicalAlerts" />
-            </div>
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
-              <ChatInboxWidget maxChats={4} />
+            <div className="col-12 col-lg-6 d-flex">
+              <ChatInboxWidget maxChats={6} />
             </div>
           </div>
 
