@@ -151,7 +151,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
       </div>
 
       {/* Live Monitoring Status Header */}
-      <div className="d-flex align-items-center justify-content-between mb-3 p-2 rounded-2" style={{ backgroundColor: '#F8FAFC' }}>
+      <div className="d-flex align-items-center justify-content-between mb-3 p-2 rounded-2 flex-shrink-0" style={{ backgroundColor: '#F8FAFC' }}>
         <div className="d-flex align-items-center">
           <span
             className="rounded-circle d-inline-block me-2"
