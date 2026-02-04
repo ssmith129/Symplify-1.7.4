@@ -1,11 +1,6 @@
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../core/imageWithBasePath";
 import { all_routes } from "../../../routes/all_routes";
-import { useState } from "react";
-import Chart from "react-apexcharts";
-import SCol2Chart from "./chats/scol2";
-import SCol3Chart from "./chats/scol3";
-import SCol4Chart from "./chats/scol4";
 import SCol19Chart from "./chats/scol19";
 import CircleChart from "./chats/circleChart";
 import { Calendar, type CalendarProps } from "antd";
@@ -13,53 +8,6 @@ import type { Dayjs } from "dayjs";
 import { AIDashboardSection, ShiftHandoffWidget, ChatInboxWidget, QuickStatsWidget } from "../../ai";
 
 const Dashboard = () => {
-  const [sColChart] = useState<any>({
-    chart: {
-      width: 80,
-      height: 54,
-      type: "bar",
-      toolbar: { show: false },
-      sparkline: { enabled: true },
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "70%",
-        borderRadius: 3,
-        endingShape: "rounded",
-      },
-    },
-    dataLabels: { enabled: false },
-    stroke: { show: false },
-    xaxis: {
-      labels: { show: false },
-      axisTicks: { show: false },
-      axisBorder: { show: false },
-    },
-    yaxis: { show: false },
-    grid: { show: false },
-    tooltip: { enabled: false },
-    colors: [
-      "#2E37A4", // default color
-      "#2E37A4",
-      "#2E37A4",
-      "#2E37A4",
-      "#FF955A", // highlighted bar
-      "#2E37A4",
-      "#2E37A4",
-    ],
-    fill: {
-      type: "solid",
-    },
-  });
-
-  const series = [
-    {
-      name: "Data",
-      data: [40, 15, 60, 15, 90, 20, 70], // y-values
-    },
-  ];
-
   const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>["mode"]) => {
     console.log(value.format("YYYY-MM-DD"), mode);
   };
