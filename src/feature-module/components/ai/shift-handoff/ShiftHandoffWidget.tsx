@@ -91,16 +91,32 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
   }
 
   return (
-    <div className="card shadow-sm h-100 shift-handoff-widget">
+    <div
+      className={`card shadow-sm flex-fill w-100 shift-handoff-widget ${isWidgetExpanded ? 'expanded' : 'collapsed'}`}
+      style={{ transition: 'all 0.3s ease' }}
+    >
       {/* Header */}
-      <div className="card-header d-flex align-items-center justify-content-between">
+      <div
+        className="card-header d-flex align-items-center justify-content-between cursor-pointer"
+        onClick={handleToggleExpand}
+        role="button"
+        aria-expanded={isWidgetExpanded}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') handleToggleExpand();
+        }}
+      >
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">Shift Handoff</h5>
         </div>
         <div className="d-flex align-items-center gap-2">
           <button
             className="btn btn-sm btn-light border-0 p-1"
-            onClick={handleToggleExpand}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleExpand();
+            }}
+            aria-label={isWidgetExpanded ? 'Collapse widget' : 'Expand widget'}
           >
             <i className={`ti ti-chevron-${isWidgetExpanded ? 'up' : 'down'} fs-14`} />
           </button>
@@ -108,7 +124,10 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
       </div>
 
       {isWidgetExpanded && currentReport && (
-        <div className="card-body">
+        <div
+          className="card-body"
+          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
+        >
           {/* Priority Stats Row */}
           <div className="row g-2 mb-3">
             <div className="col-6 col-md-3">
