@@ -122,7 +122,7 @@ const PatientAcuityWidget: React.FC = () => {
       </div>
 
       {/* Acuity Breakdown - Enhanced with progress bars */}
-      <div className="overflow-auto" style={{ maxHeight: '380px' }}>
+      <div className="overflow-auto" style={{ maxHeight: '420px' }}>
         {acuityData.map((item) => (
           <div
             key={item.level}
