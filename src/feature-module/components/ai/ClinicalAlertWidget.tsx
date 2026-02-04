@@ -282,20 +282,47 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                   </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="d-flex gap-2">
+                {/* Action Buttons - Left aligned with consistent styling */}
+                <div className="d-flex justify-content-start gap-2">
                   <button
-                    className="btn btn-sm py-1 px-3 fs-12 btn-outline-primary flex-grow-1"
+                    className="btn btn-sm py-1 px-3 fs-12 btn-outline-primary alert-action-btn"
                     onClick={() => handleAcknowledge(alert)}
+                    aria-label="Acknowledge alert"
+                    style={{
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(46, 55, 164, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
                   >
-                    <i className="ti ti-check me-1" />
+                    <i className="ti ti-circle-check me-1 fs-14" />
                     Acknowledge
                   </button>
                   <button
-                    className="btn btn-sm py-1 px-2 fs-12 btn-light"
+                    className="btn btn-sm py-1 px-3 fs-12 btn-light alert-action-btn"
                     onClick={() => handleDismiss(alert.id)}
+                    aria-label="Dismiss alert"
+                    style={{
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                      e.currentTarget.style.backgroundColor = '#e9ecef';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.backgroundColor = '';
+                    }}
                   >
-                    <i className="ti ti-x" />
+                    <i className="ti ti-x fs-14" />
+                    Dismiss
                   </button>
                 </div>
               </div>
