@@ -198,27 +198,28 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
       </div>
 
       {/* Card Body */}
-      <div
-        className={`card-body ${expanded ? '' : 'd-none'}`}
-        style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
-      >
-        {/* Loading State */}
-        {loading ? (
-          <div className="d-flex flex-column align-items-center justify-content-center py-4">
-            <div className="spinner-border text-primary mb-2" role="status">
-              <span className="visually-hidden">Loading...</span>
+      {expanded && (
+        <div
+          className="card-body"
+          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
+        >
+          {/* Loading State */}
+          {loading ? (
+            <div className="d-flex flex-column align-items-center justify-content-center py-4">
+              <div className="spinner-border text-primary mb-2" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <p className="text-muted fs-13 mb-0">Loading chats...</p>
             </div>
-            <p className="text-muted fs-13 mb-0">Loading chats...</p>
-          </div>
-        ) : chats.length === 0 ? (
-          /* Empty State */
-          <div className="text-center py-4">
-            <i className="ti ti-messages-off fs-1 text-muted mb-2 d-block" />
-            <p className="text-muted mb-0">No recent messages</p>
-          </div>
-        ) : (
-          /* Chat List */
-          <div className="chat-list w-100" style={{ maxWidth: '100%' }}>
+          ) : chats.length === 0 ? (
+            /* Empty State */
+            <div className="text-center py-4">
+              <i className="ti ti-messages-off fs-1 text-muted mb-2 d-block" />
+              <p className="text-muted mb-0">No recent messages</p>
+            </div>
+          ) : (
+            /* Chat List */
+            <div className="chat-list w-100" style={{ maxWidth: '100%' }}>
             {chats.map((chat, index) => (
               <div
                 key={chat.id}
@@ -302,36 +303,19 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
           </div>
         )}
 
-        {/* View All Button */}
-        {!loading && chats.length > 0 && (
-          <div className="mt-3 pt-2 border-top d-flex justify-content-center">
-            <Link
-              to={all_routes.chat}
-              className="btn btn-light d-flex align-items-center justify-content-center"
-              style={{ maxWidth: '280px', width: '100%' }}
-            >
-              <i className="ti ti-messages me-1" />
-              View All Messages
-            </Link>
-          </div>
-        )}
-      </div>
-
-      {/* Collapsed Footer Summary */}
-      {!expanded && totalUnread > 0 && (
-        <div className="card-footer bg-soft-primary py-2 px-3">
-          <div className="d-flex align-items-center justify-content-between">
-            <span className="fs-12 text-primary">
-              <i className="ti ti-bell-ringing me-1" />
-              {totalUnread} unread message{totalUnread > 1 ? 's' : ''}
-            </span>
-            <Link
-              to={all_routes.chat}
-              className="btn btn-sm btn-primary py-1 px-2"
-            >
-              View
-            </Link>
-          </div>
+          {/* View All Button */}
+          {!loading && chats.length > 0 && (
+            <div className="mt-3 pt-2 border-top d-flex justify-content-center">
+              <Link
+                to={all_routes.chat}
+                className="btn btn-light d-flex align-items-center justify-content-center"
+                style={{ maxWidth: '280px', width: '100%' }}
+              >
+                <i className="ti ti-messages me-1" />
+                View All Messages
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </div>
