@@ -170,15 +170,16 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
         <div className="d-flex align-items-center gap-2">
           {showComposeButton && expanded && (
             <button
-              className="btn btn-sm btn-primary d-inline-flex align-items-center"
+              className="btn btn-sm btn-primary d-inline-flex align-items-center justify-content-center"
               onClick={(e) => {
                 e.stopPropagation();
                 handleCompose();
               }}
               title="Compose New Message"
+              aria-label="Compose New Message"
+              style={{ width: '28px', height: '28px', padding: 0 }}
             >
-              <i className="ti ti-plus me-1" />
-              Compose
+              <i className="ti ti-plus" />
             </button>
           )}
           <button
@@ -198,7 +199,7 @@ const ChatInboxWidget: React.FC<ChatInboxWidgetProps> = ({
 
       {/* Card Body */}
       <div
-        className={`card-body pt-3 pb-3 ${expanded ? '' : 'd-none'}`}
+        className={`card-body ${expanded ? '' : 'd-none'}`}
         style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
       >
         {/* Loading State */}
