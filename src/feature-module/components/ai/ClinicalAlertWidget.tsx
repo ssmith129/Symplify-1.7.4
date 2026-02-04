@@ -173,20 +173,6 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
         </span>
       </div>
 
-      {/* AI Prediction Summary */}
-      <div className="p-3 rounded-2 mb-3" style={{ backgroundColor: '#F3E5F5' }}>
-        <div className="d-flex align-items-start">
-          <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0 fs-16" style={{ color: '#7B1FA2' }} />
-          <div>
-            <p className="mb-0 fs-13 text-dark">
-              <span className="fw-medium">AI Analysis:</span> {criticalCount > 0 
-                ? `${criticalCount} patient(s) require immediate intervention. ML models predict elevated risk within the next 2 hours.`
-                : 'All patients within normal parameters. Continuous monitoring active.'}
-            </p>
-          </div>
-        </div>
-      </div>
-
       {filteredAlerts.length === 0 ? (
         <div className="text-center py-4">
           <i className="ti ti-shield-check text-success fs-1 mb-2 d-block opacity-75" />
