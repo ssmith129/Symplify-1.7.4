@@ -247,26 +247,9 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                 </div>
 
                 {/* Prediction Text */}
-                <p className="fs-13 text-dark mb-2" style={{ lineHeight: '1.4' }}>
+                <p className="fs-13 text-dark mb-3" style={{ lineHeight: '1.4' }}>
                   {alert.predictedEvent}
                 </p>
-
-                {/* Confidence Progress Bar */}
-                <div className="mb-2">
-                  <div className="d-flex align-items-center justify-content-between mb-1">
-                    <span className="fs-11 text-muted">Risk Score</span>
-                    <span className="fs-11 fw-medium" style={{ color: config.color }}>{alert.confidence}%</span>
-                  </div>
-                  <div className="progress" style={{ height: '4px' }}>
-                    <div
-                      className="progress-bar"
-                      style={{ 
-                        width: `${alert.confidence}%`,
-                        backgroundColor: config.color
-                      }}
-                    />
-                  </div>
-                </div>
 
                 {/* Action Buttons - Left aligned with consistent styling */}
                 <div className="d-flex justify-content-start gap-2">
