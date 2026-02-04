@@ -518,5 +518,5 @@ const AIDashboardSection: React.FC<AIDashboardSectionProps> = ({
   );
 };
 
-export { SmartWidget, AIDashboardSection, PatientAcuityWidget, PatientQueueWidget, AIInsightsWidget };
+export { SmartWidget, AIDashboardSection, PatientAcuityWidget, PatientQueueWidget, AIInsightsWidget, QuickStatsWidget };
 export default AIDashboardSection;
