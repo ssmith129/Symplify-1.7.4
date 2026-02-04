@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import type { RootState, AppDispatch } from '../../../core/redux/store';
@@ -13,15 +13,8 @@ interface SmartWidgetProps {
   aiRecommended?: boolean;
 }
 
-// Smart Widget Component
+// Smart Widget Component - no collapsible functionality
 const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRecommended }) => {
-  const [expanded, setExpanded] = useState(true);
-
-  const handleToggle = () => {
-    setExpanded(!expanded);
-    onInteraction?.(widgetId, expanded ? 'collapse' : 'expand');
-  };
-
   const getWidgetContent = () => {
     switch (widgetId) {
       case 'patientAcuity':
@@ -48,19 +41,17 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
     resourceUtilization: 'Resource Utilization',
   };
 
+  const widgetRoutes: Record<string, string> = {
+    patientAcuity: all_routes.patients,
+    patientQueue: all_routes.patients,
+    clinicalAlerts: all_routes.patients,
+    aiInsights: all_routes.dashboard,
+  };
+
   return (
-    <div
-      className={`card shadow-sm flex-fill w-100 smart-widget-card ${expanded ? 'expanded' : 'collapsed'}`}
-      style={{ transition: 'all 0.3s ease' }}
-    >
-      <div
-        className="card-header d-flex align-items-center justify-content-between cursor-pointer"
-        onClick={handleToggle}
-        role="button"
-        aria-expanded={expanded}
-        tabIndex={0}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleToggle(); }}
-      >
+    <div className="card shadow-sm flex-fill w-100">
+      {/* Card Header - matches design system */}
+      <div className="card-header d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
           <h5 className="fw-bold mb-0">{widgetTitles[widgetId] || widgetId}</h5>
           {aiRecommended && (
@@ -70,25 +61,18 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
             </span>
           )}
         </div>
-        <button
-          className="btn btn-sm btn-light border-0 p-1"
-          onClick={(e) => { e.stopPropagation(); handleToggle(); }}
-          aria-label={expanded ? 'Collapse widget' : 'Expand widget'}
-        >
-          <i className={`ti ti-chevron-${expanded ? 'up' : 'down'} fs-14`} />
-        </button>
+        {widgetRoutes[widgetId] && (
+          <Link
+            to={widgetRoutes[widgetId]}
+            className="btn fw-normal btn-outline-white"
+          >
+            View All
+          </Link>
+        )}
       </div>
-      {expanded && (
-        <div
-          className="card-body"
-          style={{
-            overflow: 'hidden',
-            transition: 'all 0.3s ease'
-          }}
-        >
-          {getWidgetContent()}
-        </div>
-      )}
+      <div className="card-body">
+        {getWidgetContent()}
+      </div>
     </div>
   );
 };
@@ -108,29 +92,28 @@ const PatientAcuityWidget: React.FC = () => {
 
   return (
     <div>
-      {/* Summary Stats Row */}
-      <div className="row g-2 mb-3">
-        <div className="col-6">
-          <div className="border rounded-2 p-2 text-center bg-soft-danger">
-            <h4 className="fw-bold mb-0 text-danger">{totalHighPriority}</h4>
-            <span className="fs-12 text-muted">High Priority</span>
+      {/* Summary Stats Row - matches Doctors Schedule pattern */}
+      <div className="row g-2 mb-4">
+        <div className="col d-flex border-end">
+          <div className="text-center flex-fill">
+            <p className="mb-1">High Priority</p>
+            <h3 className="fw-bold mb-0 text-danger">{totalHighPriority}</h3>
           </div>
         </div>
-        <div className="col-6">
-          <div className="border rounded-2 p-2 text-center bg-soft-success">
-            <h4 className="fw-bold mb-0 text-success">{totalStandard}</h4>
-            <span className="fs-12 text-muted">Standard</span>
+        <div className="col d-flex">
+          <div className="text-center flex-fill">
+            <p className="mb-1">Standard</p>
+            <h3 className="fw-bold mb-0 text-success">{totalStandard}</h3>
           </div>
         </div>
       </div>
 
-      {/* Acuity Breakdown List */}
-      <div className="acuity-list">
+      {/* Acuity Breakdown List - scrollable */}
+      <div className="overflow-auto" style={{ maxHeight: '200px' }}>
         {acuityData.map((item) => (
           <div
             key={item.level}
-            className="d-flex align-items-center justify-content-between py-1 border-bottom"
-            style={{ borderColor: '#f0f0f0' }}
+            className="d-flex justify-content-between align-items-center mb-3"
           >
             <div className="d-flex align-items-center">
               <span
@@ -175,7 +158,7 @@ const PatientQueueWidget: React.FC = () => {
   };
 
   return (
-    <div className="table-responsive">
+    <div className="table-responsive" style={{ maxHeight: '280px' }}>
       <table className="table table-sm mb-0">
         <thead>
           <tr>
@@ -213,22 +196,23 @@ const AIInsightsWidget: React.FC = () => {
 
   return (
     <div>
-      {insights.map((insight, idx) => (
-        <div
-          key={idx}
-          className="d-flex align-items-start py-2 border-bottom"
-          style={{ borderColor: '#f0f0f0' }}
-        >
-          <span
-            className="avatar avatar-sm rounded-circle me-2 flex-shrink-0 d-flex align-items-center justify-content-center"
-            style={{ backgroundColor: `${insight.color}15`, width: 28, height: 28 }}
+      <div className="overflow-auto" style={{ maxHeight: '220px' }}>
+        {insights.map((insight, idx) => (
+          <div
+            key={idx}
+            className="d-flex align-items-start mb-3"
           >
-            <i className={`ti ${insight.icon} fs-14`} style={{ color: insight.color }} />
-          </span>
-          <span className="fs-13 lh-sm">{insight.text}</span>
-        </div>
-      ))}
-      <div className="text-center pt-2">
+            <span
+              className="avatar avatar-sm rounded-circle me-2 flex-shrink-0 d-flex align-items-center justify-content-center"
+              style={{ backgroundColor: `${insight.color}15`, width: 28, height: 28 }}
+            >
+              <i className={`ti ${insight.icon} fs-14`} style={{ color: insight.color }} />
+            </span>
+            <span className="fs-13 lh-sm">{insight.text}</span>
+          </div>
+        ))}
+      </div>
+      <div className="text-center pt-2 border-top mt-2">
         <span className="text-muted fs-12">
           <i className="ti ti-sparkles me-1" />
           AI-generated insights
@@ -280,7 +264,7 @@ const AIDashboardSection: React.FC<AIDashboardSectionProps> = ({
   return (
     <div className="row mb-4 g-3 g-lg-4">
       {aiWidgets.map((widgetId) => (
-        <div key={widgetId} className="col-12 col-md-6 col-lg-4">
+        <div key={widgetId} className="col-12 col-md-6 col-lg-4 d-flex">
           <SmartWidget
             widgetId={widgetId}
             onInteraction={handleWidgetInteraction}
