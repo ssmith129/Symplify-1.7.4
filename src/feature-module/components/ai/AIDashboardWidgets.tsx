@@ -111,17 +111,6 @@ const PatientAcuityWidget: React.FC = () => {
         </div>
       </div>
 
-      {/* AI Insight */}
-      <div className="p-3 rounded-2 mb-4" style={{ backgroundColor: '#F3E5F5' }}>
-        <div className="d-flex align-items-start">
-          <i className="ti ti-sparkles me-2 mt-1 flex-shrink-0 fs-16" style={{ color: '#7B1FA2' }} />
-          <p className="mb-0 fs-13 text-dark">
-            <span className="fw-medium">{totalHighPriority} patients</span> require priority attention. 
-            Critical cases in rooms 302 and 415.
-          </p>
-        </div>
-      </div>
-
       {/* Acuity Breakdown - Enhanced with progress bars */}
       <div className="overflow-auto" style={{ maxHeight: '280px' }}>
         {acuityData.map((item) => (
