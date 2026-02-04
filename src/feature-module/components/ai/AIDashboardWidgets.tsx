@@ -336,13 +336,6 @@ const AIInsightsWidget: React.FC = () => {
         ))}
       </div>
 
-      {/* AI Footer */}
-      <div className="text-center pt-3 border-top mt-3">
-        <span className="text-muted fs-12">
-          <i className="ti ti-sparkles me-1" />
-          AI-generated insights updated 2 minutes ago
-        </span>
-      </div>
     </div>
   );
 };
