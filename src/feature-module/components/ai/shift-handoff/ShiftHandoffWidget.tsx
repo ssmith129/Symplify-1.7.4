@@ -3,9 +3,9 @@
  * Compact preview widget for Admin and Doctor dashboards
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import type { RootState, AppDispatch } from '../../../../core/redux/store';
 import { generateHandoffReport, selectPatient, clearReport } from '../../../../core/redux/shiftHandoffSlice';
 import type { PatientHandoff } from '../../../../core/api/mock/shiftHandoffMockApi';
@@ -19,19 +19,10 @@ const PRIORITY_CONFIG: Record<string, { color: string; bgColor: string; label: s
   stable: { color: '#4CAF50', bgColor: '#E8F5E9', label: 'Stable' },
 };
 
-interface ShiftHandoffWidgetProps {
-  expanded?: boolean;
-  onToggleExpand?: () => void;
-}
-
-const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
-  expanded = true,
-  onToggleExpand
-}) => {
+const ShiftHandoffWidget: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { currentReport, isGenerating } = useSelector((state: RootState) => state.shiftHandoff);
-  const [isWidgetExpanded, setIsWidgetExpanded] = useState(expanded);
 
   useEffect(() => {
     // Load handoff data when widget mounts if not already loaded
@@ -44,11 +35,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
       }));
     }
   }, [dispatch, currentReport, isGenerating]);
-
-  const handleToggleExpand = () => {
-    setIsWidgetExpanded(!isWidgetExpanded);
-    onToggleExpand?.();
-  };
 
   const handleViewFullReport = () => {
     navigate(all_routes.shiftHandoff);
@@ -72,19 +58,17 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
 
   if (isGenerating) {
     return (
-      <div
-        className="card shadow-sm flex-fill w-100 shift-handoff-widget expanded"
-        style={{ transition: 'all 0.3s ease' }}
-      >
+      <div className="card shadow-sm flex-fill w-100">
         <div className="card-header d-flex align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <h5 className="fw-bold mb-0">Shift Handoff</h5>
-          </div>
+          <h5 className="fw-bold mb-0">Shift Handoff</h5>
+          <Link
+            to={all_routes.shiftHandoff}
+            className="btn fw-normal btn-outline-white"
+          >
+            View All
+          </Link>
         </div>
-        <div
-          className="card-body d-flex align-items-center justify-content-center py-5"
-          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
-        >
+        <div className="card-body d-flex align-items-center justify-content-center py-5">
           <div className="text-center">
             <div className="spinner-border text-primary mb-2" role="status" style={{ width: 24, height: 24 }}>
               <span className="visually-hidden">Loading...</span>
@@ -97,85 +81,38 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
   }
 
   return (
-    <div
-      className={`card shadow-sm flex-fill w-100 shift-handoff-widget ${isWidgetExpanded ? 'expanded' : 'collapsed'}`}
-      style={{ transition: 'all 0.3s ease' }}
-    >
-      {/* Header */}
-      <div
-        className="card-header d-flex align-items-center justify-content-between cursor-pointer"
-        onClick={handleToggleExpand}
-        role="button"
-        aria-expanded={isWidgetExpanded}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') handleToggleExpand();
-        }}
-      >
-        <div className="d-flex align-items-center">
-          <h5 className="fw-bold mb-0">Shift Handoff</h5>
-        </div>
-        <div className="d-flex align-items-center gap-2">
-          <button
-            className="btn btn-sm btn-light border-0 p-1"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleToggleExpand();
-            }}
-            aria-label={isWidgetExpanded ? 'Collapse widget' : 'Expand widget'}
-          >
-            <i className={`ti ti-chevron-${isWidgetExpanded ? 'up' : 'down'} fs-14`} />
-          </button>
-        </div>
+    <div className="card shadow-sm flex-fill w-100">
+      {/* Card Header - matches Doctors Schedule design */}
+      <div className="card-header d-flex align-items-center justify-content-between">
+        <h5 className="fw-bold mb-0">Shift Handoff</h5>
+        <Link
+          to={all_routes.shiftHandoff}
+          className="btn fw-normal btn-outline-white"
+        >
+          View All
+        </Link>
       </div>
 
-      {isWidgetExpanded && currentReport && (
-        <div
-          className="card-body"
-          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
-        >
-          {/* Priority Stats Row */}
-          <div className="row g-2 mb-3">
-            <div className="col-6 col-md-3">
-              <div
-                className="text-center p-2 rounded-2 border"
-                style={{ backgroundColor: '#f8f9fa' }}
-              >
-                <h5 className="fw-bold mb-0 text-primary">{currentReport.totalPatients}</h5>
-                <span className="fs-11 text-muted">Total</span>
+      {currentReport && (
+        <div className="card-body">
+          {/* Summary Stats Row - matches Doctors Schedule pattern */}
+          <div className="row g-2 mb-4">
+            <div className="col d-flex border-end">
+              <div className="text-center flex-fill">
+                <p className="mb-1">Total</p>
+                <h3 className="fw-bold mb-0">{currentReport.totalPatients}</h3>
               </div>
             </div>
-            <div className="col-6 col-md-3">
-              <div
-                className="text-center p-2 rounded-2 border"
-                style={{ backgroundColor: PRIORITY_CONFIG.critical.bgColor }}
-              >
-                <h5 className="fw-bold mb-0" style={{ color: PRIORITY_CONFIG.critical.color }}>
-                  {priorityCounts.critical || 0}
-                </h5>
-                <span className="fs-11 text-muted">Critical</span>
+            <div className="col d-flex border-end">
+              <div className="text-center flex-fill">
+                <p className="mb-1">Critical</p>
+                <h3 className="fw-bold mb-0 text-danger">{priorityCounts.critical || 0}</h3>
               </div>
             </div>
-            <div className="col-6 col-md-3">
-              <div
-                className="text-center p-2 rounded-2 border"
-                style={{ backgroundColor: PRIORITY_CONFIG.high.bgColor }}
-              >
-                <h5 className="fw-bold mb-0" style={{ color: PRIORITY_CONFIG.high.color }}>
-                  {priorityCounts.high || 0}
-                </h5>
-                <span className="fs-11 text-muted">High</span>
-              </div>
-            </div>
-            <div className="col-6 col-md-3">
-              <div
-                className="text-center p-2 rounded-2 border"
-                style={{ backgroundColor: PRIORITY_CONFIG.stable.bgColor }}
-              >
-                <h5 className="fw-bold mb-0" style={{ color: PRIORITY_CONFIG.stable.color }}>
-                  {priorityCounts.stable || 0}
-                </h5>
-                <span className="fs-11 text-muted">Stable</span>
+            <div className="col d-flex">
+              <div className="text-center flex-fill">
+                <p className="mb-1">Stable</p>
+                <h3 className="fw-bold mb-0 text-success">{priorityCounts.stable || 0}</h3>
               </div>
             </div>
           </div>
@@ -227,7 +164,7 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
             </div>
           </div>
 
-          {/* Priority Patients List */}
+          {/* Priority Patients List - scrollable */}
           {priorityPatients.length > 0 && (
             <div className="priority-patients-list">
               <div className="d-flex align-items-center justify-content-between mb-2">
@@ -235,49 +172,51 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
                 <span className="badge bg-soft-danger text-danger fs-10">{priorityPatients.length} Need Attention</span>
               </div>
               
-              {priorityPatients.map((patient) => {
-                const config = PRIORITY_CONFIG[patient.priorityLevel];
-                const criticalEvent = patient.recentEvents.find(e => e.severity === 'critical' || e.severity === 'warning');
-                
-                return (
-                  <div
-                    key={patient.patientId}
-                    className="d-flex align-items-center justify-content-between py-2 border-bottom cursor-pointer patient-row"
-                    onClick={() => handlePatientClick(patient)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <div className="d-flex align-items-center flex-grow-1" style={{ minWidth: 0 }}>
-                      <span
-                        className="flex-shrink-0 rounded-circle me-2"
-                        style={{ 
-                          width: 8, 
-                          height: 8, 
-                          backgroundColor: config.color 
-                        }}
-                      />
-                      <div className="flex-grow-1" style={{ minWidth: 0 }}>
-                        <div className="d-flex align-items-center gap-2">
-                          <span className="fs-13 fw-medium text-truncate">{patient.patientName}</span>
-                          <span className="fs-11 text-muted flex-shrink-0">Rm {patient.room}</span>
-                        </div>
-                        <span className="fs-11 text-muted text-truncate d-block">
-                          {criticalEvent?.event || patient.primaryDiagnosis}
-                        </span>
-                      </div>
-                    </div>
-                    <span
-                      className="badge flex-shrink-0 ms-2"
-                      style={{ 
-                        backgroundColor: config.bgColor, 
-                        color: config.color,
-                        fontSize: '10px'
-                      }}
+              <div className="overflow-auto" style={{ maxHeight: '160px' }}>
+                {priorityPatients.map((patient) => {
+                  const config = PRIORITY_CONFIG[patient.priorityLevel];
+                  const criticalEvent = patient.recentEvents.find(e => e.severity === 'critical' || e.severity === 'warning');
+                  
+                  return (
+                    <div
+                      key={patient.patientId}
+                      className="d-flex justify-content-between align-items-center mb-3"
+                      onClick={() => handlePatientClick(patient)}
+                      style={{ cursor: 'pointer' }}
                     >
-                      {config.label}
-                    </span>
-                  </div>
-                );
-              })}
+                      <div className="d-flex align-items-center flex-shrink-0">
+                        <span
+                          className="flex-shrink-0 rounded-circle me-2"
+                          style={{ 
+                            width: 8, 
+                            height: 8, 
+                            backgroundColor: config.color 
+                          }}
+                        />
+                        <div className="flex-shrink-0">
+                          <div className="d-flex align-items-center gap-2">
+                            <h6 className="fs-14 fw-semibold text-truncate mb-1">{patient.patientName}</h6>
+                            <span className="fs-11 text-muted flex-shrink-0">Rm {patient.room}</span>
+                          </div>
+                          <p className="fs-13 mb-0 text-truncate" style={{ maxWidth: '180px' }}>
+                            {criticalEvent?.event || patient.primaryDiagnosis}
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        className="badge flex-shrink-0 ms-2"
+                        style={{ 
+                          backgroundColor: config.bgColor, 
+                          color: config.color,
+                          fontSize: '10px'
+                        }}
+                      >
+                        {config.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
 
@@ -297,63 +236,6 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
               </div>
             </div>
           )}
-
-          {/* Vitals Trends Preview */}
-          <div className="vitals-trends-preview mt-3">
-            <div className="d-flex align-items-center gap-3 flex-wrap">
-              {currentReport.patients.slice(0, 4).map((patient, idx) => {
-                const hrTrend = patient.vitalsTrend.find(v => v.metric === 'HR');
-                const trendIcon = hrTrend?.trend === 'improving' ? 'ti-trending-up' :
-                                  hrTrend?.trend === 'declining' ? 'ti-trending-down' : 'ti-minus';
-                const trendColor = hrTrend?.trend === 'improving' ? '#4CAF50' :
-                                   hrTrend?.trend === 'declining' ? '#F44336' : '#9E9E9E';
-
-                return (
-                  <div key={idx} className="d-flex align-items-center">
-                    <span className="fs-11 text-muted me-1">{patient.patientName.split(' ')[1]?.charAt(0) || patient.patientName.charAt(0)}</span>
-                    <i className={`ti ${trendIcon} fs-12`} style={{ color: trendColor }} />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Open Shift Handoff Dashboard Button */}
-          <div className="d-flex justify-content-center">
-            <button
-              className="btn btn-primary mt-3 d-flex align-items-center justify-content-center"
-              onClick={handleViewFullReport}
-              style={{ maxWidth: '280px' }}
-            >
-              <i className="ti ti-report-medical me-2" />
-              Open Shift Handoff Dashboard
-            </button>
-          </div>
-
-        </div>
-      )}
-
-      {!isWidgetExpanded && (
-        <div className="card-body py-2">
-          <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center gap-3">
-              <span className="d-flex align-items-center">
-                <span 
-                  className="rounded-circle me-1"
-                  style={{ width: 8, height: 8, backgroundColor: PRIORITY_CONFIG.critical.color }}
-                />
-                <span className="fs-12 fw-medium">{priorityCounts.critical || 0}</span>
-              </span>
-              <span className="d-flex align-items-center">
-                <span 
-                  className="rounded-circle me-1"
-                  style={{ width: 8, height: 8, backgroundColor: PRIORITY_CONFIG.high.color }}
-                />
-                <span className="fs-12 fw-medium">{priorityCounts.high || 0}</span>
-              </span>
-              <span className="fs-12 text-muted">{currentReport?.totalPatients || 0} patients</span>
-            </div>
-          </div>
         </div>
       )}
     </div>
