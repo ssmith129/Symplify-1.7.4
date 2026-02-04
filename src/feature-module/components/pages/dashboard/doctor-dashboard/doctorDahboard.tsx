@@ -3,7 +3,7 @@ import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
 import CircleChart2 from "./charts/circleChart2";
-import { ShiftHandoffWidget, SmartWidget, ChatInboxWidget } from "../../../ai";
+import { ShiftHandoffWidget, SmartWidget, ChatInboxWidget, AIDashboardSection } from "../../../ai";
 
 const DoctorDahboard = () => {
 
