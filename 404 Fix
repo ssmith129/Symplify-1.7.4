@@ -1,0 +1,199 @@
+# Symplify 1.7.4 — Vercel 404 Error Fix Guide
+
+## Problem Summary
+
+When pages reload or users directly access routes like `/hospital-administration-dashboard`, Vercel returns:
+
+```
+404: NOT_FOUND
+Code: NOT_FOUND
+ID: sfo1::prfv6-1770227888135-182ea7ec3667
+```
+
+## Root Cause
+
+Your project is a **React + TypeScript + Vite SPA** using client-side routing (likely React Router). Here’s what happens:
+
+|Action           |What Happens                                                    |Result |
+|-----------------|----------------------------------------------------------------|-------|
+|Click link in app|React Router handles navigation client-side                     |✅ Works|
+|Refresh page     |Browser sends request to Vercel server                          |❌ 404  |
+|Direct URL access|Vercel looks for `/hospital-administration-dashboard/index.html`|❌ 404  |
+
+**Why?** Vercel’s static server doesn’t know about your React routes. It only knows about actual files on disk. Your routes exist only in JavaScript memory.
+
+-----
+
+## The Fix
+
+### Step 1: Update `vercel.json`
+
+Replace your current `vercel.json` with:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+**What this does:** Tells Vercel “for ANY route, serve `index.html` and let React Router handle the actual routing.”
+
+### Step 2: Verify `vite.config.ts`
+
+Ensure your config has the correct base path:
+
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/',  // CRITICAL: Must be '/' for Vercel
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  },
+})
+```
+
+### Step 3: Verify Router Configuration
+
+If using React Router, ensure you’re using `BrowserRouter` (not `HashRouter`):
+
+```tsx
+// ✅ Correct for Vercel
+import { BrowserRouter } from 'react-router-dom'
+
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+```
+
+```tsx
+// ❌ Avoid unless you have specific reasons
+import { HashRouter } from 'react-router-dom'
+```
+
+### Step 4: Commit and Redeploy
+
+```bash
+git add vercel.json vite.config.ts
+git commit -m "fix: resolve 404 on page refresh with Vercel rewrites"
+git push origin main
+```
+
+Vercel will auto-redeploy. Wait for deployment to complete.
+
+### Step 5: Test the Fix
+
+1. Navigate to: `https://symplify-1-7-4.vercel.app/`
+1. Click through to Hospital Administration Dashboard
+1. **Press F5 to refresh** — should stay on dashboard ✅
+1. Copy the URL and paste in a **new incognito tab** — should load directly ✅
+
+-----
+
+## Alternative Configurations
+
+### If You Have API Routes
+
+If your app has API endpoints, exclude them from the rewrite:
+
+```json
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+### If You Have Static Assets
+
+Vercel automatically serves files from `/public`. If you have issues with images/fonts:
+
+```json
+{
+  "rewrites": [
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/images/:path*", "destination": "/images/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+-----
+
+## Troubleshooting
+
+### Still Getting 404?
+
+1. **Check Vercel deployment logs** for build errors
+1. **Verify `dist/index.html` exists** in the build output
+1. **Check Output Directory** in Vercel settings is set to `dist`
+
+### Build Command Issues
+
+Ensure your `package.json` has:
+
+```json
+{
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  }
+}
+```
+
+### Framework Preset
+
+In Vercel Project Settings:
+
+- Framework Preset: **Vite**
+- Build Command: `npm run build` (or leave default)
+- Output Directory: `dist`
+
+-----
+
+## Why This Works
+
+```
+User visits: /hospital-administration-dashboard
+           ↓
+Vercel receives request
+           ↓
+Rewrite rule matches: /(.*) → /index.html
+           ↓
+Vercel serves: dist/index.html
+           ↓
+React app loads in browser
+           ↓
+React Router reads: window.location.pathname
+           ↓
+React Router renders: <HospitalAdministrationDashboard />
+           ↓
+✅ User sees the correct page
+```
+
+-----
+
+## Files to Update
+
+|File            |Action                   |
+|----------------|-------------------------|
+|`vercel.json`   |Replace with rewrite rule|
+|`vite.config.ts`|Verify `base: '/'`       |
+|Commit & push   |Trigger redeploy         |
+
+-----
+
+## Need More Help?
+
+- [Vercel SPA Documentation](https://vercel.com/docs/frameworks/vite)
+- [React Router Deployment Guide](https://reactrouter.com/en/main/start/faq#how-do-i-deploy-my-app-for-production)
+- [Vite Static Deploy Guide](https://vitejs.dev/guide/static-deploy.html)
