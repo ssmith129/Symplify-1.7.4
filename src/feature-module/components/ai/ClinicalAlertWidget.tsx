@@ -317,25 +317,6 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
         </div>
       )}
 
-      {/* AI Footer with Categories */}
-      <div className="mt-3 pt-3 border-top">
-        <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-          <div className="d-flex align-items-center gap-2">
-            <span className="badge bg-light text-dark fs-10 px-2 py-1">
-              <i className="ti ti-brain me-1" />
-              ML Powered
-            </span>
-            <span className="badge bg-light text-dark fs-10 px-2 py-1">
-              <i className="ti ti-clock me-1" />
-              Real-time
-            </span>
-          </div>
-          <span className="text-muted fs-11">
-            <i className="ti ti-sparkles me-1" />
-            Predictions updated every 30s
-          </span>
-        </div>
-      </div>
     </div>
   );
 };
