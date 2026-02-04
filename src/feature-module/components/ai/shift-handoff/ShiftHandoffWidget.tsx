@@ -72,13 +72,19 @@ const ShiftHandoffWidget: React.FC<ShiftHandoffWidgetProps> = ({
 
   if (isGenerating) {
     return (
-      <div className="card shadow-sm h-100 shift-handoff-widget">
+      <div
+        className="card shadow-sm flex-fill w-100 shift-handoff-widget expanded"
+        style={{ transition: 'all 0.3s ease' }}
+      >
         <div className="card-header d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <h5 className="fw-bold mb-0">Shift Handoff</h5>
           </div>
         </div>
-        <div className="card-body d-flex align-items-center justify-content-center py-5">
+        <div
+          className="card-body d-flex align-items-center justify-content-center py-5"
+          style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}
+        >
           <div className="text-center">
             <div className="spinner-border text-primary mb-2" role="status" style={{ width: 24, height: 24 }}>
               <span className="visually-hidden">Loading...</span>
