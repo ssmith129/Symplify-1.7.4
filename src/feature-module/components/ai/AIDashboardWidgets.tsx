@@ -407,22 +407,6 @@ const QuickStatsWidget: React.FC = () => {
         <span className="fs-12 text-muted">Last 7 days</span>
       </div>
       <div className="card-body">
-        {/* Summary Stats Row */}
-        <div className="row g-3 mb-4">
-          <div className="col-6">
-            <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
-              <h4 className="fw-bold mb-1 text-primary">{statsData.length}</h4>
-              <p className="mb-0 fs-12 text-muted">Key Metrics</p>
-            </div>
-          </div>
-          <div className="col-6">
-            <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
-              <h4 className="fw-bold mb-1 text-success">{positiveStats}</h4>
-              <p className="mb-0 fs-12 text-muted">Trending Up</p>
-            </div>
-          </div>
-        </div>
-
         {/* Stats List - Scrollable */}
         <div className="overflow-auto" style={{ maxHeight: '420px' }}>
           {statsData.map((stat, idx) => (
