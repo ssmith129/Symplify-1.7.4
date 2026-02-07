@@ -8,12 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setExpandMenu, setMobileSidebar } from "../../redux/sidebarSlice";
 import { updateTheme } from "../../redux/themeSlice";
 import { all_routes } from "../../../feature-module/routes/all_routes";
+import { ROLE_CONFIG } from "../../redux/roleSlice";
+import type { RootState } from "../../redux/store";
 
 
 const Sidebar = () => {
   const Location = useLocation();
   const [subOpen, setSubopen] = useState<any>("");
   const [subsidebar, setSubsidebar] = useState("");
+  const currentRole = useSelector((state: RootState) => state.role.currentRole);
+  const dashboardPath = ROLE_CONFIG[currentRole].dashboardPath;
   const dispatch = useDispatch();
 
   const toggleSidebar = (title: any) => {
@@ -292,7 +296,7 @@ const Sidebar = () => {
                         return (
                           <li className="submenu" key={`title-${i}`}>
                             <Link
-                              to={title?.submenu ? "#" : title?.link}
+                              to={title?.submenu ? "#" : (title?.label === "Dashboard" ? dashboardPath : title?.link)}
                               onClick={() => {
                                 handleClick(title?.label);
 
@@ -307,7 +311,8 @@ const Sidebar = () => {
                                   : ""
                               } ${
                                 title?.links?.includes(Location.pathname) ||
-                                title?.link === Location.pathname
+                                title?.link === Location.pathname ||
+                                (title?.label === "Dashboard" && Location.pathname === dashboardPath)
                                   ? "active"
                                   : ""
                               }`}
