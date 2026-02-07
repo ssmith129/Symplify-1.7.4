@@ -1,12 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ImageWithBasePath from "../../imageWithBasePath";
 import { all_routes } from "../../../feature-module/routes/all_routes";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTheme } from "../../redux/themeSlice";
 import { setExpandMenu, setMobileSidebar } from "../../redux/sidebarSlice";
 
-const Sidebarthree = () => {
+interface SidebarthreeProps {
+  onExpandEnter?: () => void;
+  onExpandLeave?: () => void;
+}
+
+const Sidebarthree: React.FC<SidebarthreeProps> = ({ onExpandEnter, onExpandLeave }) => {
   const location = useLocation();
   const routes = all_routes;
 
@@ -56,10 +61,18 @@ const Sidebarthree = () => {
   };
 
   const onMouseEnter = () => {
-    dispatch(setExpandMenu(true));
+    if (onExpandEnter) {
+      onExpandEnter();
+    } else {
+      dispatch(setExpandMenu(true));
+    }
   };
   const onMouseLeave = () => {
-    dispatch(setExpandMenu(false));
+    if (onExpandLeave) {
+      onExpandLeave();
+    } else {
+      dispatch(setExpandMenu(false));
+    }
   };
 
   const mobileSidebar = useSelector(
