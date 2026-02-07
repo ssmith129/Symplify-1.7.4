@@ -5,8 +5,8 @@ import ThemeSettings from "../../core/common/theme-settings";
 import Sidebar from "../../core/common/sidebar/sidebar";
 import SidebarTwo from "../../core/common/sidebar-two/sidebarTwo";
 import Sidebarthree from "../../core/common/sidebarthree/sidebarthree";
-import { setMobileSidebar } from "../../core/redux/sidebarSlice";
-import { useCallback } from "react";
+import { setMobileSidebar, setExpandMenu } from "../../core/redux/sidebarSlice";
+import { useCallback, useRef } from "react";
 import type { RootState } from "../../core/redux/store";
 
 const Feature = () => {
@@ -25,6 +25,28 @@ const Feature = () => {
       dispatch(setMobileSidebar(false));
     }
   }, [mobileSidebar, dispatch]);
+
+  // Left-edge hover zone: expand sidebar on hover with collapse delay
+  const collapseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isMiniMode = miniSidebar || dataLayout === 'mini' || dataSize === 'compact';
+
+  const expandSidebar = useCallback(() => {
+    if (collapseTimer.current) {
+      clearTimeout(collapseTimer.current);
+      collapseTimer.current = null;
+    }
+    if (isMiniMode) {
+      dispatch(setExpandMenu(true));
+    }
+  }, [isMiniMode, dispatch]);
+
+  const scheduleSidebarCollapse = useCallback(() => {
+    if (collapseTimer.current) clearTimeout(collapseTimer.current);
+    collapseTimer.current = setTimeout(() => {
+      dispatch(setExpandMenu(false));
+      collapseTimer.current = null;
+    }, 250);
+  }, [dispatch]);
 
   const dataLayout = themeSettings["data-layout"];
   const dataWidth = themeSettings["data-width"];
@@ -54,15 +76,24 @@ const Feature = () => {
 
       `}
       >
+        {/* Left-edge hover zone for sidebar auto-expand */}
+        {isMiniMode && (
+          <div
+            className="sidebar-hover-zone"
+            onMouseEnter={expandSidebar}
+            onMouseLeave={scheduleSidebarCollapse}
+            aria-hidden="true"
+          />
+        )}
         <div className="main-wrapper">
           <Header />
           {/* Sidebar selection: use role state, with path fallback */}
           {path.startsWith("/doctor/") || currentRole === 'doctor' ? (
-            <SidebarTwo />
+            <SidebarTwo onExpandEnter={expandSidebar} onExpandLeave={scheduleSidebarCollapse} />
           ) : path.startsWith("/patient/") || currentRole === 'patient' ? (
-            <Sidebarthree />
+            <Sidebarthree onExpandEnter={expandSidebar} onExpandLeave={scheduleSidebarCollapse} />
           ) : (
-            <Sidebar />
+            <Sidebar onExpandEnter={expandSidebar} onExpandLeave={scheduleSidebarCollapse} />
           )}
 
           <ThemeSettings />
