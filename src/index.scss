@@ -455,6 +455,18 @@
   z-index: 9999999 !important;
 }
 
+// Sidebar left-edge hover zone
+.sidebar-hover-zone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 100%;
+  z-index: 100;
+  background: transparent;
+  cursor: default;
+}
+
 // Role selector dropdown animation
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
