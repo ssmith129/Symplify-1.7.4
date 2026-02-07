@@ -6,7 +6,7 @@ import Sidebar from "../../core/common/sidebar/sidebar";
 import SidebarTwo from "../../core/common/sidebar-two/sidebarTwo";
 import Sidebarthree from "../../core/common/sidebarthree/sidebarthree";
 import { setMobileSidebar } from "../../core/redux/sidebarSlice";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import type { RootState } from "../../core/redux/store";
 
 const Feature = () => {
@@ -18,7 +18,7 @@ const Feature = () => {
   const { miniSidebar, mobileSidebar, expandMenu } = useSelector(
     (state: any) => state.sidebarSlice
   );
-  const { currentRole } = useSelector((state: RootState) => state.role);
+  const { currentRole, isTransitioning } = useSelector((state: RootState) => state.role);
 
   const closeSidebar = useCallback(() => {
     if (mobileSidebar) {
@@ -74,6 +74,13 @@ const Feature = () => {
           onTouchStart={closeSidebar}
         />
       </div>
+      {isTransitioning && (
+        <div className="role-transition-overlay">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Switching role...</span>
+          </div>
+        </div>
+      )}
     </>
   );
 };
