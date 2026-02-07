@@ -523,41 +523,6 @@ export const SidebarData = [
         submenuItems: [],
       },
       {
-        label: "Blogs",
-        link: "apps",
-        submenu: true,
-        showSubRoute: false,
-        icon: "brand-blogger",
-        base: "inventory",
-        materialicons: "dashboard",
-        submenuItems: [
-          {
-            label: "Add Blogs",
-            link: routes.addBlogs,
-            base: "invoices",
-            customSubmenuTwo: false,
-          },
-          {
-            label: "Blogs",
-            link: routes.blogs,
-            base: "invoices",
-            customSubmenuTwo: false,
-          },
-          {
-            label: "Blog Categories",
-            link: routes.blogCategories,
-            base: "invoices",
-            customSubmenuTwo: false,
-          },
-          {
-            label: "Blog Comments",
-            link: routes.blogComments,
-            base: "invoices",
-            customSubmenuTwo: false,
-          },
-        ],
-      },
-      {
         label: "Locations",
         link: "apps",
         submenu: true,
