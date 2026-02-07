@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMobileSidebar } from "../../redux/sidebarSlice";
 import { all_routes } from "../../../feature-module/routes/all_routes";
 import { AIAssistantPopup, NotificationDropdownAI } from "../../../feature-module/components/ai";
+import RoleSelectorDropdown from './RoleSelectorDropdown';
+import Breadcrumb from './Breadcrumb';
 
 const Header = () => {
 
@@ -111,8 +113,15 @@ const Header = () => {
             >
               <i className="ti ti-arrow-right" />
             </button>
+            {/* Role Selector */}
+            <RoleSelectorDropdown />
+            {/* Breadcrumb */}
+            <div className="d-none d-lg-flex align-items-center ms-2">
+              <span className="text-muted mx-2" style={{ fontSize: 18, fontWeight: 300 }}>|</span>
+              <Breadcrumb />
+            </div>
             {/* Search */}
-            <div className="me-auto d-flex align-items-center header-search d-lg-flex d-none">
+            <div className="me-auto d-flex align-items-center header-search d-lg-flex d-none ms-3">
               {/* Search */}
               <div className="input-icon-start position-relative me-2">
                 <span className="input-icon-addon">
