@@ -20,6 +20,11 @@ const Feature = () => {
   );
   const { currentRole, isTransitioning } = useSelector((state: RootState) => state.role);
 
+  const dataLayout = themeSettings["data-layout"];
+  const dataWidth = themeSettings["data-width"];
+  const dataSize = themeSettings["data-size"];
+  const dir = themeSettings["dir"];
+
   const closeSidebar = useCallback(() => {
     if (mobileSidebar) {
       dispatch(setMobileSidebar(false));
@@ -47,11 +52,6 @@ const Feature = () => {
       collapseTimer.current = null;
     }, 250);
   }, [dispatch]);
-
-  const dataLayout = themeSettings["data-layout"];
-  const dataWidth = themeSettings["data-width"];
-  const dataSize = themeSettings["data-size"];
-  const dir = themeSettings["dir"];
 
   return (
     <>
