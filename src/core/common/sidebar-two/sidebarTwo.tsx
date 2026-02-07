@@ -6,7 +6,12 @@ import { updateTheme } from "../../redux/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setExpandMenu, setMobileSidebar } from "../../redux/sidebarSlice";
 
-const SidebarTwo = () => {
+interface SidebarTwoProps {
+  onExpandEnter?: () => void;
+  onExpandLeave?: () => void;
+}
+
+const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave }) => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -70,10 +75,18 @@ const SidebarTwo = () => {
       }
     };
     const onMouseEnter = () => {
-      dispatch(setExpandMenu(true));
+      if (onExpandEnter) {
+        onExpandEnter();
+      } else {
+        dispatch(setExpandMenu(true));
+      }
     };
     const onMouseLeave = () => {
-      dispatch(setExpandMenu(false));
+      if (onExpandLeave) {
+        onExpandLeave();
+      } else {
+        dispatch(setExpandMenu(false));
+      }
     };
 
   return (
