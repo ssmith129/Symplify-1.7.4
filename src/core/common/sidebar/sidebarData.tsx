@@ -11,18 +11,13 @@ export const SidebarData = [
     submenuItems: [
       {
         label: "Dashboard",
-        link: "index",
-        submenu: true,
+        link: routes.dashboard,
+        submenu: false,
         showSubRoute: false,
         icon: "layout-dashboard",
         base: "dashboard",
         materialicons: "start",
-        dot: true,
-        submenuItems: [
-          { label: "Admin Dashboard", link: routes.dashboard },
-          { label: "Doctor Dashboard", link: routes.doctordashboard },
-          { label: "Patient Dashboard", link: routes.patientdashboard },
-        ],
+        dot: false,
       },
       {
         label: "Applications",
