@@ -5,6 +5,7 @@ import aiReducer from './aiSlice';
 import shiftHandoffReducer from './shiftHandoffSlice';
 import notificationReducer from './notificationSlice';
 import emailReducer from './emailSlice';
+import roleReducer from './roleSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     shiftHandoff: shiftHandoffReducer,
     notifications: notificationReducer,
     email: emailReducer,
+    role: roleReducer,
   },
 });
 
