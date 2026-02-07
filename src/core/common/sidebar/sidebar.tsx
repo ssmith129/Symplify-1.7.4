@@ -12,7 +12,12 @@ import { ROLE_CONFIG } from "../../redux/roleSlice";
 import type { RootState } from "../../redux/store";
 
 
-const Sidebar = () => {
+interface SidebarProps {
+  onExpandEnter?: () => void;
+  onExpandLeave?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onExpandEnter, onExpandLeave }) => {
   const Location = useLocation();
   const [subOpen, setSubopen] = useState<any>("");
   const [subsidebar, setSubsidebar] = useState("");
@@ -60,10 +65,18 @@ const Sidebar = () => {
     }
   };
   const onMouseEnter = () => {
-    dispatch(setExpandMenu(true));
+    if (onExpandEnter) {
+      onExpandEnter();
+    } else {
+      dispatch(setExpandMenu(true));
+    }
   };
   const onMouseLeave = () => {
-    dispatch(setExpandMenu(false));
+    if (onExpandLeave) {
+      onExpandLeave();
+    } else {
+      dispatch(setExpandMenu(false));
+    }
   };
 
   const handleLayoutClick = (layout: string) => {
