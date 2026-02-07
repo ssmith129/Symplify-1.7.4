@@ -490,6 +490,10 @@
 
 //Dark-mode
 [data-bs-theme="dark"] {
+  // Role selector dark mode
+  .role-transition-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
   .react-select__control {
     background-color: var(--pr-secondary-bg);
     border-color: var(--pr-gray-500) transparent transparent transparent;
