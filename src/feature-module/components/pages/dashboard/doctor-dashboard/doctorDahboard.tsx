@@ -4,7 +4,7 @@ import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
 import CircleChart2 from "./charts/circleChart2";
 import { ShiftHandoffWidget, ChatInboxWidget, AIDashboardSection, QuickStatsWidget } from "../../../ai";
-import Breadcrumb from "../../../../../core/common/header/Breadcrumb";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const DoctorDahboard = () => {
 
@@ -17,30 +17,29 @@ const DoctorDahboard = () => {
         {/* Start Content */}
         <div className="content pb-0">
           {/* Page Header */}
-          <div className="d-flex align-items-sm-center justify-content-between flex-wrap gap-2 mb-4">
-            <div className="d-flex align-items-center gap-3">
-              <h4 className="fw-bold mb-0">Doctor Dashboard</h4>
-              <Breadcrumb />
-            </div>
-            <div className="d-flex align-items-center flex-wrap gap-2">
-              <Link
-                to="#"
-                className="btn btn-primary d-inline-flex align-items-center"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#new_appointment"
-              >
-                <i className="ti ti-plus me-1" />
-                New Appointment
-              </Link>
-              <Link
-                to="#"
-                className="btn btn-outline-white bg-white d-inline-flex align-items-center"
-              >
-                <i className="ti ti-calendar-time me-1" />
-                Schedule Availability
-              </Link>
-            </div>
-          </div>
+          <PageHeader
+            title="Doctor Dashboard"
+            actions={
+              <>
+                <Link
+                  to="#"
+                  className="btn btn-primary d-inline-flex align-items-center"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#new_appointment"
+                >
+                  <i className="ti ti-plus me-1" />
+                  New Appointment
+                </Link>
+                <Link
+                  to="#"
+                  className="btn btn-outline-white bg-white d-inline-flex align-items-center"
+                >
+                  <i className="ti ti-calendar-time me-1" />
+                  Schedule Availability
+                </Link>
+              </>
+            }
+          />
           {/* End Page Header */}
 
           {/* AI-Powered Insights Section - matches Admin Dashboard */}

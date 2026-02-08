@@ -4,7 +4,7 @@ import SCol8Chart from "./chart/scol8Chart";
 import SCol9Chart from "./chart/scol9Chart";
 import SCol10Chart from "./chart/scol10Chart";
 import Modals from "./modals/modals";
-import Breadcrumb from "../../../../../core/common/header/Breadcrumb";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const PatientDashboard = () => {
   return (
