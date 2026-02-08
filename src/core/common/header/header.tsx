@@ -115,11 +115,6 @@ const Header = () => {
             </button>
             {/* Role Selector */}
             <RoleSelectorDropdown />
-            {/* Breadcrumb */}
-            <div className="d-none d-lg-flex align-items-center ms-2">
-              <span className="text-muted mx-2" style={{ fontSize: 18, fontWeight: 300 }}>|</span>
-              <Breadcrumb />
-            </div>
             {/* Search */}
             <div className="me-auto d-flex align-items-center header-search d-lg-flex d-none ms-3">
               {/* Search */}
