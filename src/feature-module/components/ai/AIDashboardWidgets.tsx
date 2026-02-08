@@ -299,19 +299,19 @@ const AIInsightsWidget: React.FC = () => {
     <div>
       {/* Summary Stats Row */}
       <div className="row g-3 mb-4">
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
             <h4 className="fw-bold mb-1 text-primary">{insights.length}</h4>
             <p className="mb-0 fs-12 text-muted">Total Insights</p>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FFFBEB' }}>
             <h4 className="fw-bold mb-1 text-warning">{urgentInsights}</h4>
             <p className="mb-0 fs-12 text-muted">Attention</p>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
             <h4 className="fw-bold mb-1 text-success">{positiveInsights}</h4>
             <p className="mb-0 fs-12 text-muted">Positive</p>
