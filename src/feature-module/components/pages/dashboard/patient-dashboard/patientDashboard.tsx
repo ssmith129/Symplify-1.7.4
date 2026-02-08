@@ -4,6 +4,7 @@ import SCol8Chart from "./chart/scol8Chart";
 import SCol9Chart from "./chart/scol9Chart";
 import SCol10Chart from "./chart/scol10Chart";
 import Modals from "./modals/modals";
+import Breadcrumb from "../../../../../core/common/header/Breadcrumb";
 
 const PatientDashboard = () => {
   return (
@@ -16,8 +17,9 @@ const PatientDashboard = () => {
         <div className="content pb-0">
           {/* Page Header */}
           <div className="d-flex align-items-sm-center justify-content-between flex-wrap gap-2 mb-4">
-            <div>
+            <div className="d-flex align-items-center gap-3">
               <h4 className="fw-bold mb-0">Patient Dashboard</h4>
+              <Breadcrumb />
             </div>
             <div className="d-flex align-items-center flex-wrap gap-2">
               <Link
