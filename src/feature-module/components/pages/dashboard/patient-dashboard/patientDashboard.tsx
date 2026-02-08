@@ -16,12 +16,9 @@ const PatientDashboard = () => {
         {/* Start Content */}
         <div className="content pb-0">
           {/* Page Header */}
-          <div className="d-flex align-items-sm-center justify-content-between flex-wrap gap-2 mb-4">
-            <div className="d-flex align-items-center gap-3">
-              <h4 className="fw-bold mb-0">Patient Dashboard</h4>
-              <Breadcrumb />
-            </div>
-            <div className="d-flex align-items-center flex-wrap gap-2">
+          <PageHeader
+            title="Patient Dashboard"
+            actions={
               <Link
                 to="#"
                 className="btn btn-primary d-inline-flex align-items-center"
@@ -31,8 +28,8 @@ const PatientDashboard = () => {
                 <i className="ti ti-plus me-1" />
                 New Appointment
               </Link>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/* row start */}
           <div className="row">
