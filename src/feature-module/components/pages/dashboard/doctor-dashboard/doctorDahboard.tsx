@@ -4,6 +4,7 @@ import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
 import CircleChart2 from "./charts/circleChart2";
 import { ShiftHandoffWidget, ChatInboxWidget, AIDashboardSection, QuickStatsWidget } from "../../../ai";
+import Breadcrumb from "../../../../../core/common/header/Breadcrumb";
 
 const DoctorDahboard = () => {
 
@@ -17,8 +18,9 @@ const DoctorDahboard = () => {
         <div className="content pb-0">
           {/* Page Header */}
           <div className="d-flex align-items-sm-center justify-content-between flex-wrap gap-2 mb-4">
-            <div>
+            <div className="d-flex align-items-center gap-3">
               <h4 className="fw-bold mb-0">Doctor Dashboard</h4>
+              <Breadcrumb />
             </div>
             <div className="d-flex align-items-center flex-wrap gap-2">
               <Link
