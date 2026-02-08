@@ -48,27 +48,34 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
     aiInsights: all_routes.dashboard,
   };
 
-  // Clinical Alerts uses fixed height instead of flex
+  // Clinical Alerts uses max height with responsive behavior
   const isFixedHeight = widgetId === 'clinicalAlerts';
-  const fixedCardHeight = '620px';
+  const getCardHeight = () => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return 'clamp(400px, 60vh, 620px)';
+    }
+    return '620px';
+  };
+  const fixedCardHeight = getCardHeight();
 
   return (
     <div
       className={`card shadow-sm w-100 ${isFixedHeight ? '' : 'flex-fill'}`}
       style={isFixedHeight ? { height: fixedCardHeight, display: 'flex', flexDirection: 'column' } : undefined}
     >
-      <div className="card-header d-flex align-items-center justify-content-between flex-shrink-0">
-        <div className="d-flex align-items-center">
-          <h5 className="fw-bold mb-0">{widgetTitles[widgetId] || widgetId}</h5>
-          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
+      <div className="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center justify-content-between flex-shrink-0 gap-2">
+        <div className="d-flex align-items-center flex-grow-1 min-w-0">
+          <h5 className="fw-bold mb-0 text-truncate">{widgetTitles[widgetId] || widgetId}</h5>
+          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10 flex-shrink-0">
             <i className="ti ti-sparkles me-1" />
-            AI
+            <span className="d-none d-sm-inline">AI</span>
+            <span className="d-inline d-sm-none">AI</span>
           </span>
         </div>
         {widgetRoutes[widgetId] && (
           <Link
             to={widgetRoutes[widgetId]}
-            className="btn fw-normal btn-outline-white"
+            className="btn fw-normal btn-outline-white flex-shrink-0 align-self-sm-center"
           >
             View All
           </Link>
@@ -101,19 +108,19 @@ const PatientAcuityWidget: React.FC = () => {
     <div>
       {/* Summary Stats Row */}
       <div className="row g-3 mb-4">
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
             <h4 className="fw-bold mb-1 text-primary">{totalPatients}</h4>
             <p className="mb-0 fs-12 text-muted">Total Patients</p>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2' }}>
             <h4 className="fw-bold mb-1 text-danger">{totalHighPriority}</h4>
             <p className="mb-0 fs-12 text-muted">High Priority</p>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-sm-4">
           <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
             <h4 className="fw-bold mb-1 text-success">{acuityData[3].count + acuityData[4].count}</h4>
             <p className="mb-0 fs-12 text-muted">Stable</p>
