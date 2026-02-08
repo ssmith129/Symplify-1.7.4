@@ -112,7 +112,7 @@ const Breadcrumb = () => {
 
   return (
     <nav aria-label="Breadcrumb navigation" className="d-flex align-items-center">
-      <ol className="breadcrumb mb-0 d-flex align-items-center flex-nowrap" style={{ gap: 2 }}>
+      <ol className="breadcrumb mb-0 d-flex align-items-center flex-wrap" style={{ gap: 2 }}>
         {breadcrumbs.map((crumb, idx) => {
           const isLast = idx === breadcrumbs.length - 1;
           return (
@@ -120,7 +120,7 @@ const Breadcrumb = () => {
               key={idx}
               className={`breadcrumb-item d-flex align-items-center ${isLast ? 'active' : ''}`}
               aria-current={isLast ? 'page' : undefined}
-              style={{ fontSize: 13, whiteSpace: 'nowrap' }}
+              style={{ fontSize: 13 }}
             >
               {isLast || !crumb.path ? (
                 <span className={isLast ? 'text-muted' : 'text-dark'}>{crumb.label}</span>
