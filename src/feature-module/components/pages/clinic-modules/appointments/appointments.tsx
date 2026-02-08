@@ -8,6 +8,7 @@ import Datatable from "../../../../../core/common/dataTable";
 import PredefinedDatePicker from "../../../../../core/common/datePicker";
 import Modals from "./modals/modals";
 import { SmartScheduler, TriagePriorityBadge } from "../../../ai";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const Appointments = () => {
   const data = AppointmentsData;
@@ -159,62 +160,64 @@ const Appointments = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-semibold mb-0"> Appointment </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
-              <div className="dropdown me-1">
+          <PageHeader
+            title="Appointment"
+            titleClassName="fw-semibold mb-0"
+            className="pb-3 mb-3 border-1 border-bottom"
+            actions={
+              <>
+                {/* dropdown*/}
+                <div className="dropdown me-1">
+                  <Link
+                    to="#"
+                    className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown"
+                  >
+                    Export
+                    <i className="ti ti-chevron-down ms-2" />
+                  </Link>
+                  <ul className="dropdown-menu p-2">
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as PDF
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as Excel
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white border shadow-sm rounded px-1 pb-0 text-center d-flex align-items-center justify-content-center">
+                  <Link
+                    to={all_routes.appointments}
+                    className="bg-light rounded p-1 d-flex align-items-center justify-content-center"
+                  >
+                    <i className="ti ti-list fs-14 text-dark" />
+                  </Link>
+                  <Link
+                    to={all_routes.appointmentCalendar}
+                    className="bg-white rounded p-1 d-flex align-items-center justify-content-center"
+                  >
+                    <i className="ti ti-calendar-event fs-14 text-body" />
+                  </Link>
+                </div>
                 <Link
-                  to="#"
-                  className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
-                  data-bs-toggle="dropdown"
+                  to={all_routes.newAppointment}
+                  className="btn btn-primary ms-2 fs-13 btn-md"
                 >
-                  Export
-                  <i className="ti ti-chevron-down ms-2" />
+                  <i className="ti ti-plus me-1" /> New Appointment
                 </Link>
-                <ul className="dropdown-menu p-2">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as PDF
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as Excel
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white border shadow-sm rounded px-1 pb-0 text-center d-flex align-items-center justify-content-center">
-                <Link
-                  to={all_routes.appointments}
-                  className="bg-light rounded p-1 d-flex align-items-center justify-content-center"
+                <button
+                  onClick={() => setShowSmartScheduler(!showSmartScheduler)}
+                  className="btn btn-warning ms-2 fs-13 btn-md"
                 >
-                  <i className="ti ti-list fs-14 text-dark" />
-                </Link>
-                <Link
-                  to={all_routes.appointmentCalendar}
-                  className="bg-white rounded p-1 d-flex align-items-center justify-content-center"
-                >
-                  <i className="ti ti-calendar-event fs-14 text-body" />
-                </Link>
-              </div>
-              <Link
-                to={all_routes.newAppointment}
-                className="btn btn-primary ms-2 fs-13 btn-md"
-              >
-                <i className="ti ti-plus me-1" /> New Appointment
-              </Link>
-              <button
-                onClick={() => setShowSmartScheduler(!showSmartScheduler)}
-                className="btn btn-warning ms-2 fs-13 btn-md"
-              >
-                <i className="ti ti-sparkles me-1" /> AI Scheduler
-              </button>
-            </div>
-          </div>
+                  <i className="ti ti-sparkles me-1" /> AI Scheduler
+                </button>
+              </>
+            }
+          />
           {/* End Page Header */}
 
           {/* Smart Scheduler AI Section */}
