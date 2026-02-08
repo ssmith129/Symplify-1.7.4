@@ -8,7 +8,6 @@ import { setMobileSidebar } from "../../redux/sidebarSlice";
 import { all_routes } from "../../../feature-module/routes/all_routes";
 import { AIAssistantPopup, NotificationDropdownAI } from "../../../feature-module/components/ai";
 import RoleSelectorDropdown from './RoleSelectorDropdown';
-import Breadcrumb from './Breadcrumb';
 
 const Header = () => {
 

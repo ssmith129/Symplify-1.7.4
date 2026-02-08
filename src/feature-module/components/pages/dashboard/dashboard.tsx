@@ -6,6 +6,7 @@ import CircleChart from "./chats/circleChart";
 import { Calendar, type CalendarProps } from "antd";
 import type { Dayjs } from "dayjs";
 import { AIDashboardSection, ShiftHandoffWidget, ChatInboxWidget, QuickStatsWidget } from "../../ai";
+import Breadcrumb from "../../../../core/common/header/Breadcrumb";
 
 const Dashboard = () => {
   const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>["mode"]) => {
