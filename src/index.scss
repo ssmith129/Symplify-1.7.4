@@ -657,3 +657,76 @@
     color: var(--pr-gray-900) !important;
 }
 }
+
+// ========================================
+// Responsive Mobile Fixes (≤768px)
+// ========================================
+@media (max-width: 768px) {
+  // Fix ant input fixed widths
+  .ant-input {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .ant-select-single {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  // Card headers - ensure proper wrapping and spacing
+  .card-header {
+    &.d-flex {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  // Fix role selector button on mobile
+  .role-selector-dropdown {
+    min-width: auto !important;
+  }
+
+  // Ensure buttons in headers don't overflow
+  .btn-outline-white {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  // Table responsive adjustments
+  .table-responsive {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// Extra small mobile (≤576px)
+@media (max-width: 576px) {
+  // Further reduce padding on very small screens
+  .card-header {
+    padding: 0.75rem 1rem;
+
+    h5, h6 {
+      font-size: 0.95rem;
+    }
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  // Stack flex headers vertically
+  .card-header.d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .btn {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
+
+  // Ensure badges don't overflow
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
