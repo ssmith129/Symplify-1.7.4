@@ -112,6 +112,7 @@ const Breadcrumb = () => {
 
   return (
     <nav aria-label="Breadcrumb navigation" className="d-flex align-items-center">
+      <span className="text-muted mx-2 d-none d-sm-inline" style={{ fontSize: 18, fontWeight: 300 }}>|</span>
       <ol className="breadcrumb mb-0 d-flex align-items-center flex-wrap" style={{ gap: 2 }}>
         {breadcrumbs.map((crumb, idx) => {
           const isLast = idx === breadcrumbs.length - 1;
