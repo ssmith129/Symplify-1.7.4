@@ -6,7 +6,7 @@ import CircleChart from "./chats/circleChart";
 import { Calendar, type CalendarProps } from "antd";
 import type { Dayjs } from "dayjs";
 import { AIDashboardSection, ShiftHandoffWidget, ChatInboxWidget, QuickStatsWidget } from "../../ai";
-import Breadcrumb from "../../../../core/common/header/Breadcrumb";
+import PageHeader from "../../../../core/common/page-header/PageHeader";
 
 const Dashboard = () => {
   const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>["mode"]) => {
@@ -21,28 +21,27 @@ const Dashboard = () => {
         {/* Start Content */}
         <div className="content pb-0">
           {/* Page Header */}
-          <div className="d-flex align-items-sm-center justify-content-between flex-wrap gap-2 mb-4">
-            <div className="d-flex align-items-center gap-3">
-              <h4 className="fw-bold mb-0">Admin Dashboard</h4>
-              <Breadcrumb />
-            </div>
-            <div className="d-flex align-items-center flex-wrap gap-2">
-              <Link
-                to={all_routes.newAppointment}
-                className="btn btn-primary d-inline-flex align-items-center"
-              >
-                <i className="ti ti-plus me-1" />
-                New Appointment
-              </Link>
-              <Link
-                to={all_routes.doctorschedule}
-                className="btn btn-outline-white bg-white d-inline-flex align-items-center"
-              >
-                <i className="ti ti-calendar-time me-1" />
-                Schedule Availability
-              </Link>
-            </div>
-          </div>
+          <PageHeader
+            title="Admin Dashboard"
+            actions={
+              <>
+                <Link
+                  to={all_routes.newAppointment}
+                  className="btn btn-primary d-inline-flex align-items-center"
+                >
+                  <i className="ti ti-plus me-1" />
+                  New Appointment
+                </Link>
+                <Link
+                  to={all_routes.doctorschedule}
+                  className="btn btn-outline-white bg-white d-inline-flex align-items-center"
+                >
+                  <i className="ti ti-calendar-time me-1" />
+                  Schedule Availability
+                </Link>
+              </>
+            }
+          />
           {/* End Page Header */}
 
           {/* AI-Powered Insights Section */}
