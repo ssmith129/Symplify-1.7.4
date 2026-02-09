@@ -11,6 +11,7 @@ import { useState } from "react";
 import SearchInput from "../../../../../core/common/dataTable/dataTableSearch";
 import { DoctorLeavesData } from "../../../../../core/json/doctorLeavesData";
 import Datatable from "../../../../../core/common/dataTable";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 import Modals from "./modals/modals";
 
 const DoctorsLeaves = () => {
@@ -110,45 +111,45 @@ const DoctorsLeaves = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0"> Leaves </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
-              <div className="dropdown me-1">
+          <PageHeader
+            title="Leaves"
+            className="pb-3 mb-3 border-1 border-bottom"
+            actions={
+              <>
+                <div className="dropdown me-1">
+                  <Link
+                    to="#"
+                    className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown"
+                  >
+                    Export
+                    <i className="ti ti-chevron-down ms-2" />
+                  </Link>
+                  <ul className="dropdown-menu p-2">
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as PDF
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as Excel
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
                 <Link
                   to="#"
-                  className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
-                  data-bs-toggle="dropdown"
+                  className="btn btn-primary ms-2 fs-13 btn-md"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add-leave"
                 >
-                  Export
-                  <i className="ti ti-chevron-down ms-2" />
+                  <i className="ti ti-plus me-1" />
+                  Add New Leave
                 </Link>
-                <ul className="dropdown-menu p-2">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as PDF
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as Excel
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                to="#"
-                className="btn btn-primary ms-2 fs-13 btn-md"
-                data-bs-toggle="modal"
-                data-bs-target="#add-leave"
-              >
-                <i className="ti ti-plus me-1" />
-                Add New Leave
-              </Link>
-            </div>
-          </div>
+              </>
+            }
+          />
           {/* End Page Header */}
           {/* Start Filter */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
