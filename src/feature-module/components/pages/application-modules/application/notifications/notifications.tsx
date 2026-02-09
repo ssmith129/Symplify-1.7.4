@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
 import PredefinedDatePicker from "../../../../../../core/common/datePicker";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 
 const Notifications = () => {
   return (
@@ -13,9 +14,7 @@ const Notifications = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="mb-3 pb-3 border-bottom mb-4">
-            <h4 className="fw-bold mb-0">Notification</h4>
-          </div>
+          <PageHeader title="Notification" className="mb-3 pb-3 border-bottom" />
           {/* End Page Header */}
           <div className="row">
             {/* Notifications */}
