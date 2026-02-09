@@ -21,6 +21,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onExpandEnter, onExpandLeave }) => {
   const Location = useLocation();
   const [subOpen, setSubopen] = useState<any>("");
   const [subsidebar, setSubsidebar] = useState("");
+  const [collapsedSections, setCollapsedSections] = useState<{ [key: string]: boolean }>({});
+
+  const toggleSection = (title: string) => {
+    setCollapsedSections((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
   const currentRole = useSelector((state: RootState) => state.role.currentRole);
   const dashboardPath = ROLE_CONFIG[currentRole].dashboardPath;
   const dispatch = useDispatch();
@@ -287,10 +295,20 @@ const Sidebar: React.FC<SidebarProps> = ({ onExpandEnter, onExpandLeave }) => {
             <ul>
               {SidebarData?.map((mainLabel, index) => (
                 <React.Fragment key={`main-${index}`}>
-                  <li className="menu-title">
+                  <li
+                    className="menu-title"
+                    onClick={() => toggleSection(mainLabel?.tittle)}
+                    style={{ cursor: "pointer", userSelect: "none" }}
+                  >
                     <span>{mainLabel?.tittle}</span>
+                    <i
+                      className={`ti ti-chevron-${
+                        collapsedSections[mainLabel?.tittle] ? "right" : "down"
+                      } ms-auto`}
+                      style={{ fontSize: "14px", opacity: 0.5 }}
+                    />
                   </li>
-                  <li>
+                  <li style={{ display: collapsedSections[mainLabel?.tittle] ? "none" : "" }}>
                     <ul>
                       {mainLabel?.submenuItems?.map((title: any, i) => {
                         let link_array: any = [];
