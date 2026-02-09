@@ -11,6 +11,7 @@ import {
 import CommonSelect from "../../../../../../core/common/common-select/commonSelect";
 import Datatable from "../../../../../../core/common/dataTable";
 import { Link } from "react-router";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
 
 const PatientReport = () => {
@@ -84,12 +85,10 @@ const PatientReport = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Patients Report</h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+          <PageHeader
+            title="Patients Report"
+            className="mb-3 pb-3 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -112,8 +111,8 @@ const PatientReport = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/* row start*/}
           <div className="row">

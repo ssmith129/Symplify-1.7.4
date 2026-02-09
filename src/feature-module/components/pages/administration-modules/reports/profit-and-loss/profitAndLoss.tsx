@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
+
 const ProfitAndLoss = () => {
   return (
     <>
@@ -10,12 +12,10 @@ const ProfitAndLoss = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Profit &amp; Loss Report</h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+          <PageHeader
+            title="Profit & Loss Report"
+            className="mb-3 pb-3 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -38,8 +38,8 @@ const ProfitAndLoss = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/* row start */}
           <div className="row">
