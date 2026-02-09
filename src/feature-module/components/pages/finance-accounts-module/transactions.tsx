@@ -5,6 +5,7 @@ import SearchInput from "../../../../core/common/dataTable/dataTableSearch";
 import { TransactionsListData } from "../../../../core/json/transactionsListData";
 import Datatable from "../../../../core/common/dataTable";
 import ImageWithBasePath from "../../../../core/imageWithBasePath";
+import PageHeader from "../../../../core/common/page-header/PageHeader";
 
 const TransactionsList = () => {
   const data = TransactionsListData;
@@ -93,18 +94,17 @@ const TransactionsList = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">
-                {" "}
-                Transactions{" "}
+          <PageHeader
+            className="pb-3 mb-3 border-1 border-bottom"
+            title={
+              <>
+                Transactions
                 <span className="badge badge-soft-primary fw-medium border py-1 px-2 border-primary fs-13 ms-1">
                   Total Transactions : 565
-                </span>{" "}
-              </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+                </span>
+              </>
+            }
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -127,8 +127,8 @@ const TransactionsList = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/*  Start Filter */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
