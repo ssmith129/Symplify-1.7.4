@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import { all_routes } from "../../../../routes/all_routes";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 import { useState } from "react";
 import { DoctorsListData } from "../../../../../core/json/doctorsListData";
 import SearchInput from "../../../../../core/common/dataTable/dataTableSearch";
@@ -136,64 +137,66 @@ const DoctorsList = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">
+          <PageHeader
+            className="mb-3 pb-3 border-bottom"
+            title={
+              <>
                 Doctor List
                 <span className="badge badge-soft-primary fs-13 fw-medium ms-2">
                   Total Doctors : 565
                 </span>
-              </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
-              <div className="dropdown me-1">
+              </>
+            }
+            actions={
+              <>
+                <div className="dropdown me-1">
+                  <Link
+                    to="#"
+                    className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown"
+                  >
+                    Export
+                    <i className="ti ti-chevron-down ms-2" />
+                  </Link>
+                  <ul className="dropdown-menu p-2">
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as PDF
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as Excel
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white border shadow-sm rounded px-1 pb-0 text-center d-flex align-items-center justify-content-center">
+                  <Link
+                    to={all_routes.doctorsList}
+                    className="bg-light rounded p-1 d-flex align-items-center justify-content-center"
+                  >
+                    <i className="ti ti-list fs-14 text-dark" />
+                  </Link>
+                  <Link
+                    to={all_routes.doctors}
+                    className="bg-white rounded p-1 d-flex align-items-center justify-content-center"
+                  >
+                    <i className="ti ti-layout-grid fs-14 text-body" />
+                  </Link>
+                </div>
                 <Link
                   to="#"
-                  className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
-                  data-bs-toggle="dropdown"
+                  className="btn btn-primary ms-2 fs-13 btn-md"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#add_doctor"
                 >
-                  Export
-                  <i className="ti ti-chevron-down ms-2" />
+                  <i className="ti ti-plus me-1" />
+                  New Doctor
                 </Link>
-                <ul className="dropdown-menu p-2">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as PDF
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as Excel
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white border shadow-sm rounded px-1 pb-0 text-center d-flex align-items-center justify-content-center">
-                <Link
-                  to={all_routes.doctorsList}
-                  className="bg-light rounded p-1 d-flex align-items-center justify-content-center"
-                >
-                  <i className="ti ti-list fs-14 text-dark" />
-                </Link>
-                <Link
-                  to={all_routes.doctors}
-                  className="bg-white rounded p-1 d-flex align-items-center justify-content-center"
-                >
-                  <i className="ti ti-layout-grid fs-14 text-body" />
-                </Link>
-              </div>
-              <Link
-                to="#"
-                className="btn btn-primary ms-2 fs-13 btn-md"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#add_doctor"
-              >
-                <i className="ti ti-plus me-1" />
-                New Doctor
-              </Link>
-            </div>
-          </div>
+              </>
+            }
+          />
           {/* End Page Header */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
             <div className="search-set mb-3">

@@ -7,6 +7,7 @@ import { ServiceListData } from "../../../../../core/json/servicesData";
 import { Department, Service_Name, StatusActive } from "../../../../../core/common/selectOption";
 import { Select } from "antd";
 import Slider from "rc-slider";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const Services = () => {
   const data = ServiceListData;
@@ -97,50 +98,52 @@ const Services = () => {
           {/* Start Content */}
           <div className="content">
             {/* Start Page Header */}
-            <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-              <div className="flex-grow-1">
-                <h4 className="fw-bold mb-0">
+            <PageHeader
+              className="mb-3 pb-3 border-bottom"
+              title={
+                <>
                   Services
                   <span className="badge badge-soft-primary border border-primary fs-13 fw-medium ms-2">
                     Total Services : 565
                   </span>
-                </h4>
-              </div>
-              <div className="text-end d-flex">
-                {/* dropdown*/}
-                <div className="dropdown me-1">
+                </>
+              }
+              actions={
+                <>
+                  <div className="dropdown me-1">
+                    <Link
+                      to="#"
+                      className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
+                      data-bs-toggle="dropdown"
+                    >
+                      Export
+                      <i className="ti ti-chevron-down ms-2" />
+                    </Link>
+                    <ul className="dropdown-menu p-2">
+                      <li>
+                        <Link className="dropdown-item" to="#">
+                          Download as PDF
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="#">
+                          Download as Excel
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                   <Link
                     to="#"
-                    className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
-                    data-bs-toggle="dropdown"
+                    className="btn btn-primary ms-2 fs-13 btn-md"
+                    data-bs-toggle="modal"
+                    data-bs-target="#add_service"
                   >
-                    Export
-                    <i className="ti ti-chevron-down ms-2" />
+                    <i className="ti ti-plus me-1" />
+                    New Services
                   </Link>
-                  <ul className="dropdown-menu p-2">
-                    <li>
-                      <Link className="dropdown-item" to="#">
-                        Download as PDF
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="#">
-                        Download as Excel
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <Link
-                  to="#"
-                  className="btn btn-primary ms-2 fs-13 btn-md"
-                  data-bs-toggle="modal"
-                  data-bs-target="#add_service"
-                >
-                  <i className="ti ti-plus me-1" />
-                  New Services
-                </Link>
-              </div>
-            </div>
+                </>
+              }
+            />
             {/* End Page Header */}
             <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
               <div className="search-set mb-3">
