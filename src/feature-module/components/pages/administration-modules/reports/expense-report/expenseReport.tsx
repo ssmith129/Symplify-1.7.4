@@ -7,6 +7,7 @@ import { Category, Purchased_By } from "../../../../../../core/common/selectOpti
 import CommonSelect from "../../../../../../core/common/common-select/commonSelect";
 import PredefinedDatePicker from "../../../../../../core/common/datePicker";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 
 const ExpenseReport = () => {
   const data = ExpenseReportData;
@@ -77,12 +78,10 @@ const ExpenseReport = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Expenses Report</h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+          <PageHeader
+            title="Expenses Report"
+            className="mb-3 pb-3 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -105,8 +104,8 @@ const ExpenseReport = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/* row start */}
           <div className="row">

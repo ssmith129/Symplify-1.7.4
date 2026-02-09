@@ -11,6 +11,7 @@ import {
   Practioner,
 } from "../../../../../../core/common/selectOption";
 import PredefinedDatePicker from "../../../../../../core/common/datePicker";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 import AppointmentReportChart from "./chart/appointmentReportChart";
 
 const AppointmentReport = () => {
@@ -77,12 +78,10 @@ const AppointmentReport = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Appointment Report</h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+          <PageHeader
+            title="Appointment Report"
+            className="mb-3 pb-3 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -105,8 +104,8 @@ const AppointmentReport = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           <AppointmentReportChart />
           <div className="card">
