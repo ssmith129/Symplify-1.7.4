@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { RoleandPermissionData } from "../../../../../../core/json/roleandPermissionData";
 import Datatable from "../../../../../../core/common/dataTable";
 import { all_routes } from "../../../../../routes/all_routes";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 
 const RolesAndPermissions = () => {
   const data = RoleandPermissionData;
@@ -89,11 +90,10 @@ const RolesAndPermissions = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Roles</h4>
-            </div>
-            <div className="text-end d-flex">
+          <PageHeader
+            title="Roles"
+            className="mb-3 pb-3 border-bottom"
+            actions={
               <Link
                 to="#"
                 className="btn btn-primary ms-2 fs-13 btn-md"
@@ -103,8 +103,8 @@ const RolesAndPermissions = () => {
                 <i className="ti ti-plus me-1" />
                 New Role
               </Link>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           <div className="table-responsive">
             <Datatable

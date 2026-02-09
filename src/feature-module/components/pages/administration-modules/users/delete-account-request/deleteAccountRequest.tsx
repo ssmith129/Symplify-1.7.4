@@ -5,6 +5,7 @@ import Modals from "./modals/modals";
 import { useState } from "react";
 import SearchInput from "../../../../../../core/common/dataTable/dataTableSearch";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
+import PageHeader from "../../../../../../core/common/page-header/PageHeader";
 
 const DeleteAccountRequest = () => {
   const data = DeleteRequestData;
@@ -114,11 +115,7 @@ const DeleteAccountRequest = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3 pb-3 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">Delete Account Request</h4>
-            </div>
-          </div>
+          <PageHeader title="Delete Account Request" className="mb-3 pb-3 border-bottom" />
           {/* End Page Header */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
             <div className="search-set mb-3">
