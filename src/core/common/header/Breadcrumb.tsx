@@ -107,8 +107,14 @@ const Breadcrumb = () => {
     return items;
   }, [location.pathname, roleConfig.dashboardPath]);
 
-  // Don't render if only one item (we're at dashboard root)
-  if (breadcrumbs.length <= 1) return null;
+  // Don't render on dashboard pages — only show on sub-pages
+  const path = location.pathname;
+  if (
+    breadcrumbs.length <= 1 ||
+    path === all_routes.dashboard ||
+    path === all_routes.doctordashboard ||
+    path === all_routes.patientdashboard
+  ) return null;
 
   return (
     <nav aria-label="Breadcrumb navigation" className="d-flex align-items-center">
