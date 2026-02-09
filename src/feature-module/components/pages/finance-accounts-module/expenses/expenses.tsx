@@ -6,6 +6,7 @@ import SearchInput from "../../../../../core/common/dataTable/dataTableSearch";
 import { ExpensesListData } from "../../../../../core/json/expensesListData";
 import Datatable from "../../../../../core/common/dataTable";
 import ExpensesModal from "../modal/expensesModal";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const ExpensesList = () => {
   const data = ExpensesListData;
@@ -130,50 +131,52 @@ const ExpensesList = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">
+          <PageHeader
+            className="pb-3 mb-3 border-1 border-bottom"
+            title={
+              <>
                 Expenses
                 <span className="badge badge-soft-primary fw-medium border py-1 px-2 border-primary fs-13 ms-1">
                   Total Expenses : 565
                 </span>
-              </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
-              <div className="dropdown me-1">
+              </>
+            }
+            actions={
+              <>
+                <div className="dropdown me-1">
+                  <Link
+                    to="#"
+                    className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown"
+                  >
+                    Export
+                    <i className="ti ti-chevron-down ms-2" />
+                  </Link>
+                  <ul className="dropdown-menu p-2">
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as PDF
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Download as Excel
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
                 <Link
                   to="#"
-                  className="btn btn-md fs-14 fw-normal border bg-white rounded text-dark d-inline-flex align-items-center"
-                  data-bs-toggle="dropdown"
+                  className="btn btn-primary ms-2 fs-13 btn-md"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_new_expense"
                 >
-                  Export
-                  <i className="ti ti-chevron-down ms-2" />
+                  <i className="ti ti-plus me-1" />
+                  New Expense
                 </Link>
-                <ul className="dropdown-menu p-2">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as PDF
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Download as Excel
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                to="#"
-                className="btn btn-primary ms-2 fs-13 btn-md"
-                data-bs-toggle="modal"
-                data-bs-target="#add_new_expense"
-              >
-                <i className="ti ti-plus me-1" />
-                New Expense
-              </Link>
-            </div>
-          </div>
+              </>
+            }
+          />
           {/* End Page Header */}
           {/*  Start Filter */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
