@@ -9,6 +9,7 @@ import {
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import { Link } from "react-router";
 import Modals from "./modals/modals";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 import { all_routes } from "../../../../routes/all_routes";
 
 const Doctors = () => {
@@ -26,16 +27,18 @@ const Doctors = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 mb-3">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">
+          <PageHeader
+            className="mb-3"
+            title={
+              <>
                 Doctor Grid
                 <span className="badge badge-soft-primary fs-13 fw-medium ms-2">
                   Total Doctors : 565
                 </span>
-              </h4>
-            </div>
-            <div className="text-end d-flex">
+              </>
+            }
+            actions={
+              <>
               <div className="dropdown me-2">
                 <Link
                   to="#"
@@ -200,8 +203,9 @@ const Doctors = () => {
                 <i className="ti ti-plus me-1" />
                 New Doctor
               </Link>
-            </div>
-          </div>
+              </>
+            }
+          />
           {/* End Page Header */}
           <div className="row">
             <div className="col-xl-4 col-md-6">
