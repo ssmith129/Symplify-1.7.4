@@ -6,6 +6,7 @@ import { DoctorPrescriptionsData } from "../../../../../core/json/doctorPrescrip
 import { useState } from "react";
 import SearchInput from "../../../../../core/common/dataTable/dataTableSearch";
 import { DatePicker, Select } from "antd";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 import {
   Amount,
   Department,
@@ -110,12 +111,10 @@ const DoctorsPrescriptions = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0"> Prescriptions </h4>
-            </div>
-            <div className="text-end d-flex">
-              {/* dropdown*/}
+          <PageHeader
+            title="Prescriptions"
+            className="pb-3 mb-3 border-1 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -138,8 +137,8 @@ const DoctorsPrescriptions = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
             <div className="search-set mb-3">

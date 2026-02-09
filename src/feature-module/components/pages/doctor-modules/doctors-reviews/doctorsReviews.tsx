@@ -11,6 +11,7 @@ import { DatePicker, Select } from "antd";
 import SearchInput from "../../../../../core/common/dataTable/dataTableSearch";
 import { DoctorReviewsData } from "../../../../../core/json/doctorReviewsData";
 import Datatable from "../../../../../core/common/dataTable";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 
 const DoctorsReviews = () => {
@@ -77,12 +78,10 @@ const DoctorsReviews = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0"> Reviews </h4>
-            </div>
-            <div className="text-end">
-              {/* dropdown*/}
+          <PageHeader
+            title="Reviews"
+            className="pb-3 mb-3 border-1 border-bottom"
+            actions={
               <div className="dropdown me-1">
                 <Link
                   to="#"
@@ -105,8 +104,8 @@ const DoctorsReviews = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           <div className=" d-flex align-items-center justify-content-between flex-wrap row-gap-3">
             <div className="search-set mb-3">
