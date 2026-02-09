@@ -44,6 +44,33 @@ const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave })
         all_routes.doctorspasswordsettings,
         all_routes.doctorsnotificationsettings,
       ]),
+      appCalls: isAnyActive([
+        all_routes.voiceCall,
+        all_routes.videoCall,
+        all_routes.outgoingCall,
+        all_routes.incomingCall,
+        all_routes.callHistory,
+      ]),
+      appInvoices: isAnyActive([
+        all_routes.invoice,
+        all_routes.invoiceDetails,
+      ]),
+      clinicDoctors: isAnyActive([
+        all_routes.doctors,
+        all_routes.doctorsDetails,
+        all_routes.addDoctors,
+        all_routes.doctorScheduleClini,
+      ]),
+      clinicPatients: isAnyActive([
+        all_routes.patients,
+        all_routes.patientDetails,
+        all_routes.createPatient,
+      ]),
+      clinicAppointments: isAnyActive([
+        all_routes.appointments,
+        all_routes.newAppointment,
+        all_routes.appointmentCalendar,
+      ]),
     }));
     // eslint-disable-next-line
   }, [location.pathname]);
@@ -244,6 +271,255 @@ const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave })
                       <span>Reviews</span>
                     </Link>
                   </li>
+                </ul>
+              </li>
+              {/* Applications Section */}
+              <li className="menu-title">
+                <span>Applications</span>
+              </li>
+              <li>
+                <ul>
+                  <li className={isActive(all_routes.chat) ? "active" : ""}>
+                    <Link to={all_routes.chat}>
+                      <i className="ti ti-message-circle" />
+                      <span>Chat</span>
+                    </Link>
+                  </li>
+                  {/* Calls Submenu */}
+                  <li className={`submenu${openSubmenus.appCalls ? " active" : ""}`}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("appCalls");
+                      }}
+                    >
+                      <i className="ti ti-phone" />
+                      <span>Calls</span>
+                      <span className="menu-arrow">
+                        <i className={openSubmenus.appCalls ? "ti ti-chevron-down" : "ti ti-chevron-right"} />
+                      </span>
+                    </Link>
+                    <ul style={{ display: openSubmenus.appCalls ? "block" : "none" }}>
+                      <li>
+                        <Link to={all_routes.voiceCall} className={isActive(all_routes.voiceCall) ? "active" : ""}>Voice Call</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.videoCall} className={isActive(all_routes.videoCall) ? "active" : ""}>Video Call</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.outgoingCall} className={isActive(all_routes.outgoingCall) ? "active" : ""}>Outgoing Call</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.incomingCall} className={isActive(all_routes.incomingCall) ? "active" : ""}>Incoming Call</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.callHistory} className={isActive(all_routes.callHistory) ? "active" : ""}>Call History</Link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className={isActive(all_routes.calendar) ? "active" : ""}>
+                    <Link to={all_routes.calendar}>
+                      <i className="ti ti-calendar" />
+                      <span>Calendar</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.contacts) ? "active" : ""}>
+                    <Link to={all_routes.contacts}>
+                      <i className="ti ti-address-book" />
+                      <span>Contacts</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.email) ? "active" : ""}>
+                    <Link to={all_routes.email}>
+                      <i className="ti ti-mail" />
+                      <span>Email</span>
+                    </Link>
+                  </li>
+                  {/* Invoices Submenu */}
+                  <li className={`submenu${openSubmenus.appInvoices ? " active" : ""}`}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("appInvoices");
+                      }}
+                    >
+                      <i className="ti ti-file-invoice" />
+                      <span>Invoices</span>
+                      <span className="menu-arrow">
+                        <i className={openSubmenus.appInvoices ? "ti ti-chevron-down" : "ti ti-chevron-right"} />
+                      </span>
+                    </Link>
+                    <ul style={{ display: openSubmenus.appInvoices ? "block" : "none" }}>
+                      <li>
+                        <Link to={all_routes.invoice} className={isActive(all_routes.invoice) ? "active" : ""}>Invoices</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.invoiceDetails} className={isActive(all_routes.invoiceDetails) ? "active" : ""}>Invoice Details</Link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className={isActive(all_routes.todo) ? "active" : ""}>
+                    <Link to={all_routes.todo}>
+                      <i className="ti ti-checkbox" />
+                      <span>To Do</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.notes) ? "active" : ""}>
+                    <Link to={all_routes.notes}>
+                      <i className="ti ti-notes" />
+                      <span>Notes</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.kanbanView) ? "active" : ""}>
+                    <Link to={all_routes.kanbanView}>
+                      <i className="ti ti-layout-kanban" />
+                      <span>Kanban Board</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.fileManager) ? "active" : ""}>
+                    <Link to={all_routes.fileManager}>
+                      <i className="ti ti-folder" />
+                      <span>File Manager</span>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              {/* Clinic Section */}
+              <li className="menu-title">
+                <span>Clinic</span>
+              </li>
+              <li>
+                <ul>
+                  {/* Clinic Doctors Submenu */}
+                  <li className={`submenu${openSubmenus.clinicDoctors ? " active" : ""}`}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("clinicDoctors");
+                      }}
+                    >
+                      <i className="ti ti-user-plus" />
+                      <span>Doctors</span>
+                      <span className="menu-arrow">
+                        <i className={openSubmenus.clinicDoctors ? "ti ti-chevron-down" : "ti ti-chevron-right"} />
+                      </span>
+                    </Link>
+                    <ul style={{ display: openSubmenus.clinicDoctors ? "block" : "none" }}>
+                      <li>
+                        <Link to={all_routes.doctors} className={isActive(all_routes.doctors) ? "active" : ""}>Doctors</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.doctorsDetails} className={isActive(all_routes.doctorsDetails) ? "active" : ""}>Doctor Details</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.addDoctors} className={isActive(all_routes.addDoctors) ? "active" : ""}>Add Doctor</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.doctorScheduleClini} className={isActive(all_routes.doctorScheduleClini) ? "active" : ""}>Doctor Schedule</Link>
+                      </li>
+                    </ul>
+                  </li>
+                  {/* Clinic Patients Submenu */}
+                  <li className={`submenu${openSubmenus.clinicPatients ? " active" : ""}`}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("clinicPatients");
+                      }}
+                    >
+                      <i className="ti ti-user-heart" />
+                      <span>Patients</span>
+                      <span className="menu-arrow">
+                        <i className={openSubmenus.clinicPatients ? "ti ti-chevron-down" : "ti ti-chevron-right"} />
+                      </span>
+                    </Link>
+                    <ul style={{ display: openSubmenus.clinicPatients ? "block" : "none" }}>
+                      <li>
+                        <Link to={all_routes.patients} className={isActive(all_routes.patients) ? "active" : ""}>Patients</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.patientDetails} className={isActive(all_routes.patientDetails) ? "active" : ""}>Patient Details</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.createPatient} className={isActive(all_routes.createPatient) ? "active" : ""}>Create Patient</Link>
+                      </li>
+                    </ul>
+                  </li>
+                  {/* Clinic Appointments Submenu */}
+                  <li className={`submenu${openSubmenus.clinicAppointments ? " active" : ""}`}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("clinicAppointments");
+                      }}
+                    >
+                      <i className="ti ti-calendar-check" />
+                      <span>Appointments</span>
+                      <span className="menu-arrow">
+                        <i className={openSubmenus.clinicAppointments ? "ti ti-chevron-down" : "ti ti-chevron-right"} />
+                      </span>
+                    </Link>
+                    <ul style={{ display: openSubmenus.clinicAppointments ? "block" : "none" }}>
+                      <li>
+                        <Link to={all_routes.appointments} className={isActive(all_routes.appointments) ? "active" : ""}>Appointments</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.newAppointment} className={isActive(all_routes.newAppointment) ? "active" : ""}>New Appointment</Link>
+                      </li>
+                      <li>
+                        <Link to={all_routes.appointmentCalendar} className={isActive(all_routes.appointmentCalendar) ? "active" : ""}>Calendar</Link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className={isActive(all_routes.locations) ? "active" : ""}>
+                    <Link to={all_routes.locations}>
+                      <i className="ti ti-map-pin" />
+                      <span>Locations</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.services) ? "active" : ""}>
+                    <Link to={all_routes.services}>
+                      <i className="ti ti-briefcase" />
+                      <span>Services</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.specializations) ? "active" : ""}>
+                    <Link to={all_routes.specializations}>
+                      <i className="ti ti-user-shield" />
+                      <span>Specializations</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.assets) ? "active" : ""}>
+                    <Link to={all_routes.assets}>
+                      <i className="ti ti-package" />
+                      <span>Assets</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.activities) ? "active" : ""}>
+                    <Link to={all_routes.activities}>
+                      <i className="ti ti-activity" />
+                      <span>Activities</span>
+                    </Link>
+                  </li>
+                  <li className={isActive(all_routes.messages) ? "active" : ""}>
+                    <Link to={all_routes.messages}>
+                      <i className="ti ti-message" />
+                      <span>Messages</span>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              {/* Doctor Settings Section */}
+              <li className="menu-title">
+                <span>Settings</span>
+              </li>
+              <li>
+                <ul>
                   {/* Settings Submenu */}
                   <li
                     className={`submenu${
