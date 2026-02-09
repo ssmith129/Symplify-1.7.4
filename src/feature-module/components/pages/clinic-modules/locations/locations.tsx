@@ -3,6 +3,7 @@ import { LocationsData } from "../../../../../core/json/locationData";
 import Datatable from "../../../../../core/common/dataTable";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const Locations = () => {
   const data = LocationsData;
@@ -78,16 +79,17 @@ const Locations = () => {
         {/* Start Content */}
         <div className="content">
           {/* Start Page Header */}
-          <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3 mb-3 border-1 border-bottom">
-            <div className="flex-grow-1">
-              <h4 className="fw-bold mb-0">
+          <PageHeader
+            className="pb-3 mb-3 border-1 border-bottom"
+            title={
+              <>
                 Locations
                 <span className="badge badge-soft-primary fw-medium border py-1 px-2 border-primary fs-13 ms-1">
                   Total Location : 565
                 </span>
-              </h4>
-            </div>
-            <div className="text-end d-flex">
+              </>
+            }
+            actions={
               <Link
                 to="#"
                 className="btn btn-primary fs-13 btn-md"
@@ -97,8 +99,8 @@ const Locations = () => {
                 <i className="ti ti-plus me-1" />
                 New Location
               </Link>
-            </div>
-          </div>
+            }
+          />
           {/* End Page Header */}
           {/*  Start Table */}
           <div className="table-responsive">

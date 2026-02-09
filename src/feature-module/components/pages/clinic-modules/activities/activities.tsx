@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
+import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const Activities = () => {
   return (
@@ -11,9 +12,7 @@ const Activities = () => {
         {/* Start Content */}
         <div className="content">
           {/* Page Header */}
-          <div className="mb-3 border-bottom pb-3">
-            <h4 className="fw-bold mb-0">Activities</h4>
-          </div>
+          <PageHeader title="Activities" className="mb-3 border-bottom pb-3" />
           {/* End Page Header */}
           <div className="card mb-0">
             <div className="card-body">
