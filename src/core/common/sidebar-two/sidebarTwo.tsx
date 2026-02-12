@@ -294,7 +294,6 @@ const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave })
                               : ""
                           }
                         >
-                          <i className="ti ti-pill me-1" style={{ fontSize: 14 }} />
                           Drug Interaction Checker
                         </Link>
                       </li>
