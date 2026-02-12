@@ -19,6 +19,7 @@ import ResetPasswordCover from "../components/auth/reset-password/resetPasswordC
 import ResetPasswordIllustration from "../components/auth/reset-password/resetPasswordIllustration";
 import TwoStepVerificationBasic from "../components/auth/two-step-verification/twoStepVerificationBasic";
 import ShiftHandoff from "../components/pages/ai-modules/shift-handoff/shiftHandoff";
+import DrugInteraction from "../components/pages/ai-modules/drug-interaction/drugInteraction";
 import TwoStepVerificationCover from "../components/auth/two-step-verification/twoStepVerificationCover";
 import TwoStepVerificationIllustration from "../components/auth/two-step-verification/twoStepVerificationIllustration";
 import AppointmentReport from "../components/pages/administration-modules/reports/appointment-report/appointmentReport";
@@ -1393,6 +1394,11 @@ export const publicRoutes = [
   {
     path: routes.shiftHandoff,
     element: <ShiftHandoff />,
+    route: Route,
+  },
+  {
+    path: routes.drugInteraction,
+    element: <DrugInteraction />,
     route: Route,
   },
 ];
