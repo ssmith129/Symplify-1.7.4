@@ -39,6 +39,11 @@ const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave })
         all_routes.doctorsappointments,
         all_routes.onlineconsultations,
       ]),
+      prescriptions: isAnyActive([
+        all_routes.doctorsprescriptions,
+        all_routes.doctorsprescriptiondetails,
+        all_routes.drugInteraction,
+      ]),
       settings: isAnyActive([
         all_routes.doctorsprofilesettings,
         all_routes.doctorspasswordsettings,
@@ -237,19 +242,63 @@ const SidebarTwo: React.FC<SidebarTwoProps> = ({ onExpandEnter, onExpandLeave })
                       <span>My Schedule</span>
                     </Link>
                   </li>
+                  {/* Prescriptions Submenu */}
                   <li
-                    className={
-                      isActive(all_routes.doctorsprescriptions)
-                        ? "active"
-                        : isActive(all_routes.doctorsprescriptiondetails)
-                        ? "active"
-                        : ""
-                    }
+                    className={`submenu${
+                      openSubmenus.prescriptions ? " active" : ""
+                    }`}
                   >
-                    <Link to={all_routes.doctorsprescriptions}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("prescriptions");
+                      }}
+                    >
                       <i className="ti ti-prescription" />
                       <span>Prescriptions</span>
+                      <span className="menu-arrow">
+                        <i
+                          className={
+                            openSubmenus.prescriptions
+                              ? "ti ti-chevron-down"
+                              : "ti ti-chevron-right"
+                          }
+                        />
+                      </span>
                     </Link>
+                    <ul
+                      style={{
+                        display: openSubmenus.prescriptions ? "block" : "none",
+                      }}
+                    >
+                      <li>
+                        <Link
+                          to={all_routes.doctorsprescriptions}
+                          className={
+                            isActive(all_routes.doctorsprescriptions) ||
+                            isActive(all_routes.doctorsprescriptiondetails)
+                              ? "active"
+                              : ""
+                          }
+                        >
+                          Prescriptions
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={all_routes.drugInteraction}
+                          className={
+                            isActive(all_routes.drugInteraction)
+                              ? "active"
+                              : ""
+                          }
+                        >
+                          <i className="ti ti-pill me-1" style={{ fontSize: 14 }} />
+                          Drug Interaction Checker
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
                   <li
                     className={
