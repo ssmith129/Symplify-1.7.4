@@ -155,7 +155,7 @@ const Login = () => {
               </form>
               <p className="text-dark text-center">
                 
-                Copyright © 2025 - Preclinic
+                Copyright © 2025 - Symplify
               </p>
             </div>
             {/* end col */}

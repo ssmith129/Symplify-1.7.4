@@ -138,7 +138,7 @@ const ResetPasswordIllustration = () => {
                     </div>
                   </form>
                   <p className="text-dark text-center">
-                    Copyright © 2025 - Preclinic.
+                    Copyright © 2025 - Symplify.
                   </p>
                 </div>
                 {/* end row*/}

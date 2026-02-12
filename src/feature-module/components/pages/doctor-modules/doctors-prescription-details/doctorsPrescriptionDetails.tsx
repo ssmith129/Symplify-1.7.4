@@ -248,7 +248,7 @@ const DoctorsPrescriptionDetails = () => {
       {/* Start Footer*/}
       <div className="p-3 bg-white border-1 border-top text-center">
         <p className="text-dark text-center">
-          2025 © <span className="text-info">Preclinic </span> , All Rights
+          2025 © <span className="text-info">Symplify </span> , All Rights
           Reserved
         </p>
       </div>

@@ -86,7 +86,7 @@ const EmailVerificationCover = () => {
                   </form>
                   <p className="fs-14 text-dark text-center mt-4">
                     
-                    Copyright © 2025 - Preclinic
+                    Copyright © 2025 - Symplify
                   </p>
                 </div>
                 {/* end row*/}

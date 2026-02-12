@@ -259,7 +259,7 @@ const LoginAndRegisterSettings = () => {
           <p className="text-dark mb-0">
             2025 ©
             <Link to="#" className="Link-primary">
-              Preclinic
+              Symplify
             </Link>
             , All Rights Reserved
           </p>

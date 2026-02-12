@@ -1,4 +1,3 @@
-
 import { Link } from "react-router";
 import "yet-another-react-lightbox/styles.css";
 import ImageWithBasePath from "../../../../../../core/imageWithBasePath";
@@ -1802,7 +1801,7 @@ const SocialFeed = () => {
           <p className="text-dark mb-0">
             2025 ©
             <Link to="#" className="link-primary">
-              Preclinic
+              Symplify
             </Link>
             , All Rights Reserved
           </p>

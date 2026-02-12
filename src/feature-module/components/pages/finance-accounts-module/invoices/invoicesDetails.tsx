@@ -1,4 +1,3 @@
-
 import { Link } from "react-router";
 import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import { all_routes } from "../../../../routes/all_routes";
@@ -268,7 +267,7 @@ const InvoicesDetails = () => {
           <p className="text-dark mb-0">
             2025 ©{" "}
             <Link to="#" className="link-primary">
-              Preclinic
+              Symplify
             </Link>
             , All Rights Reserved
           </p>

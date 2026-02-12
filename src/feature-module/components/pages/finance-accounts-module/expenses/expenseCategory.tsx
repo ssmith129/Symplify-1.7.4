@@ -1,4 +1,3 @@
-
 import { Link } from "react-router";
 import { expenseCategoryData } from "../../../../../core/json/expenseCategoryData";
 import Datatable from "../../../../../core/common/dataTable";
@@ -107,7 +106,7 @@ const ExpenseCategory = () => {
           <p className="text-dark mb-0">
             2025 ©{" "}
             <Link to="#" className="link-primary">
-              Preclinic
+              Symplify
             </Link>
             , All Rights Reserved
           </p>
