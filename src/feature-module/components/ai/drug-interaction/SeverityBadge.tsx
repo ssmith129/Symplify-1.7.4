@@ -8,36 +8,27 @@ interface SeverityBadgeProps {
   size?: 'small' | 'medium' | 'large';
 }
 
-/**
- * Feature 10: Severity Badge
- * Visual indicator for drug interaction severity levels
- */
+const SEVERITY_CONFIG: Record<SeverityLevel, { label: string; icon: string; className: string }> = {
+  minor: { label: 'Minor', icon: 'ti-info-circle', className: 'severity-minor' },
+  moderate: { label: 'Moderate', icon: 'ti-alert-circle', className: 'severity-moderate' },
+  major: { label: 'Major', icon: 'ti-alert-triangle', className: 'severity-major' },
+  contraindicated: { label: 'Contraindicated', icon: 'ti-urgent', className: 'severity-contraindicated' },
+};
+
 const SeverityBadge: React.FC<SeverityBadgeProps> = ({
   severity,
   showLabel = true,
   size = 'medium',
 }) => {
-  const getSeverityConfig = (level: SeverityLevel) => {
-    switch (level) {
-      case 'minor':
-        return { label: 'Minor', className: 'severity-minor' };
-      case 'moderate':
-        return { label: 'Moderate', className: 'severity-moderate' };
-      case 'major':
-        return { label: 'Major', className: 'severity-major' };
-      case 'contraindicated':
-        return { label: 'Contraindicated', className: 'severity-contraindicated' };
-      default:
-        return { label: 'Unknown', className: 'severity-unknown' };
-    }
-  };
-
-  const config = getSeverityConfig(severity);
+  const config = SEVERITY_CONFIG[severity] || { label: 'Unknown', icon: 'ti-help', className: 'severity-unknown' };
 
   return (
     <span
       className={`severity-badge ${config.className} size-${size}`}
+      role="status"
+      aria-label={`Severity: ${config.label}`}
     >
+      <i className={`ti ${config.icon} me-1`} aria-hidden="true" />
       {showLabel && config.label}
     </span>
   );

@@ -127,25 +127,28 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
   }
 
   return (
-    <div className="clinical-alerts-widget d-flex flex-column h-100">
+    <div className="clinical-alerts-widget d-flex flex-column h-100" role="region" aria-label="Clinical Alerts">
       {/* Summary Stats Row - matches Patient Acuity pattern */}
-      <div className="row g-3 mb-4 flex-shrink-0">
+      <div className="row g-3 mb-4 flex-shrink-0" aria-live="polite" aria-atomic="true">
         <div className="col-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2' }}>
-            <h4 className="fw-bold mb-1 text-danger">{criticalCount}</h4>
-            <p className="mb-0 fs-12 text-muted">Critical</p>
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: 'var(--clinical-critical-bg, #FEF2F2)' }}>
+            <h4 className="fw-bold mb-1" style={{ color: 'var(--clinical-critical, #DC2626)' }}>{criticalCount}</h4>
+            <p className="mb-0 fs-12 text-muted"><i className="ti ti-urgent me-1" aria-hidden="true" /><span>Critical</span></p>
+            <span className="visually-hidden">{criticalCount} critical alerts</span>
           </div>
         </div>
         <div className="col-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FFFBEB' }}>
-            <h4 className="fw-bold mb-1 text-warning">{highCount}</h4>
-            <p className="mb-0 fs-12 text-muted">High Risk</p>
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: 'var(--clinical-caution-bg, #FEFCE8)' }}>
+            <h4 className="fw-bold mb-1" style={{ color: 'var(--clinical-urgent, #EA580C)' }}>{highCount}</h4>
+            <p className="mb-0 fs-12 text-muted"><i className="ti ti-alert-triangle me-1" aria-hidden="true" /><span>High Risk</span></p>
+            <span className="visually-hidden">{highCount} high risk alerts</span>
           </div>
         </div>
         <div className="col-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
+          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: 'var(--clinical-info-bg, #EFF6FF)' }}>
             <h4 className="fw-bold mb-1 text-primary">{totalActiveAlerts}</h4>
-            <p className="mb-0 fs-12 text-muted">Total Active</p>
+            <p className="mb-0 fs-12 text-muted"><i className="ti ti-activity me-1" aria-hidden="true" /><span>Total Active</span></p>
+            <span className="visually-hidden">{totalActiveAlerts} total active alerts</span>
           </div>
         </div>
       </div>
@@ -181,7 +184,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
         </div>
       ) : (
         /* Alert List - Scrollable, fills remaining space */
-        <div className="overflow-auto flex-grow-1" style={{ minHeight: 0 }}>
+        <div className="overflow-auto flex-grow-1" style={{ minHeight: 0 }} role="list" aria-live="assertive" aria-label="Clinical alert list">
           {filteredAlerts.map((alert, index) => {
             const config = RISK_CONFIG[alert.riskLevel];
             const trend = getTrend(alert.confidence);
@@ -190,8 +193,10 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
             return (
               <div
                 key={alert.id}
+                role="listitem"
+                aria-label={`${config.label} alert for ${alert.patientName}: ${alert.predictedEvent}`}
                 className={`p-3 rounded-2 ${index < filteredAlerts.length - 1 ? 'mb-2' : ''}`}
-                style={{ 
+                style={{
                   border: `1px solid ${config.color}30`,
                   backgroundColor: `${config.color}08`
                 }}
@@ -236,8 +241,9 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                   <span
                     className="badge me-2 px-2 py-1 fs-10 fw-medium"
                     style={{ backgroundColor: config.color, color: '#fff' }}
+                    role="status"
                   >
-                    <i className={`ti ${config.icon} me-1 fs-10`} />
+                    <i className={`ti ${config.icon} me-1 fs-10`} aria-hidden="true" />
                     {config.label}
                   </span>
                   <span className="fs-12 text-muted">
@@ -256,7 +262,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                   <button
                     className="btn btn-sm py-1 px-3 fs-12 btn-outline-primary alert-action-btn"
                     onClick={() => handleAcknowledge(alert)}
-                    aria-label="Acknowledge alert"
+                    aria-label={`Acknowledge ${config.label} alert for ${alert.patientName}`}
                     style={{
                       transition: 'all 0.2s ease',
                     }}
@@ -275,7 +281,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                   <button
                     className="btn btn-sm py-1 px-3 fs-12 btn-light alert-action-btn"
                     onClick={() => handleDismiss(alert.id)}
-                    aria-label="Dismiss alert"
+                    aria-label={`Dismiss alert for ${alert.patientName}`}
                     style={{
                       transition: 'all 0.2s ease',
                     }}

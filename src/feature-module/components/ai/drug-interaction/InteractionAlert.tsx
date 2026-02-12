@@ -12,10 +12,13 @@ interface InteractionAlertProps {
   onViewDetails?: () => void;
 }
 
-/**
- * Feature 10: Drug Interaction Alert
- * Displays an alert for detected drug interactions
- */
+const SEVERITY_CONFIG: Record<SeverityLevel, { icon: string; label: string; ariaLabel: string }> = {
+  minor: { icon: 'ti-info-circle', label: 'Minor', ariaLabel: 'Minor interaction' },
+  moderate: { icon: 'ti-alert-circle', label: 'Moderate', ariaLabel: 'Moderate interaction - use caution' },
+  major: { icon: 'ti-alert-triangle', label: 'Major', ariaLabel: 'Major interaction - clinical review required' },
+  contraindicated: { icon: 'ti-urgent', label: 'Contraindicated', ariaLabel: 'Contraindicated - do not combine' },
+};
+
 const InteractionAlert: React.FC<InteractionAlertProps> = ({
   drug1,
   drug2,
@@ -25,18 +28,31 @@ const InteractionAlert: React.FC<InteractionAlertProps> = ({
   onDismiss,
   onViewDetails,
 }) => {
-  // TODO: Implement interaction alert logic
+  const config = SEVERITY_CONFIG[severity];
+
   return (
-    <div className={`interaction-alert severity-${severity}`}>
+    <div
+      className={`interaction-alert severity-${severity}`}
+      role="alert"
+      aria-label={`${config.ariaLabel}: ${drug1} and ${drug2}`}
+    >
       <div className="alert-header">
-        <span className="alert-icon">⚠️</span>
+        <span className="alert-icon" aria-hidden="true">
+          <i className={`ti ${config.icon}`} />
+        </span>
         <h4>Drug Interaction Detected</h4>
+        <span
+          className={`severity-badge severity-${severity} size-small ms-auto`}
+          role="status"
+        >
+          <i className={`ti ${config.icon} me-1`} aria-hidden="true" />
+          {config.label}
+        </span>
       </div>
       <div className="alert-content">
         <p className="drug-pair">
           <strong>{drug1}</strong> + <strong>{drug2}</strong>
         </p>
-        <p className="severity-label">Severity: {severity}</p>
         {description && <p className="description">{description}</p>}
         {recommendation && (
           <p className="recommendation">
@@ -45,8 +61,22 @@ const InteractionAlert: React.FC<InteractionAlertProps> = ({
         )}
       </div>
       <div className="alert-actions">
-        <button onClick={onViewDetails}>View Details</button>
-        <button onClick={onDismiss}>Dismiss</button>
+        <button
+          onClick={onViewDetails}
+          className="btn btn-sm btn-outline-primary"
+          aria-label={`View details for ${drug1} and ${drug2} interaction`}
+        >
+          <i className="ti ti-eye me-1" aria-hidden="true" />
+          View Details
+        </button>
+        <button
+          onClick={onDismiss}
+          className="btn btn-sm btn-outline-secondary"
+          aria-label={`Dismiss ${config.label} interaction alert for ${drug1} and ${drug2}`}
+        >
+          <i className="ti ti-x me-1" aria-hidden="true" />
+          Dismiss
+        </button>
       </div>
     </div>
   );
