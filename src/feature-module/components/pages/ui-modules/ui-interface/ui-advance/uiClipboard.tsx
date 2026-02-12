@@ -158,7 +158,7 @@ const UiClipBoard: React.FC = () => {
                         type="button"
                         onClick={handleCopy}
                       >
-                        <i className="far fa-copy" /> Copy from Input
+                        <i className="ti ti-copy" /> Copy from Input
                       </button>
                       <Link
                         onClick={handleCut}
@@ -167,7 +167,7 @@ const UiClipBoard: React.FC = () => {
                         data-clipboard-action="cut"
                         data-clipboard-target="#input-copy"
                       >
-                        <i className="fas fa-cut" /> Cut from Input
+                        <i className="ti ti-cut" /> Cut from Input
                       </Link>
                     </form>
                   </div>
@@ -196,7 +196,7 @@ const UiClipBoard: React.FC = () => {
                         data-clipboard-target="#textarea-copy"
                         onClick={handleCopyTextArea}
                       >
-                        <i className="far fa-copy" /> Copy from Input
+                        <i className="ti ti-copy" /> Copy from Input
                       </Link>
                       <Link
                         className="mb-1 btn clip-btn btn-dark"
@@ -205,7 +205,7 @@ const UiClipBoard: React.FC = () => {
                         data-clipboard-target="#textarea-copy"
                         onClick={handleCutTextArea}
                       >
-                        <i className="fas fa-cut" /> Cut from Input
+                        <i className="ti ti-cut" /> Cut from Input
                       </Link>
                     </form>
                   </div>
@@ -237,7 +237,7 @@ const UiClipBoard: React.FC = () => {
                       data-clipboard-target="#paragraph-copy1"
                       onClick={handleCopyOTP}
                     >
-                      <i className="far fa-copy" /> Copy from Input
+                      <i className="ti ti-copy" /> Copy from Input
                     </Link>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ const UiClipBoard: React.FC = () => {
                       data-clipboard-target="#advanced-paragraph"
                       onClick={handleCopyLink}
                     >
-                      <i className="far fa-copy" /> Copy Link
+                      <i className="ti ti-copy" /> Copy Link
                     </Link>
                     <Link
                       className={`mb-1 btn clip-btn btn-warning ${
@@ -276,7 +276,7 @@ const UiClipBoard: React.FC = () => {
                       data-clipboard-text={2291}
                       onClick={handleCopyHiddenCode}
                     >
-                      <i className="far fa-copy" /> Copy Hidden Code
+                      <i className="ti ti-copy" /> Copy Hidden Code
                     </Link>
                   </div>
                 </div>
