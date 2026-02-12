@@ -52,6 +52,7 @@ export {
   InteractionAlert,
   MedicationReviewPanel,
   SeverityBadge,
+  DrugInteractionCheckerWidget,
 } from './drug-interaction';
 
 // Feature 11: AI-Enhanced Notification System

@@ -3,7 +3,7 @@ import ImageWithBasePath from "../../../../../core/imageWithBasePath";
 import Modals from "./modals/modals";
 import SCol20Chart from "./charts/scol20";
 import CircleChart2 from "./charts/circleChart2";
-import { ShiftHandoffWidget, ChatInboxWidget, AIDashboardSection, QuickStatsWidget } from "../../../ai";
+import { ShiftHandoffWidget, ChatInboxWidget, AIDashboardSection, DrugInteractionCheckerWidget } from "../../../ai";
 import PageHeader from "../../../../../core/common/page-header/PageHeader";
 
 const DoctorDahboard = () => {
@@ -48,7 +48,7 @@ const DoctorDahboard = () => {
           {/* AI Widgets Row - Quick Stats, Shift Handoff, and Message Inbox */}
           <div className="row mb-4 g-3 g-lg-4">
             <div className="col-12 col-md-6 col-lg-4 d-flex">
-              <QuickStatsWidget />
+              <DrugInteractionCheckerWidget />
             </div>
             <div className="col-12 col-md-6 col-lg-4 d-flex">
               <ShiftHandoffWidget />
