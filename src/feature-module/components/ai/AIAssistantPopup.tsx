@@ -45,7 +45,7 @@ const AIAssistantPopup: React.FC<AIAssistantPopupProps> = ({
       const welcomeMessage: AIMessage = {
         id: 'welcome',
         role: 'assistant',
-        content: `Hello ${userName}! I'm your AI Assistant for PreClinic. I can help you with scheduling appointments, navigating the platform, or performing quick actions. How can I assist you today?`,
+        content: `Hello ${userName}! I'm your AI Assistant for Symplify. I can help you with scheduling appointments, navigating the platform, or performing quick actions. How can I assist you today?`,
         timestamp: Date.now(),
         actions: [
           { id: 'w-1', label: 'Schedule Appointment', type: 'appointment', icon: 'ti-calendar-plus' },
@@ -302,7 +302,7 @@ const AIAssistantPopup: React.FC<AIAssistantPopupProps> = ({
             <div className="text-center mt-2">
               <small className="text-muted fs-10">
                 <i className="ti ti-sparkles me-1" />
-                Powered by PreClinic AI
+                Powered by Symplify AI
               </small>
             </div>
           </form>

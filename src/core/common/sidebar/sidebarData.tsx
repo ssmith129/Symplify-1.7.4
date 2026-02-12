@@ -1619,7 +1619,7 @@ export const SidebarData = [
       },
       {
         label: "Changelog",
-        link: "https://preclinic.dreamstechnologies.com/documentation/changelog.html",
+        link: "https://symplify.dreamstechnologies.com/documentation/changelog.html",
         submenu: false,
         showSubRoute: false,
         icon: "status-change",

@@ -17,10 +17,10 @@ const PrivacyPolicy = () => {
           <div className="card">
             <div className="card-body">
               <p>
-                At Preclinic, we value your privacy and are committed to
+                At Symplify, we value your privacy and are committed to
                 protecting your personal data. This Privacy Policy explains how
                 we collect, use, disclose, and safeguard your information when
-                you access and use our Preclinic Platform, including features
+                you access and use our Symplify Platform, including features
                 and content related to mental wellness, sleep patterns, dream
                 journaling, and early-stage healthcare services.
               </p>
@@ -150,7 +150,7 @@ const PrivacyPolicy = () => {
                 <p className="mb-0">
                   We may update this policy from time to time. The latest
                   version will always be available on the platform. Continued
-                  use of the Preclinic platform signifies your acceptance of any
+                  use of the Symplify platform signifies your acceptance of any
                   updates.
                 </p>
               </div>
@@ -165,7 +165,7 @@ const PrivacyPolicy = () => {
           <p className="text-dark mb-0">
             2025 ©{" "}
             <Link to="#" className="link-primary">
-              Preclinic
+              Symplify
             </Link>
             , All Rights Reserved
           </p>
