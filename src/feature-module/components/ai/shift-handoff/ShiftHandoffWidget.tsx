@@ -235,11 +235,12 @@ const ShiftHandoffWidget: React.FC = () => {
             <div className="ai-summary-preview mt-3 p-2 rounded-2" style={{ backgroundColor: '#F3E5F5' }}>
               <div className="d-flex align-items-start">
                 <i className="ti ti-sparkles text-purple me-2 mt-1 flex-shrink-0" style={{ color: '#7B1FA2' }} />
-                <p className="mb-0 fs-12 text-dark" style={{ 
+                <p className="mb-0 fs-12 text-dark" style={{
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  fontWeight: 500
                 }}>
                   {currentReport.summaryNarrative}
                 </p>
