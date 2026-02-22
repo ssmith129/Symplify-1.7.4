@@ -65,16 +65,16 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
   };
 
   const getShiftLabel = (type: string) => ({
-    day: '☀️ Day Shift (7AM - 3PM)',
-    evening: '🌅 Evening Shift (3PM - 11PM)',
-    night: '🌙 Night Shift (11PM - 7AM)'
+    day: 'Day Shift (7AM - 3PM)',
+    evening: 'Evening Shift (3PM - 11PM)',
+    night: 'Night Shift (11PM - 7AM)'
   }[type] || type);
 
   const getShiftIcon = (type: string) => ({
-    day: '☀️',
-    evening: '🌅',
-    night: '🌙'
-  }[type] || '📋');
+    day: 'ti-sun',
+    evening: 'ti-sunset-2',
+    night: 'ti-moon'
+  }[type] || 'ti-clipboard-list');
 
   if (isGenerating) {
     return (
@@ -94,7 +94,7 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
   if (error) {
     return (
       <div className="shift-handoff-error">
-        <div className="error-icon">⚠️</div>
+        <div className="error-icon"><i className="ti ti-alert-triangle"></i></div>
         <h3>Failed to Generate Handoff Report</h3>
         <p>{error}</p>
         <button 
@@ -131,14 +131,14 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
               className={`btn btn-audio ${audioPlaying ? 'playing' : ''}`}
               onClick={() => dispatch(toggleAudio())}
             >
-              {audioPlaying ? '⏸ Pause Audio' : '🔊 Play Summary'}
+              {audioPlaying ? <><i className="ti ti-player-pause"></i> Pause Audio</> : <><i className="ti ti-volume"></i> Play Summary</>}
             </button>
             <button 
               className={`btn btn-acknowledge ${isAcknowledged ? 'acknowledged' : ''}`}
               onClick={handleAcknowledge}
               disabled={isAcknowledged}
             >
-              {isAcknowledged ? '✓ Acknowledged' : 'Acknowledge Handoff'}
+              {isAcknowledged ? <><i className="ti ti-check"></i> Acknowledged</> : 'Acknowledge Handoff'}
             </button>
           </div>
         </div>
@@ -146,13 +146,13 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
         {/* Nurse Transfer Info */}
         <div className="nurse-transfer">
           <div className="nurse-card outgoing">
-            <span className="nurse-icon">👤</span>
+            <i className="ti ti-user nurse-icon"></i>
             <span className="nurse-label">Outgoing:</span>
             <span className="nurse-name">{currentReport.outgoingNurse.name}</span>
           </div>
           <div className="transfer-arrow">→</div>
           <div className="nurse-card incoming">
-            <span className="nurse-icon">👤</span>
+            <i className="ti ti-user nurse-icon"></i>
             <span className="nurse-label">Incoming:</span>
             <span className="nurse-name">{currentReport.incomingNurse.name}</span>
           </div>
@@ -186,7 +186,7 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
       {/* AI Summary Narrative */}
       <div className="ai-summary-card">
         <div className="summary-header">
-          <span className="ai-badge">🤖 AI Summary</span>
+          <span className="ai-badge"><i className="ti ti-robot"></i> AI Summary</span>
           <span className="generated-time">
             Generated at {new Date(currentReport.generatedAt).toLocaleTimeString()}
           </span>
@@ -206,7 +206,7 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
           className={`tab-btn priority ${activeTab === 'priority' ? 'active' : ''}`}
           onClick={() => setActiveTab('priority')}
         >
-          ⚠️ Critical & High Priority ({priorityPatients.length})
+          <i className="ti ti-alert-triangle"></i> Critical & High Priority ({priorityPatients.length})
         </button>
       </div>
 

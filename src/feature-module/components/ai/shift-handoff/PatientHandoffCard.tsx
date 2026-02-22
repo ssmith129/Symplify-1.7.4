@@ -60,7 +60,7 @@ export const PatientHandoffCard: React.FC<PatientHandoffCardProps> = ({
 
       {/* Primary Diagnosis */}
       <div className="diagnosis-row">
-        <span className="diagnosis-icon">🏥</span>
+        <i className="ti ti-building-hospital diagnosis-icon"></i>
         <span className="diagnosis-text">{patient.primaryDiagnosis}</span>
       </div>
 
@@ -97,11 +97,11 @@ export const PatientHandoffCard: React.FC<PatientHandoffCardProps> = ({
       {/* Pending Tasks & Medications Count */}
       <div className="quick-stats">
         <div className="stat-item">
-          <span className="stat-icon">📋</span>
+          <i className="ti ti-clipboard-list stat-icon"></i>
           <span>{patient.pendingTasks.length} pending task(s)</span>
         </div>
         <div className="stat-item">
-          <span className="stat-icon">💊</span>
+          <i className="ti ti-pill stat-icon"></i>
           <span>{patient.medications.length} medications</span>
         </div>
       </div>
@@ -109,13 +109,13 @@ export const PatientHandoffCard: React.FC<PatientHandoffCardProps> = ({
       {/* Critical/Warning Events Alert */}
       {criticalEvents.length > 0 && (
         <div className="alert-banner critical">
-          <span className="alert-icon">🚨</span>
+          <i className="ti ti-alert-octagon alert-icon"></i>
           <span className="alert-text">{criticalEvents[0].event}</span>
         </div>
       )}
       {criticalEvents.length === 0 && warningEvents.length > 0 && (
         <div className="alert-banner warning">
-          <span className="alert-icon">⚠️</span>
+          <i className="ti ti-alert-triangle alert-icon"></i>
           <span className="alert-text">{warningEvents[0].event}</span>
         </div>
       )}
@@ -140,7 +140,7 @@ export const PatientHandoffCard: React.FC<PatientHandoffCardProps> = ({
           <ul className="pending-tasks-list">
             {patient.pendingTasks.map((task, idx) => (
               <li key={idx} className="task-item">
-                <span className="task-checkbox">☐</span>
+                <i className="ti ti-square task-checkbox"></i>
                 <span className="task-text">{task}</span>
               </li>
             ))}

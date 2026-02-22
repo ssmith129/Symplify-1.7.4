@@ -58,9 +58,9 @@ export const HandoffTimeline: React.FC<HandoffTimelineProps> = ({
 
   const getSeverityIcon = (severity: string) => {
     switch (severity) {
-      case 'critical': return '🚨';
-      case 'warning': return '⚠️';
-      default: return '📝';
+      case 'critical': return 'ti-alert-octagon';
+      case 'warning': return 'ti-alert-triangle';
+      default: return 'ti-notes';
     }
   };
 
@@ -101,7 +101,7 @@ export const HandoffTimeline: React.FC<HandoffTimelineProps> = ({
       <div className="timeline-container">
         {aggregatedEvents.length === 0 ? (
           <div className="no-events">
-            <span className="no-events-icon">📋</span>
+            <i className="ti ti-clipboard-list no-events-icon"></i>
             <p>No events recorded for this shift.</p>
           </div>
         ) : (
@@ -124,7 +124,7 @@ export const HandoffTimeline: React.FC<HandoffTimelineProps> = ({
                     style={{ borderLeftColor: getSeverityColor(event.severity) }}
                   >
                     <div className="event-header">
-                      <span className="event-icon">{getSeverityIcon(event.severity)}</span>
+                      <i className={`ti ${getSeverityIcon(event.severity)} event-icon`}></i>
                       <span className="event-patient">
                         {event.patientName} (Room {event.room})
                       </span>

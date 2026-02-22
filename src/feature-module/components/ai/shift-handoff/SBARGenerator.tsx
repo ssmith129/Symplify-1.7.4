@@ -12,28 +12,28 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
     { 
       key: 'situation', 
       title: 'Situation', 
-      icon: '🚨',
+      icon: 'ti-alert-octagon',
       content: patient.sbar.situation,
       color: '#F44336'
     },
     { 
       key: 'background', 
       title: 'Background', 
-      icon: '📋',
+      icon: 'ti-clipboard-list',
       content: patient.sbar.background,
       color: '#2196F3'
     },
     { 
       key: 'assessment', 
       title: 'Assessment', 
-      icon: '🔍',
+      icon: 'ti-search',
       content: patient.sbar.assessment,
       color: '#FF9800'
     },
     { 
       key: 'recommendation', 
       title: 'Recommendation', 
-      icon: '💡',
+      icon: 'ti-bulb',
       content: patient.sbar.recommendation,
       color: '#4CAF50'
     }
@@ -74,31 +74,31 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
           className={`sbar-tab ${activeTab === 'sbar' ? 'active' : ''}`}
           onClick={() => setActiveTab('sbar')}
         >
-          📝 SBAR Report
+          <i className="ti ti-notes"></i> SBAR Report
         </button>
         <button 
           className={`sbar-tab ${activeTab === 'vitals' ? 'active' : ''}`}
           onClick={() => setActiveTab('vitals')}
         >
-          💓 Vitals Trend
+          <i className="ti ti-heartbeat"></i> Vitals Trend
         </button>
         <button 
           className={`sbar-tab ${activeTab === 'meds' ? 'active' : ''}`}
           onClick={() => setActiveTab('meds')}
         >
-          💊 Medications
+          <i className="ti ti-pill"></i> Medications
         </button>
         <button 
           className={`sbar-tab ${activeTab === 'tasks' ? 'active' : ''}`}
           onClick={() => setActiveTab('tasks')}
         >
-          ✓ Pending Tasks
+          <i className="ti ti-check"></i> Pending Tasks
         </button>
         <button 
           className={`sbar-tab ${activeTab === 'events' ? 'active' : ''}`}
           onClick={() => setActiveTab('events')}
         >
-          📅 Events
+          <i className="ti ti-calendar-event"></i> Events
         </button>
       </div>
 
@@ -114,7 +114,7 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
                 style={{ borderLeftColor: section.color }}
               >
                 <div className="section-header">
-                  <span className="section-icon">{section.icon}</span>
+                  <i className={`ti ${section.icon} section-icon`}></i>
                   <h4 className="section-title" style={{ color: section.color }}>
                     {section.title}
                   </h4>
@@ -183,7 +183,7 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
             <div className="medications-list">
               {patient.medications.map((med, idx) => (
                 <div key={idx} className="medication-item">
-                  <div className="med-icon">💊</div>
+                  <div className="med-icon"><i className="ti ti-pill"></i></div>
                   <div className="med-details">
                     <div className="med-name">{med.name}</div>
                     <div className="med-info">
@@ -192,7 +192,7 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
                     </div>
                     {med.notes && (
                       <div className="med-notes">
-                        <span className="notes-icon">⚠️</span>
+                        <i className="ti ti-alert-triangle notes-icon"></i>
                         {med.notes}
                       </div>
                     )}
@@ -210,14 +210,14 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
             <div className="tasks-list">
               {patient.pendingTasks.map((task, idx) => (
                 <div key={idx} className="task-item">
-                  <span className="task-checkbox">☐</span>
+                  <i className="ti ti-square task-checkbox"></i>
                   <span className="task-text">{task}</span>
                 </div>
               ))}
             </div>
             {patient.pendingTasks.length === 0 && (
               <div className="no-tasks">
-                <span className="check-icon">✓</span>
+                <i className="ti ti-check check-icon"></i>
                 <span>All tasks completed for this patient</span>
               </div>
             )}
@@ -256,7 +256,7 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
 
       {/* AI Confidence Indicator */}
       <div className="ai-confidence">
-        <span className="confidence-label">🤖 AI Confidence:</span>
+        <span className="confidence-label"><i className="ti ti-robot"></i> AI Confidence:</span>
         <div className="confidence-bar">
           <div className="confidence-fill" style={{ width: '92%' }}></div>
         </div>
