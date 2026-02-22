@@ -157,7 +157,7 @@ const Header = () => {
             {/* AI Assistance - Icon only on tablet/mobile */}
             <button
               onClick={() => setIsAIAssistantOpen(true)}
-              className="btn btn-liner-gradient btn-icon me-2 d-flex d-lg-none"
+              className="btn btn-liner-gradient btn-icon rounded-circle me-2 d-flex d-lg-none"
               aria-label="Open AI Assistant"
             >
               <i className="ti ti-chart-bubble-filled" />
