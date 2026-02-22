@@ -173,7 +173,7 @@ const generateSummaryNarrative = (patients: PatientHandoff[]): string => {
   let narrative = `This shift report covers ${patients.length} patients on the Medical-Surgical unit. `;
   
   if (critical > 0) {
-    narrative += `⚠️ ${critical} patient(s) require immediate attention and close monitoring. `;
+    narrative += `${critical} patient(s) require immediate attention and close monitoring. `;
   }
   
   if (high > 0) {
