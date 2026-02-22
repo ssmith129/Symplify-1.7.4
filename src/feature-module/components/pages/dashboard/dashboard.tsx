@@ -5,10 +5,33 @@ import SCol19Chart from "./chats/scol19";
 import CircleChart from "./chats/circleChart";
 import { Calendar, type CalendarProps } from "antd";
 import type { Dayjs } from "dayjs";
-import { AIDashboardSection, ShiftHandoffWidget, ChatInboxWidget, QuickStatsWidget } from "../../ai";
+import { SmartWidget, ShiftHandoffWidget, ChatInboxWidget, QuickStatsWidget } from "../../ai";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../../../../core/redux/store";
+import { loadPersonalizedLayout, recordInteraction, fetchClinicalAlerts } from "../../../../core/redux/aiSlice";
 import PageHeader from "../../../../core/common/page-header/PageHeader";
 
 const Dashboard = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { personalizedLayout } = useSelector((state: RootState) => state.ai.dashboard);
+
+  useEffect(() => {
+    dispatch(loadPersonalizedLayout({ userId: 'admin-1', role: 'admin' }));
+    dispatch(fetchClinicalAlerts());
+  }, [dispatch]);
+
+  const handleWidgetInteraction = (widgetId: string, action: string) => {
+    dispatch(recordInteraction({
+      userId: 'admin-1',
+      widgetId,
+      action: action as 'view' | 'click' | 'expand' | 'collapse' | 'dismiss',
+      timestamp: Date.now()
+    }));
+  };
+
+  const suggestedWidgetIds = personalizedLayout?.aiSuggestions.map(s => s.widgetId) || [];
+
   const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>["mode"]) => {
     console.log(value.format("YYYY-MM-DD"), mode);
   };
@@ -44,18 +67,39 @@ const Dashboard = () => {
           />
           {/* End Page Header */}
 
-          {/* AI-Powered Insights Section */}
-          <AIDashboardSection userRole="admin" userId="admin-1" />
-
-          {/* AI Widgets Row - Quick Stats, Shift Handoff, and Message Inbox */}
-          <div className="row mb-4 g-3 g-lg-4">
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
+          {/* AI Dashboard Cards - Unified 2x3 Grid */}
+          <div className="ai-dashboard-grid row mb-4 g-3 g-lg-4">
+            {/* Row 1: Critical priority cards */}
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-acuity">
+              <SmartWidget
+                widgetId="patientAcuity"
+                onInteraction={handleWidgetInteraction}
+                aiRecommended={suggestedWidgetIds.includes('patientAcuity')}
+              />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-alerts">
+              <SmartWidget
+                widgetId="clinicalAlerts"
+                onInteraction={handleWidgetInteraction}
+                aiRecommended={suggestedWidgetIds.includes('clinicalAlerts')}
+              />
+            </div>
+            {/* Row 2: Insights + Stats */}
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-insights">
+              <SmartWidget
+                widgetId="aiInsights"
+                onInteraction={handleWidgetInteraction}
+                aiRecommended={suggestedWidgetIds.includes('aiInsights')}
+              />
+            </div>
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-stats">
               <QuickStatsWidget />
             </div>
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
+            {/* Row 3: Operational cards */}
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-handoff">
               <ShiftHandoffWidget />
             </div>
-            <div className="col-12 col-md-6 col-lg-4 d-flex">
+            <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-inbox">
               <ChatInboxWidget maxChats={5} />
             </div>
           </div>

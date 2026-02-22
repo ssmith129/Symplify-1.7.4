@@ -289,6 +289,52 @@
   }
 }
 
+// Tablet Portrait: AI Dashboard 2-column grid layout
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .ai-dashboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    // All cards: 2-column, equal width
+    .ai-grid-item {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    // Row 1 - Critical priority (top)
+    .ai-grid-acuity { order: 1; }
+    .ai-grid-alerts { order: 2; }
+
+    // Row 2 - Insights + Stats
+    .ai-grid-insights { order: 3; }
+    .ai-grid-stats { order: 4; }
+
+    // Row 3 - Operational
+    .ai-grid-handoff { order: 5; }
+    .ai-grid-inbox { order: 6; }
+
+    // Compact card sizing for tablet portrait
+    .card {
+      .card-header {
+        padding: 0.75rem 1rem;
+
+        h5 {
+          font-size: 0.9375rem;
+        }
+      }
+
+      .card-body {
+        padding: 0.75rem;
+      }
+    }
+
+    // Constrain tall content to keep cards balanced
+    .overflow-auto {
+      max-height: 360px;
+    }
+  }
+}
+
 // Tablet breakpoint (769px - 1024px)
 @media (min-width: 769px) and (max-width: 1024px) {
   .smart-widget-card {
