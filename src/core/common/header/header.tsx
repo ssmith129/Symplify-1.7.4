@@ -154,14 +154,6 @@ const Header = () => {
               AI Assistance
               <i className="ti ti-chart-bubble-filled ms-1" />
             </button>
-            {/* AI Assistance - Icon only on tablet/mobile */}
-            <button
-              onClick={() => setIsAIAssistantOpen(true)}
-              className="btn btn-liner-gradient btn-icon rounded-circle me-2 d-flex d-lg-none"
-              aria-label="Open AI Assistant"
-            >
-              <i className="ti ti-chart-bubble-filled" />
-            </button>
             {/* Appointment */}
             <div className="header-item">
               <div className="dropdown me-2">
@@ -281,6 +273,23 @@ const Header = () => {
         </div>
       </header>
       {/* Topbar End */}
+      {/* AI Assistance - Floating icon on tablet/mobile */}
+      <button
+        onClick={() => setIsAIAssistantOpen(true)}
+        className="btn btn-liner-gradient btn-icon rounded-circle d-flex d-lg-none ai-float-btn"
+        aria-label="Open AI Assistant"
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 1050,
+          width: '48px',
+          height: '48px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
+        }}
+      >
+        <i className="ti ti-chart-bubble-filled fs-20" />
+      </button>
       {/* AI Assistant Popup */}
       <AIAssistantPopup
         isOpen={isAIAssistantOpen}
