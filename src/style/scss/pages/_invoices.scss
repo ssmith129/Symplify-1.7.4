@@ -110,6 +110,10 @@
       background: linear-gradient(320deg, #7539FF 0%,  #7539FF 100%);
       padding:14px 20px 15px;
       min-width: 300px;
+      @include respond-below(sm) {
+        min-width: 0;
+        width: 100%;
+      }
   }
   .inv-date-rest{
       font-size:18px;
@@ -117,6 +121,10 @@
       background: linear-gradient(320deg, #141414 0%,  #141414 100%);
       padding:14px 20px 15px;
       min-width: 300px;
+      @include respond-below(sm) {
+        min-width: 0;
+        width: 100%;
+      }
   }
   .invoice-template {
       background: #F8F9FA;
@@ -223,6 +231,11 @@
       background: linear-gradient(320deg, #DBECFF 0%,  #DDCEFF 100%);
       padding:14px 20px 15px 87px;
       min-width: 300px;
+      @include respond-below(sm) {
+        min-width: 0;
+        width: 100%;
+        padding-left: 20px;
+      }
   }
   .triangle-left{
       width: 56px;

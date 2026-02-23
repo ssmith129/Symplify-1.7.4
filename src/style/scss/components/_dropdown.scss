@@ -79,6 +79,13 @@ $dropdown-menu-md-width: 250px;
         width: $dropdown-menu-xl-width;
     }
 }
+@include respond-below(md) {
+    .dropdown-menu-xxl,
+    .dropdown-menu-xl {
+        width: calc(100vw - 24px);
+        max-width: 100%;
+    }
+}
 @include respond-above(sm) {
     .dropdown-menu-lg {
         width: $dropdown-menu-lg-width;

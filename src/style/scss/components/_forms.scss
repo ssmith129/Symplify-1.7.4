@@ -687,8 +687,8 @@ select.form-control-sm {
     }
   }
   .form-wizard-header {
-    margin-left: calc(20px * -1);
-    margin-right: calc(20px * -1);
+    margin-left: calc(var(--spacing-card, 20px) * -1);
+    margin-right: calc(var(--spacing-card, 20px) * -1);
     background-color: $light;
 }
 

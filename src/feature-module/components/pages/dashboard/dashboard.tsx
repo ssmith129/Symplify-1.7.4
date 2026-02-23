@@ -141,7 +141,7 @@ const Dashboard = () => {
                 </div>
                 <div className="card-body pb-0">
                   <div className="row row-gap-3 mb-2">
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-6">
                       <div className="bg-light border p-2 text-center rounded-2">
                         <p className="mb-1 text-truncate">
                           <i className="ti ti-point-filled me-1 text-primary" />
@@ -150,7 +150,7 @@ const Dashboard = () => {
                         <h5 className="fw-bold mb-0">6314</h5>
                       </div>
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-6">
                       <div className="bg-light border p-2 text-center rounded-2">
                         <p className="mb-1">
                           <i className="ti ti-point-filled me-1 text-danger" />
@@ -159,7 +159,7 @@ const Dashboard = () => {
                         <h5 className="fw-bold mb-0">456</h5>
                       </div>
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-6">
                       <div className="bg-light border p-2 text-center rounded-2">
                         <p className="mb-1">
                           <i className="ti ti-point-filled me-1 text-warning" />
@@ -168,7 +168,7 @@ const Dashboard = () => {
                         <h5 className="fw-bold mb-0">745</h5>
                       </div>
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-6">
                       <div className="bg-light border p-2 text-center rounded-2">
                         <p className="mb-1">
                           <i className="ti ti-point-filled me-1 text-success" />

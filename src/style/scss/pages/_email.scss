@@ -37,6 +37,10 @@
         display: none;
       }
     }
+    @include respond-between(md, lg) {
+      width: 45%;
+      max-width: none;
+    }
     @include respond-below(md) {
       width: 100%;
       max-width: 100%;
@@ -60,10 +64,17 @@
 }
 .project-status {
     min-width: 265px;
+    @include respond-below(sm) {
+      min-width: 0;
+      width: 100%;
+    }
 }
 .kanban-drag-wrap, .kanban-drag {
     min-width: 220px;
     min-height: 50px;
+    @include respond-below(sm) {
+      min-width: 180px;
+    }
 }
 .files-list {
     a.active {
@@ -203,9 +214,4 @@
     &.drag-file {
       height: 120px;
     }
-}  
-  
-
-
-
-  
+}

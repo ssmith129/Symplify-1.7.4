@@ -5,6 +5,10 @@
     .timer-cover {
         min-width: 90px;
         height: 90px;
+        @media (max-width: 400px) {
+          min-width: 70px;
+          height: 70px;
+        }
     }
     .media-btn {
         a {

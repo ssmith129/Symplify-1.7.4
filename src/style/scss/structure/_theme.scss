@@ -61,6 +61,9 @@
     z-index: 99999;
     overflow: auto;
     max-width: 100%;
+    @include respond-below(sm) {
+      width: 100vw !important;
+    }
     &.open {
         right: 0; 
     }
@@ -166,6 +169,9 @@
 }
 .sidebar-themesettings.offcanvas.offcanvas-end {
     width: 400px !important;
+    @include respond-below(sm) {
+      width: 100vw !important;
+    }
 } 
 .theme-colorsset{
     line-height: 0;

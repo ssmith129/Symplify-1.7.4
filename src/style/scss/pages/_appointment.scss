@@ -1,8 +1,13 @@
 @use "../variables" as *;
 
+@use "../utils/mixins" as *;
+
 .input-icon-start .bookingrange{
     width: 220px;
     font-size: 14px;
+    @include respond-below(sm) {
+      width: 100%;
+    }
 }
 
 ul{
