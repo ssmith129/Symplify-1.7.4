@@ -137,6 +137,33 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
+
+  /* Responsive Design Tokens */
+  --spacing-page: 20px;
+  --spacing-card: 20px;
+  --spacing-card-header: 0.9375rem 1.25rem;
+  --touch-target: 32px;
+  --font-size-base: 0.875rem;
+  --chart-min-height: 300px;
+}
+@media (max-width: 767.98px) {
+  :root {
+    --spacing-page: 12px;
+    --spacing-card: 12px;
+    --spacing-card-header: 0.625rem 0.75rem;
+    --touch-target: 44px;
+    --font-size-base: 0.875rem;
+    --chart-min-height: 200px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  :root {
+    --spacing-page: 16px;
+    --spacing-card: 16px;
+    --spacing-card-header: 0.75rem 1rem;
+    --touch-target: 44px;
+    --chart-min-height: 250px;
+  }
 }
 :root[data-bs-theme=dark] {
   --menu-bg: #03041A;

@@ -29,7 +29,22 @@ $breakpoints: (
     @warn 'Invalid breakpoint: #{$breakpoint}.';
   }
 }
-// Respond Above
+// Respond Between (for targeting specific ranges like tablet only)
+@mixin respond-between($lower, $upper) {
+  @if map.has-key($breakpoints, $lower) and map.has-key($breakpoints, $upper) {
+    $min: map.get($breakpoints, $lower);
+    $max: map.get($breakpoints, $upper) - 0.02px;
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoints: #{$lower} or #{$upper}.';
+  }
+}
+
+// Respond Below (desktop-first: max-width queries)
+// NOTE: For new components, prefer respond-above (mobile-first) pattern.
+// Use respond-below only when modifying existing desktop-first styles.
 @mixin respond-below($breakpoint) {
   // If the breakpoint exists in the map.
   @if map.has-key($breakpoints, $breakpoint) {

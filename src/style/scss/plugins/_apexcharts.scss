@@ -7,6 +7,8 @@
 
 .apex-charts {
     min-height: 10px !important;
+    max-width: 100%;
+    overflow: hidden;
 
     text {
         font-family: $font-family-base  !important;
@@ -14,6 +16,29 @@
 
     .apexcharts-canvas {
         margin: 0 auto;
+        max-width: 100%;
+
+        svg {
+            max-width: 100%;
+        }
+    }
+
+    @include respond-below(md) {
+        min-height: var(--chart-min-height, 200px) !important;
+
+        .apexcharts-legend {
+            position: relative !important;
+            bottom: auto !important;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    @include respond-below(sm) {
+        .apexcharts-xaxis-label,
+        .apexcharts-yaxis-label {
+            font-size: 10px !important;
+        }
     }
 }
 
