@@ -16,5 +16,31 @@
         max-width: 1600px;
         margin-left: auto;
         margin-right: auto;
+        @include respond-below(md) {
+            padding: 16px 12px;
+        }
+        @include respond-below(sm) {
+            padding: 12px 8px;
+        }
+
+        // C-02: Global safety net for tables without table-responsive wrapper
+        @include respond-below(md) {
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+// C-02: Ensure table-nowrap doesn't force overflow on small screens
+.table-nowrap {
+    @include respond-below(sm) {
+        th, td {
+            white-space: normal;
+            min-width: 100px;
+        }
     }
 }

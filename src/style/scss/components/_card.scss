@@ -23,13 +23,25 @@
         font-size: 16px;
     }
     .card-header {
-        padding: 0.9375rem 1.25rem; 
+        padding: 0.9375rem 1.25rem;
         margin-bottom: 0;
         border-color: $border-color;
         background: transparent;
+        @include respond-below(md) {
+            padding: 0.75rem 1rem;
+        }
+        @include respond-below(sm) {
+            padding: 0.625rem 0.75rem;
+        }
     }
     .card-body {
         padding: 20px;
+        @include respond-below(md) {
+            padding: 16px 12px;
+        }
+        @include respond-below(sm) {
+            padding: 12px 8px;
+        }
     }
     .card-footer {
         padding: 0.75rem 1.25rem;

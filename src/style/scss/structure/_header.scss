@@ -157,6 +157,12 @@ html[data-bs-theme="dark"] {
     .input-group-sm > .btn {
         padding: 0.3rem 0.5rem;
     }
+    @include respond-below(md) {
+        .form-control {
+            height: 44px;
+            font-size: 16px; // Prevents iOS zoom
+        }
+    }
 }
 
 

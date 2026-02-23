@@ -107,12 +107,21 @@ h5,
     font-size: 18px;
     font-weight: $font-weight-medium;
     color: $heading-color;
+    @include respond-below(lg) {
+        font-size: 17px;
+    }
+    @include respond-below(md) {
+        font-size: 16px;
+    }
 }
 h6,
 .h6 {
     font-size: 16px;
     font-weight: $font-weight-medium;
     color: $heading-color;
+    @include respond-below(md) {
+        font-size: 15px;
+    }
 }
 .display-1 {
     font-size: 5rem;

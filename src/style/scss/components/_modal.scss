@@ -75,6 +75,9 @@
 .modal-body {
     padding: 20px;
     background-color: transparent;
+    @include respond-below(sm) {
+        padding: 12px;
+    }
 }
 .modal-footer>* {
     margin-top: 0;
@@ -84,6 +87,18 @@
     padding: 16px 20px;
     background-color: transparent;
     border-color: var(--border-color);
+    @include respond-below(sm) {
+        padding: 12px;
+    }
+}
+// Mobile modal: maximize content area
+@include respond-below(sm) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    .modal-header {
+        padding: 12px;
+    }
 }
 .offcanvas {
     background-color: var(--white);

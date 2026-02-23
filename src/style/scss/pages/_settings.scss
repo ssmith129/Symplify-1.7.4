@@ -80,6 +80,14 @@
 
 .dropdown-lg {
   min-width: 400px !important;
+  max-width: 100vw;
+  @include respond-below(md) {
+    min-width: auto !important;
+    width: calc(100vw - 24px);
+    max-width: 400px;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
 }
   /* /Filter */
 
@@ -105,7 +113,20 @@
             margin-right: 15px;
         }
         @include respond-below(lg) {
-            display: none;
+            position: fixed;
+            left: -280px;
+            top: 0;
+            bottom: 0;
+            width: 280px;
+            z-index: 1050;
+            background: var(--white, #fff);
+            transition: left 0.3s ease;
+            display: block;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+            overflow-y: auto;
+            &.active {
+                left: 0;
+            }
         }
         .slimScrollDiv {
             background-color: transparent;

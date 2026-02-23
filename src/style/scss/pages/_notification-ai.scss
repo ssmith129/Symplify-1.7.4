@@ -583,8 +583,13 @@ $criticality-info: #3B82F6;
 // Responsive adjustments
 @media (max-width: 768px) {
   .notification-dropdown-ai {
-    width: 100%;
-    max-width: 360px;
+    width: calc(100vw - 16px);
+    max-width: 400px;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    top: 60px;
+    max-height: calc(100vh - 80px);
   }
 
   .notification-page-ai {

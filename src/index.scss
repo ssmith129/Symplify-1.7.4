@@ -105,7 +105,8 @@
   font-family: var(--pr-body-font-family) !important;
 }
 .ant-input {
-  width: 220px;
+  width: 100%;
+  max-width: 220px;
   font-size: 14px;
   padding-left: 32px;
   font-family: var(--pr-body-font-family) !important;
@@ -134,7 +135,8 @@
   font-family: var(--pr-body-font-family) !important;
 }
 .ant-select-single {
-  width: 60px !important;
+  width: auto !important;
+  min-width: 60px;
 }
 .ant-table-wrapper .ant-table-pagination > * {
   background: #fff;

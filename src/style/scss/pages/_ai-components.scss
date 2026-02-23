@@ -289,6 +289,26 @@
   }
 }
 
+// Tablet Landscape: AI Dashboard 2-column grid layout
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .ai-dashboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    .ai-grid-item {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .ai-grid-acuity { order: 1; }
+    .ai-grid-alerts { order: 2; }
+    .ai-grid-insights { order: 3; }
+    .ai-grid-stats { order: 4; }
+    .ai-grid-handoff { order: 5; }
+    .ai-grid-inbox { order: 6; }
+  }
+}
+
 // Tablet Portrait: AI Dashboard 2-column grid layout
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
   .ai-dashboard-grid {

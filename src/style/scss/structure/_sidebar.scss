@@ -16,8 +16,10 @@
     width: 276px;
     border-right: 1px solid $menu-item-border;
      @include respond-below(lg) {
-        margin-left: -575px;
-        transition: all 0.4s ease;
+        margin-left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
         z-index: 9999;
         top: 0;
     }
@@ -767,6 +769,9 @@
 .slide-nav{
     .sidebar {
         margin-left: 0;
+        @include respond-below(lg) {
+            transform: translateX(0);
+        }
     }
 }
 .mini-sidebar {

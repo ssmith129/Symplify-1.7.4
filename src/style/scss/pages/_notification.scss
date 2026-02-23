@@ -68,11 +68,21 @@
 			transition: all .2s ease;
 			font-weight: $font-weight-semibold;
 		}
+		// Show action buttons on touch devices (no hover available)
+		@media (hover: none) {
+			.btn {
+				display: inline-flex;
+			}
+		}
 	}
 	.btn-danger {
 		top: 16%;
 		right: 12%;
 		opacity: 0;
+		// Always visible on touch devices
+		@media (hover: none) {
+			opacity: 1;
+		}
 		&:hover {
 			background-color: $primary;
 			transition: 0.5s all;
