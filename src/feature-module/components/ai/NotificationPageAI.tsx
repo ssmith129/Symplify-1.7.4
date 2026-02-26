@@ -121,29 +121,9 @@ export const NotificationPageAI: React.FC = () => {
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div />
-          <div className="d-flex gap-3 align-items-center">
-            <div className="btn-group" role="group">
-              <button 
-                type="button" 
-                className={`btn ${viewMode === 'grouped' ? 'btn-primary' : 'btn-outline-primary'}`}
-                onClick={() => setViewMode('grouped')}
-              >
-                <i className="ti ti-layout-grid me-1" />
-                Grouped
-              </button>
-              <button 
-                type="button" 
-                className={`btn ${viewMode === 'timeline' ? 'btn-primary' : 'btn-outline-primary'}`}
-                onClick={() => setViewMode('timeline')}
-              >
-                <i className="ti ti-timeline me-1" />
-                Timeline
-              </button>
-            </div>
-            <button className="btn btn-outline-secondary btn-icon-touch" title="Mark All Read" onClick={() => handleMarkAllRead()}>
-              <i className="ti ti-checks" />
-            </button>
-          </div>
+          <button className="btn btn-outline-secondary btn-icon-touch" title="Mark All Read" onClick={() => handleMarkAllRead()}>
+            <i className="ti ti-checks" />
+          </button>
         </div>
 
         {/* Statistics Cards */}
