@@ -134,12 +134,13 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               <i className="ti ti-check" />
             </button>
             {notification.relatedPatientId && (
-              <Link 
+              <Link
                 to={`/patients`}
                 onClick={(e) => e.stopPropagation()}
-                className="btn btn-outline-secondary btn-sm"
+                className="btn btn-outline-secondary btn-sm btn-icon-touch"
+                title="View Patient"
               >
-                View Patient
+                <i className="ti ti-eye" />
               </Link>
             )}
           </div>
