@@ -44,7 +44,7 @@ $criticality-info: #3B82F6;
 // Notification dropdown container
 .notification-dropdown-ai {
   width: 400px;
-  max-height: 520px;
+  max-height: 650px;
   background: var(--bs-body-bg);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
@@ -74,7 +74,7 @@ $criticality-info: #3B82F6;
   }
 
   .notification-list {
-    max-height: 380px;
+    max-height: 475px;
     overflow-y: auto;
     
     &::-webkit-scrollbar {
