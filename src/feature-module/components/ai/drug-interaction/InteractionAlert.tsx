@@ -74,8 +74,7 @@ const InteractionAlert: React.FC<InteractionAlertProps> = ({
           className="btn btn-sm btn-outline-secondary"
           aria-label={`Dismiss ${config.label} interaction alert for ${drug1} and ${drug2}`}
         >
-          <i className="ti ti-x me-1" aria-hidden="true" />
-          Dismiss
+          <i className="ti ti-x" aria-hidden="true" />
         </button>
       </div>
     </div>

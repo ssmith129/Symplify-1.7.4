@@ -296,7 +296,6 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                     }}
                   >
                     <i className="ti ti-x fs-14" />
-                    Dismiss
                   </button>
                 </div>
               </div>

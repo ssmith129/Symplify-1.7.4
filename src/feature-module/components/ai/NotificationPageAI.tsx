@@ -240,6 +240,8 @@ export const NotificationPageAI: React.FC = () => {
                                 const iconMap: Record<string, string> = {
                                   'respond-now': 'ti-send',
                                   'acknowledge': 'ti-check',
+                                  'dismiss': 'ti-x',
+                                  'review': 'ti-eye',
                                 };
                                 const icon = iconMap[action.id] || 'ti-click';
                                 return (
