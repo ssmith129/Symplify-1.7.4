@@ -314,34 +314,50 @@ $criticality-info: #3B82F6;
 // Full page notification styles
 .notification-page-ai {
   .notification-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    display: flex;
+    gap: 10px;
     margin-bottom: 24px;
 
-    .stat-card {
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
       background: var(--bs-body-bg);
-      border-radius: 12px;
-      padding: 20px;
       border: 1px solid var(--bs-border-color);
-      
-      &.critical {
-        border-left: 4px solid $criticality-critical;
-      }
-      
-      &.high {
-        border-left: 4px solid $criticality-high;
+      border-radius: 20px;
+      cursor: default;
+      transition: box-shadow 0.2s;
+
+      &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
-      .stat-value {
-        font-size: 28px;
+      i {
+        font-size: 18px;
+        color: var(--bs-secondary-color);
+      }
+
+      span {
+        font-size: 16px;
         font-weight: 700;
         color: var(--bs-heading-color);
       }
 
-      .stat-label {
-        font-size: 13px;
-        color: var(--bs-secondary-color);
+      &.critical {
+        border-color: rgba($criticality-critical, 0.3);
+        background: rgba($criticality-critical, 0.05);
+
+        i { color: $criticality-critical; }
+        span { color: $criticality-critical; }
+      }
+
+      &.high {
+        border-color: rgba($criticality-high, 0.3);
+        background: rgba($criticality-high, 0.05);
+
+        i { color: $criticality-high; }
+        span { color: $criticality-high; }
       }
     }
   }
@@ -594,15 +610,7 @@ $criticality-info: #3B82F6;
 
   .notification-page-ai {
     .notification-stats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .notification-page-ai {
-    .notification-stats {
-      grid-template-columns: 1fr;
+      flex-wrap: wrap;
     }
   }
 }

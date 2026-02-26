@@ -154,33 +154,21 @@ export const NotificationPageAI: React.FC = () => {
 
         {/* Statistics Cards */}
         <div className="notification-stats">
-          <div className="stat-card">
-            <div className="stat-value">{stats.total}</div>
-            <div className="stat-label">
-              <i className="ti ti-bell me-1" />
-              Total Notifications
-            </div>
+          <div className="stat-chip" title="Total Notifications">
+            <i className="ti ti-bell" />
+            <span>{stats.total}</span>
           </div>
-          <div className="stat-card critical">
-            <div className="stat-value" style={{ color: CRITICALITY_COLORS.critical }}>{stats.critical}</div>
-            <div className="stat-label">
-              <i className="ti ti-alert-octagon me-1" />
-              Critical
-            </div>
+          <div className="stat-chip critical" title="Critical">
+            <i className="ti ti-alert-octagon" />
+            <span>{stats.critical}</span>
           </div>
-          <div className="stat-card high">
-            <div className="stat-value" style={{ color: CRITICALITY_COLORS.high }}>{stats.high}</div>
-            <div className="stat-label">
-              <i className="ti ti-alert-triangle me-1" />
-              High Priority
-            </div>
+          <div className="stat-chip high" title="High Priority">
+            <i className="ti ti-alert-triangle" />
+            <span>{stats.high}</span>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">{stats.unread}</div>
-            <div className="stat-label">
-              <i className="ti ti-mail me-1" />
-              Unread
-            </div>
+          <div className="stat-chip" title="Unread">
+            <i className="ti ti-mail" />
+            <span>{stats.unread}</span>
           </div>
         </div>
 
