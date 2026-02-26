@@ -125,7 +125,6 @@ export const NotificationPageAI: React.FC = () => {
               <i className="ti ti-bell me-2" />
               AI Notifications
             </h4>
-            <p className="text-muted mb-0">Organized by priority and category</p>
           </div>
           <div className="d-flex gap-3 align-items-center">
             <div className="btn-group" role="group">
@@ -209,7 +208,6 @@ export const NotificationPageAI: React.FC = () => {
                     <div className="group-title">
                       <i className={`ti ${categoryConfig.icon} me-2`} />
                       {categoryConfig.label}
-                      <span className="text-muted ms-2">({items.length})</span>
                     </div>
                     <div className="d-flex gap-2 align-items-center">
                       {unreadInCategory > 0 && (
