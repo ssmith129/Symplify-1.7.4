@@ -206,6 +206,17 @@ $criticality-info: #3B82F6;
         display: flex;
         gap: 8px;
         margin-top: 10px;
+
+        .btn {
+          width: 36px;
+          height: 36px;
+          padding: 0;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          font-size: 16px;
+        }
       }
     }
 
