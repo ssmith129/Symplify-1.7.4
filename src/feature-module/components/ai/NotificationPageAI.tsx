@@ -145,9 +145,8 @@ export const NotificationPageAI: React.FC = () => {
                 Timeline
               </button>
             </div>
-            <button className="btn btn-outline-secondary" onClick={() => handleMarkAllRead()}>
-              <i className="ti ti-checks me-1" />
-              Mark All Read
+            <button className="btn btn-outline-secondary btn-icon-touch" title="Mark All Read" onClick={() => handleMarkAllRead()}>
+              <i className="ti ti-checks" />
             </button>
           </div>
         </div>

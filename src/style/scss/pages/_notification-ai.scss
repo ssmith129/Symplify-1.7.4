@@ -311,6 +311,21 @@ $criticality-info: #3B82F6;
   }
 }
 
+// Touch-friendly icon-only button
+.btn-icon-touch {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+
+  i {
+    font-size: 20px;
+  }
+}
+
 // Full page notification styles
 .notification-page-ai {
   .notification-stats {
