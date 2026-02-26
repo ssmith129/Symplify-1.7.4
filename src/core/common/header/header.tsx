@@ -71,7 +71,7 @@ const Header = () => {
       {/* Topbar Start */}
       <header className="navbar-header">
         <div className="page-container topbar-menu">
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-3">
             {/* Logo */}
             <Link to={all_routes.dashboard} className="logo">
               {/* Logo Normal */}

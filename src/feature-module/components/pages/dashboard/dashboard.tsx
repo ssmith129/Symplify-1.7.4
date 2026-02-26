@@ -51,6 +51,7 @@ const Dashboard = () => {
                 <Link
                   to={all_routes.newAppointment}
                   className="btn btn-primary d-inline-flex align-items-center"
+                  style={{ minHeight: 32 }}
                 >
                   <i className="ti ti-plus me-1" />
                   New Appointment
@@ -58,6 +59,7 @@ const Dashboard = () => {
                 <Link
                   to={all_routes.doctorschedule}
                   className="btn btn-outline-white bg-white d-inline-flex align-items-center"
+                  style={{ minHeight: 32 }}
                 >
                   <i className="ti ti-calendar-time me-1" />
                   Schedule Availability

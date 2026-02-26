@@ -93,6 +93,8 @@ Header CSS
                 cursor: pointer;
                 width: 32px;
                 height: 32px;
+                min-height: 32px;
+                min-width: 32px;
                 border: 1px solid $topbar-item-border;
                 box-shadow: $box-shadow-sm;
                 border-radius: $border-radius-pill;
@@ -267,6 +269,15 @@ html[data-bs-theme="dark"] {
 @include respond-below(md) {
     .navbar-header {
         padding: 0 0.625rem;
+
+        .btn {
+            min-height: 32px;
+            min-width: 32px;
+        }
+
+        .logo img {
+            max-width: 32px;
+        }
     }
 }
 [data-layout="hidden"]{

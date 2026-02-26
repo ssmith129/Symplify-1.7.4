@@ -60,7 +60,7 @@ const RoleSelectorDropdown = () => {
   return (
     <div className="position-relative d-flex align-items-center" ref={dropdownRef}>
       <button
-        className="btn d-flex align-items-center gap-2 px-2 px-sm-3 py-1"
+        className="btn d-flex align-items-center px-2 px-sm-3 py-1"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
@@ -71,6 +71,8 @@ const RoleSelectorDropdown = () => {
           backgroundColor: isTransitioning ? '#f3f4f6' : '#fff',
           transition: 'all 0.2s ease',
           minWidth: 0,
+          minHeight: 32,
+          gap: 2,
         }}
       >
         {isTransitioning ? (

@@ -107,24 +107,18 @@ const PatientAcuityWidget: React.FC = () => {
   return (
     <div>
       {/* Summary Stats Row */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-sm-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF' }}>
-            <h4 className="fw-bold mb-1 text-primary">{totalPatients}</h4>
-            <p className="mb-0 fs-12 text-muted">Total Patients</p>
-          </div>
+      <div className="d-flex gap-3 mb-4">
+        <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#EEF2FF', flexGrow: 1, width: 'auto' }}>
+          <h4 className="fw-bold mb-1 text-primary">{totalPatients}</h4>
+          <p className="mb-0 fs-12 text-muted">Total Patients</p>
         </div>
-        <div className="col-12 col-sm-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2' }}>
-            <h4 className="fw-bold mb-1 text-danger">{totalHighPriority}</h4>
-            <p className="mb-0 fs-12 text-muted">High Priority</p>
-          </div>
+        <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#FEF2F2', flexGrow: 1, width: 'auto' }}>
+          <h4 className="fw-bold mb-1 text-danger">{totalHighPriority}</h4>
+          <p className="mb-0 fs-12 text-muted">High Priority</p>
         </div>
-        <div className="col-12 col-sm-4">
-          <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5' }}>
-            <h4 className="fw-bold mb-1 text-success">{acuityData[3].count + acuityData[4].count}</h4>
-            <p className="mb-0 fs-12 text-muted">Stable</p>
-          </div>
+        <div className="border rounded-2 p-3 text-center" style={{ backgroundColor: '#ECFDF5', flexGrow: 1, width: 'auto' }}>
+          <h4 className="fw-bold mb-1 text-success">{acuityData[3].count + acuityData[4].count}</h4>
+          <p className="mb-0 fs-12 text-muted">Stable</p>
         </div>
       </div>
 
