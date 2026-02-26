@@ -195,14 +195,15 @@ export const NotificationPageAI: React.FC = () => {
                       {unreadInCategory > 0 && (
                         <span className="group-badge">{unreadInCategory} unread</span>
                       )}
-                      <button 
-                        className="btn btn-sm btn-outline-secondary"
+                      <button
+                        className="btn btn-sm btn-outline-secondary btn-icon-touch"
+                        title="Mark Read"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleMarkAllRead(category as NotificationCategory);
                         }}
                       >
-                        Mark Read
+                        <i className="ti ti-checks" />
                       </button>
                       <i className={`ti ti-chevron-${isExpanded ? 'up' : 'down'}`} />
                     </div>
