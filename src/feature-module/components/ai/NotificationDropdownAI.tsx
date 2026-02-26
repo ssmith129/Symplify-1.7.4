@@ -131,8 +131,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 onAcknowledge(notification.id);
               }}
             >
-              <i className="ti ti-check me-1" />
-              Acknowledge
+              <i className="ti ti-check" />
             </button>
             {notification.relatedPatientId && (
               <Link 

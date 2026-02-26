@@ -236,20 +236,28 @@ export const NotificationPageAI: React.FC = () => {
                               {notification.source.name} • {formatTime(notification.timestamp)}
                             </small>
                             <div className="d-flex gap-2">
-                              {notification.suggestedActions.slice(0, 2).map(action => (
-                                <button 
-                                  key={action.id}
-                                  className={`btn btn-sm ${action.priority === 'danger' ? 'btn-danger' : 'btn-outline-primary'}`}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    if (action.type === 'dismiss') {
-                                      dispatch(dismissNotification(notification.id));
-                                    }
-                                  }}
-                                >
-                                  {action.label}
-                                </button>
-                              ))}
+                              {notification.suggestedActions.slice(0, 2).map(action => {
+                                const iconMap: Record<string, string> = {
+                                  'respond-now': 'ti-send',
+                                  'acknowledge': 'ti-check',
+                                };
+                                const icon = iconMap[action.id] || 'ti-click';
+                                return (
+                                  <button
+                                    key={action.id}
+                                    className={`btn btn-sm btn-icon-touch ${action.priority === 'danger' ? 'btn-danger' : 'btn-outline-primary'}`}
+                                    title={action.label}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      if (action.type === 'dismiss') {
+                                        dispatch(dismissNotification(notification.id));
+                                      }
+                                    }}
+                                  >
+                                    <i className={`ti ${icon}`} />
+                                  </button>
+                                );
+                              })}
                             </div>
                           </div>
                         </div>

@@ -275,8 +275,7 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                       e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
-                    <i className="ti ti-circle-check me-1 fs-14" />
-                    Acknowledge
+                    <i className="ti ti-circle-check fs-14" />
                   </button>
                   <button
                     className="btn btn-sm py-1 px-3 fs-12 btn-light alert-action-btn"
