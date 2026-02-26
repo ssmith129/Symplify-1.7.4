@@ -120,12 +120,7 @@ export const NotificationPageAI: React.FC = () => {
       <div className="content notification-page-ai">
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h4 className="fw-bold mb-1">
-              <i className="ti ti-bell me-2" />
-              AI Notifications
-            </h4>
-          </div>
+          <div />
           <div className="d-flex gap-3 align-items-center">
             <div className="btn-group" role="group">
               <button 
