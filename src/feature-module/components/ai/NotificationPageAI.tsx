@@ -118,14 +118,6 @@ export const NotificationPageAI: React.FC = () => {
   return (
     <div className="page-wrapper">
       <div className="content notification-page-ai">
-        {/* Header */}
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <div />
-          <button className="btn btn-outline-secondary btn-icon-touch" title="Mark All Read" onClick={() => handleMarkAllRead()}>
-            <i className="ti ti-checks" />
-          </button>
-        </div>
-
         {/* Statistics Cards */}
         <div className="notification-stats">
           <div className="stat-chip" title="Total Notifications">
