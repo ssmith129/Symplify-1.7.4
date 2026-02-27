@@ -284,12 +284,12 @@
 		border-color: var(--light);
 	}
 }
-// Mobile touch target enforcement (WCAG 44px minimum)
+// Mobile touch target enforcement (WCAG 32px minimum)
 @include respond-below(md) {
 	.btn {
-		min-height: 44px;
-		min-width: 44px;
-		padding: 10px 16px;
+		min-height: 32px;
+		min-width: 32px;
+		padding: 6px 12px;
 		font-size: 0.8125rem;
 		// Touch feedback
 		-webkit-tap-highlight-color: transparent;
@@ -299,16 +299,16 @@
 		}
 	}
 	.btn-sm {
-		min-height: 44px;
-		padding: 8px 12px;
+		min-height: 32px;
+		padding: 6px 10px;
 	}
 	.btn-icon {
-		min-height: 44px;
-		min-width: 44px;
+		min-height: 32px;
+		min-width: 32px;
 	}
 	.action-item > a {
-		width: 44px;
-		height: 44px;
+		width: 32px;
+		height: 32px;
 	}
 	// Ensure 8px minimum spacing between adjacent buttons
 	.btn + .btn,
@@ -318,11 +318,6 @@
 	}
 	.d-flex > .btn + .btn {
 		margin-left: 0; // flex gap handles spacing
-	}
-	// Exempt navbar header buttons from 44px enforcement
-	.navbar-header .btn {
-		min-height: 32px;
-		min-width: 32px;
 	}
 }
 
