@@ -91,13 +91,48 @@
         padding: 12px;
     }
 }
-// Mobile modal: maximize content area
+// Mobile modal: near-full-screen
 @include respond-below(sm) {
     .modal-dialog {
-        margin: 0.5rem;
+        margin: 8px;
+        max-width: calc(100vw - 16px);
+        min-height: calc(100vh - 16px);
+
+        &:not(.modal-sm) {
+            width: calc(100vw - 16px);
+        }
+    }
+    .modal-dialog-centered {
+        min-height: calc(100vh - 16px);
+    }
+    .modal-content {
+        border-radius: 12px;
+        max-height: calc(100vh - 16px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .modal-header {
         padding: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--white);
+
+        .btn-close {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+        }
+    }
+    .modal-footer {
+        position: sticky;
+        bottom: 0;
+        z-index: 1;
+        background: var(--white);
+
+        .btn {
+            flex: 1;
+        }
     }
 }
 .offcanvas {

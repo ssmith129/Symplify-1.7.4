@@ -269,14 +269,44 @@ html[data-bs-theme="dark"] {
 @include respond-below(md) {
     .navbar-header {
         padding: 0 0.625rem;
+        min-height: 48px;
 
+        // Compact header buttons - override global 44px touch target
         .btn {
             min-height: 32px;
             min-width: 32px;
+            padding: 4px 8px;
+            font-size: 0.75rem;
         }
 
         .logo img {
             max-width: 32px;
+        }
+
+        // Tighter gaps between header items
+        .topbar-menu {
+            gap: 4px;
+
+            .header-item {
+                height: auto;
+                min-height: 48px;
+
+                .dropdown {
+                    margin-right: 4px !important;
+                }
+            }
+        }
+
+        // Hide text labels on header buttons, keep icons
+        .btn-liner-gradient {
+            padding: 4px 8px;
+            font-size: 0;
+            min-width: 32px;
+
+            i {
+                font-size: 16px;
+                margin: 0 !important;
+            }
         }
     }
 }

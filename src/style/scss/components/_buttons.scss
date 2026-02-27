@@ -291,6 +291,12 @@
 		min-width: 44px;
 		padding: 10px 16px;
 		font-size: 0.8125rem;
+		// Touch feedback
+		-webkit-tap-highlight-color: transparent;
+		&:active {
+			transform: scale(0.97);
+			transition: transform 0.1s ease;
+		}
 	}
 	.btn-sm {
 		min-height: 44px;
@@ -303,6 +309,20 @@
 	.action-item > a {
 		width: 44px;
 		height: 44px;
+	}
+	// Ensure 8px minimum spacing between adjacent buttons
+	.btn + .btn,
+	.btn + .btn-group,
+	.btn-group + .btn {
+		margin-left: 8px;
+	}
+	.d-flex > .btn + .btn {
+		margin-left: 0; // flex gap handles spacing
+	}
+	// Exempt navbar header buttons from 44px enforcement
+	.navbar-header .btn {
+		min-height: 32px;
+		min-width: 32px;
 	}
 }
 

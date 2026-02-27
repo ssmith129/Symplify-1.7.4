@@ -20,6 +20,12 @@ body {
     color: $body-color;
     background-color: $light;
     overflow-x: hidden;
+
+    @include respond-below(md) {
+        font-size: 0.875rem;
+        line-height: 1.4;
+        -webkit-text-size-adjust: 100%;
+    }
 }
 
 ::selection {

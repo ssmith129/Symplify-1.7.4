@@ -7,6 +7,7 @@
     position: relative;
     left: 0;
     @include transition(all 0.2s ease);
+    contain: layout style;
      @include respond-below(lg) {
         margin: 0;
     }
@@ -32,7 +33,23 @@
                 max-width: 100%;
             }
         }
+
+        // CSS containment for cards to reduce layout recalculations
+        .card {
+            contain: content;
+        }
     }
+}
+
+// Responsive images - prevent overflow and maintain aspect ratio
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Lazy loading placeholder to minimize CLS
+[loading="lazy"] {
+    background-color: var(--light, #F5F6F8);
 }
 
 // C-02: Ensure table-nowrap doesn't force overflow on small screens
