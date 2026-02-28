@@ -470,6 +470,17 @@ export const SidebarData = [
     separateRoute: false,
     submenuItems: [
       {
+        label: "Compliance Dashboard",
+        link: routes.complianceDashboard,
+        submenu: false,
+        showSubRoute: false,
+        icon: "shield-check",
+        base: "compliance-dashboard",
+        materialicons: "start",
+        dot: false,
+        submenuItems: [],
+      },
+      {
         label: "Users",
         link: "index",
         submenu: true,

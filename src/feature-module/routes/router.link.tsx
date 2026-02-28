@@ -27,6 +27,7 @@ import ExpenseReport from "../components/pages/administration-modules/reports/ex
 import IncomeReport from "../components/pages/administration-modules/reports/income-report/incomeReport";
 import PatientReport from "../components/pages/administration-modules/reports/patient-report/patientReport";
 import ProfitAndLoss from "../components/pages/administration-modules/reports/profit-and-loss/profitAndLoss";
+import ComplianceDashboard from "../components/pages/administration-modules/compliance-dashboard/complianceDashboard";
 import DeleteAccountRequest from "../components/pages/administration-modules/users/delete-account-request/deleteAccountRequest";
 import Permissions from "../components/pages/administration-modules/users/permissions/permissions";
 import RolesAndPermissions from "../components/pages/administration-modules/users/roles-and-permissions/rolesAndPermissions";
@@ -1052,6 +1053,11 @@ export const publicRoutes = [
   {
     path: routes.systemupdate,
     element: <SystemUpdate />,
+    route: Route,
+  },
+  {
+    path: routes.complianceDashboard,
+    element: <ComplianceDashboard />,
     route: Route,
   },
   {

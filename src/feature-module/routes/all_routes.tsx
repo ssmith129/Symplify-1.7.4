@@ -151,6 +151,7 @@ export const all_routes = {
   transactions: "/transactions",
 
   //Administration
+  complianceDashboard: "/compliance-dashboard",
   rolesPermissions: "/roles-and-permissions",
   permissions: "/permissions",
   deleteaccountrequest: "/delete-account-request",
