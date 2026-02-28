@@ -212,7 +212,8 @@ th.fc-day-header {
 
 @include respond-below(md) {
     .fc-toolbar {
-        display: block !important;
+        flex-wrap: wrap;
+        gap: 6px;
         .fc-toolbar-chunk {
             margin: 6px 0;
         }
@@ -323,9 +324,9 @@ th.fc-day-header {
     }
 }
 
-/* Force all day cells to have equal height */
+/* Day cell base styles */
 .fc-daygrid-day {
-  height: 120px; /* You can adjust this value as needed */
+  min-height: 80px;
   vertical-align: top;
   position: relative;
 }
@@ -334,6 +335,10 @@ th.fc-day-header {
 .fc-daygrid-day-frame {
   height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 /* Adjust calendar event styling to fit inside the cell */
@@ -342,21 +347,11 @@ th.fc-day-header {
   overflow: hidden;
 }
 
-/* Optional: Prevent overflow from large image lists */
+/* Prevent overflow from large content */
 .fc-event-title-container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-
-/* Ensure all day cells are equal height */
-.fc-daygrid-day-frame {
-  height: 100px; /* adjust as needed */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 
 /* Avatar image */
