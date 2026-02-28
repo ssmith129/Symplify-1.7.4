@@ -27,21 +27,25 @@ interface CalendarEvent {
   borderColor?: string;
 }
 
-// Custom hook for detecting mobile viewport
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+// Custom hook for detecting viewport size
+type Viewport = 'mobile' | 'tablet' | 'desktop';
+const useViewport = () => {
+  const [viewport, setViewport] = useState<Viewport>('desktop');
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+    const check = () => {
+      const w = window.innerWidth;
+      if (w <= 768) setViewport('mobile');
+      else if (w <= 1024) setViewport('tablet');
+      else setViewport('desktop');
     };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
 
-  return isMobile;
+  return viewport;
 };
 
 // Custom hook for touch swipe detection
@@ -125,7 +129,9 @@ const useOfflineEvents = (events: CalendarEvent[]) => {
 const IntelligentCalendar: React.FC = () => {
   const calendarRef = useRef<FullCalendar>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
+  const viewport = useViewport();
+  const isMobile = viewport === 'mobile';
+  const isTablet = viewport === 'tablet';
 
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [daySlots, setDaySlots] = useState<CalendarDaySlots | null>(null);
@@ -179,7 +185,7 @@ const IntelligentCalendar: React.FC = () => {
     75 // Threshold for swipe detection
   );
 
-  // Mobile-optimized header toolbar
+  // Responsive header toolbar
   const headerToolbar = useMemo(() => {
     if (isMobile) {
       return {
@@ -188,12 +194,19 @@ const IntelligentCalendar: React.FC = () => {
         end: 'dayGridMonth,dayGridDay',
       };
     }
+    if (isTablet) {
+      return {
+        start: 'today,prev,next',
+        center: 'title',
+        end: 'dayGridMonth,dayGridWeek',
+      };
+    }
     return {
       start: 'today,prev,next',
       center: 'title',
       end: 'dayGridMonth,dayGridWeek,dayGridDay',
     };
-  }, [isMobile]);
+  }, [isMobile, isTablet]);
 
   // Set initial view based on viewport
   useEffect(() => {
@@ -428,17 +441,16 @@ const IntelligentCalendar: React.FC = () => {
             <FullCalendar
               ref={calendarRef}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView={isMobile ? 'dayGridMonth' : 'dayGridMonth'}
+              initialView="dayGridMonth"
               events={events}
               headerToolbar={headerToolbar}
               eventContent={renderEventContent}
               eventClick={handleEventClick}
               dateClick={handleDateClick}
               selectable={true}
-              dayMaxEvents={isMobile ? 2 : 3}
-              height={isMobile ? 'auto' : undefined}
-              contentHeight={isMobile ? 'auto' : undefined}
-              aspectRatio={isMobile ? 1.2 : 1.5}
+              dayMaxEvents={isMobile ? 2 : isTablet ? 3 : 4}
+              height="auto"
+              contentHeight="auto"
               fixedWeekCount={false}
               showNonCurrentDates={!isMobile}
               longPressDelay={isMobile ? 300 : 1000}
