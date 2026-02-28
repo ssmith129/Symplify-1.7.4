@@ -81,7 +81,7 @@ const SmartScheduler: React.FC<SmartSchedulerProps> = ({
           </div>
         ) : (
           <>
-            <div className="slot-list">
+            <div className="slot-list" style={{ maxHeight: '340px', overflowY: 'auto' }}>
               {suggestions.map((slot, idx) => {
                 const { date, time } = formatDateTime(slot.datetime);
                 const isSelected = selectedSlot?.datetime === slot.datetime;
