@@ -252,51 +252,47 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
                   </span>
                 </div>
 
-                {/* Prediction Text */}
-                <p className="fs-13 text-dark mb-3" style={{ lineHeight: '1.4' }}>
-                  {alert.predictedEvent}
-                </p>
-
-                {/* Action Buttons - Left aligned with consistent styling */}
-                <div className="d-flex justify-content-start gap-2">
-                  <button
-                    className="btn btn-sm py-1 px-3 fs-12 btn-outline-primary alert-action-btn"
-                    onClick={() => handleAcknowledge(alert)}
-                    aria-label={`Acknowledge ${config.label} alert for ${alert.patientName}`}
-                    style={{
-                      transition: 'all 0.2s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(46, 55, 164, 0.25)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    <i className="ti ti-circle-check fs-14" />
-                  </button>
-                  <button
-                    className="btn btn-sm py-1 px-3 fs-12 btn-light alert-action-btn"
-                    onClick={() => handleDismiss(alert.id)}
-                    aria-label={`Dismiss alert for ${alert.patientName}`}
-                    style={{
-                      transition: 'all 0.2s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
-                      e.currentTarget.style.backgroundColor = '#e9ecef';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'none';
-                      e.currentTarget.style.backgroundColor = '';
-                    }}
-                  >
-                    <i className="ti ti-x fs-14" />
-                  </button>
+                {/* Prediction Text + Action Buttons inline */}
+                <div className="d-flex align-items-center justify-content-between gap-2">
+                  <p className="fs-13 text-dark mb-0" style={{ lineHeight: '1.4' }}>
+                    {alert.predictedEvent}
+                  </p>
+                  <div className="d-flex gap-2 flex-shrink-0">
+                    <button
+                      className="btn btn-sm py-1 px-3 fs-12 btn-outline-primary alert-action-btn"
+                      onClick={() => handleAcknowledge(alert)}
+                      aria-label={`Acknowledge ${config.label} alert for ${alert.patientName}`}
+                      style={{ transition: 'all 0.2s ease' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(46, 55, 164, 0.25)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      <i className="ti ti-circle-check fs-14" />
+                    </button>
+                    <button
+                      className="btn btn-sm py-1 px-3 fs-12 btn-light alert-action-btn"
+                      onClick={() => handleDismiss(alert.id)}
+                      aria-label={`Dismiss alert for ${alert.patientName}`}
+                      style={{ transition: 'all 0.2s ease' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                        e.currentTarget.style.backgroundColor = '#e9ecef';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.backgroundColor = '';
+                      }}
+                    >
+                      <i className="ti ti-x fs-14" />
+                    </button>
+                  </div>
                 </div>
               </div>
             );
