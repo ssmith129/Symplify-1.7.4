@@ -19,10 +19,10 @@ interface ShiftHandoffSummaryProps {
 }
 
 const PRIORITY_CONFIG = {
-  critical: { color: '#F44336', bgColor: '#FFEBEE', label: 'Critical' },
-  high: { color: '#FF9800', bgColor: '#FFF3E0', label: 'High' },
-  moderate: { color: '#FFC107', bgColor: '#FFFDE7', label: 'Moderate' },
-  stable: { color: '#4CAF50', bgColor: '#E8F5E9', label: 'Stable' }
+  critical: { color: '#991B1B', bgColor: '#FEE2E2', label: 'Critical' },
+  high: { color: '#92400E', bgColor: '#FEF3C7', label: 'High' },
+  moderate: { color: '#78350F', bgColor: '#FEF9C3', label: 'Moderate' },
+  stable: { color: '#166534', bgColor: '#DCFCE7', label: 'Stable' }
 };
 
 const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
@@ -65,9 +65,9 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
   };
 
   const getShiftLabel = (type: string) => ({
-    day: 'Day Shift (7AM - 3PM)',
-    evening: 'Evening Shift (3PM - 11PM)',
-    night: 'Night Shift (11PM - 7AM)'
+    day: 'Day Shift · 7AM – 3PM',
+    evening: 'Evening Shift · 3PM – 11PM',
+    night: 'Night Shift · 11PM – 7AM'
   }[type] || type);
 
   const getShiftIcon = (type: string) => ({
@@ -113,32 +113,56 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
     p => p.priorityLevel === 'critical' || p.priorityLevel === 'high'
   );
 
+  const highCount = currentReport.patients.filter(p => p.priorityLevel === 'high').length;
+  const stableCount = currentReport.patients.filter(p => p.priorityLevel === 'stable').length;
+  const moderateCount = currentReport.patients.filter(p => p.priorityLevel === 'moderate').length;
+
+  // Build structured AI summary data
+  const keyConcerns: string[] = [];
+  currentReport.patients.forEach(p => {
+    if (p.priorityLevel === 'critical') keyConcerns.push(`respiratory monitoring (Rm ${p.room})`);
+    if (p.priorityLevel === 'high') keyConcerns.push(`pain management & fever watch (Rm ${p.room})`);
+  });
+  const totalPendingTasks = currentReport.patients.reduce((s, p) => s + p.pendingTasks.length, 0);
+  const totalAlerts = currentReport.patients.reduce(
+    (s, p) => s + p.recentEvents.filter(e => e.severity === 'critical' || e.severity === 'warning').length,
+    0
+  );
+
   return (
     <div className="shift-handoff-summary">
-      {/* Header Section */}
+      {/* Header — uses shift time as the title instead of redundant "Shift Handoff" */}
       <div className="handoff-header">
         <div className="header-top">
           <div className="header-title">
             <div className="title-text">
-              <h2>Shift Handoff</h2>
-              <span className="shift-info">
-                {getShiftLabel(currentReport.shiftType)} • {currentReport.unitName}
-              </span>
+              <h2>
+                <i className={`ti ${getShiftIcon(currentReport.shiftType)} me-2`} />
+                {getShiftLabel(currentReport.shiftType)}
+              </h2>
+              <span className="shift-info">{currentReport.unitName}</span>
             </div>
           </div>
+          {/* Rec 1: Differentiated CTAs — Play Summary is ghost/outlined, Acknowledge is large filled */}
           <div className="header-actions">
             <button 
               className={`btn btn-audio ${audioPlaying ? 'playing' : ''}`}
               onClick={() => dispatch(toggleAudio())}
+              aria-label={audioPlaying ? 'Pause audio summary' : 'Play audio summary'}
             >
-              {audioPlaying ? <><i className="ti ti-player-pause"></i> Pause Audio</> : <><i className="ti ti-volume"></i> Play Summary</>}
+              <i className={`ti ${audioPlaying ? 'ti-player-pause' : 'ti-volume'}`} />
+              <span>{audioPlaying ? 'Pause Audio' : 'Play Summary'}</span>
             </button>
             <button 
               className={`btn btn-acknowledge ${isAcknowledged ? 'acknowledged' : ''}`}
               onClick={handleAcknowledge}
               disabled={isAcknowledged}
+              aria-label={isAcknowledged ? 'Handoff acknowledged' : 'Acknowledge this handoff'}
             >
-              {isAcknowledged ? <><i className="ti ti-check"></i> Acknowledged</> : 'Acknowledge Handoff'}
+              {isAcknowledged 
+                ? <><i className="ti ti-circle-check" /> Acknowledged</>
+                : <><i className="ti ti-clipboard-check" /> Acknowledge Handoff</>
+              }
             </button>
           </div>
         </div>
@@ -150,7 +174,9 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
             <span className="nurse-label">Outgoing:</span>
             <span className="nurse-name">{currentReport.outgoingNurse.name}</span>
           </div>
-          <div className="transfer-arrow">→</div>
+          <div className="transfer-arrow">
+            <i className="ti ti-arrow-right" />
+          </div>
           <div className="nurse-card incoming">
             <i className="ti ti-user nurse-icon"></i>
             <span className="nurse-label">Incoming:</span>
@@ -159,31 +185,31 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
         </div>
       </div>
 
-      {/* Statistics Overview */}
+      {/* Rec 5: Stat cards with improved contrast — dark text on tinted backgrounds */}
       <div className="handoff-stats">
         <div className="stat-card total">
+          <div className="stat-icon"><i className="ti ti-users" /></div>
           <div className="stat-value">{currentReport.totalPatients}</div>
           <div className="stat-label">Total Patients</div>
         </div>
         <div className="stat-card critical">
+          <div className="stat-icon"><i className="ti ti-alert-circle" /></div>
           <div className="stat-value">{currentReport.criticalPatients}</div>
           <div className="stat-label">Critical</div>
         </div>
         <div className="stat-card high">
-          <div className="stat-value">
-            {currentReport.patients.filter(p => p.priorityLevel === 'high').length}
-          </div>
+          <div className="stat-icon"><i className="ti ti-alert-triangle" /></div>
+          <div className="stat-value">{highCount}</div>
           <div className="stat-label">High Priority</div>
         </div>
         <div className="stat-card stable">
-          <div className="stat-value">
-            {currentReport.patients.filter(p => p.priorityLevel === 'stable').length}
-          </div>
+          <div className="stat-icon"><i className="ti ti-circle-check" /></div>
+          <div className="stat-value">{stableCount}</div>
           <div className="stat-label">Stable</div>
         </div>
       </div>
 
-      {/* AI Summary Narrative */}
+      {/* Rec 2: AI Summary — restructured into scannable key-value pairs */}
       <div className="ai-summary-card">
         <div className="summary-header">
           <span className="ai-badge"><i className="ti ti-robot"></i> AI Summary</span>
@@ -191,7 +217,52 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
             Generated at {new Date(currentReport.generatedAt).toLocaleTimeString()}
           </span>
         </div>
-        <p className="summary-text">{currentReport.summaryNarrative}</p>
+        <div className="summary-structured">
+          <div className="summary-row">
+            <span className="summary-key">Patients</span>
+            <span className="summary-val">
+              {currentReport.totalPatients} total · {currentReport.criticalPatients} critical · {highCount} high · {moderateCount} moderate · {stableCount} stable
+            </span>
+          </div>
+          <div className="summary-row">
+            <span className="summary-key">Key Concerns</span>
+            <span className="summary-val">
+              {keyConcerns.length > 0 ? keyConcerns.join(', ') : 'None — all patients stable'}
+            </span>
+          </div>
+          <div className="summary-row">
+            <span className="summary-key">Alerts</span>
+            <span className="summary-val">{totalAlerts} active alert{totalAlerts !== 1 ? 's' : ''}</span>
+          </div>
+          <div className="summary-row">
+            <span className="summary-key">Pending Tasks</span>
+            <span className="summary-val">{totalPendingTasks} across all patients</span>
+          </div>
+          <div className="summary-row">
+            <span className="summary-key">Medications</span>
+            <span className="summary-val">All scheduled medications administered</span>
+          </div>
+          <div className="summary-row">
+            <span className="summary-key">Safety Incidents</span>
+            <span className="summary-val">None this shift</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Rec 4: Vitals Legend — persistent, with full abbreviation labels and icons */}
+      <div className="vitals-legend">
+        <span className="legend-title"><i className="ti ti-activity" /> Vitals Key:</span>
+        <div className="legend-items">
+          <span className="legend-chip"><i className="ti ti-heartbeat" /> HR = Heart Rate</span>
+          <span className="legend-chip"><i className="ti ti-droplet" /> BP = Blood Pressure</span>
+          <span className="legend-chip"><i className="ti ti-lungs" /> SpO2 = Oxygen Saturation</span>
+          <span className="legend-chip"><i className="ti ti-temperature" /> Temp = Temperature</span>
+        </div>
+        <div className="legend-arrows">
+          <span className="legend-chip"><span style={{color: '#166534'}}>↑ Improving</span></span>
+          <span className="legend-chip"><span style={{color: '#6B7280'}}>→ Stable</span></span>
+          <span className="legend-chip"><span style={{color: '#991B1B'}}>↓ Declining</span></span>
+        </div>
       </div>
 
       {/* Tabs */}

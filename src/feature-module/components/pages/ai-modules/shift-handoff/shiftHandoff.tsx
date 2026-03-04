@@ -5,13 +5,12 @@ const ShiftHandoff: React.FC = () => {
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
-        {/* Page Header */}
+        {/* Breadcrumb only — the card header provides the shift-specific title */}
         <div className="page-header">
           <div className="row align-items-center">
             <div className="col-sm-12">
               <div className="page-sub-header">
-                <h3 className="page-title">Shift Handoff Report</h3>
-                <ul className="breadcrumb">
+                <ul className="breadcrumb mb-0">
                   <li className="breadcrumb-item">
                     <a href="/dashboard">Dashboard</a>
                   </li>
