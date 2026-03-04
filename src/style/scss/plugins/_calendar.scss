@@ -403,6 +403,25 @@ th.fc-day-header {
     border-radius: 5px !important;
     padding: 6px 8px;
     box-shadow: $box-shadow;
+
+    &.fc-today-button {
+        color: $primary;
+        background-color: $white;
+        border-color: $primary;
+        font-weight: 500;
+
+        &:disabled {
+            opacity: 0.5;
+            color: $primary;
+            background-color: $white;
+            border-color: $primary;
+        }
+
+        &:not(:disabled):hover {
+            background-color: $primary;
+            color: $white;
+        }
+    }
 }
 .fc .fc-daygrid-day.fc-day-today {
     background-color: $primary-transparent;
