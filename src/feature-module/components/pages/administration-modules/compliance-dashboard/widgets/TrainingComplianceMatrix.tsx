@@ -100,20 +100,12 @@ const INCIDENT_TRIGGERS = [
   { staff: "K. Lawson", event: "PHI misdisclosure", triggered: "HIPAA Privacy Refresher", date: "2026-02-24", status: "in_progress" },
 ];
 
-function getCellColor(compliant: number, total: number): string {
+function getCellStyle(compliant: number, total: number): { bg: string; text: string; icon: string; label: string } {
   const pct = (compliant / total) * 100;
-  if (pct >= 95) return "#DCFCE7";
-  if (pct >= 85) return "#FEF9C3";
-  if (pct >= 70) return "#FED7AA";
-  return "#FECACA";
-}
-
-function getCellTextColor(compliant: number, total: number): string {
-  const pct = (compliant / total) * 100;
-  if (pct >= 95) return "#166534";
-  if (pct >= 85) return "#854D0E";
-  if (pct >= 70) return "#9A3412";
-  return "#991B1B";
+  if (pct >= 95) return { bg: "#DCFCE7", text: "#166534", icon: "ti-circle-check", label: "On track" };
+  if (pct >= 85) return { bg: "#FEF9C3", text: "#854D0E", icon: "ti-clock", label: "Approaching" };
+  if (pct >= 70) return { bg: "#FED7AA", text: "#9A3412", icon: "ti-alert-triangle", label: "At risk" };
+  return { bg: "#FECACA", text: "#991B1B", icon: "ti-alert-circle", label: "Critical" };
 }
 
 const TrainingComplianceMatrix = () => {
@@ -230,10 +222,12 @@ const TrainingComplianceMatrix = () => {
                         key={r.id}
                         className="text-center fw-semibold"
                         style={{
-                          backgroundColor: getCellColor(data.compliant, dept.totalStaff),
-                          color: getCellTextColor(data.compliant, dept.totalStaff),
+                          backgroundColor: getCellStyle(data.compliant, dept.totalStaff).bg,
+                          color: getCellStyle(data.compliant, dept.totalStaff).text,
                         }}
+                        title={`${dept.department} ${r.name}: ${pct}% compliant — ${getCellStyle(data.compliant, dept.totalStaff).label}`}
                       >
+                        <i className={`ti ${getCellStyle(data.compliant, dept.totalStaff).icon} fs-10 me-1`} aria-hidden="true" />
                         {pct}%
                         {data.overdue > 0 && (
                           <span className="d-block fs-10 text-danger fw-normal">{data.overdue} overdue</span>
@@ -251,13 +245,15 @@ const TrainingComplianceMatrix = () => {
         <div className="d-flex align-items-center gap-3 px-3 py-2 border-top">
           <small className="text-muted fw-semibold">Legend:</small>
           {[
-            { color: "#DCFCE7", label: "≥95%" },
-            { color: "#FEF9C3", label: "85–94%" },
-            { color: "#FED7AA", label: "70–84%" },
-            { color: "#FECACA", label: "<70%" },
+            { color: "#DCFCE7", textColor: "#166534", icon: "ti-circle-check", label: "≥95% On track" },
+            { color: "#FEF9C3", textColor: "#854D0E", icon: "ti-clock", label: "85–94% Approaching" },
+            { color: "#FED7AA", textColor: "#9A3412", icon: "ti-alert-triangle", label: "70–84% At risk" },
+            { color: "#FECACA", textColor: "#991B1B", icon: "ti-alert-circle", label: "<70% Critical" },
           ].map((l) => (
             <div key={l.label} className="d-flex align-items-center gap-1">
-              <span className="d-inline-block rounded" style={{ width: 12, height: 12, backgroundColor: l.color, border: "1px solid #e5e7eb" }} />
+              <span className="d-inline-flex align-items-center justify-content-center rounded" style={{ width: 18, height: 18, backgroundColor: l.color, border: "1px solid #e5e7eb" }}>
+                <i className={`ti ${l.icon}`} style={{ fontSize: 10, color: l.textColor }} aria-hidden="true" />
+              </span>
               <small className="text-muted">{l.label}</small>
             </div>
           ))}
