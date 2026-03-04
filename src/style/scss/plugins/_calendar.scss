@@ -330,10 +330,9 @@ th.fc-day-header {
   position: relative;
 }
 
-/* Ensure event content doesn't push the height */
+/* Ensure day frame fills available space */
 .fc-daygrid-day-frame {
   height: 100%;
-  overflow: hidden;
 }
 
 /* Adjust calendar event styling to fit inside the cell */

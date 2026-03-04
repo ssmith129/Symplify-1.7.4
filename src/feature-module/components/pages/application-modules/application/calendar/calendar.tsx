@@ -20,7 +20,7 @@ const Calendars = () => {
         Start Page Content
       ========================= */}
       <div className="page-wrapper">
-        <div className="content content-two">
+        <div className="content">
           {/* Page Header */}
           <div className="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">
             <div className="flex-grow-1">
