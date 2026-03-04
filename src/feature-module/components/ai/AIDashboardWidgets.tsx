@@ -66,11 +66,6 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
       <div className="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center justify-content-between flex-shrink-0 gap-2">
         <div className="d-flex align-items-center flex-grow-1 min-w-0">
           <h5 className="fw-bold mb-0 text-truncate">{widgetTitles[widgetId] || widgetId}</h5>
-          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10 flex-shrink-0">
-            <i className="ti ti-sparkles me-1" />
-            <span className="d-none d-sm-inline">AI</span>
-            <span className="d-inline d-sm-none">AI</span>
-          </span>
         </div>
         {widgetRoutes[widgetId] && (
           <Link
@@ -94,11 +89,11 @@ const SmartWidget: React.FC<SmartWidgetProps> = ({ widgetId, onInteraction, aiRe
 // Enhanced Patient Acuity Widget
 const PatientAcuityWidget: React.FC = () => {
   const acuityData = [
-    { level: 'Critical', count: 2, color: '#F44336', patients: ['Maria Santos', 'James Wilson'] },
-    { level: 'Urgent', count: 5, color: '#FF9800', patients: ['Emily Chen', 'Robert Johnson', 'Lisa Park'] },
-    { level: 'Semi-Urgent', count: 8, color: '#FFC107', patients: ['David Lee', 'Anna Kim'] },
-    { level: 'Standard', count: 15, color: '#4CAF50', patients: ['Michael Brown', 'Sarah Davis'] },
-    { level: 'Non-Urgent', count: 12, color: '#2196F3', patients: ['John Smith', 'Jane Doe'] },
+    { level: 'Critical', count: 2, color: '#F44336', icon: 'ti-urgent', patients: ['Maria Santos', 'James Wilson'] },
+    { level: 'Urgent', count: 5, color: '#FF9800', icon: 'ti-alert-triangle', patients: ['Emily Chen', 'Robert Johnson', 'Lisa Park'] },
+    { level: 'Semi-Urgent', count: 8, color: '#FFC107', icon: 'ti-alert-circle', patients: ['David Lee', 'Anna Kim'] },
+    { level: 'Standard', count: 15, color: '#4CAF50', icon: 'ti-circle-check', patients: ['Michael Brown', 'Sarah Davis'] },
+    { level: 'Non-Urgent', count: 12, color: '#2196F3', icon: 'ti-circle-dot', patients: ['John Smith', 'Jane Doe'] },
   ];
 
   const totalPatients = acuityData.reduce((sum, item) => sum + item.count, 0);
@@ -133,9 +128,11 @@ const PatientAcuityWidget: React.FC = () => {
             <div className="d-flex justify-content-between align-items-center mb-2">
               <div className="d-flex align-items-center">
                 <span
-                  className="rounded-circle me-2 flex-shrink-0"
-                  style={{ width: 12, height: 12, backgroundColor: item.color }}
-                />
+                  className="d-flex align-items-center justify-content-center me-2 flex-shrink-0 rounded-circle"
+                  style={{ width: 24, height: 24, backgroundColor: `${item.color}20` }}
+                >
+                  <i className={`ti ${item.icon} fs-12`} style={{ color: item.color }} />
+                </span>
                 <span className="fs-14 fw-medium">{item.level}</span>
               </div>
               <span
@@ -395,13 +392,7 @@ const QuickStatsWidget: React.FC = () => {
   return (
     <div className="card shadow-sm flex-fill w-100">
       <div className="card-header d-flex align-items-center justify-content-between">
-        <div className="d-flex align-items-center">
-          <h5 className="fw-bold mb-0">Quick Stats</h5>
-          <span className="badge bg-warning text-dark ms-2 px-2 py-1 fs-10">
-            <i className="ti ti-sparkles me-1" />
-            AI
-          </span>
-        </div>
+        <h5 className="fw-bold mb-0">Quick Stats</h5>
         <span className="fs-12 text-muted">Last 7 days</span>
       </div>
       <div className="card-body">

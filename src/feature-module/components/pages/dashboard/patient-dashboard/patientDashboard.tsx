@@ -31,9 +31,13 @@ const PatientDashboard = () => {
             }
           />
           {/* End Page Header */}
-          {/* row start */}
+
+          {/* ── Section: Health Summary ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-heartbeat text-danger me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Health Summary</h5>
+          </div>
           <div className="row">
-            {/* col start */}
             <div className="col-xl-3 col-md-6 d-flex">
               <div className="card flex-fill w-100 shadow-sm">
                 <div className="card-body">
@@ -126,10 +130,12 @@ const PatientDashboard = () => {
             </div>
             {/* col end */}
           </div>
-          {/* row start */}
-          {/* row start */}
+          {/* ── Section: Care Team & Records ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-stethoscope text-primary me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Care Team &amp; Records</h5>
+          </div>
           <div className="row">
-            {/* col start */}
             <div className="col-xl-4 col-lg-6 d-flex">
               <div className="card shadow-sm flex-fill w-100">
                 <div className="card-header d-flex align-items-center justify-content-between">
@@ -506,7 +512,11 @@ const PatientDashboard = () => {
             {/* col end */}
           </div>
           {/* row end */}
-          {/* card start */}
+          {/* ── Section: Vitals & Monitoring ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-activity text-success me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Vitals &amp; Monitoring</h5>
+          </div>
           <div className="card shadow-sm">
             <div className="card-header">
               <h5 className="fw-bold mb-0">Vitals</h5>
@@ -648,9 +658,12 @@ const PatientDashboard = () => {
             </div>
           </div>
           {/* card end */}
-          {/* row start */}
+          {/* ── Section: Billing & History ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-receipt text-info me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Billing &amp; History</h5>
+          </div>
           <div className="row">
-            {/* col start */}
             <div className="col-lg-6 d-flex">
               <div className="card shadow-sm flex-fill w-100">
                 <div className="card-header d-flex align-items-center justify-content-between">

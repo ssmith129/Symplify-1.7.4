@@ -69,9 +69,19 @@ const Dashboard = () => {
           />
           {/* End Page Header */}
 
-          {/* AI Dashboard Cards - Unified 2x3 Grid */}
+          {/* Page-level AI indicator */}
+          <div className="d-flex align-items-center mb-3 py-2 px-3 rounded-2" style={{ backgroundColor: '#FFFBEB', border: '1px solid #FEF3C7' }}>
+            <i className="ti ti-sparkles text-warning me-2 fs-16" />
+            <span className="fs-13 fw-medium text-dark">AI-Enhanced Dashboard</span>
+            <span className="fs-12 text-muted ms-2">Insights and alerts are powered by predictive analytics</span>
+          </div>
+
+          {/* ── Section: Clinical Overview ── */}
+          <div className="d-flex align-items-center mb-3 mt-4">
+            <i className="ti ti-heartbeat text-danger me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Clinical Overview</h5>
+          </div>
           <div className="ai-dashboard-grid row mb-4 g-3 g-lg-4">
-            {/* Row 1: Critical priority cards */}
             <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-acuity">
               <SmartWidget
                 widgetId="patientAcuity"
@@ -86,7 +96,6 @@ const Dashboard = () => {
                 aiRecommended={suggestedWidgetIds.includes('clinicalAlerts')}
               />
             </div>
-            {/* Row 2: Insights + Stats */}
             <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-insights">
               <SmartWidget
                 widgetId="aiInsights"
@@ -94,10 +103,17 @@ const Dashboard = () => {
                 aiRecommended={suggestedWidgetIds.includes('aiInsights')}
               />
             </div>
+          </div>
+
+          {/* ── Section: Operations ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-chart-bar text-primary me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Operations</h5>
+          </div>
+          <div className="row mb-4 g-3 g-lg-4">
             <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-stats">
               <QuickStatsWidget />
             </div>
-            {/* Row 3: Operational cards */}
             <div className="col-12 col-md-6 col-lg-4 d-flex ai-grid-item ai-grid-handoff">
               <ShiftHandoffWidget />
             </div>
@@ -106,11 +122,13 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* row start */}
+          {/* ── Section: Scheduling ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-calendar-event text-info me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Scheduling</h5>
+          </div>
           <div className="row">
-            {/* col start */}
             <div className="col-xl-8 col-lg-7">
-              {/* card start */}
               <div className="card shadow-sm flex-fill w-100">
                 <div className="card-header d-flex align-items-center justify-content-between">
                   <h5 className="fw-bold mb-0">Appointment Statistics</h5>
@@ -445,9 +463,12 @@ const Dashboard = () => {
             {/* col end */}
           </div>
           {/* end row */}
-          {/* start row */}
+          {/* ── Section: Management ── */}
+          <div className="d-flex align-items-center mb-3 mt-2">
+            <i className="ti ti-building-hospital text-success me-2 fs-20" />
+            <h5 className="fw-bold mb-0 fs-16">Management</h5>
+          </div>
           <div className="row">
-            {/* col start */}
             <div className="col-xl-4 d-flex">
               <div className="card shadow-sm flex-fill w-100">
                 <div className="card-header d-flex align-items-center justify-content-between">
@@ -1465,18 +1486,24 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-2">
                       <Link
                         to="#"
-                        className="d-inline-flex bg-soft-danger text-danger p-2 rounded-circle"
+                        className="btn btn-sm btn-outline-danger d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Decline leave request from James Allaire"
                       >
-                        <i className="ti ti-x fw-bold" />
+                        <i className="ti ti-x fw-bold me-1" />
+                        Decline
                       </Link>
                       <Link
                         to="#"
-                        className="d-inline-flex ms-2 text-success p-2 bg-soft-success rounded-circle"
+                        className="btn btn-sm btn-outline-success d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Approve leave request from James Allaire"
                       >
-                        <i className="ti ti-check fw-bold" />
+                        <i className="ti ti-check fw-bold me-1" />
+                        Approve
                       </Link>
                     </div>
                   </div>
@@ -1505,18 +1532,24 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-2">
                       <Link
                         to="#"
-                        className="d-inline-flex bg-soft-danger text-danger p-2 rounded-circle"
+                        className="btn btn-sm btn-outline-danger d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Decline leave request from Esther Schmidt"
                       >
-                        <i className="ti ti-x fw-bold" />
+                        <i className="ti ti-x fw-bold me-1" />
+                        Decline
                       </Link>
                       <Link
                         to="#"
-                        className="d-inline-flex ms-2 text-success p-2 bg-soft-success rounded-circle"
+                        className="btn btn-sm btn-outline-success d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Approve leave request from Esther Schmidt"
                       >
-                        <i className="ti ti-check fw-bold" />
+                        <i className="ti ti-check fw-bold me-1" />
+                        Approve
                       </Link>
                     </div>
                   </div>
@@ -1545,18 +1578,24 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-2">
                       <Link
                         to="#"
-                        className="d-inline-flex bg-soft-danger text-danger p-2 rounded-circle"
+                        className="btn btn-sm btn-outline-danger d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Decline leave request from Valerie Padgett"
                       >
-                        <i className="ti ti-x fw-bold" />
+                        <i className="ti ti-x fw-bold me-1" />
+                        Decline
                       </Link>
                       <Link
                         to="#"
-                        className="d-inline-flex ms-2 text-success p-2 bg-soft-success rounded-circle"
+                        className="btn btn-sm btn-outline-success d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Approve leave request from Valerie Padgett"
                       >
-                        <i className="ti ti-check fw-bold" />
+                        <i className="ti ti-check fw-bold me-1" />
+                        Approve
                       </Link>
                     </div>
                   </div>
@@ -1585,18 +1624,24 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-2">
                       <Link
                         to="#"
-                        className="d-inline-flex bg-soft-danger text-danger p-2 rounded-circle"
+                        className="btn btn-sm btn-outline-danger d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Decline leave request from Diane Nash"
                       >
-                        <i className="ti ti-x fw-bold" />
+                        <i className="ti ti-x fw-bold me-1" />
+                        Decline
                       </Link>
                       <Link
                         to="#"
-                        className="d-inline-flex ms-2 text-success p-2 bg-soft-success rounded-circle"
+                        className="btn btn-sm btn-outline-success d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Approve leave request from Diane Nash"
                       >
-                        <i className="ti ti-check fw-bold" />
+                        <i className="ti ti-check fw-bold me-1" />
+                        Approve
                       </Link>
                     </div>
                   </div>
@@ -1625,18 +1670,24 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-2">
                       <Link
                         to="#"
-                        className="d-inline-flex bg-soft-danger text-danger p-2 rounded-circle"
+                        className="btn btn-sm btn-outline-danger d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Decline leave request from Sally Cavazos"
                       >
-                        <i className="ti ti-x fw-bold" />
+                        <i className="ti ti-x fw-bold me-1" />
+                        Decline
                       </Link>
                       <Link
                         to="#"
-                        className="d-inline-flex ms-2 text-success p-2 bg-soft-success rounded-circle"
+                        className="btn btn-sm btn-outline-success d-inline-flex align-items-center"
+                        style={{ minHeight: 36 }}
+                        aria-label="Approve leave request from Sally Cavazos"
                       >
-                        <i className="ti ti-check fw-bold" />
+                        <i className="ti ti-check fw-bold me-1" />
+                        Approve
                       </Link>
                     </div>
                   </div>
