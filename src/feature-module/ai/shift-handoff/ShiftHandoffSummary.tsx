@@ -10,6 +10,8 @@ import {
 import type { RootState, AppDispatch } from '../../../core/redux/store';
 import { PatientHandoffCard } from './PatientHandoffCard';
 import { SBARGenerator } from './SBARGenerator';
+import { SEVERITY_VAR, toSeverity } from '../../../core/ai/severityTokens';
+import AIEmptyState from '../shared/AIEmptyState';
 
 interface ShiftHandoffSummaryProps {
   outgoingNurseId?: string;
@@ -18,11 +20,13 @@ interface ShiftHandoffSummaryProps {
   unitId?: string;
 }
 
+// Priority levels map onto the shared clinical severity tokens (WCAG AA,
+// light/dark aware). color/bgColor are CSS var() references, not hardcoded hex.
 const PRIORITY_CONFIG = {
-  critical: { color: '#991B1B', bgColor: '#FEE2E2', label: 'Critical' },
-  high: { color: '#C2410C', bgColor: '#FFF7ED', label: 'High' },
-  moderate: { color: '#78350F', bgColor: '#FEF9C3', label: 'Moderate' },
-  stable: { color: '#166534', bgColor: '#DCFCE7', label: 'Stable' }
+  critical: { color: SEVERITY_VAR.critical.fg, bgColor: SEVERITY_VAR.critical.bg, label: 'Critical' },
+  high: { color: SEVERITY_VAR.urgent.fg, bgColor: SEVERITY_VAR.urgent.bg, label: 'High' },
+  moderate: { color: SEVERITY_VAR.caution.fg, bgColor: SEVERITY_VAR.caution.bg, label: 'Moderate' },
+  stable: { color: SEVERITY_VAR.stable.fg, bgColor: SEVERITY_VAR.stable.bg, label: 'Stable' }
 };
 
 const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
@@ -263,9 +267,9 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
               <span className="legend-chip"><i className="ti ti-temperature" /> Temp = Temperature</span>
             </div>
             <div className="legend-arrows">
-              <span className="legend-chip"><span style={{color: '#166534'}}>↑ Improving</span></span>
-              <span className="legend-chip"><span style={{color: '#6B7280'}}>→ Stable</span></span>
-              <span className="legend-chip"><span style={{color: '#991B1B'}}>↓ Declining</span></span>
+              <span className="legend-chip"><span style={{color: SEVERITY_VAR[toSeverity('improving')].fg}}>↑ Improving</span></span>
+              <span className="legend-chip"><span style={{color: SEVERITY_VAR.neutral.fg}}>→ Stable</span></span>
+              <span className="legend-chip"><span style={{color: SEVERITY_VAR[toSeverity('declining')].fg}}>↓ Declining</span></span>
             </div>
           </div>
         )}
@@ -288,18 +292,39 @@ const ShiftHandoffSummary: React.FC<ShiftHandoffSummaryProps> = ({
       </div>
 
       {/* Patient Cards */}
-      <div className="patient-cards-grid">
-        {(activeTab === 'all' ? currentReport.patients : priorityPatients).map((patient) => (
-          <PatientHandoffCard
-            key={patient.patientId}
-            patient={patient}
-            onClick={() => handlePatientClick(patient)}
-            priorityConfig={PRIORITY_CONFIG}
-            expanded={activeTab === 'priority'}
-            reviewed={reviewedPatients.has(patient.patientId)}
-          />
-        ))}
-      </div>
+      {(() => {
+        const visiblePatients = activeTab === 'all' ? currentReport.patients : priorityPatients;
+        if (visiblePatients.length === 0) {
+          return activeTab === 'priority' ? (
+            <AIEmptyState
+              icon="circle-check"
+              tone="positive"
+              title="No critical or high-priority patients"
+              guidance="Every patient on this unit is currently stable. Switch to All Patients to review the full census."
+            />
+          ) : (
+            <AIEmptyState
+              icon="users"
+              title="No patients in this handoff"
+              guidance="There are no patients assigned for this shift yet. Generated reports will list each patient here."
+            />
+          );
+        }
+        return (
+          <div className="patient-cards-grid">
+            {visiblePatients.map((patient) => (
+              <PatientHandoffCard
+                key={patient.patientId}
+                patient={patient}
+                onClick={() => handlePatientClick(patient)}
+                priorityConfig={PRIORITY_CONFIG}
+                expanded={activeTab === 'priority'}
+                reviewed={reviewedPatients.has(patient.patientId)}
+              />
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Sticky Acknowledge Bar — pinned to bottom, enforces review-first */}
       <div className={`acknowledge-bar ${isAcknowledged ? 'acknowledged' : ''}`}>

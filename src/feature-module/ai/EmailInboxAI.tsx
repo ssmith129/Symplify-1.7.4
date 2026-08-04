@@ -25,6 +25,7 @@ import { EmailFolder, EmailPriority } from '../../core/ai/emailTypes';
 import { RootState, AppDispatch } from '../../core/redux/store';
 import EmailPriorityBadge from './EmailPriorityBadge';
 import EmailSidebarAI from './EmailSidebarAI';
+import AIEmptyState from './shared/AIEmptyState';
 
 // Format relative time
 const formatTimeAgo = (timestamp: string): string => {
@@ -456,10 +457,11 @@ export const EmailInboxAI: React.FC = () => {
                   </div>
                 </div>
               ) : filteredEmails.length === 0 ? (
-                <div className="text-center py-5">
-                  <i className="ti ti-inbox-off fs-1 text-muted" />
-                  <p className="text-muted mt-3">No emails in this folder</p>
-                </div>
+                <AIEmptyState
+                  icon="inbox-off"
+                  title="No emails in this folder"
+                  guidance="When new messages arrive, AI will triage and route them here automatically."
+                />
               ) : (
                 filteredEmails.map(email => (
                   <EmailListItem

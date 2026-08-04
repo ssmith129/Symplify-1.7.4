@@ -5,6 +5,7 @@ import type { RootState, AppDispatch } from '../../core/redux/store';
 import { updateClinicalAlerts, setAlertsConnected, fetchClinicalAlerts } from '../../core/redux/aiSlice';
 import { alertWebSocket } from '../../core/ai/mockApi';
 import type { PredictiveAlert, RiskLevel } from '../../core/ai/types';
+import AIEmptyState from './shared/AIEmptyState';
 
 interface ClinicalAlertWidgetProps {
   maxAlerts?: number;
@@ -177,11 +178,13 @@ const ClinicalAlertWidget: React.FC<ClinicalAlertWidgetProps> = ({
       </div>
 
       {filteredAlerts.length === 0 ? (
-        <div className="text-center py-4">
-          <i className="ti ti-shield-check text-success fs-1 mb-2 d-block opacity-75" />
-          <p className="text-muted mb-0 fs-14 fw-medium">No High-Priority Alerts</p>
-          <span className="text-muted fs-12">AI is continuously monitoring all patient vitals</span>
-        </div>
+        <AIEmptyState
+          icon="shield-check"
+          tone="positive"
+          size="compact"
+          title="No High-Priority Alerts"
+          guidance="AI is continuously monitoring all patient vitals — new alerts will appear here automatically."
+        />
       ) : (
         /* Alert List - Scrollable, fills remaining space */
         <div className="overflow-auto flex-grow-1" style={{ minHeight: 0 }} role="list" aria-live="assertive" aria-label="Clinical alert list">

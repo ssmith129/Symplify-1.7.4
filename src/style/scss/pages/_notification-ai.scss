@@ -670,6 +670,11 @@ $criticality-info-bg: rgba(30, 64, 175, 0.05);
       &::placeholder {
         color: var(--body-color);
       }
+
+      &:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+      }
     }
   }
 

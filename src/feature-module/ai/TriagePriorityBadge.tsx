@@ -4,6 +4,7 @@ import { Tooltip, Spin } from 'antd';
 import type { RootState, AppDispatch } from '../../core/redux/store';
 import { assessPatientTriage } from '../../core/redux/aiSlice';
 import type { VitalsData, TriagePriority } from '../../core/ai/types';
+import { SEVERITY_VAR } from '../../core/ai/severityTokens';
 
 interface TriagePriorityBadgeProps {
   patientId: string;
@@ -42,12 +43,17 @@ const TriagePriorityBadge: React.FC<TriagePriorityBadgeProps> = ({
     }
   }, [patientId, symptoms, vitals, waitTime, acuityScore, dispatch]);
 
-  // If no symptoms provided, use mock assessment
+  // Demo-only fallback: when no symptoms are supplied we can synthesize a
+  // placeholder assessment so the badge has something to show in showcases.
+  // This is OFF by default and never runs in production — a patient with no
+  // assessment must surface as "Not assessed", not as fabricated triage data.
   useEffect(() => {
-    if (!acuityScore && symptoms.length === 0) {
-      // Generate a random priority for demo purposes
-      const mockSymptoms = ['general checkup'];
-      dispatch(assessPatientTriage({ patientId, symptoms: mockSymptoms, vitals, waitTime }));
+    if (
+      import.meta.env.VITE_DEMO_TRIAGE === 'true' &&
+      !acuityScore &&
+      symptoms.length === 0
+    ) {
+      dispatch(assessPatientTriage({ patientId, symptoms: ['general checkup'], vitals, waitTime }));
     }
   }, [patientId, acuityScore, dispatch, symptoms.length, vitals, waitTime]);
 
@@ -84,6 +90,22 @@ const TriagePriorityBadge: React.FC<TriagePriorityBadgeProps> = ({
       <span className={`badge ${sizeClasses[size]} bg-light text-dark`}>
         <Spin size="small" className="me-1" />
         Analyzing...
+      </span>
+    );
+  }
+
+  // No real acuity score yet — show an honest neutral state rather than a
+  // fabricated priority. (patientName kept available for callers/labelling.)
+  if (!acuityScore) {
+    return (
+      <span
+        role="status"
+        aria-label={`Triage priority${patientName ? ` for ${patientName}` : ''}: not assessed`}
+        className={`badge ${sizeClasses[size]} d-inline-flex align-items-center`}
+        style={{ backgroundColor: SEVERITY_VAR.neutral.bg, color: SEVERITY_VAR.neutral.fg }}
+      >
+        <i className="ti ti-help-circle me-1" aria-hidden="true" />
+        Not assessed
       </span>
     );
   }

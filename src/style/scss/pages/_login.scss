@@ -9,6 +9,10 @@
             outline: none;
             transition: all 0.7s;
           }
+          &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+          }
         }
     }
     .login-or{

@@ -105,19 +105,20 @@
   --box-shadow-lg: 0 0 45px 0 rgba(108, 118, 136, 0.2);
 
   /* Healthcare Clinical Design Tokens */
-  --clinical-critical: #DC2626;
+  /* Foregrounds tuned to WCAG AA (>= 4.5:1) on their paired -bg; -bg/-border unchanged. */
+  --clinical-critical: #B91C1C; /* 5.91:1 on -bg */
   --clinical-critical-bg: #FEF2F2;
   --clinical-critical-border: #FECACA;
-  --clinical-urgent: #EA580C;
+  --clinical-urgent: #9A3412; /* 6.88:1 on -bg */
   --clinical-urgent-bg: #FFF7ED;
   --clinical-urgent-border: #FED7AA;
-  --clinical-caution: #CA8A04;
+  --clinical-caution: #854D0E; /* 6.62:1 on -bg */
   --clinical-caution-bg: #FEFCE8;
   --clinical-caution-border: #FEF08A;
-  --clinical-stable: #16A34A;
+  --clinical-stable: #15803D; /* 4.79:1 on -bg */
   --clinical-stable-bg: #F0FDF4;
   --clinical-stable-border: #BBF7D0;
-  --clinical-info: #1D4ED8;
+  --clinical-info: #1D4ED8; /* 6.16:1 on -bg */
   --clinical-info-bg: #EFF6FF;
   --clinical-info-border: #BFDBFE;
 
@@ -276,19 +277,20 @@
   --white-rgb: 26, 26, 26;
 
   /* Clinical tokens - dark mode */
-  --clinical-critical: #EF4444;
+  /* Foregrounds tuned to WCAG AA (>= 4.5:1) on their paired -bg; -bg/-border unchanged. */
+  --clinical-critical: #FCA5A5; /* 8.51:1 on -bg */
   --clinical-critical-bg: #450A0A;
   --clinical-critical-border: #7F1D1D;
-  --clinical-urgent: #F97316;
+  --clinical-urgent: #F97316; /* 5.58:1 on -bg */
   --clinical-urgent-bg: #431407;
   --clinical-urgent-border: #7C2D12;
-  --clinical-caution: #EAB308;
+  --clinical-caution: #EAB308; /* 7.60:1 on -bg */
   --clinical-caution-bg: #422006;
   --clinical-caution-border: #713F12;
-  --clinical-stable: #22C55E;
+  --clinical-stable: #22C55E; /* 6.54:1 on -bg */
   --clinical-stable-bg: #052E16;
   --clinical-stable-border: #14532D;
-  --clinical-info: #3B82F6;
+  --clinical-info: #93C5FD; /* 8.15:1 on -bg */
   --clinical-info-bg: #172554;
   --clinical-info-border: #1E3A5F;
 

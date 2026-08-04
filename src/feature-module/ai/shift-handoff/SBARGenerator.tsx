@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { PatientHandoff } from '../../../core/redux/shiftHandoffSlice';
+import { SEVERITY_VAR, toSeverity, type Severity } from '../../../core/ai/severityTokens';
 
 interface SBARGeneratorProps {
   patient: PatientHandoff;
@@ -8,43 +9,53 @@ interface SBARGeneratorProps {
 export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
   const [activeTab, setActiveTab] = useState<'sbar' | 'vitals' | 'meds' | 'tasks' | 'events'>('sbar');
 
-  const sbarSections = [
-    { 
-      key: 'situation', 
-      title: 'Situation', 
+  // SBAR section identity colors map onto the shared clinical severity scale.
+  const sbarSections: Array<{
+    key: string;
+    title: string;
+    icon: string;
+    content: string;
+    severity: Severity;
+  }> = [
+    {
+      key: 'situation',
+      title: 'Situation',
       icon: 'ti-alert-octagon',
       content: patient.sbar.situation,
-      color: '#F44336'
+      severity: 'critical'
     },
-    { 
-      key: 'background', 
-      title: 'Background', 
+    {
+      key: 'background',
+      title: 'Background',
       icon: 'ti-clipboard-list',
       content: patient.sbar.background,
-      color: '#2196F3'
+      severity: 'info'
     },
-    { 
-      key: 'assessment', 
-      title: 'Assessment', 
+    {
+      key: 'assessment',
+      title: 'Assessment',
       icon: 'ti-search',
       content: patient.sbar.assessment,
-      color: '#FF9800'
+      severity: 'caution'
     },
-    { 
-      key: 'recommendation', 
-      title: 'Recommendation', 
+    {
+      key: 'recommendation',
+      title: 'Recommendation',
       icon: 'ti-bulb',
       content: patient.sbar.recommendation,
-      color: '#4CAF50'
+      severity: 'stable'
     }
   ];
 
+  // Trend arrows route through the canonical severity scale:
+  // improving -> stable (good), declining -> critical (bad), steady -> neutral.
   const getTrendInfo = (trend: string) => {
-    switch (trend) {
-      case 'improving': return { label: 'Improving', color: '#4CAF50', icon: '↑' };
-      case 'declining': return { label: 'Declining', color: '#F44336', icon: '↓' };
-      default: return { label: 'Stable', color: '#9E9E9E', icon: '→' };
-    }
+    const severity = toSeverity(
+      trend === 'improving' || trend === 'declining' ? trend : 'steady'
+    );
+    const icon = trend === 'improving' ? '↑' : trend === 'declining' ? '↓' : '→';
+    const label = trend === 'improving' ? 'Improving' : trend === 'declining' ? 'Declining' : 'Stable';
+    return { label, color: SEVERITY_VAR[severity].fg, icon };
   };
 
   const formatTime = (timestamp: string) => {
@@ -108,14 +119,14 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
         {activeTab === 'sbar' && (
           <div className="sbar-sections">
             {sbarSections.map((section) => (
-              <div 
-                key={section.key} 
+              <div
+                key={section.key}
                 className="sbar-section"
-                style={{ borderLeftColor: section.color }}
+                style={{ borderLeftColor: SEVERITY_VAR[section.severity].fg }}
               >
                 <div className="section-header">
                   <i className={`ti ${section.icon} section-icon`}></i>
-                  <h4 className="section-title" style={{ color: section.color }}>
+                  <h4 className="section-title" style={{ color: SEVERITY_VAR[section.severity].fg }}>
                     {section.title}
                   </h4>
                 </div>
@@ -156,7 +167,7 @@ export const SBARGenerator: React.FC<SBARGeneratorProps> = ({ patient }) => {
                       {vital.metric === 'Heart Rate' && ' bpm'}
                       {vital.metric === 'Blood Pressure' && ' mmHg'}
                     </div>
-                    <div className="vital-change" style={{ color: change >= 0 ? '#4CAF50' : '#F44336' }}>
+                    <div className="vital-change" style={{ color: SEVERITY_VAR[toSeverity(change >= 0 ? 'improving' : 'declining')].fg }}>
                       {change >= 0 ? '+' : ''}{change.toFixed(vital.metric === 'Temperature' ? 1 : 0)} from last reading
                     </div>
                     <div className="vital-history">

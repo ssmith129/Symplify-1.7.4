@@ -358,6 +358,11 @@ $email-meta-text: #4A4F5C;
     min-width: 0;
 
     &::placeholder { color: #9CA3AF; }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
   }
 }
 

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Input, Tag, Spin, Tooltip } from 'antd';
 import type { RootState, AppDispatch } from '../../core/redux/store';
 import { analyzeMessageContent, clearMessageAnalysis } from '../../core/redux/aiSlice';
-import type { MessageUrgency } from '../../core/ai/types';
 import ImageWithBasePath from '../../core/imageWithBasePath';
+import { SEVERITY_VAR, toSeverity } from '../../core/ai/severityTokens';
+import AIEmptyState from './shared/AIEmptyState';
 
 interface SmartMessageRouterProps {
   onSend?: (content: string, recipients: string[]) => void;
@@ -44,19 +45,9 @@ const SmartMessageRouter: React.FC<SmartMessageRouterProps> = ({
     };
   }, [content, dispatch]);
 
-  const urgencyColors: Record<MessageUrgency, string> = {
-    critical: '#F44336',
-    high: '#FF9800',
-    normal: '#4CAF50',
-    low: '#2196F3'
-  };
-
-  const urgencyBgClass: Record<MessageUrgency, string> = {
-    critical: 'bg-danger',
-    high: 'bg-warning',
-    normal: 'bg-success',
-    low: 'bg-info'
-  };
+  // Severity styling is sourced from the shared clinical token map so colors
+  // stay WCAG AA compliant and light/dark-mode aware (no hardcoded hex).
+  const analysisSeverity = currentAnalysis ? toSeverity(currentAnalysis.urgency) : 'neutral';
 
   const handleRecipientToggle = (recipientId: string) => {
     setSelectedRecipients(prev => 
@@ -106,11 +97,11 @@ const SmartMessageRouter: React.FC<SmartMessageRouterProps> = ({
         {currentAnalysis && (
           <div
             className={`alert mb-3 border-0`}
-            style={{ backgroundColor: `${urgencyColors[currentAnalysis.urgency]}15` }}
+            style={{ backgroundColor: SEVERITY_VAR[analysisSeverity].bg }}
           >
             <div className="d-flex justify-content-between align-items-center mb-2">
               <div className="d-flex align-items-center gap-2">
-                <Tag color={urgencyColors[currentAnalysis.urgency]}>
+                <Tag color={SEVERITY_VAR[analysisSeverity].fg}>
                   {currentAnalysis.urgency.toUpperCase()}
                 </Tag>
                 <Tag color="blue">{currentAnalysis.category}</Tag>
@@ -130,6 +121,14 @@ const SmartMessageRouter: React.FC<SmartMessageRouterProps> = ({
             {/* Suggested Recipients */}
             <div className="mb-3">
               <strong className="small d-block mb-2">Suggested Recipients:</strong>
+              {currentAnalysis.suggestedRecipients.length === 0 ? (
+                <AIEmptyState
+                  icon="user-search"
+                  size="compact"
+                  title="No recipients matched yet"
+                  guidance="Add more detail to your message and AI will suggest the most relevant care-team members to route it to."
+                />
+              ) : (
               <div className="d-flex flex-wrap gap-2">
                 {currentAnalysis.suggestedRecipients.map((recipient) => {
                   const isSelected = selectedRecipients.includes(recipient.id);
@@ -166,6 +165,7 @@ const SmartMessageRouter: React.FC<SmartMessageRouterProps> = ({
                   );
                 })}
               </div>
+              )}
             </div>
 
             {/* Keywords */}
